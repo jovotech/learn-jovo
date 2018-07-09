@@ -1,2 +1,18 @@
-# jovo-blog
-News and tutorials about developing Alexa Skills and Google Actions with Jovo
+# Learn Jovo
+
+Docs > Guides > Tutorials > Couses
+
+(increasing detail, decreasing generic information)
+
+## Guides
+`jovo.tech/guides`
+
+Previously: Knowledge Base
+
+## Tutorials
+`jovo.tech/tutorials`
+Previously: Blog
+
+## Courses
+`jovo.tech/courses`
+Previously: Blog
