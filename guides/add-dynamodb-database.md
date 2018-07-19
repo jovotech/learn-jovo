@@ -37,7 +37,7 @@ const config = {
 };
 ```
 
-However, this will add DynamoDB to the app no matter which stage it is currently in, disabling the FilePersistence database. This is why we recommend to use the `app.json` to override the config for a certain stage as explained here: [app.json > Config Overrides](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md#config-overrides 'docs./app-json#config-overrides').
+However, this will add DynamoDB to the app no matter which stage it is currently in, disabling the FilePersistence database. This is why we recommend to use the `app.json` to override the config for a certain stage as explained here: [app.json > Config Overrides](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md#config-overrides 'docs/app-json#config-overrides').
 
 ```javascript
 "stages": {
