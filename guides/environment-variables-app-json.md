@@ -1,6 +1,6 @@
 # Reference Environment Variables in your app.json
 
-Learn how to use environment variables in your [app.json](../03_app-configuration/app-json.md '../app-json') file.
+Learn how to use environment variables in your [app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json') file.
 
 * [Introduction](#introduction)
 * [How to use env variables](#how-to-use-env-variables)
@@ -15,7 +15,7 @@ Watch the video here:
 
 ## Introduction
 
-The [app.json](../03_app-configuration/app-json.md '../app-json') is Jovo project configuration file that stores information like which platforms are used (`alexaSkill`, `googleAction`), including additional information like project IDs, endpoints, etc.
+The [app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json') is Jovo project configuration file that stores information like which platforms are used (`alexaSkill`, `googleAction`), including additional information like project IDs, endpoints, etc.
 
 One of the useful features of the `app.json` is the ability to add stages to deploy your voice app to different environments (like `local` on your computer and `dev` on Lambda). Environment variables are a great way to define values that are directly linked to the current environment. 
 
@@ -94,3 +94,6 @@ For hosted projects on e.g. AWS Lambda (in a `dev` or `prod` stage), environment
 The `TABLE_NAME` value can then be added in the Lambda function:
 
 ![Environment variables in AWS Lambda](../img/lambda-env-table.jpg "Environment variables in AWS Lambda")
+
+
+<!--[metadata]: { "description": "Learn how to use environment variables for Alexa Skills and Google Actions in your app.json file." }-->

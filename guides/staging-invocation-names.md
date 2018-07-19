@@ -13,7 +13,7 @@ Watch the video here:
 
 ## Introduction
 
-Jovo allows you to deploy your Alexa Skills and Google Actions to different environments, for example `local` (for local development), `dev`, and `prod` (both hosted on AWS Lambda). To learn more about the essentials of different stages, take a look at [App Configuration > app.json](../03_app-configuration/app-json.md '../app-json'), [Advanced Features > Staging](../07_advanced#staging '../advanced#staging'), and the [Staging Examples](./staging-examples.md './staging-examples') in the Jovo Knowledge Base.
+Jovo allows you to deploy your Alexa Skills and Google Actions to different environments, for example `local` (for local development), `dev`, and `prod` (both hosted on AWS Lambda). To learn more about the essentials of different stages, take a look at [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json'), [Advanced Features > Staging](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/07_advanced#staging 'docs/advanced#staging'), and the [Staging Examples](./staging-examples.md './staging-examples') in the Jovo Knowledge Base.
 
 If you have different stages, it's sometimes difficult to figure out which version of your voice app you're currently talking to. This is why Jovo offers a way for you to override the invocation name of your Alexa Skills (unfortunately, Dialogflow does not offer this functionality yet).
 
@@ -99,7 +99,7 @@ $ jovo build -p alexaSkill --stage dev --deploy
 
 ## Additional Options
 
-You can find additional options to add to the language model in [App Configuration > app.json](../03_app-configuration/app-json.md '../app-json').
+You can find additional options to add to the language model in [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json').
 
 For example, you can also add specific intents for certain stages:
 
@@ -124,14 +124,4 @@ For example, you can also add specific intents for certain stages:
 ```
 
 
-<!--[metadata]: {"title": "Staging: Change Invocation Names for Different Environments", 
-                "description": "Learn how to change the invocation name of your Alexa Skill in different environments.",
-                "activeSections": ["kb"],
-                "expandedSections": "kb",
-                "inSections": "kb",
-                "breadCrumbs": {"Docs": "docs",
-				"Knowledge Base": "docs/kb"
-                                },
-		"commentsID": "framework/docs/kb/staging-invocation-names",
-		"route": "docs/kb/staging-invocation-names"
-                }-->
+<!--[metadata]: { "description": "Learn how to change the invocation name of your Alexa Skill in different environments." }-->

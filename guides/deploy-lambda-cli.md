@@ -13,7 +13,7 @@ Watch the video here:
 
 ## Introduction
 
-The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](../02_cli '../cli') offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
+The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/02_cli 'docs/cli') offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
 
 You can upload your voice app to AWS Lambda by using the command `jovo deploy`, but first, you need to create the Lambda function, add it as an endpoint to your `app.json`, and make sure you have the right AWS credentials to programmatically deploy it there.
 
@@ -49,7 +49,7 @@ One likely setup could be to have a `local` stage with the Jovo Webhook for loca
 }
 ```
 
-Learn more about everything that can go into the `app.json` file here: [app.json - Project Configuration](../03_app-configuration/app-json.md '../app-json').
+Learn more about everything that can go into the `app.json` file here: [app.json - Project Configuration](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json').
 
 
 
@@ -99,16 +99,6 @@ $ jovo build --stage dev
 $ jovo deploy --stage dev
 ```
 
-You can learn more about the `jovo deploy` command here: [Jovo CLI > jovo deploy](../02_cli#jovo-deploy '../cli#jovo-deploy').
+You can learn more about the `jovo deploy` command here: [Jovo CLI > jovo deploy](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/02_cli#jovo-deploy 'docs/cli#jovo-deploy').
 
-<!--[metadata]: {"title": "Deploy your Voice App to AWS Lambda with the Jovo CLI", 
-                "description": "Learn how to deploy your Alexa Skill and Google Action to AWS Lambda by using the Jovo CLI.",
-                "activeSections": ["kb"],
-                "expandedSections": "kb",
-                "inSections": "kb",
-                "breadCrumbs": {"Docs": "docs",
-				"Knowledge Base": "docs/kb"
-                                },
-		"commentsID": "framework/docs/kb/deploy-lambda-cli",
-		"route": "docs/kb/deploy-lambda-cli"
-                }-->
+<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to AWS Lambda by using the Jovo CLI." }-->

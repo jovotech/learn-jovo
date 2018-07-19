@@ -9,7 +9,7 @@ By default, Google Assistant immediately exits the app when a user says things l
 
 ## Introduction
 
-Jovo comes with a default `'END'` handler that lets you clean up some data and send a final response after a person wants to exit your voice app. For Alexa Skills, the `AMAZON.StopIntent` and `SessionEnded` requests are mapped to `END` by default. Learn more here: [Routing > 'END' Intent](../04_app-logic/01_routing#end-intent '../routing#end-intent')).
+Jovo comes with a default `'END'` handler that lets you clean up some data and send a final response after a person wants to exit your voice app. For Alexa Skills, the `AMAZON.StopIntent` and `SessionEnded` requests are mapped to `END` by default. Learn more here: [Routing > 'END' Intent](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/04_app-logic/01_routing#end-intent 'docs/routing#end-intent')).
 
 Google Assistant, however, doesn't offer this behavior by default, but rather exits the conversation by just playing an earcon. Read more here: [Actions on Google Documentation > Conversation Exits](https://developers.google.com/actions/assistant/conversation-exits).
 
@@ -83,14 +83,5 @@ Alternatively, you can add an intent to the general Jovo intents with specific b
 
 Learn more about how to deploy your Dialogflow Agent here: [Deploy a Dialogflow Agent with the Jovo CLI](./deploy-dialogflow-agent.md './deploy-dialogflow-agent').
 
-<!--[metadata]: {"title": "Create a StopIntent for Google Assistant with Dialogflow", 
-                "description": "Learn how to respond to exit requests like StopIntent or CancelIntent with Google Assistant and Dialogflow.",
-                "activeSections": ["kb"],
-                "expandedSections": "kb",
-                "inSections": "kb",
-                "breadCrumbs": {"Docs": "docs",
-				"Knowledge Base": "docs/kb"
-                                },
-		"commentsID": "framework/docs/kb/stopintent-dialogflow",
-		"route": "docs/kb/stopintent-dialogflow"
+<!--[metadata]: { "description": "Learn how to respond to exit requests like StopIntent or CancelIntent with Google Assistant and Dialogflow."
                 }-->

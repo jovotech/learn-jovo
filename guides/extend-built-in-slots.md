@@ -12,7 +12,7 @@ Learn how to extend Alexa built-in slots like `AMAZON.US_CITY` and Dialogflow sy
 
 ## Introduction to Built-in Slots and Entities
 
-The [Jovo Language Model](../03_app-configuration/01_models '../model') is an abstraction layer for Alexa Interaction Models and Dialogflow Agents.
+The [Jovo Language Model](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/01_models 'docs/model') is an abstraction layer for Alexa Interaction Models and Dialogflow Agents.
 
 With the Jovo Language Model, you can reference built-in slot and entity types like this:
 
@@ -86,7 +86,7 @@ Add this new type to the `inputTypes` object of your language model file:
 }
 ```
 
-You can learn more about input types here: [Jovo Docs > Language Model > Input Types](../03_app-configuration/01_models#input-types '../model#input-types').
+You can learn more about input types here: [Jovo Docs > Language Model > Input Types](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/01_models#input-types 'docs/model#input-types').
 
 
 ### Reference Alexa and Dialogflow Types
@@ -133,3 +133,5 @@ After updating the `models/en-US.json` (or other locale) file in your Jovo proje
 ```shell
 $ jovo build
 ```
+
+<!--[metadata]: { "description": "Learn how to extend Alexa built-in slots like AMAZON.US_CITY and Dialogflow system entities like @sys.geo-city-us with the Jovo Language Model."  }-->

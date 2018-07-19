@@ -40,14 +40,4 @@ $ jovo deploy
 ```
 
 
-<!--[metadata]: {"title": "Deploy a Dialogflow Agent with the Jovo CLI", 
-                "description": "Learn how to deploy a Dialogflow agent from the command line with the Jovo CLI",
-                "activeSections": ["kb"],
-                "expandedSections": "kb",
-                "inSections": "kb",
-                "breadCrumbs": {"Docs": "docs",
-				"Knowledge Base": "docs/kb"
-                                },
-		"commentsID": "framework/docs/kb/deploy-dialogflow-agent",
-		"route": "docs/kb/deploy-dialogflow-agent"
-                }-->
+<!--[metadata]: { "description": "Learn how to deploy a Dialogflow agent from the command line with the Jovo CLI" }-->

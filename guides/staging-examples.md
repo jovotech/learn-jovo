@@ -1,6 +1,6 @@
 # Staging Examples
 
-This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [App Configuration > app.json](../03_app-configuration/app-json.md '../app-json') and [Advanced Features > Staging](../07_advanced#staging '../advanced#staging').
+This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json') and [Advanced Features > Staging](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/07_advanced#staging 'docs/advanced#staging').
 
 * [Basic setup](#basic-setup)
 * [Different endpoints](#different-endpoints)
@@ -211,14 +211,4 @@ You may also want to use different platform projects (e.g. Alexa Skill IDs and G
 
 Again, the above examples will add different endpoints to the `/platforms` folder project files by using the `$ jovo build --stage <your-stage>` command. To deploy the files to the right Lambda function, use `$ jovo deploys --stage <your-stage>`.
 
-<!--[metadata]: {"title": "Staging Examples", 
-                "description": "Learn how to deploy your Alexa Skill and Google Action to different environments",
-                "activeSections": ["kb"],
-                "expandedSections": "kb",
-                "inSections": "kb",
-                "breadCrumbs": {"Docs": "docs",
-				"Knowledge Base": "docs/kb"
-                                },
-		"commentsID": "framework/docs/kb/staging-examples",
-		"route": "docs/kb/staging-examples"
-                }-->
+<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to different environments" }-->
