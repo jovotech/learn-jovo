@@ -1,4 +1,4 @@
-## Host your Google Action on AWS Lambda
+# Host your Google Action on AWS Lambda
 
 - [Create a Lambda Function](#create-a-lambda-function)
 - [Upload Your Code](#upload-your-code)
@@ -11,7 +11,7 @@
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless hosting solution by Amazon. Many Alexa Skills are hosted on this platform, thus it might make sense for you to host your cross-platform voice application (including your Google Action). This is what we're going to do in this section. This usually takes a few steps, so be prepared.
 
-### Create a Lambda Function
+## Create a Lambda Function
 
 Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or create a new one): 
 
@@ -37,7 +37,7 @@ Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or cre
 
 ![AWS Lambda: Skill ID verification](../img/host-google-action-on-lambda/aws_lambda_function_07.png)
 
-### Upload Your Code
+## Upload Your Code
 
 Now let's get to the fun part. You can either enter to code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function. To upload the code to Lambda, please make sure to zip the actual files inside the directory, **not** the HelloWorld folder itself: 
 
@@ -53,7 +53,7 @@ Now let's get to the fun part. You can either enter to code inline, upload a zip
 
 
 
-### Test Your Lambda Function
+## Test Your Lambda Function
 
 Great! Your Lambda function is now created. Click "Test" right next to the "Save" button and select "Alexa Start Session" as the event template, since the [Jovo Framework](https://www.jovo.tech) supports both Google Action and Amazon Alexa requests: 
 
@@ -161,7 +161,7 @@ Great! Your Lambda function is now created. Click "Test" right next to the "Save
 }
 ```
 
-### Create API Gateway
+## Create API Gateway
 
 For Alexa Skills, you can just use the Lambda function's ARN to proceed, for Dialogflow, we need to create an API Gateway. Go to [console.aws.amazon.com/apigateway](https://console.aws.amazon.com/apigateway) to get started: 
 
@@ -195,21 +195,20 @@ For Alexa Skills, you can just use the Lambda function's ARN to proceed, for Dia
 
 ![API Gateway: Invoke URL](../img/host-google-action-on-lambda/api-gateway-invoke-url.jpg)
 
-### Add Endpoint to Dialogflow
------------------------------
+## Add Endpoint to Dialogflow
 
 Now that have our API Gateway to AWS Lambda set up, it's time use the provided URL to connect our application with our agent on Dialogflow.
 
 *   [a) Agent Fulfillment Section](#agent-fulfillment)
 *   [b) Add Webhook to Intents](#intents-webhook)
 
-#### a) Agent Fulfillment Section
+### a) Agent Fulfillment Section
 
 Go back to the Dialogflow console and choose the **Fulfillment** navigation item. Enable the webhook and paste your API Gateway URL: 
 
 ![Dialogflow Webhook Fulfillment with URL](../img/host-google-action-on-lambda/dialogflow_fulfillment-1.png)
 
-#### b) Add Webhook to Intents
+### b) Add Webhook to Intents
 
 Dialogflow offers the ability to customize your language model in a way that you can choose for every intent how it's going to be handled. This means we need to enable **webhook fulfillment** for every intent we use in our model. Go to HelloWorldIntent first and check "Use webhook" in at the bottom of the page: 
 
