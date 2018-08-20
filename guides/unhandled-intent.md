@@ -1,10 +1,9 @@
 # Unhandled Intent
 
-- [Unhandled Intent](#unhandled-intent)
-    - [Introduction](#introduction)
-    - [State Unhandled Intent](#state-unhandled-intent)
-    - [Global Unhandled Intent](#global-unhandled-intent)
-    - [Intents to Skip Unhandled](#intents-to-skip-unhandled)
+- [Introduction](#introduction)
+- [State Unhandled Intent](#state-unhandled-intent)
+- [Global Unhandled Intent](#global-unhandled-intent)
+- [Intents to Skip Unhandled](#intents-to-skip-unhandled)
 
 ## Introduction
 
