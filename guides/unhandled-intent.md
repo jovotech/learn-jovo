@@ -1,18 +1,17 @@
-# Unhandled Intent
+# How the Unhandled Intent Works
 
-- [Unhandled Intent](#unhandled-intent)
-    - [Introduction](#introduction)
-    - [Unhandled Intent inside a State](#unhandled-intent-inside-a-state)
-    - [Global Unhandled Intent](#global-unhandled-intent)
-    - [Intents to Skip Unhandled](#intents-to-skip-unhandled)
+* [Introduction](#introduction)
+* [Unhandled Intent inside a State](#unhandled-intent-inside-a-state)
+* [Global Unhandled Intent](#global-unhandled-intent)
+* [Intents to Skip Unhandled](#intents-to-skip-unhandled)
 
 ## Introduction
 
-The `Unhandled` intent is used to catch incoming intens, which can't be found inside your `handler`. If you've created a dialogflow agent before you might have seen the `Default Fallback Intent` which is automatically mapped to the `Unhandled` intent as well.
+The `Unhandled` intent is used to catch incoming intens, which can't be found inside your `handler`. If you've created a Dialogflow agent before you might have seen the `Default Fallback Intent` which is automatically mapped to the `Unhandled` intent as well.
 
-## Unhandled Intent inside a State
+## Unhandled Intent Inside a State
 
-The Jovo framework will look for the requested intent inside the current state first. If it can't find the intent there, it will go on searching for intent in the next outer scope and so on. You can stop that process using the `Unhandled` intent inside a state.
+The Jovo Framework will look for the requested intent inside the current state first. If it can't find the intent there, it will go on searching for intent in the next outer scope and so on. You can stop that process using the `Unhandled` intent inside a state.
 
 Let's say the incoming request contains a `PlayIntent`, but we're currently in the `DoNotPlayState` which does not have a `PlayIntent`, but globally there is one. Without the `Unhandled` state, the system would jump to the global scope and map the request to the `PlayIntent`. But with the `Unhandled` intent it would catch the request and remain in the current state:
 
@@ -108,3 +107,5 @@ Let's say we have the configuration above and the app is currently inside `State
 'HelpIntent': function() {
     // intent will be caught here
 }
+
+<!--[metadata]: { "description": "Learn how to the Unhandled Intent works for Alexa Skills and Google Actions with Jovo." }-->
