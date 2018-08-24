@@ -1,10 +1,11 @@
-# Visual Studio Code Debugging
+# Debugging Jovo Voice Apps in Visual Studio Code
 
-- [Visual Studio Code Debugging](#visual-studio-code-debugging)
-    - [Introduction](#introduction)
-    - [Configuration](#configuration)
-    - [Test the Debugger](#test-the-debugger)
-    - [Community](#community)
+Learn how to use VS Code to debug your Alexa Skills and Google Actions built with Jovo.
+
+* [Introduction](#introduction)
+* [Configuration](#configuration)
+* [Test the Debugger](#test-the-debugger)
+* [Community Articles](#community)
 
 ## Introduction
 
@@ -62,6 +63,8 @@ Change the `program` attribute to `${workspaceFolder}/node_modules/jovo-cli/inde
 
 To test the debugger add sample breakpoints to your project and simply press `F5` to start debugging. After that start your Alexa Skill or your Google Action and your app should stop at the breakpoints.
 
-## Community
+## Community Articles
 
 You can also check out the blogpost from [Ben Force](https://medium.com/@benforce/debugging-jovo-skills-in-vs-code-d117f908fbc2) about debugging Jovo applicatioins in VSCode.
+
+<!--[metadata]: { "description": "Learn how to use VS Code to debug your Alexa Skills and Google Actions built with Jovo." }-->
