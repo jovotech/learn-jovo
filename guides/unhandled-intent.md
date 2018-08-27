@@ -107,5 +107,6 @@ Let's say we have the configuration above and the app is currently inside `State
 'HelpIntent': function() {
     // intent will be caught here
 }
+```
 
 <!--[metadata]: { "description": "Learn how to the Unhandled Intent works for Alexa Skills and Google Actions with Jovo." }-->
