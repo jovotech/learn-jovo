@@ -116,4 +116,4 @@ After you have uploaded your code to Lambda, given your role the right permissio
 The initial test should create a fresh new DynamoDB table.
 
 
-<!--[metadata]: { "description": "Learn how to use DynamoDB to store user data for your Alexa Skills and Google Actions with Jovo." }-->
+<!--[metadata]: { "description": "Learn how to decouple certain areas of your Jovo voice app into separate handlers to keep your code organized in multiple files." }-->
