@@ -12,7 +12,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -20,11 +20,11 @@ Jovo is an open-source development framework for building voice apps that work o
 
 
 
-![](./img//suggestion-chips-actions-on-google.jpg)
+![](./img/suggestion-chips-actions-on-google.jpg)
 
  Suggestion Chips are a form of visual output, which (as the name already tells) provide the user with a suggestion how to respond. The user can select each suggestion chip, which will be considered as their answer. You can find the full reference from Google here: [Actions on Google Docs > Responses > Suggestion Chip](https://developers.google.com/actions/assistant/responses#suggestion_chip). You might ask yourself, why to even bother implementing that feature, since neither the Google Home nor the Google Home Mini have a screen. The answer is the crazy number of smartphones that have the Google Assistant integrated. In May 2017, the most common way for an American adult to use a voice assistant was through their smartphone ([source](http://www.pewresearch.org/fact-tank/2017/12/12/nearly-half-of-americans-use-digital-voice-assistants-mostly-on-their-smartphones/)). Suggestion chips are a great way to help them reach their goals faster by guiding the conversation.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -32,11 +32,11 @@ Jovo is an open-source development framework for building voice apps that work o
 
 Let's go through some of the use cases of suggestions chips, so you get an overview of the possibilities. **Example 1: Quiz App** Probably the most basic use case. You ask the user multiple choice questions and provide the possible answers as suggestion chips. 
 
-![](./img//chip_03-1.png)
+![](./img/chip_03-1.png)
 
    **Example 2: Possible Responses** Suggestion Chips can also be used to hint at possible responses. These could be answers to the question your application asked as well as help commands. 
 
-![](./img//chip_02-1.png)
+![](./img/chip_02-1.png)
 
   
 
@@ -44,7 +44,7 @@ Let's go through some of the use cases of suggestions chips, so you get an overv
 
 
 
-![](./img//suggestion-chips-jovo-1024x630.jpg)
+![](./img/suggestion-chips-jovo-1024x630.jpg)
 
  In this example, we are just going to modify our [Hello World Sample Voice App](https://github.com/jovotech/jovo-sample-voice-app-nodejs) to display some names as suggestion chips when we're asking our users for their names. You can find the full example code on GitHub: [jovotech/jovo-templates/tutorials/suggestion-chips](https://github.com/jovotech/jovo-templates/tree/master/tutorials/suggestion-chips). Suggestion chips are really easy to implement in Jovo. Technically it only takes one line of code:
 ```javascript
@@ -53,7 +53,7 @@ this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
 ```
 This is what the result looks like in the Actions on Google Simulator: 
 
-![](./img//chip_01-1.png)
+![](./img/chip_01-1.png)
 
  If I now click the "Elliot" button, this is treated as if I said "Elliot," going into the 'MyNameIsIntent' intent on Dialogflow. One more thing to consider: If `this.googleAction().showSuggestionChips();` gets used within an Alexa Skill request, it will throw an error. There are two ways to solve this issue: You can check if the request is coming from an Alexa or Google Assistant device using `this.isGoogleAction()`
 ```javascript

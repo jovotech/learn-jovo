@@ -16,7 +16,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -118,7 +118,7 @@ If your user grants permissions (e.g. access to your user's lists or their locat
 ```
 This Skill Event is triggered when your user grants your Skill additional permission or revokes existing ones. The request includes the most recently accepted permissions.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 

@@ -16,7 +16,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
 👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -24,15 +24,15 @@ Jovo is an open-source development framework for building voice apps that work o
 
 
 
-![](./img//account-linking-devices.jpg)
+![](./img/account-linking-devices.jpg)
 
  The problem developers currently face with Alexa Skills is that, after the voice experience ended, you can't really interact with your users. You can't inform them about any updates on your Skill, upcoming new Skills, or anything else. An option would be the [notifications feature](https://www.amazon.com/gp/help/customer/display.html?nodeId=202165800), which is sadly still in beta. Until then, you should try using **Account Linking**. Account Linking is the process of connecting user accounts between your Alexa Skill (the Skill User ID) and other services (your own service with username and password, or identity providers like Facebook, Twitter, ...). One of the biggest benefits of Account Linking is the **access to an email address**, which you can use for everything from marketing to sharing important additional information with your user (like booking details and receipts), which you simply can't provide on a voice platform. 
 
-![](./img//alexa-account-linking.png)
+![](./img/alexa-account-linking.png)
 
  However, setting up account linking for Alexa can be quite difficult, as you have to follow certain guidelines and set up your own oAuth 2.0 provider (read a [tutorial about Alexa Account Linking with Auth0 here](https://www.jovo.tech/blog/alexa-account-linking-auth0/)). Fortunately, if you just want to get your user's email address and some other basic information, there is a simple way to do so without having to deal with all the complexities of account linking: **Login with Amazon**. In this tutorial, we're going to show you how it works.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -40,7 +40,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
 There is one thing you can be sure about all your Alexa Skill users: that every one of them has an **Amazon account**. That's the reason using Amazon's very own social login, Login with Amazon, is so convenient. 
 
-![](./img//login-with-amazon-profile.jpg)
+![](./img/login-with-amazon-profile.jpg)
 
  It allows the user to sign in with their Amazon username and password, which grants us developers access to the user's profile data, consisting of **name, email and postal code**. To get the data, you have to prompt your user to login, showing a card in the Alexa companion app or website, which will redirect them to a typical Amazon login page. Let's walk you trough the steps needed to implement Login with Amazon Account Linking for your Alexa Skill:
 
@@ -52,15 +52,15 @@ There is one thing you can be sure about all your Alexa Skill users: that every 
 
 First, we have to create a Security Profile. Go to the [Amazon Developer Console](https://developer.amazon.com/) and select **Login with Amazon** on the **Apps & Services** tab. 
 
-![](./img//Login_With_Amazon_1.png)
+![](./img/Login_With_Amazon_1.png)
 
  Simply fill out the form and save it. 
 
-![](./img//Login_With_Amazon_2.png)
+![](./img/Login_With_Amazon_2.png)
 
  Before you close the tab, save both **Client ID** and **Client Secret**. We will need them later on. 
 
-![](./img//Login_With_Amazon_3.png)
+![](./img/Login_With_Amazon_3.png)
 
  In the next step, we will add Account Linking to your Skill on the Alexa Developer Console.
 
@@ -77,11 +77,11 @@ Go to the **Configuration** tab on your Alexa Skill and enable Account Linking. 
 
 
 
-![](./img//Account_linking_01-1.png)
+![](./img/Account_linking_01-1.png)
 
  There is one more thing to do. Go back to your Security Profile and select the **Web Settings** tab. Add the Redirect URLs to the **Allowed Return URLs** field. 
 
-![](./img//Login_With_Amazon_5-1.png)
+![](./img/Login_With_Amazon_5-1.png)
 
 
 

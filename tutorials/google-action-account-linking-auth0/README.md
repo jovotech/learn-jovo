@@ -17,7 +17,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
 👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -25,7 +25,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
 
 
-![](./img//google-action-account-linking.png)
+![](./img/google-action-account-linking.png)
 
  The easiest way to make your voice application stand out from the other apps on Google Home is by using **Account Linking**. It allows you to get to know your users and lets you personalize the experience with user specific data. For example, you could do things like this:
 
@@ -42,7 +42,7 @@ Google requires the **OAuth 2.0 protocol for Account Linking**. You can find the
 
 First of all, setting up an OAuth 2.0 server can be difficult (at least, I had a tough time), and using a single identity provider restricts your user. Not everybody has a Facebook account. A service like Auth0 comes in handy in such a situation. It allows us to use the many identity providers and the standard username-password login at the same time. We're first learning more about OAuth2 in general, and then walk through setting up a simple example of Google Actions Account Linking with Auth0, step by step.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -57,11 +57,11 @@ The authorization protocol OAuth 2.0 allows third-party applications to gain lim
 
 Here's how the roles interact with each other: 
 
-![](./img//how-oauth2-works.png)
+![](./img/how-oauth2-works.png)
 
    
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -79,7 +79,7 @@ Here's how the roles interact with each other:
 
 Usually, such a service is not free, but Auth0 does not bill you if you have less than 7,000 regular active users/month. In this case a regular active user is someone who has ‘authenticated with username/password, passwordless connections or any social provider in the last calendar month, counted per application’. In the following steps, we are going to use both _username + password_ and _social logins_ features by Auth0 to create an Account Linking process for our Google Action.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -95,27 +95,27 @@ In this section, we're going through all the necessary steps you need to create 
 
 To create an application click on the orange button on the top right corner of the dashboard: 
 
-![](./img//auth0_landing.png)
+![](./img/auth0_landing.png)
 
  Name your application and select '_Machine to Machine Applications_': 
 
-![](./img//auth_new_application.png)
+![](./img/auth_new_application.png)
 
  Choose the **Auth0 Management API** and select **all scopes**. Going over all the scopes would be to much for this blogpost. 
 
-![](./img//auth_management_api.png)
+![](./img/auth_management_api.png)
 
  The result should be a dashboard like this: 
 
-![](./img//auth_application_dashboard.png)
+![](./img/auth_application_dashboard.png)
 
  Switch to the **Settings** tab and change the _Token Endpoint Authentication Method_ to _Basic_. 
 
-![](./img//auth_authentication_method.png)
+![](./img/auth_authentication_method.png)
 
  At the bottom of the settings tab click on **Show Advances Settings** and switch to **OAuth**. Select _HS256_ on _JsonWebToken Signature Algorithm_ and save your changes. 
 
-![](./img//auth0-advanced-settings.jpg)
+![](./img/auth0-advanced-settings.jpg)
 
 
 
@@ -123,15 +123,15 @@ To create an application click on the orange button on the top right corner of t
 
 The next step is to enable the social logins you want to use. You can find them in _Connections > Social_: 
 
-![](./img//auth0Setup_6.png)
+![](./img/auth0Setup_6.png)
 
  Here is an overview of connections you can choose from: 
 
-![](./img//auth0-social-connections.jpg)
+![](./img/auth0-social-connections.jpg)
 
  Choose the provider you want to enable and the data you want to access. There is guide on how to set up every provider. It's marked on the screenshot: 
 
-![](./img//auth0Setup_7.png)
+![](./img/auth0Setup_7.png)
 
 
 
@@ -143,11 +143,11 @@ On the Google Assistant you have two options to enable Account Linking. Either y
 
 If you want to do it with Dialogflow console, go to the **Integrations** tab and click on **Google Assistant**. There you can select which of your intents require the user to sign in. 
 
-![](./img//auth0Google_01.png)
+![](./img/auth0Google_01.png)
 
  This is how the Google Assistant integration window looks like: 
 
-![](./img//auth0Google_02.png)
+![](./img/auth0Google_02.png)
 
 
 
@@ -155,11 +155,11 @@ If you want to do it with Dialogflow console, go to the **Integrations** tab and
 
 The next step is to enable Account Linking in your project settings. Therefor go back to your Project Overview, which you can find on the [Google Actions console](https://console.actions.google.com), and select **Account Linking:** 
 
-![](./img//google_action_account_linking.png)
+![](./img/google_action_account_linking.png)
 
  This will walk you through a step by step process, which looks like this: 
 
-![](./img//account-linking-actions-console.jpg)
+![](./img/account-linking-actions-console.jpg)
 
  Below, you can find a list of all the information needed for Account Linking, and where to get it from:
 
@@ -178,15 +178,15 @@ The scopes we use indicate the level of access we want on the user's data:
 
 On **Testing Instructions**, you have to provide both username and password of an actual account, so the review team of the Google Assistant Actions can test your application, if you plan to release it. You can simply create a throwaway account on Auth0, by going to the **Users** tab on **Auth0** and clicking on **Create User**: 
 
-![](./img//auth0Google_04.png)
+![](./img/auth0Google_04.png)
 
  Last but not least, we have to add the redirect url to our Auth0 client's settings. To create that url, we need the project ID of your google Action, so go back to the Actions on Google console and click on the project settings, to find your ID. 
 
-![](./img//auth0Google_05.png)
+![](./img/auth0Google_05.png)
 
  
 
-![](./img//auth0Google_06.png)
+![](./img/auth0Google_06.png)
 
  Now go back to your Auth0 client's settings settings and add the following url to the _Allowed Callback URLs_ field: https://oauth-redirect.googleusercontent.com/r/\[yourProjectID\] That's it! The last thing we want to show you is how to access the stored user data and how to add an Account Linking prompt in your code.
 
@@ -206,11 +206,11 @@ if (!this.getAccessToken()){
 ```
 The prompt will look like this: 
 
-![](./img//auth0Google_07.png)
+![](./img/auth0Google_07.png)
 
  And that's how the sign in page will look like: 
 
-![](./img//auth0Setup_10.png)
+![](./img/auth0Setup_10.png)
 
  After the user completed the sign in, your Action will get another request, which will be mapped to the Jovo built-in intent `ON_SIGN_IN`. There you can check for the result using `this.googleAction().getSignInStatus()`, which will return either `CANCELLED`, `OK` or `ERROR`:
 ```javascript

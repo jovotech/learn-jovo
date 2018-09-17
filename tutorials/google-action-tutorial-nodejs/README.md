@@ -23,7 +23,7 @@ Please note: This is a tutorial for beginners and explains the essential steps o
 
 . 
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -31,11 +31,11 @@ Please note: This is a tutorial for beginners and explains the essential steps o
 
 In this section, you will learn more about the architecture of Google Assistant and how users interact with its Actions. First, let's take a look at the wording of the different kinds of software and hardware that's involved: 
 
-![](./img//google-home-google-assistant.png)
+![](./img/google-home-google-assistant.png)
 
  While it's the hardware device that most users see, **Google Home** is not the name of the assistant you can develop actions for (wich sometimes causes confusion when people talk about "_building an Action for Google Home_"). The artificial intelligence you can hear speaking from inside the smart speaker is called **Google Assistant** (which is now also available on Android and iOS smartphones). **Actions on Google** are the applications that can be built on top of the Google Assistant platform. The main difference between the architecture of building Google Actions and [Alexa Skills](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/) is that for Google you need an additional layer to handle the natural language. Most Action developers use [Dialogflow](https://dialogflow.com/) to configure their application's language model: 
 
-![](./img//google-assistant-api-ai.png)
+![](./img/google-assistant-api-ai.png)
 
  We will take a deeper look into Dialogflow in section 2: [Create an Agent on Dialogflow](#agent-apiai). To understand how Google Actions work, let's take a look at the two important elements:
 
@@ -46,7 +46,7 @@ In this section, you will learn more about the architecture of Google Assistant 
 
 There are a few steps that happen before a user's speech input is reaching your Action. The voice input process (from left to right) consists of three stages that happen at three (four, if you count Google and Dialogflow as two) different places: 
 
-![](./img//google-action-request.png)
+![](./img/google-action-request.png)
 
 
 
@@ -58,7 +58,7 @@ There are a few steps that happen before a user's speech input is reaching your 
 
 The voice output process (from right to left) goes back and passes the stages again: 
 
-![](./img//google-action-response.png)
+![](./img/google-action-response.png)
 
 
 
@@ -68,7 +68,7 @@ The voice output process (from right to left) goes back and passes the stages ag
 
 In order to make the Action work, we need to configure it on both **Dialogflow** (for the natural language understanding) and the **Actions on Google Console** (for the Assistant integration). We're going to create a new Dialogflow Agent in the next step. 
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -83,11 +83,11 @@ An [Dialogflow agent](https://dialogflow.com/docs/agents) offers a set of module
 
 Go to [dialogflow.com](https://dialogflow.com/) and click "Go to console" on the upper right: 
 
-![](./img//dialogflow_landing_page.png)
+![](./img/dialogflow_landing_page.png)
 
  Now sign in with your Google account. To simplify things, make sure to use the same account that's registered with your Actions on Google enabled device like Google Home (if possible) for more seamless testing. 
 
-![](./img//dialogflow_login_page.png)
+![](./img/dialogflow_login_page.png)
 
 
 
@@ -95,19 +95,19 @@ Go to [dialogflow.com](https://dialogflow.com/) and click "Go to console" on the
 
 Great! Once you're in the console, click "create agent": 
 
-![](./img//dialogflow_console_landing_page.png)
+![](./img/dialogflow_console_landing_page.png)
 
  We're just going to name it "HelloWorldAgent" and leave the other information out for now: 
 
-![](./img//dialogflow_agent_creation.png)
+![](./img/dialogflow_agent_creation.png)
 
  After creating the agent, you can see the screen **Intents**: 
 
-![](./img//dialogflow_agent_intent_page.png)
+![](./img/dialogflow_agent_intent_page.png)
 
  These intents are part of the Agent's language model. Let's take a deeper look into how it works in the next section.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -126,7 +126,7 @@ Google Assistant and Dialogflow help you with several steps in processing input.
 
 An intent is something a user wants to achieve while talking to your product. It is the basic meaning that can be stripped away from the sentence or phrase the user is telling you. And there can be several ways to end up at that specific intent. 
 
-![](./img//intent-expressions.png)
+![](./img/intent-expressions.png)
 
  For example, a **FindRestaurantIntent** from the image above could have different ways how users could express it. In the case of Dialogflow language models, these are called user expressions:
 
@@ -138,7 +138,7 @@ An user expression (sometimes called utterance) is the actual sentence a user is
 
 No matter if I'm looking for a super cheap place, a pizza spot that serves Pabst Blue Ribbon, or a dinner restaurant to bring a date, generally speaking it serves one purpose (user intent): to find a restaurant. However, the user is passing some more specific information that can be used for a better user experience. These are called entities: 
 
-![](./img//intent-expressions-entities.png)
+![](./img/intent-expressions-entities.png)
 
  These are just the very basic components for you to get introduced to some terms. We don't need to know a lot about entities for this simple tutorial. However, it's good to know for later steps. Now that we know a little bit about how language models work, let's create our first intent that's being used to ask for our user's name.
 
@@ -146,11 +146,11 @@ No matter if I'm looking for a super cheap place, a pizza spot that serves Pabst
 
 After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/framework/docs/intents-states#intents) intent. 
 
-![](./img//dialogflow_agent_intent_page.png)
+![](./img/dialogflow_agent_intent_page.png)
 
  Let's create another intent and name it "HelloWorldIntent": 
 
-![](./img//dialogflow_helloWorldIntent02.png)
+![](./img/dialogflow_helloWorldIntent02.png)
 
  Also add the following example phrases to the "**Training Phrases**" tab:
 ```javascript
@@ -160,7 +160,7 @@ say hello world
 ```
 
 
-![](./img//dialogflow_helloWorldIntent03.png)
+![](./img/dialogflow_helloWorldIntent03.png)
 
  Save the intent and create another one named "MyNameIsIntent". With this one we are also going to add example phrases of what the user could say to "**Training Phrases**" and also add an entity called "name" in the "**Action and parameters**":
 ```javascript
@@ -171,15 +171,15 @@ name
 ```
 
 
-![](./img//dialogflow_intent_myNameIsIntent.png)
+![](./img/dialogflow_intent_myNameIsIntent.png)
 
  Now we have to map the entity we created to the "**Training Phrases**" section by selecting the word "name" and choosing "**@sys.given-name:name**": 
 
-![](./img//dialogflow_intent_entitiy.png)
+![](./img/dialogflow_intent_entitiy.png)
 
  Now, let's look at the code!   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -266,7 +266,7 @@ app.setHandler({
 ```
 What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/framework/docs/intents-states#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/framework/docs/intents-states#tointent-tostateintent) call to switch to the HelloWorldIntent. Here, the [ask](https://www.jovo.tech/framework/docs/output#ask) method is called to ask for your user's name. After they answer, the MyNameIsIntent gets triggered, which greets your user with their name. That's it for now. Of course, feel free to modify this as you wish. To create more complex Google Actions, take a look at the framework's capabilities here: [Jovo Framework Docs: Building a Voice App](https://www.jovo.tech/framework/docs/building-a-voice-app).   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -277,7 +277,7 @@ What's happening here? When your skill is opened, it triggers the [LAUNCH](https
 
 So where do we send the response to? Let’s switch tabs once again and take a look at the Fulfillment section at Dialogflow: 
 
-![](./img//dialogflow_fulfillment.png)
+![](./img/dialogflow_fulfillment.png)
 
  To make a connection between the Dialogflow and your application, you need to an HTTPS endpoint (a webhook). Jovo currently supports an Express server and AWS Lambda. We recommend the first one for local prototyping, but you can also [jump to the Lambda section](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/#aws-lambda).  
 
@@ -324,27 +324,27 @@ This should be enough for now to test and debug your Google Action locally. If y
 
 Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or create a new one): 
 
-![](./img//aws_landing_page.png)
+![](./img/aws_landing_page.png)
 
  Go to the [AWS Management Console](https://console.aws.amazon.com): 
 
-![](./img//aws_console.png)
+![](./img/aws_console.png)
 
  Search for "lambda" or go directly to [console.aws.amazon.com/lambda](https://console.aws.amazon.com/lambda): 
 
-![](./img//aws_lambda_landing.png)
+![](./img/aws_lambda_landing.png)
 
  Click "Create a Lambda function", choose "Author from scratch" and fill out the form: 
 
-![](./img//aws_lambda_function_04.png)
+![](./img/aws_lambda_function_04.png)
 
  You can either choose an existing role (if you have one already), or create a new one. We're going to create one from a template and call it "myNewRole" with no special policy templates: Now it's time to configure your Lambda function. Let's start by adding the Alexa Skills Kit as a trigger: 
 
-![](./img//aws_lambda_function_06.png)
+![](./img/aws_lambda_function_06.png)
 
  You can enable skill ID verification, if you want, but it's not neccessary. 
 
-![](./img//aws_lambda_function_07.png)
+![](./img/aws_lambda_function_07.png)
 
 
 
@@ -352,15 +352,15 @@ Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or cre
 
 Now let's get to the fun part. You can either enter to code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function. To upload the code to Lambda, please make sure to zip the actual files inside the directory, **not** the HelloWorld folder itself: 
 
-![](./img//aws_lambda_function_08.png)
+![](./img/aws_lambda_function_08.png)
 
  Let's go back to the AWS Developer Console and upload the zip: 
 
-![](./img//aws_lambda_function_09.png)
+![](./img/aws_lambda_function_09.png)
 
  Now save your changes with the orange button in the upper right corner: 
 
-![](./img//aws_lambda_function_10.png)
+![](./img/aws_lambda_function_10.png)
 
 
 
@@ -368,11 +368,11 @@ Now let's get to the fun part. You can either enter to code inline, upload a zip
 
 Great! Your Lambda function is now created. Click "Test" right next to the "Save" button and select "Alexa Start Session" as the event template, since the [Jovo Framework](https://www.jovo.tech) supports both Google Action and Amazon Alexa requests: 
 
-![](./img//aws_lambda_function_11-1.png)
+![](./img/aws_lambda_function_11-1.png)
 
  Click "Test," aaand 🎉 it works! 
 
-![](./img//aws_lambda_function_12.png)
+![](./img/aws_lambda_function_12.png)
 
  If you want to test it with a "real" Google Assistant request, you can also copy-paste this one:
 ```javascript
@@ -476,39 +476,39 @@ Great! Your Lambda function is now created. Click "Test" right next to the "Save
 
 For Alexa Skills, you can just use the Lambda function's ARN to proceed, for Dialogflow, we need to create an API Gateway. Go to [console.aws.amazon.com/apigateway](https://console.aws.amazon.com/apigateway) to get started: 
 
-![](./img//aws_api.png)
+![](./img/aws_api.png)
 
  Let's create a new API called "myGoogleActionAPIGateway" (you can call it whatever, though): 
 
-![](./img//aws_api_03.png)
+![](./img/aws_api_03.png)
 
  After successful creation, you will see the Resources screen. Click on the "Actions" dropdown and select "New Method": 
 
-![](./img//aws_api_04.png)
+![](./img/aws_api_04.png)
 
  Dialogflow needs a webhook where it can send POST requests to. So let's create a POST method that is integrated with our existing Lambda function: 
 
-![](./img//aws_api_05.png)
+![](./img/aws_api_05.png)
 
  Grant it permission: 
 
-![](./img//aws_api_06.png)
+![](./img/aws_api_06.png)
 
  And that's almost it. You only need to deploy the API like this: 
 
-![](./img//aws_api_07.png)
+![](./img/aws_api_07.png)
 
  And create a new stage: 
 
-![](./img//deploy-stage.jpg)
+![](./img/deploy-stage.jpg)
 
  Yes! Finally, you can get the URL for the API Gateway from here: 
 
-![](./img//api-gateway-invoke-url.jpg)
+![](./img/api-gateway-invoke-url.jpg)
 
  There's one more step we need to do before testing: we need to use this link and add it to Dialogflow.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -523,7 +523,7 @@ Now that have either our local webhook or the API Gateway to AWS Lambda set up, 
 
 Go back to the Dialogflow console and choose the **Fulfillment** navigation item. Enable the webhook and paste either your Jovo webhook URL or the API Gateway: 
 
-![](./img//dialogflow_fulfillment-1.png)
+![](./img/dialogflow_fulfillment-1.png)
 
 
 
@@ -531,15 +531,15 @@ Go back to the Dialogflow console and choose the **Fulfillment** navigation item
 
 Dialogflow offers the ability to customize your language model in a way that you can choose for every intent how it's going to be handled. This means we need to enable **webhook fulfillment** for every intent we use in our model. Go to HelloWorldIntent first and check "Use webhook" in at the bottom of the page: 
 
-![](./img//dialogflow_intent_webhook.png)
+![](./img/dialogflow_intent_webhook.png)
 
  Do the same for the "MyNameIsIntent" and also take a look at the "Default Welcome Intent" and don't forget to check the box there as well. The intent comes with default text responses, which would otherwise cause random output instead of your model, when the application is launched. 
 
-![](./img//dialogflow_intent_default.png)
+![](./img/dialogflow_intent_default.png)
 
  Great! Now let's test your Action.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -555,7 +555,7 @@ The work is done. It's now time to see if Google Assistant is returning the "Hel
 
 For quick testing of your language model and to see if your webhook works, you can use the internal testing tool of Dialogflow. You can find it to the right. Just type in the expression you want to test (in our case "my name is jan") and it returns your application's response and some other information (like the intent): 
 
-![](./img//dialogflow_intent_test.png)
+![](./img/dialogflow_intent_test.png)
 
  Testing with Dialogflow will often be enough (and especially useful, as other tools can sometimes be a bit buggy). However, it doesn't test the integration between Dialogflow and Google Assistant. For this, you need to use the Actions on Google Simulator (see next step).  
 
@@ -563,19 +563,19 @@ For quick testing of your language model and to see if your webhook works, you c
 
 Now, let's make our Dialogflow agent work with Google Assistant. Open the Integrations panel from the sidebar menu: 
 
-![](./img//dialogflow_integration.png)
+![](./img/dialogflow_integration.png)
 
  Here, choose the "Actions on Google" integration: 
 
-![](./img//dialogflow_integration_google.png)
+![](./img/dialogflow_integration_google.png)
 
  Click "Test" and, on the success screen, "Continue": 
 
-![](./img//dialogflow_test.png)
+![](./img/dialogflow_test.png)
 
  In the Simulator, you can now test your Action: 
 
-![](./img//google_action_simulator.png)
+![](./img/google_action_simulator.png)
 
  Yeah! Your application is now an Action on Google Assistant.
 
@@ -583,7 +583,7 @@ Now, let's make our Dialogflow agent work with Google Assistant. Open the Integr
 
 The Simulator can be unreliable sometimes. For example, there are a few things that could make an error message show up: "Sorry, this action is not available in simulation" 
 
-![](./img//actions-test-fail.jpg)
+![](./img/actions-test-fail.jpg)
 
  There are several things that could be useful for troubleshooting:
 
@@ -594,7 +594,7 @@ The Simulator can be unreliable sometimes. For example, there are a few things t
 
 It can also be helpful to go through the process one more time. Go to **Integrations** on Dialogflow, choose the Actions on Google integration, and click on "Test":   
 
-![](./img//dialogflow_integration_google.png)
+![](./img/dialogflow_integration_google.png)
 
  Let us know in the comments if it worked!
 
@@ -602,11 +602,11 @@ It can also be helpful to go through the process one more time. Go to **Integrat
 
 If you want to test your Action on a Google Home (or other device that works with Google Assistant), make sure you're connected to it with the same Google account you're using for the Simulator (and that testing is enabled, see previous step). Then, use the invocation that was provided by the Simulator: 
 
-![](./img//ok-google-talk-to-my-test-app.png)
+![](./img/ok-google-talk-to-my-test-app.png)
 
    
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
