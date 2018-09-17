@@ -1,4 +1,4 @@
-# [Tutorial] Login with Amazon: How to get your Alexa Skill User's Email
+# Login with Amazon: How to get your Alexa Skill User's Email
 
 This time we will show you how to use Alexa **Login with Amazon** account linking to get the email address as well as the name of your Alexa Skill's user the most convenient way.
 

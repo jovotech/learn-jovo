@@ -1,4 +1,4 @@
-# [Tutorial] How to Repeat Responses using the Jovo User Context Object
+# How to Repeat Responses using the Jovo User Context Object
 
 Learn how to easily add a repeat functionality to your voice application using the [Jovo User Context](https://www.jovo.tech/framework/docs/data/user#context) (available since Jovo v1.2).
 

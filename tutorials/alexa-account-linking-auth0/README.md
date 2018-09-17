@@ -1,4 +1,4 @@
-# [Tutorial] How to set up Account Linking for Alexa with Auth0 and Jovo
+# How to set up Account Linking for Alexa with Auth0 and Jovo
 
 In this guide, we will show you how to set up **Account Linking for your Amazon Alexa Skill**, without having to deal with all the security issues and the burden of running your own OAuth 2.0 server. We will do this by using [Auth0](https://auth0.com/), a service for developers to authorize and authenticate users, which is a helpful tool for Alexa Account Linking.
 

@@ -1,4 +1,4 @@
-# [Tutorial] Build a Google Action in Node.js with Jovo
+# Build a Google Action in Node.js with Jovo
 
 In this Google Action tutorial for beginners, you will learn how to build an Action for Google Assistant (the voice assistant living inside Google Home) from scratch. We will cover the essentials of building an app for Google Assistant, how to set everything up on Dialogflow and the Actions on Google Console, and how to use [Jovo](https://www.jovo.tech/framework) to build your Action's logic. See also: [Build an Alexa Skill in Node.js with Jovo](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/)
 

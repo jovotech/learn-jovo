@@ -1,4 +1,4 @@
-# [Tutorial] Implementing Google Assistant Suggestion Chips with Jovo
+# Implementing Google Assistant Suggestion Chips with Jovo
 
 Suggestion Chips for Google Assistant are a great way to offer guidance and direct the conversation for users that are interacting with your Google Action on their mobile phones. In this blogpost you're going to learn how to implement Suggestion Chips with the Jovo Framework.
 

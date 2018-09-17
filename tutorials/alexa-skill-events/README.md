@@ -1,4 +1,4 @@
-# [Tutorial] How to use Alexa Skill Events with the Jovo Framework
+# How to use Alexa Skill Events with the Jovo Framework
 
 Learn more about the implementation of Alexa Skill Events in your Jovo project to get notified when your users interact with your Skill outside the active usage, for example when they enable your Skill or do account linking. 📋 You can find the full code example of this tutorial here: [jovo-templates/alexa/skillevents](https://github.com/jovotech/jovo-templates/tree/master/alexa/skillevents).
 

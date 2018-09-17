@@ -1,4 +1,4 @@
-# [Tutorial] How to set up Account Linking for Google Actions with Auth0 and Jovo
+# How to set up Account Linking for Google Actions with Auth0 and Jovo
 
 In this guide, we will show you how to set up **Account Linking for your Google Assistant App** with the help of [Auth0](https://auth0.com/), a service for developers to authorize and authenticate users. You won't have to run your own OAuth 2.0 server and deal with security issues. Let's walk through the process of Google Action Account Linking together in simple steps.
 

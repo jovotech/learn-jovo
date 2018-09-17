@@ -1,4 +1,4 @@
-# [Tutorial] Build an Alexa Skill in Node.js with Jovo
+# Build an Alexa Skill in Node.js with Jovo
 
 In this Alexa Skill tutorial for beginners, you will learn how to build a project for the popular voice platform from scratch. We will cover the essentials of building an app for Alexa, how to set everything up on the Amazon Developer Portal, and how to use [Jovo](https://www.jovo.tech/framework) to build your Skill's logic. See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/)
 

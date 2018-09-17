@@ -1,4 +1,4 @@
-# [Tutorial] Creating a Custom Logger as a Jovo Plugin
+# Creating a Custom Logger as a Jovo Plugin
 
 Learn how to add a custom logger using the [Jovo Plugin feature](https://www.jovo.tech/docs/advanced#plugins). You can find the full code example of this tutorial here: [jovo-templates/tutorials/plugin](https://github.com/jovotech/jovo-templates/tree/master/tutorials/plugin). Or download it using the Jovo CLI:
 ```javascript
