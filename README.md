@@ -1,5 +1,5 @@
-# Jovo Guides
+# Jovo Tutorials
 
-`jovo.tech/guides`
+`jovo.tech/tutorials`
 
-Previously: Knowledge Base
+Previously: Guides, Knowledge Base
