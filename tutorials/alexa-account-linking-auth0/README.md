@@ -17,7 +17,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
 👉 Just interested in a user's email address? Take a look at [Login with Amazon](https://www.jovo.tech/blog/alexa-login-with-amazon-email/). 👉 Interested in Google Assistant Account Linking? [How to set up Account Linking for Google Actions with Auth0 and Jovo](https://www.jovo.tech/blog/google-action-account-linking-auth0/).   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -25,7 +25,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
 
 
-![](./img//alexa-account-linking-1024x464.png)
+![](./img/alexa-account-linking-1024x464.png)
 
  One way to make your voice application stand out from the other Skills is by using **Account Linking**. It allows you to get to know your users and lets you personalize the experience with user specific data. For example, you could do things like this:
 
@@ -42,7 +42,7 @@ Amazon requires the **OAuth 2.0 protocol for Account Linking**. You can find the
 
 First of all, setting up an OAuth 2.0 server can be difficult (at least, I had a tough time), and using a single identity provider restricts your user. Not everybody has a Facebook account. A service like Auth0 comes in handy in such a situation. It allows us to use the many identity providers and the standard username-password login at the same time. In this post, we're first learning more about OAuth2 in general, and then walk through setting up a simple example of Alexa Account Linking with Auth0, step by step.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -57,11 +57,11 @@ First of all, setting up an OAuth 2.0 server can be difficult (at least, I had a
 
 Here's how the roles interact with each other: 
 
-![](./img//how-oauth2-works.png)
+![](./img/how-oauth2-works.png)
 
    
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -79,7 +79,7 @@ Here's how the roles interact with each other:
 
 Usually, such a service is not free, but Auth0 offers a free tier for up to 7,000 regular active users/month. They count a regular active user as someone who has ‘authenticated with username/password, passwordless connections or any social provider in the last calendar month, counted per application’. In the following steps, we are going to use both _username + password_ and _social login_ features by Auth0 to create an Account Linking process for our Alexa Skill.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -95,27 +95,27 @@ In this section, we're going through all the necessary steps you need to create 
 
 To create an application click on the orange button on the top right corner of the dashboard: 
 
-![](./img//auth0_landing.png)
+![](./img/auth0_landing.png)
 
  Name your application and select '_Machine to Machine Applications_': 
 
-![](./img//auth_new_application.png)
+![](./img/auth_new_application.png)
 
  Choose the **Auth0 Management API** and select **all scopes**. Going over all the scopes would be to much for this blogpost. 
 
-![](./img//auth_management_api.png)
+![](./img/auth_management_api.png)
 
  The result should be a dashboard like this: 
 
-![](./img//auth_application_dashboard.png)
+![](./img/auth_application_dashboard.png)
 
  Switch to the **Settings** tab and change the _Token Endpoint Authentication Method_ to _Basic_. 
 
-![](./img//auth_authentication_method.png)
+![](./img/auth_authentication_method.png)
 
  At the bottom of the settings tab click on **Show Advances Settings** and switch to **OAuth**. Select _HS256_ on _JsonWebToken Signature Algorithm_ and save your changes. 
 
-![](./img//auth0-advanced-settings.jpg)
+![](./img/auth0-advanced-settings.jpg)
 
 
 
@@ -123,15 +123,15 @@ To create an application click on the orange button on the top right corner of t
 
 The next step is to enable the social logins you want to use. You can find them in _Connections > Social_: 
 
-![](./img//auth0Setup_6.png)
+![](./img/auth0Setup_6.png)
 
  Here is an overview of connections you can choose from: 
 
-![](./img//auth0-social-connections.jpg)
+![](./img/auth0-social-connections.jpg)
 
  Choose the provider you want to enable and the data you want to access. There is guide on how to set up every provider. It's marked on the screenshot: 
 
-![](./img//auth0Setup_7.png)
+![](./img/auth0Setup_7.png)
 
 
 
@@ -155,11 +155,11 @@ The scopes we use indicate the level of access we want on the user's data:
 
 This is how it looks like when it's filled out: 
 
-![](./img//alexa_accountlinking.png)
+![](./img/alexa_accountlinking.png)
 
  Now before you close both tabs, we have to add the _Redirect URLs_ provided by Amazon (see in the above screenshot) to our Auth0 Client. On your Client's **Settings** tab, there is the _Allowed Callback URLs_ field. Add the _Redirect URLs_ to that field and separate them with a comma. 
 
-![](./img//auth0-allowed-callback-urls.jpg)
+![](./img/auth0-allowed-callback-urls.jpg)
 
 
 
@@ -174,11 +174,11 @@ this.tell("Please link your account");
 ```
 This will display an Account linking card in the Alexa companion app or the Alexa website. By clicking on **Link Account** the user will be redirected to your own Auth0 login page. 
 
-![](./img//auth0Setup_9.png)
+![](./img/auth0Setup_9.png)
 
  That's how the Auth0 login page looks like: 
 
-![](./img//auth0Setup_10.png)
+![](./img/auth0Setup_10.png)
 
  To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. I recommend the `request` package since it is the simplest solution. You can install it with npm:
 ```sh

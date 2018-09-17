@@ -24,7 +24,7 @@ Jovo is an open-source development framework for building voice apps that work o
 
   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -32,11 +32,11 @@ Jovo is an open-source development framework for building voice apps that work o
 
 
 
-![](./img//repeat-intent-example.png)
+![](./img/repeat-intent-example.png)
 
  One of the biggest difficulties of recreating human to human conversations with an assistant is the fact that humans have context. Conversations are different depending on the location, current news, and so much more. These things are truly hard to implement, but there's one thing, actually the simplest as well as most essential thing you can easily add to your voice application. I am talking about repeating yourself if the the person on the other end missed what you just said. One of the great things about voice apps is that they allow you to interact with them while you're busy with your hands (e.g. cleaning up). However, this advantage may also be one of the biggest disadvantages of voice: You're never sure if your user is actively listening or doing something else as well. This is why it is strongly encouraged to add the functionality to repeat yourself with a _RepeatIntent_. It's such an useful feature, that Amazon created a built-in intent (_AMAZON.RepeatIntent_) for that and Google listed it as a [best practice](https://developers.google.com/actions/assistant/best-practices#let_users_replay_information). As easy as it sounds, until today it was still a manual task to store all the necessary information in session attributes or a database so that they are later available to use. The [newly introduced](https://www.jovo.tech/blog/jovo-framework-v1-2/) User Context feature makes the implementation of the repeat feature easier.   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -85,7 +85,7 @@ const config = {
 ```
   
 
-![](./img//line2.png)
+![](./img/line2.png)
 
 
 
@@ -163,11 +163,11 @@ $ jovo deploy
 ```
 Deploying to Dialogflow takes a little bit more work, since you have to go through a bigger [authentication process](https://dialogflow.com/docs/reference/v2-auth-setup). But the Jovo CLI offers you a workaround, by letting you export your Dialogflow agent as a zip file, which you can then import at the Dialogflow website. After running `$ jovo deploy`, you should be able to find the zip file under `/platforms/googleAction/` folder. To import the zip you have to go an existing agents (create a new one real quick) settings page and select the **Export and Import** tab: 
 
-![](./img//dialogflow_agent_settings_importMarked.png)
+![](./img/dialogflow_agent_settings_importMarked.png)
 
  After that choose the **Restore from ZIP** option and upload your zip file: 
 
-![](./img//dialogflow_agent_import.png)
+![](./img/dialogflow_agent_import.png)
 
 
 
