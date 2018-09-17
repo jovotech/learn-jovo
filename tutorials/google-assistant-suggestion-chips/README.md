@@ -73,4 +73,4 @@ app.setGoogleActionHandler({
 ```
 You can read more about seperate handlers [here](https://www.jovo.tech/docs/logic#handler). That's it, you made it to the end!   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add suggestion chips to your Google Action" }-->
+<!--[metadata]: { "description": "Learn how to add suggestion chips to your Google Action", "author": "kaan-kilic" }-->

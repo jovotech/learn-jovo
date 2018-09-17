@@ -1,6 +1,8 @@
 # How to use Alexa Skill Events with the Jovo Framework
 
-Learn more about the implementation of Alexa Skill Events in your Jovo project to get notified when your users interact with your Skill outside the active usage, for example when they enable your Skill or do account linking. 📋 You can find the full code example of this tutorial here: [jovo-templates/alexa/skillevents](https://github.com/jovotech/jovo-templates/tree/master/alexa/skillevents).
+Learn more about the implementation of Alexa Skill Events in your Jovo project to get notified when your users interact with your Skill outside the active usage, for example when they enable your Skill or do account linking. 
+
+📋 You can find the full code example of this tutorial here: [jovo-templates/alexa/skillevents](https://github.com/jovotech/jovo-templates/tree/master/alexa/skillevents).
 
 ### Contents
 
@@ -298,4 +300,4 @@ As I said earlier, the incoming requests are mapped to handlers of the Jovo fram
 ```
 Currently this implementation will only log that these events occured, which is not that useful, but I am sure you will find great use cases for the Alexa Skill Events. You can access the bodies of the event requests with `this.alexaSkill().getSkillEventBody()`. That's it, you made it to the end!   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add skill events to your Alexa Skill" }-->
+<!--[metadata]: { "description": "Learn how to add skill events to your Alexa Skill", "author": "kaan-kilic" }-->

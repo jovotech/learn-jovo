@@ -211,4 +211,4 @@ You may also want to use different platform projects (e.g. Alexa Skill IDs and G
 
 Again, the above examples will add different endpoints to the `/platforms` folder project files by using the `$ jovo build --stage <your-stage>` command. To deploy the files to the right Lambda function, use `$ jovo deploy --stage <your-stage>`.
 
-<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to different environments" }-->
+<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to different environments", "author": "jan-koenig" }-->

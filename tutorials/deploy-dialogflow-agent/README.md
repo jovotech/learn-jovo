@@ -40,4 +40,4 @@ $ jovo deploy
 ```
 
 
-<!--[metadata]: { "description": "Learn how to deploy a Dialogflow agent from the command line with the Jovo CLI" }-->
+<!--[metadata]: { "description": "Learn how to deploy a Dialogflow agent from the command line with the Jovo CLI", "author": "jan-koenig" }-->

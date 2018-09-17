@@ -220,4 +220,4 @@ Dialogflow offers the ability to customize your language model in a way that you
 
 That's it!
 
-<!--[metadata]: { "description": "Learn how to deploy your Google Action to AWS Lambda and use an API Gateway as Dialogflow fulfillment endpoint." }-->
+<!--[metadata]: { "description": "Learn how to deploy your Google Action to AWS Lambda and use an API Gateway as Dialogflow fulfillment endpoint.", "author": "kaan-kilic" }-->

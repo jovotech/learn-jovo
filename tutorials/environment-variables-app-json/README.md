@@ -96,4 +96,4 @@ The `TABLE_NAME` value can then be added in the Lambda function:
 ![Environment variables in AWS Lambda](./img/lambda-env-table.jpg "Environment variables in AWS Lambda")
 
 
-<!--[metadata]: { "description": "Learn how to use environment variables for Alexa Skills and Google Actions in your app.json file." }-->
+<!--[metadata]: { "description": "Learn how to use environment variables for Alexa Skills and Google Actions in your app.json file.", "author": "jan-koenig" }-->

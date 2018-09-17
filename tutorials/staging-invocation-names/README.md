@@ -124,4 +124,4 @@ For example, you can also add specific intents for certain stages:
 ```
 
 
-<!--[metadata]: { "description": "Learn how to change the invocation name of your Alexa Skill in different environments." }-->
+<!--[metadata]: { "description": "Learn how to change the invocation name of your Alexa Skill in different environments.", "author": "jan-koenig" }-->

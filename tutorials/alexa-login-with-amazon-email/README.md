@@ -150,4 +150,4 @@ else {
 ```
 That's it, you made it to the end!   **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to get your user's email using Login with Amazon" }-->
+<!--[metadata]: { "description": "Learn how to get your user's email using Login with Amazon", "author": "kaan-kilic" }-->

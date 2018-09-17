@@ -228,4 +228,4 @@ State: TEST_STATE | Raw Text: I won't tell you my name
 
  We at Jovo are really excited to see, which kind of plugins our community comes up with. By the way, the first ever Jovo plugin was created by [Cellular](https://github.com/cellular/jovo-plugin-raven).   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to create a custom logger as a Jovo plugin" }-->
+<!--[metadata]: { "description": "Learn how to create a custom logger as a Jovo plugin", "author": "kaan-kilic" }-->

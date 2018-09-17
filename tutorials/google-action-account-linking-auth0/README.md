@@ -294,4 +294,4 @@ At the end your request should look like this:
 ```
 That's it, you made it!   **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to set up Account Linking for your Google Action with Auth0" }-->
+<!--[metadata]: { "description": "Learn how to set up Account Linking for your Google Action with Auth0", "author": "kaan-kilic" }-->

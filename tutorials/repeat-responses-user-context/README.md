@@ -5,7 +5,8 @@ Learn how to easily add a repeat functionality to your voice application using t
 ### Code
 
 You can find the full code example of this tutorial here: [jovo-templates/tutorials/repeat](https://github.com/jovotech/jovo-templates/tree/master/tutorials/repeat). Or download it using the Jovo CLI:
-```javascript
+
+```shell
 $ jovo new --template tutorials/repeat
 ```
 
@@ -190,4 +191,4 @@ If you want to access the speech and reprompt directly, you can also use the use
 ```
 Alright, that's pretty much it for the `RepeatIntent`. I will skip the testing part, since there is not much to say there. Feel feel to play around with the other things the user context feature has to offer, as well as the [other features introduced with the update to V1.2](https://www.jovo.tech/blog/jovo-framework-v1-2/).   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add the repeat functionality to your voice app" }-->
+<!--[metadata]: { "description": "Learn how to add the repeat functionality to your voice app", "author": "kaan-kilic" }-->

@@ -255,4 +255,4 @@ if (!this.getAccessToken()){
 ```
 That's it, you made it!   **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to set up Account Linking for your Alexa Skill with Auth0" }-->
+<!--[metadata]: { "description": "Learn how to set up Account Linking for your Alexa Skill with Auth0", "author": "kaan-kilic" }-->
