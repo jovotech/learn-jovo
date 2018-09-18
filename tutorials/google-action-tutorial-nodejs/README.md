@@ -21,11 +21,6 @@ To get you started as quickly as possible, we're going to create a simple Action
 
 Please note: This is a tutorial for beginners and explains the essential steps of Google Action development in detail. If you already have experience with Google Home or Google Assistant and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/framework/docs).
 
-. 
-
-![](./img/line2.png)
-
-
 
 ## 1) How do Google Actions Work?
 
@@ -68,9 +63,6 @@ The voice output process (from right to left) goes back and passes the stages ag
 
 In order to make the Action work, we need to configure it on both **Dialogflow** (for the natural language understanding) and the **Actions on Google Console** (for the Assistant integration). We're going to create a new Dialogflow Agent in the next step. 
 
-![](./img/line2.png)
-
-
 
 ## 2) Create an Agent on Dialogflow
 
@@ -106,9 +98,6 @@ Great! Once you're in the console, click "create agent":
 ![](./img/dialogflow_agent_intent_page.png)
 
  These intents are part of the Agent's language model. Let's take a deeper look into how it works in the next section.   
-
-![](./img/line2.png)
-
 
 
 ## 3) Create a Language Model
@@ -178,9 +167,6 @@ name
 ![](./img/dialogflow_intent_entitiy.png)
 
  Now, let's look at the code!   
-
-![](./img/line2.png)
-
 
 
 ## 4) Build Your Action's Code
@@ -265,9 +251,6 @@ app.setHandler({
 });
 ```
 What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/framework/docs/intents-states#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/framework/docs/intents-states#tointent-tostateintent) call to switch to the HelloWorldIntent. Here, the [ask](https://www.jovo.tech/framework/docs/output#ask) method is called to ask for your user's name. After they answer, the MyNameIsIntent gets triggered, which greets your user with their name. That's it for now. Of course, feel free to modify this as you wish. To create more complex Google Actions, take a look at the framework's capabilities here: [Jovo Framework Docs: Building a Voice App](https://www.jovo.tech/framework/docs/building-a-voice-app).   
-
-![](./img/line2.png)
-
 
 
 ## 5) App Configuration: Where to Run Your Code
@@ -508,10 +491,6 @@ For Alexa Skills, you can just use the Lambda function's ARN to proceed, for Dia
 
  There's one more step we need to do before testing: we need to use this link and add it to Dialogflow.   
 
-![](./img/line2.png)
-
-
-
 ## 6) Add Endpoint to Dialogflow
 
 Now that have either our local webhook or the API Gateway to AWS Lambda set up, it's time use the provided URL to connect our application with our agent on Dialogflow.
@@ -538,9 +517,6 @@ Dialogflow offers the ability to customize your language model in a way that you
 ![](./img/dialogflow_intent_default.png)
 
  Great! Now let's test your Action.   
-
-![](./img/line2.png)
-
 
 
 ## 7) "Hello World!"
@@ -604,16 +580,10 @@ If you want to test your Action on a Google Home (or other device that works wit
 
 ![](./img/ok-google-talk-to-my-test-app.png)
 
-   
-
-![](./img/line2.png)
-
-
-
 ## Next Steps
 
 Great job! You've gone through all the necessary steps to prototype your own Google Action. The next challenge is to build a real Action. For this, take a look at the Jovo Documentation to see what else you can do with our Framework: 
 
 [![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/framework/docs/)
 
-<!--[metadata]: { "description": "Learn how to build Google Actions with the Jovo Framework from scratch", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "Learn how to build Google Actions with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Google Assistant" }-->

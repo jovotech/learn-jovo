@@ -2,23 +2,13 @@
 
 Suggestion Chips for Google Assistant are a great way to offer guidance and direct the conversation for users that are interacting with your Google Action on their mobile phones. In this blogpost you're going to learn how to implement Suggestion Chips with the Jovo Framework.
 
-### Contents
-
 *   [Introduction to Suggestion Chips](#introduction-to-suggestion-chips)
 *   [Use Cases](#use-cases)
 *   [Implementation in Jovo](#implementation)
 
 Jovo is an open-source development framework for building voice apps that work on both Amazon Alexa and Google Assistant with only one code base. Take a look at the [Jovo Framework Docs](https://www.jovo.tech/framework/docs) or our [Voice App Courses](https://www.jovo.tech/learn) to learn more.
 
-  
-
-![](./img/line2.png)
-
-
-
 ## Introduction to Suggestion Chips
-
-
 
 ![](./img/suggestion-chips-actions-on-google.jpg)
 
@@ -73,4 +63,4 @@ app.setGoogleActionHandler({
 ```
 You can read more about seperate handlers [here](https://www.jovo.tech/docs/logic#handler). That's it, you made it to the end!   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add suggestion chips to your Google Action", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to add suggestion chips to your Google Action", "author": "kaan-kilic", "tags": "Google Assistant" }-->

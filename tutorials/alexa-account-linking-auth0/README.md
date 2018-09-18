@@ -2,8 +2,6 @@
 
 In this guide, we will show you how to set up **Account Linking for your Amazon Alexa Skill**, without having to deal with all the security issues and the burden of running your own OAuth 2.0 server. We will do this by using [Auth0](https://auth0.com/), a service for developers to authorize and authenticate users, which is a helpful tool for Alexa Account Linking.
 
-### Contents
-
 *   [Introduction](#introduction)
     *   [What you need for Alexa Account Linking](#alexa-account-linking-requirements)
 *   [How OAuth2 Works](#how-oauth2-works)
@@ -13,13 +11,8 @@ In this guide, we will show you how to set up **Account Linking for your Amazon 
     *   [Alexa Skill Setup](#alexa-skill-setup)
     *   [Add Account Linking to your Code](#add-account-linking-to-your-code)
 
-Jovo is an open-source development framework for building voice apps that work on both Amazon Alexa and Google Assistant with only one code base. Take a look at the [Jovo Framework Docs](https://www.jovo.tech/framework/docs) or our [Voice App Courses](https://www.jovo.tech/learn) to learn more.
 
 👉 Just interested in a user's email address? Take a look at [Login with Amazon](https://www.jovo.tech/blog/alexa-login-with-amazon-email/). 👉 Interested in Google Assistant Account Linking? [How to set up Account Linking for Google Actions with Auth0 and Jovo](https://www.jovo.tech/blog/google-action-account-linking-auth0/).   
-
-![](./img/line2.png)
-
-
 
 ## Introduction
 
@@ -42,9 +35,6 @@ Amazon requires the **OAuth 2.0 protocol for Account Linking**. You can find the
 
 First of all, setting up an OAuth 2.0 server can be difficult (at least, I had a tough time), and using a single identity provider restricts your user. Not everybody has a Facebook account. A service like Auth0 comes in handy in such a situation. It allows us to use the many identity providers and the standard username-password login at the same time. In this post, we're first learning more about OAuth2 in general, and then walk through setting up a simple example of Alexa Account Linking with Auth0, step by step.   
 
-![](./img/line2.png)
-
-
 
 ## How OAuth2 Works
 
@@ -58,11 +48,6 @@ First of all, setting up an OAuth 2.0 server can be difficult (at least, I had a
 Here's how the roles interact with each other: 
 
 ![](./img/how-oauth2-works.png)
-
-   
-
-![](./img/line2.png)
-
 
 
 ## What is Auth0?
@@ -78,9 +63,6 @@ Here's how the roles interact with each other:
 *   [Passwordless](https://auth0.com/passwordless) Logins
 
 Usually, such a service is not free, but Auth0 offers a free tier for up to 7,000 regular active users/month. They count a regular active user as someone who has ‘authenticated with username/password, passwordless connections or any social provider in the last calendar month, counted per application’. In the following steps, we are going to use both _username + password_ and _social login_ features by Auth0 to create an Account Linking process for our Alexa Skill.   
-
-![](./img/line2.png)
-
 
 
 ## Alexa Account Linking: Connecting your Skill with Auth0

@@ -134,4 +134,4 @@ After updating the `models/en-US.json` (or other locale) file in your Jovo proje
 $ jovo build
 ```
 
-<!--[metadata]: { "description": "Learn how to extend Alexa built-in slots like AMAZON.US_CITY and Dialogflow system entities like @sys.geo-city-us with the Jovo Language Model.", "author": "jan-koenig"  }-->
+<!--[metadata]: { "description": "Learn how to extend Alexa built-in slots like AMAZON.US_CITY and Dialogflow system entities like @sys.geo-city-us with the Jovo Language Model.", "author": "jan-koenig", "tags": "Language Model"  }-->

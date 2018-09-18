@@ -2,6 +2,15 @@
 
 Learn how to easily add a repeat functionality to your voice application using the [Jovo User Context](https://www.jovo.tech/framework/docs/data/user#context) (available since Jovo v1.2).
 
+* [Why you should add a Repeat Intent](#why-you-should-add-a-repeat-intent)
+* [How does the User Context Work?](#how-does-the-user-context-work)
+   * [Configuration](#configuration)
+* [Implementing the Repeat Functionality](#implementing-the-repeat-functionality)
+   * [Creating a Jovo Project](#creating-a-jovo-project)
+   * [Adding the RepeatIntent to your Language Model](#adding-the-repeatintent-to-your-language-model)
+   * [Deploying your Language Models](#deploying-your-language-models)
+   * [Implementing the RepeatIntent in your Code](#implementing-the-repeatintent-in-your-code)
+
 ### Code
 
 You can find the full code example of this tutorial here: [jovo-templates/tutorials/repeat](https://github.com/jovotech/jovo-templates/tree/master/tutorials/repeat). Or download it using the Jovo CLI:
@@ -10,35 +19,14 @@ You can find the full code example of this tutorial here: [jovo-templates/tutori
 $ jovo new --template tutorials/repeat
 ```
 
-### Contents
-
-*   [Why you should add a Repeat Intent](#why-you-should-add-a-repeat-intent)
-*   [How does the User Context Work?](#how-does-the-user-context-work)
-    *   [Configuration](#configuration)
-*   [Implementing the Repeat Functionality](#implementing-the-repeat-functionality)
-    *   [Creating a Jovo Project](#creating-a-jovo-project)
-    *   [Adding the RepeatIntent to your Language Model](#adding-the-repeatintent-to-your-language-model)
-    *   [Deploying your Language Models](#deploying-your-language-models)
-    *   [Implementing the RepeatIntent in your Code](#implementing-the-repeatintent-in-your-code)
-
 Jovo is an open-source development framework for building voice apps that work on both Amazon Alexa and Google Assistant with only one code base. Take a look at the [Jovo Framework Docs](https://www.jovo.tech/framework/docs) or our [Voice App Courses](https://www.jovo.tech/learn) to learn more.
-
-  
-
-![](./img/line2.png)
-
 
 
 ## Why you should add a Repeat Intent
 
-
-
 ![](./img/repeat-intent-example.png)
 
  One of the biggest difficulties of recreating human to human conversations with an assistant is the fact that humans have context. Conversations are different depending on the location, current news, and so much more. These things are truly hard to implement, but there's one thing, actually the simplest as well as most essential thing you can easily add to your voice application. I am talking about repeating yourself if the the person on the other end missed what you just said. One of the great things about voice apps is that they allow you to interact with them while you're busy with your hands (e.g. cleaning up). However, this advantage may also be one of the biggest disadvantages of voice: You're never sure if your user is actively listening or doing something else as well. This is why it is strongly encouraged to add the functionality to repeat yourself with a _RepeatIntent_. It's such an useful feature, that Amazon created a built-in intent (_AMAZON.RepeatIntent_) for that and Google listed it as a [best practice](https://developers.google.com/actions/assistant/best-practices#let_users_replay_information). As easy as it sounds, until today it was still a manual task to store all the necessary information in session attributes or a database so that they are later available to use. The [newly introduced](https://www.jovo.tech/blog/jovo-framework-v1-2/) User Context feature makes the implementation of the repeat feature easier.   
-
-![](./img/line2.png)
-
 
 
 ## How does the User Context work?
@@ -85,11 +73,6 @@ const config = {
 };
 ```
   
-
-![](./img/line2.png)
-
-
-
 ## Implementing the Repeat Functionality
 
 If you haven't installed the Jovo CLI yet, please do, since I will make use of its features to save us time. You can learn more about the installation [here](https://www.jovo.tech/framework/docs/installation#-jovo-cli-installation).
@@ -151,14 +134,17 @@ $ jovo build
 ### Deploying your Language Models
 
 Next up, we're going to deploy the language models to their respective developer portals. To deploy your Alexa Skill you have to install and initialize the [ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html) first: Alright, you can install the ASK CLI using:
+
 ```sh
 # Install ASK CLI
 $ npm install -g ask-cli
 
-\# Initialize ASK CLI
+# Initialize ASK CLI
 $ ask init
 ```
+
 That's it. You can now deploy your Alexa Skill to the developer portal:
+
 ```sh
 $ jovo deploy
 ```
@@ -189,6 +175,6 @@ If you want to access the speech and reprompt directly, you can also use the use
     this.ask(speech, reprompt);
 }
 ```
-Alright, that's pretty much it for the `RepeatIntent`. I will skip the testing part, since there is not much to say there. Feel feel to play around with the other things the user context feature has to offer, as well as the [other features introduced with the update to V1.2](https://www.jovo.tech/blog/jovo-framework-v1-2/).   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
+Alright, that's pretty much it for the `RepeatIntent`. I will skip the testing part, since there is not much to say there. Feel feel to play around with the other things the user context feature has to offer, as well as the [other features introduced with the update to V1.2](https://www.jovo.tech/blog/jovo-framework-v1-2/).   **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add the repeat functionality to your voice app", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to add the repeat functionality to your voice app", "author": "kaan-kilic", "tags": "Output" }-->

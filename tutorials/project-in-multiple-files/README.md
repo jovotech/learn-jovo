@@ -89,4 +89,4 @@ app.setAlexaHandler({
 
 The request from an Alexa device will be mapped to the Alexa handler and the system will respond with `Hello Alexa user!`, while the request from the Google Assistant will be mapped to the default handler, since a separate Google Action handler was not defined.
 
-<!--[metadata]: { "description": "Learn how to divide your Jovo voice app logic into separate handlers to keep your code organized in multiple files.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to divide your Jovo voice app logic into separate handlers to keep your code organized in multiple files.", "author": "kaan-kilic", "tags": "Routing" }-->

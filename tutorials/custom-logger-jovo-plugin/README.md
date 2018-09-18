@@ -14,17 +14,9 @@ $ jovo new --template tutorials/plugin
 Jovo is an open-source development framework for building voice apps that work on both Amazon Alexa and Google Assistant with only one code base. Take a look at the [Jovo Framework Docs](https://www.jovo.tech/framework/docs) or our [Voice App Courses](https://www.jovo.tech/learn) to learn more.
 
   
-
-![](./img/line2.png)
-
-
-
 ## Introduction to Jovo Plugins
 
 We added the Jovo Plugin feature in order to allow our users to customize the framework to their needs as well as to build features, which other members of our community can benefit from. Plugins allow you to easily extend the Jovo Framework without having to mess with its core code and architecture. You can, for example, integrate your own analytics API or create a custom logger. [See example plugins here.](https://www.jovo.tech/plugins)   
-
-![](./img/line2.png)
-
 
 
 ## How Jovo Plugins Work
@@ -135,10 +127,6 @@ responseError
 
 `jovo`, `error`
 
-  
-
-![](./img/line2.png)
-
 
 
 ## Creating a Custom Logger
@@ -222,9 +210,6 @@ You can test the plugin eiter locally, where it will we logged to your console, 
 speech: Hello World! What's your name? | reprompt: Please tell me your name.
 State: TEST_STATE | Raw Text: I won't tell you my name
 ```
-  
-
-![](./img/line2.png)
 
  We at Jovo are really excited to see, which kind of plugins our community comes up with. By the way, the first ever Jovo plugin was created by [Cellular](https://github.com/cellular/jovo-plugin-raven).   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 

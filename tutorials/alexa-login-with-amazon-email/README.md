@@ -2,8 +2,6 @@
 
 This time we will show you how to use Alexa **Login with Amazon** account linking to get the email address as well as the name of your Alexa Skill's user the most convenient way.
 
-### Contents
-
 *   [Introduction](#introduction)
 *   [Implementing Login with Amazon](#implementing-login-with-amazon)
     *   [Setting up your Login with Amazon Security Profile](#setting-up-your-login-with-amazon-security-profile)
@@ -12,17 +10,10 @@ This time we will show you how to use Alexa **Login with Amazon** account linkin
 
 Watch the video: https://www.youtube.com/watch?v=jBaM7HqPA7Q&feature=youtu.be
 
-Jovo is an open-source development framework for building voice apps that work on both Amazon Alexa and Google Assistant with only one code base. Take a look at the [Jovo Framework Docs](https://www.jovo.tech/framework/docs) or our [Voice App Courses](https://www.jovo.tech/learn) to learn more.
-
 👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
-
-![](./img/line2.png)
-
 
 
 ## Introduction
-
-
 
 ![](./img/account-linking-devices.jpg)
 
@@ -31,9 +22,6 @@ Jovo is an open-source development framework for building voice apps that work o
 ![](./img/alexa-account-linking.png)
 
  However, setting up account linking for Alexa can be quite difficult, as you have to follow certain guidelines and set up your own oAuth 2.0 provider (read a [tutorial about Alexa Account Linking with Auth0 here](https://www.jovo.tech/blog/alexa-account-linking-auth0/)). Fortunately, if you just want to get your user's email address and some other basic information, there is a simple way to do so without having to deal with all the complexities of account linking: **Login with Amazon**. In this tutorial, we're going to show you how it works.   
-
-![](./img/line2.png)
-
 
 
 ## Implementing Login with Amazon
@@ -150,4 +138,4 @@ else {
 ```
 That's it, you made it to the end!   **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to get your user's email using Login with Amazon", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to get your user's email using Login with Amazon", "author": "kaan-kilic", "tags": "Account Linking, Amazon Alexa"}-->

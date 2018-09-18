@@ -1,15 +1,15 @@
 # Host your Google Action on AWS Lambda
 
-- [Create a Lambda Function](#create-a-lambda-function)
-- [Upload Your Code](#upload-your-code)
-- [Test Your Lambda Function](#test-your-lambda-function)
-- [Create API Gateway](#create-api-gateway)
-- [Add Endpoint to Dialogflow](#add-endpoint-to-dialogflow)
-	- [a) Agent Fulfillment Section](#a-agent-fulfillment-section)
-	- [b) Add Webhook to Intents](#b-add-webhook-to-intents)
-
-
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless hosting solution by Amazon. Many Alexa Skills are hosted on this platform, thus it might make sense for you to host your cross-platform voice application (including your Google Action). This is what we're going to do in this section. This usually takes a few steps, so be prepared.
+
+* [Create a Lambda Function](#create-a-lambda-function)
+* [Upload Your Code](#upload-your-code)
+* [Test Your Lambda Function](#test-your-lambda-function)
+* [Create API Gateway](#create-api-gateway)
+* [Add Endpoint to Dialogflow](#add-endpoint-to-dialogflow)
+   * [a) Agent Fulfillment Section](#a-agent-fulfillment-section)
+   * [b) Add Webhook to Intents](#b-add-webhook-to-intents)
+
 
 ## Create a Lambda Function
 
@@ -220,4 +220,4 @@ Dialogflow offers the ability to customize your language model in a way that you
 
 That's it!
 
-<!--[metadata]: { "description": "Learn how to deploy your Google Action to AWS Lambda and use an API Gateway as Dialogflow fulfillment endpoint.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to deploy your Google Action to AWS Lambda and use an API Gateway as Dialogflow fulfillment endpoint.", "author": "kaan-kilic", "tags": "Google Assistant, Deployment, AWS Lambda" }-->

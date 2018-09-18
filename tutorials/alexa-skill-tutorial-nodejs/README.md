@@ -20,11 +20,6 @@ To get you started as quickly as possible, we're going to create a simple Skill 
 
 Please note: This is a tutorial for beginners and explains the essential steps of Alexa Skill development in detail. If you already have experience with Alexa and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/framework/docs).
 
-  
-
-![](./img/line2.png)
-
-
 
 ## 1) How do Alexa Skills Work?
 
@@ -49,9 +44,6 @@ The third stage is where your magic is happening. The voice output process (from
 3.  the **Alexa enabled device**, where your user is happily waiting and listening
 
 In order to make the Skill work, we first need to configure it, so that the Alexa API knows which data to pass to your application (and where to pass it). We will do this on the Amazon Developer Portal.   
-
-![](./img/line2.png)
-
 
 
 ## 2) Create a Skill on the Amazon Developer Portal
@@ -97,10 +89,6 @@ Now it's time to create a new project on the developer console. Click on the "Al
 ![](./img/skill-model.jpg)
 
  In the following steps, we will create a language model that works with Alexa.     
-
-![](./img/line2.png)
-
-
 
 ## 3) Create a Language Model
 
@@ -191,11 +179,6 @@ it's {name}
 
 ![](./img/amazon_developer_alexa_buildModel.png)
 
-   
-
-![](./img/line2.png)
-
-
 
 ## 4) Build Your Skill's Code
 
@@ -282,10 +265,6 @@ app.setHandler({
 });
 ```
 What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/framework/docs/intents-states#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/framework/docs/intents-states#tointent-tostateintent) call to switch to the HelloWorldIntent. The [ask](https://www.jovo.tech/framework/docs/output#tell) method is used to ask a user for a name. If a user responds with a name, the MyNameIsIntent is triggered. Here, the [tell](https://www.jovo.tech/framework/docs/output#tell) method is called to respond to your users with a "Nice to meet you!"   
-
-![](./img/line2.png)
-
-
 
 ## 6) App Configuration: Where to Run Your Code
 
@@ -389,10 +368,6 @@ Copy the ARN at the upper right corner:
 
  Great! Now it's time to test your Skill: 
 
-![](./img/line2.png)
-
-
-
 ## 6) "Hello World!"
 
 *   [a) Test Your Skill in the Service Simulator](#service-simulator)
@@ -429,14 +404,10 @@ Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice 
 
  With Reverb, you can bring Alexa functionality to either your Mac or your mobile phones (iOS and Android). Go to their website by clicking the screenshot above and download it to get started.   
 
-![](./img/line2.png)
-
-
-
 ## Next Steps
 
 Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the Jovo Documentation to see what else you can do with our Framework: 
 
 [![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/framework/docs/)
 
-<!--[metadata]: { "description": "Learn how to build Alexa Skills with the Jovo Framework from scratch", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "Learn how to build Alexa Skills with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Amazon Alexa" }-->

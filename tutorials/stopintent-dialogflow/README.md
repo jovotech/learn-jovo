@@ -83,4 +83,4 @@ Alternatively, you can add an intent to the general Jovo intents with specific b
 
 Learn more about how to deploy your Dialogflow Agent here: [Deploy a Dialogflow Agent with the Jovo CLI](./deploy-dialogflow-agent.md './deploy-dialogflow-agent').
 
-<!--[metadata]: { "description": "Learn how to respond to exit requests like StopIntent or CancelIntent with Google Assistant and Dialogflow.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to respond to exit requests like StopIntent or CancelIntent with Google Assistant and Dialogflow.", "author": "kaan-kilic", "tags": "Dialogflow, Language Model" }-->

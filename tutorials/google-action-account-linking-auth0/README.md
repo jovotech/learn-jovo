@@ -17,9 +17,6 @@ Jovo is an open-source development framework for building voice apps that work o
 
 👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
 
-![](./img/line2.png)
-
-
 
 ## Introduction
 
@@ -42,9 +39,6 @@ Google requires the **OAuth 2.0 protocol for Account Linking**. You can find the
 
 First of all, setting up an OAuth 2.0 server can be difficult (at least, I had a tough time), and using a single identity provider restricts your user. Not everybody has a Facebook account. A service like Auth0 comes in handy in such a situation. It allows us to use the many identity providers and the standard username-password login at the same time. We're first learning more about OAuth2 in general, and then walk through setting up a simple example of Google Actions Account Linking with Auth0, step by step.   
 
-![](./img/line2.png)
-
-
 
 ## How OAuth2 Works
 
@@ -59,15 +53,8 @@ Here's how the roles interact with each other:
 
 ![](./img/how-oauth2-works.png)
 
-   
-
-![](./img/line2.png)
-
-
 
 ## What is Auth0?
-
-
 
 [![](https://www.jovo.tech/blog/wp-content/uploads/2017/12/auth0-screenshot.jpg)](https://auth0.com/)
 
@@ -78,9 +65,6 @@ Here's how the roles interact with each other:
 *   [Passwordless](https://auth0.com/passwordless) Logins
 
 Usually, such a service is not free, but Auth0 does not bill you if you have less than 7,000 regular active users/month. In this case a regular active user is someone who has ‘authenticated with username/password, passwordless connections or any social provider in the last calendar month, counted per application’. In the following steps, we are going to use both _username + password_ and _social logins_ features by Auth0 to create an Account Linking process for our Google Action.   
-
-![](./img/line2.png)
-
 
 
 ## Google Action Account Linking: Connecting your App with Auth0
@@ -294,4 +278,4 @@ At the end your request should look like this:
 ```
 That's it, you made it!   **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to set up Account Linking for your Google Action with Auth0", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to set up Account Linking for your Google Action with Auth0", "author": "kaan-kilic", "tags": "Account Linking, Google Assistant" }-->

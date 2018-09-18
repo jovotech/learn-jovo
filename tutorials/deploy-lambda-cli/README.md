@@ -101,4 +101,4 @@ $ jovo deploy --stage dev
 
 You can learn more about the `jovo deploy` command here: [Jovo CLI > jovo deploy](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/02_cli#jovo-deploy 'docs/cli#jovo-deploy').
 
-<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to AWS Lambda by using the Jovo CLI.", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to AWS Lambda by using the Jovo CLI.", "author": "jan-koenig", "tags": "AWS Lambda, Deployment" }-->

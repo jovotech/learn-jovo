@@ -16,11 +16,6 @@ Learn more about the implementation of Alexa Skill Events in your Jovo project t
 
 Jovo is an open-source development framework for building voice apps that work on both Amazon Alexa and Google Assistant with only one code base. Take a look at the [Jovo Framework Docs](https://www.jovo.tech/framework/docs) or our [Voice App Courses](https://www.jovo.tech/learn) to learn more.
 
-  
-
-![](./img/line2.png)
-
-
 
 ## Introduction to Alexa Skill Events
 
@@ -119,10 +114,6 @@ If your user grants permissions (e.g. access to your user's lists or their locat
 }
 ```
 This Skill Event is triggered when your user grants your Skill additional permission or revokes existing ones. The request includes the most recently accepted permissions.   
-
-![](./img/line2.png)
-
-
 
 ## Implementation with Jovo
 
@@ -300,4 +291,4 @@ As I said earlier, the incoming requests are mapped to handlers of the Jovo fram
 ```
 Currently this implementation will only log that these events occured, which is not that useful, but I am sure you will find great use cases for the Alexa Skill Events. You can access the bodies of the event requests with `this.alexaSkill().getSkillEventBody()`. That's it, you made it to the end!   **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add skill events to your Alexa Skill", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to add skill events to your Alexa Skill", "author": "kaan-kilic", "tags": "Amazon Alexa" }-->
