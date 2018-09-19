@@ -155,4 +155,4 @@ We at Jovo are really excited to see, which kind of plugins our community comes 
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to create a custom logger as a Jovo plugin", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to create a custom logger as a Jovo plugin", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/06/tutorial-jovo-plugin.jpg" }-->

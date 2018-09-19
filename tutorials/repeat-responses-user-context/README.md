@@ -203,4 +203,4 @@ Feel feel to play around with the other things the user context feature has to o
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add the repeat functionality to your voice app", "author": "kaan-kilic", "tags": "Output" }-->
+<!--[metadata]: { "description": "Learn how to add the repeat functionality to your voice app", "author": "kaan-kilic", "tags": "Output", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/06/repeat-intent-jovo-1.jpg" }-->

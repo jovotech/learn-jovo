@@ -328,4 +328,4 @@ That's it, you made it to the end!
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to add skill events to your Alexa Skill", "author": "kaan-kilic", "tags": "Amazon Alexa" }-->
+<!--[metadata]: { "description": "Learn how to add skill events to your Alexa Skill", "author": "kaan-kilic", "tags": "Amazon Alexa", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/04/alexa-skill-events-1.jpg" }-->

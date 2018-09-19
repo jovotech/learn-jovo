@@ -251,4 +251,4 @@ That's it, you made it!
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to set up Account Linking for your Alexa Skill with Auth0", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to set up Account Linking for your Alexa Skill with Auth0", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/12/alexa-account-linking-auth0-jovo.jpg" }-->

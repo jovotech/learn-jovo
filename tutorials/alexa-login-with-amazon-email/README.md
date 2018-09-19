@@ -161,4 +161,4 @@ That's it, you made it to the end!
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to get your user's email using Login with Amazon", "author": "kaan-kilic", "tags": "Account Linking, Amazon Alexa"}-->
+<!--[metadata]: { "description": "Learn how to get your user's email using Login with Amazon", "author": "kaan-kilic", "tags": "Account Linking, Amazon Alexa", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/01/alexa-og-image.jpg"}-->
