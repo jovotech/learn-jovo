@@ -14,8 +14,6 @@ Suggestion Chips are a form of visual output, which (as the name already tells) 
 
 You might ask yourself, why to even bother implementing that feature, since neither the Google Home nor the Google Home Mini have a screen. The answer is the crazy number of smartphones that have the Google Assistant integrated. In May 2017, the most common way for an American adult to use a voice assistant was through their smartphone ([source](http://www.pewresearch.org/fact-tank/2017/12/12/nearly-half-of-americans-use-digital-voice-assistants-mostly-on-their-smartphones/)). Suggestion chips are a great way to help them reach their goals faster by guiding the conversation.
 
-![](./img/line2.png)
-
 ## Use Cases
 
 Let's go through some of the use cases of suggestions chips, so you get an overview of the possibilities.
