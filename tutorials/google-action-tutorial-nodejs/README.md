@@ -622,4 +622,4 @@ Great job! You've gone through all the necessary steps to prototype your own Goo
 
 [![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/framework/docs/)
 
-<!--[metadata]: { "description": "Learn how to build Google Actions with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Google Assistant" }-->
+<!--[metadata]: { "description": "Learn how to build Google Actions with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Google Assistant", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/08/google-action-tutorial-og-image.jpg" }-->
