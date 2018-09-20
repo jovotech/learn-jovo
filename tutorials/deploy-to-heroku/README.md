@@ -4,15 +4,15 @@ In this guide, you will learn how to host your voice apps on Heroku, a cloud ser
 
 ### Contents
 
-- [Introduction](#introduction)
-- [Setting up Heroku](#setting-up-heroku)
-  - [Creating a Heroku App](#creating-a-heroku-app)
-  - [Using the Heroku CLI](#using-the-heroku-cli)
-- [Preparing the Jovo Code for Heroku](#preparing-the-jovo-code-for-heroku)
-  - [Updating the Package.json](#updating-the-packagejson)
-  - [Creating a Procfile](#creating-a-procfile)
-  - [Adding Alexa Verification](#adding-alexa-verification)
-- [Testing the Server](#testing-the-server)
+* [Introduction](#introduction)
+* [Setting up Heroku](#setting-up-heroku)
+  * [Creating a Heroku App](#creating-a-heroku-app)
+  * [Using the Heroku CLI](#using-the-heroku-cli)
+* [Preparing the Jovo Code for Heroku](#preparing-the-jovo-code-for-heroku)
+  * [Updating the Package.json](#updating-the-packagejson)
+  * [Creating a Procfile](#creating-a-procfile)
+  * [Adding Alexa Verification](#adding-alexa-verification)
+* [Testing the Server](#testing-the-server)
 
 ## Introduction
 
