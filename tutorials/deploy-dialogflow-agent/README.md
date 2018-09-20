@@ -4,12 +4,12 @@ Still updating your Dialogflow agent manually? In this post you're going to lear
 
 ### Contents
 
-- [Introduction](#introduction)
-- [Step 1: Updating to the Dialogflow V2 API](#step-1-updating-to-the-dialogflow-v2-api)
-- [Step 2: Setting up Authentication](#step-2-setting-up-authentication)
-  - [Step 2.1: Creating a new Service Account](#step-21-creating-a-new-service-account)
-  - [Step 2.2: Activating the Account with the Cloud SDK](#step-22-activating-the-account-with-the-cloud-sdk)
-- [Step 3: Deploying your Agent with the Jovo CLI](#step-3-deploying-your-agent-with-the-jovo-cli)
+* [Introduction](#introduction)
+* [Step 1: Updating to the Dialogflow V2 API](#step-1-updating-to-the-dialogflow-v2-api)
+* [Step 2: Setting up Authentication](#step-2-setting-up-authentication)
+  * [Step 2.1: Creating a new Service Account](#step-21-creating-a-new-service-account)
+  * [Step 2.2: Activating the Account with the Cloud SDK](#step-22-activating-the-account-with-the-cloud-sdk)
+* [Step 3: Deploying your Agent with the Jovo CLI](#step-3-deploying-your-agent-with-the-jovo-cli)
 
 
 You can also watch the full process of creating a Jovo project and a Dialogflow agent, and deploying it with the CLI in this video (for the deployment part, feel free to skip to minute 12:20): 
@@ -105,4 +105,4 @@ The result should look like this:
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to deploy a Dialogflow agent from the command line with the Jovo CLI", "author": "jan-koenig", "tags": "Google Assistant, Dialogflow, Deployment", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/03/deploy-dialogflow-agent-1.jpg" }-->
+<!--[metadata]: { "description": "Learn how to deploy a Dialogflow agent from the command line with the Jovo CLI", "author": "kaan-kilic", "tags": "Google Assistant, Dialogflow, Deployment", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/03/deploy-dialogflow-agent-1.jpg" }-->
