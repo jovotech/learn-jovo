@@ -179,10 +179,10 @@ Now let's build the logic of our Alexa Skill.
 
 We're going to use our [Jovo Framework](https://www.jovo.tech/framework/) which works for both Alexa Skills and Actions on Google Home.
 
-- [a) Install the Jovo CLI](#a-install-the-jovo-cli)
-- [b) Create a new Project](#b-create-a-new-project)
-- [c) A First Look at the Project](#c-a-first-look-at-the-project)
-- [d) Understanding the App Logic](#d-understanding-the-app-logic)
+- [Install the Jovo CLI](#install-the-jovo-cli)
+- [Create a new Project](#create-a-new-project)
+- [A First Look at the Project](#a-first-look-at-the-project)
+- [Understanding the App Logic](#understanding-the-app-logic)
 
 ### Install the Jovo CLI
 
@@ -383,8 +383,8 @@ Great! Now it's time to test your Skill:
 ## Hello World
 
 - [Test Your Skill in the Service Simulator](#test-your-skill-in-the-service-simulator)
-- [b) Test Your Skill on an Alexa Enabled Device](#test-your-skill-on-an-alexa-enabled-device)
-- [c) Test Your Skill on Your Phone](#c-test-your-skill-on-your-phone)
+- [Test Your Skill on an Alexa Enabled Device](#test-your-skill-on-an-alexa-enabled-device)
+- [Test Your Skill on Your Phone](#c-test-your-skill-on-your-phone)
 
 Go to "Test" and enable your Skill for testing:
 
