@@ -178,10 +178,10 @@ Now let's build the logic of our Google Action.
 
 We're going to use our [Jovo Framework](https://www.jovo.tech/framework/) which works for both Alexa Skills and Actions on Google Home.
 
-- [a) Install the Jovo CLI](#a-install-the-jovo-cli)
-- [b) Create a new Project](#b-create-a-new-project)
-- [c) A First Look at a Jovo Project](#c-a-first-look-at-a-jovo-project)
-- [d) Understanding the App Logic](#d-understanding-the-app-logic)
+- [a) Install the Jovo CLI](#install-the-jovo-cli)
+- [b) Create a new Project](#create-a-new-project)
+- [c) A First Look at a Jovo Project](#a-first-look-at-a-jovo-project)
+- [d) Understanding the App Logic](#understanding-the-app-logic)
 
 ### Install the Jovo CLI
 
@@ -524,8 +524,8 @@ There's one more step we need to do before testing: we need to use this link and
 
 Now that have either our local webhook or the API Gateway to AWS Lambda set up, it's time use the provided URL to connect our application with our agent on Dialogflow.
 
-- [a) Agent Fulfillment Section](#a-agent-fulfillment-section)
-- [b) Add Webhook to Intents](#b-add-webhook-to-intents)
+- [a) Agent Fulfillment Section](#agent-fulfillment-section)
+- [b) Add Webhook to Intents](#add-webhook-to-intents)
 
 ### Agent Fulfillment Section
 
