@@ -6,21 +6,21 @@ See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blo
 
 ### What you'll learn
 
-- [1) How do Alexa Skills Work?](#1-how-do-alexa-skills-work)
-- [2) Create a Skill on the Amazon Developer Portal](#2-create-a-skill-on-the-amazon-developer-portal)
-- [3) Create a Language Model](#3-create-a-language-model)
-- [4) Build Your Skill's Code](#4-build-your-skills-code)
-- [5) App Configuration: Where to Run Your Code](#5-app-configuration-where-to-run-your-code)
-- [6) Where to test: "Hello World!"](#6-where-to-test-%22hello-world%22)
+- [How Alexa Skills Work](#how-alexa-skills-work)
+- [Create a Skill on the Amazon Developer Portal](#create-a-skill-on-the-amazon-developer-portal)
+- [Create a Language Model](#create-a-language-model)
+- [Build Your Skill's Code](#build-your-skills-code)
+- [App Configuration: Where to Run Your Code](vapp-configuration-where-to-run-your-code)
+- [Hello World](#hello-world)
 - [Next Steps](#next-steps)
 
 ### What We're Building
 
 To get you started as quickly as possible, we're going to create a simple Skill that responds with "Hello World!"
 
-Please note: This is a tutorial for beginners and explains the essential steps of Alexa Skill development in detail. If you already have experience with Alexa and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/framework/docs).
+Please note: This is a tutorial for beginners and explains the essential steps of Alexa Skill development in detail. If you already have experience with Alexa and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/docs).
 
-## 1) How do Alexa Skills Work?
+## How Alexa Skills Work
 
 In this section, you will learn more about the architecture of Alexa and how users interact with its Skills. An Alexa Skill interaction basically consists of **speech input (your user's request)** and **output (your Skill's response)**.
 
@@ -42,16 +42,16 @@ The third stage is where your magic is happening. The voice output process (from
 
 In order to make the Skill work, we first need to configure it, so that the Alexa API knows which data to pass to your application (and where to pass it). We will do this on the Amazon Developer Portal.
 
-## 2) Create a Skill on the Amazon Developer Portal
+## Create a Skill on the Amazon Developer Portal
 
 The [Amazon Developer Portal](https://developer.amazon.com) is the console where you can add your Skill as a project, configure the language model, test if it's working, and publish it to the Alexa Skill Store.
 
-**Please note:** With the new [Jovo CLI](https://www.jovo.tech/framework/docs/cli), you don't have to go through all the steps in the Developer Portal, as you can create a new Skill project and Interaction Model with the [jovo deploy](https://www.jovo.tech/framework/docs/cli#jovo-deploy) command. However, we believe for starters it's good training to understand how Alexa Skills work. Let's get started:
+**Please note:** With the new [Jovo CLI](https://www.jovo.tech/docs/cli), you don't have to go through all the steps in the Developer Portal, as you can create a new Skill project and Interaction Model with the [jovo deploy](https://www.jovo.tech/docs/cli#jovo-deploy) command. However, we believe for starters it's good training to understand how Alexa Skills work. Let's get started:
 
-- [a) Log in with your Amazon Developer Account](#a-log-in-with-your-amazon-developer-account)
-- [b) Create a new Skill](#b-create-a-new-skill)
+- [Log in with your Amazon Developer Account](#log-in-with-your-amazon-developer-account)
+- [Create a new Skill](#create-a-new-skill)
 
-### a) Log in with your Amazon Developer Account
+### Log in with your Amazon Developer Account
 
 Go to [developer.amazon.com](https://developer.amazon.com) and click "Developer Console" on the upper right:
 
@@ -65,7 +65,7 @@ Great! You should now have access to your account. This is what your dashboard o
 
 ![](./img/amazon-developer-console.jpg)
 
-### b) Create a new Skill
+### Create a new Skill
 
 Now it's time to create a new project on the developer console. Click on the "Alexa" menu item in the navigation bar and choose "Alexa Skill Kit" to access your Alexa Skills:
 
@@ -87,11 +87,11 @@ After this step, choose **Custom** as Skill model:
 
 In the following steps, we will create a language model that works with Alexa.
 
-## 3) Create a Language Model
+## Create a Language Model
 
-- [a) An Introduction to Alexa Interaction Models](#a-an-introduction-to-alexa-interaction-models)
-- [b) Choose an Invocation Name](#b-choose-an-invocation-name)
-- [c) Create a HelloWorldIntent](#c-create-a-helloworldintent)
+- [An Introduction to Alexa Interaction Models](#an-introduction-to-alexa-interaction-models)
+- [Choose an Invocation Name](#choose-an-invocation-name)
+- [Create a HelloWorldIntent](#create-a-helloworldintent)
 
 After successfully creating the Skill, the screen looks like this:
 
@@ -101,7 +101,7 @@ As you can see in the left sidebar, an **Interaction Model** consists of an **In
 
 But first, let's take a look at how natural language understanding (NLU) with Alexa works.
 
-### a) An Introduction to Alexa Interaction Models
+### An Introduction to Alexa Interaction Models
 
 Alexa helps you with several steps in processing input. First, it takes a user's speech and transforms it into written text (speech to text). Afterward, it uses a language model to make sense out of what the user means (natural language understanding).
 
@@ -131,13 +131,13 @@ No matter if I'm looking for a super cheap place, a pizza spot that serves Pabst
 
 ![](./img/intent-utterances-slots.jpg)
 
-### b) Choose an Invocation Name
+### Choose an Invocation Name
 
 Make sure to choose an invocation name that can be understood by Alexa. For this simple tutorial, we can just go with **HelloWorld** (name, done during Skill creation) and **hello world** (invocation name):
 
 ![](./img/amazon_developer_alexa_invocation.png)
 
-### c) Create a HelloWorldIntent
+### Create a HelloWorldIntent
 
 For our simple voice app we only need to create two intents and add a few sample utterances, as well as a slot. So let's dive into the Amazon Developer Console and do this.
 
@@ -173,7 +173,7 @@ That's all we need. Now click on the "Build Model" button on the top:
 
 ![](./img/amazon_developer_alexa_buildModel.png)
 
-## 4) Build Your Skill's Code
+## Build Your Skill's Code
 
 Now let's build the logic of our Alexa Skill. 
 
@@ -184,7 +184,7 @@ We're going to use our [Jovo Framework](https://www.jovo.tech/framework/) which 
 - [c) A First Look at the Project](#c-a-first-look-at-the-project)
 - [d) Understanding the App Logic](#d-understanding-the-app-logic)
 
-### a) Install the Jovo CLI
+### Install the Jovo CLI
 
 The Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovotech/jovo-cli)) offer a great starting point for your voice application, as it makes it easy to create new projects from templates.
 
@@ -192,7 +192,7 @@ The Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovo
 $ npm install -g
 ```
 
-This should be downloaded and installed now ([see our documentation for more information like technical requirements](https://www.jovo.tech/framework/docs/getting-started#technical-requirements)). After the installation, you can test if everything worked with the following command:
+This should be downloaded and installed now ([see our documentation for more information like technical requirements](https://www.jovo.tech/docs/getting-started#technical-requirements)). After the installation, you can test if everything worked with the following command:
 
 ```sh
 $ jovo
@@ -218,7 +218,7 @@ This should look like this:
                                  (webhook).
 ```
 
-### b) Create a new Project
+### Create a new Project
 
 Let's create a new project. You can see from the feature above that it's possible to create new projects with this command (the "helloworld" template is the default template and will clone our [Jovo Sample App](https://github.com/jovotech/jovo-sample-voice-app-nodejs) into the specified directory):
 
@@ -236,17 +236,17 @@ $ jovo new HelloWorld
   Installation completed.
 ```
 
-### c) A First Look at the Project
+### A First Look at the Project
 
 Let's take a look at the code provided by the sample application. This is what the folder structure looks like: 
 
 ![](./img/folder-structure-simple.png)
 
-For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/framework/docs/app-configuration#jovo-app-structure).
+For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
 
 Let's take a look at the App Logic first:
 
-### d) Understanding the App Logic
+### Understanding the App Logic
 
 The setHandler method is where you will spend most of your time when you're building the logic behind your Alexa Skill. It already has a "HelloWorldIntent" and a "MyNameIsIntent", as you can see below:
 
@@ -266,14 +266,14 @@ app.setHandler({
 });
 ```
 
-What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/framework/docs/intents-states#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/framework/docs/intents-states#tointent-tostateintent) call to switch to the HelloWorldIntent. The [ask](https://www.jovo.tech/framework/docs/output#tell) method is used to ask a user for a name.
+What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#tointent-tostateintent) call to switch to the HelloWorldIntent. The [ask](https://www.jovo.tech/sdocs/output#tell) method is used to ask a user for a name.
 
-If a user responds with a name, the MyNameIsIntent is triggered. Here, the [tell](https://www.jovo.tech/framework/docs/output#tell) method is called to respond to your users with a "Nice to meet you!"
+If a user responds with a name, the MyNameIsIntent is triggered. Here, the [tell](https://www.jovo.tech/docs/output#tell) method is called to respond to your users with a "Nice to meet you!"
 
-## 5) App Configuration: Where to Run Your Code
+## App Configuration: Where to Run Your Code
 
-- [a) Local Prototyping with the Jovo Webhook](#a-local-prototyping-with-the-jovo-webhook)
-- [b) Host your Code on AWS Lambda](#b-host-your-code-on-aws-lambda)
+- [Local Prototyping with the Jovo Webhook](#local-prototyping-with-the-jovo-webhook)
+- [Host your Code on AWS Lambda](#host-your-code-on-aws-lambda)
 
 So where do we send the response to? Let's switch tabs once again and take a look at the Amazon Developer Console, this time the Endpoint section:
 
@@ -283,7 +283,7 @@ To make a connection between the Alexa API and your application, you need to eit
 
 Jovo supports both. For local prototyping and debugging, we recommend using HTTPS (which we are going to describe in the next step), but you can also [jump to the Lambda section](#b-host-your-code-on-aws-lambda).
 
-### a) Local Prototyping with the Jovo Webhook
+### Local Prototyping with the Jovo Webhook
 
 The index.js comes with off-the-shelf server support so that you can start developing locally as easy as possible.
 
@@ -302,13 +302,13 @@ Local development server listening on port 3000.
 This is your webhook url: https://webhook.jovo.cloud/[your-id]
 ```
 
-As you can see above, Jovo is automatically creating a link to your local server: the [Jovo Webhook](https://www.jovo.tech/framework/docs/server/webhook#jovo-webhook). Paste the link into the field of the Amazon Developer Console and choose the second option for the SSL Certificate (the link Jovo webhook provides you is a secure subdomain):
+As you can see above, Jovo is automatically creating a link to your local server: the [Jovo Webhook](https://www.jovo.tech/docs/server/webhook#jovo-webhook). Paste the link into the field of the Amazon Developer Console and choose the second option for the SSL Certificate (the link Jovo webhook provides you is a secure subdomain):
 
 ![](./img/jovo-webhook.jpg)
 
 Great! Your voice app is now running locally and ready to test. If you're interested in how to set up Lambda, read further. If you want to dive right into the testing, jump to ["Hello World!"](#hello-world).
 
-### b) Host your Code on AWS Lambda
+### Host your Code on AWS Lambda
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless hosting solution by Amazon. Many Skills are hosted on this platform, as it is a cheap alternative to other hosting providers, and also Amazon offers additional credits for Alexa Skill developers. In this section, you'll learn how to host your Skill on Lambda. This usually takes a few steps, so be prepared. If you only want to get an output for the first time, go back up to [Local Prototyping](#local-prototyping).
 
@@ -380,10 +380,10 @@ Then go to the Configuration step of your Alexa Skill in the Amazon Developer Co
 
 Great! Now it's time to test your Skill: 
 
-## 6) Where to test: "Hello World!"
+## Hello World
 
-- [a) Test Your Skill in the Service Simulator](#a-test-your-skill-in-the-service-simulator)
-- [b) Test Your Skill on an Alexa Enabled Device](#b-test-your-skill-on-an-alexa-enabled-device)
+- [Test Your Skill in the Service Simulator](#test-your-skill-in-the-service-simulator)
+- [b) Test Your Skill on an Alexa Enabled Device](#test-your-skill-on-an-alexa-enabled-device)
 - [c) Test Your Skill on Your Phone](#c-test-your-skill-on-your-phone)
 
 Go to "Test" and enable your Skill for testing:
@@ -392,7 +392,7 @@ Go to "Test" and enable your Skill for testing:
 
 Wanna get your first "Hello World!"? You can do this by either using the Service Simulator by Alexa, test on your device, or on your phone.
 
-### a) Test Your Skill in the Service Simulator
+### Test Your Skill in the Service Simulator
 
 To use the simulator simply invoke your Skill: 
 
@@ -400,13 +400,13 @@ To use the simulator simply invoke your Skill:
 
 This will create a JSON request and test it with your Skill. And if you look to the right: TADA 🎉! There is your response with "Hello World!" as output speech.
 
-### b) Test Your Skill on an Alexa Enabled Device
+### Test Your Skill on an Alexa Enabled Device
 
 Once the Skill is enabled to test, you can use a device like Amazon Echo or Echo Dot (which is associated with the same email address you used for the developer account) to test your Skill:
 
 ![](./img/ask-my-skill.png)
 
-### c) Test Your Skill on Your Phone
+### Test Your Skill on Your Phone
 
 Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice while testing your Skill? You can use [Reverb](https://reverb.ai) for that. 
 
@@ -418,6 +418,6 @@ With Reverb, you can bring Alexa functionality to either your Mac or your mobile
 
 Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the Jovo Documentation to see what else you can do with our Framework: 
 
-[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/framework/docs/)
+[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/docs/)
 
 <!--[metadata]: { "description": "Learn how to build Alexa Skills with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Amazon Alexa", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/07/alexa-skill-tutorial-og-image.jpg" }-->

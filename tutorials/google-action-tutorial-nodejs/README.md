@@ -19,7 +19,7 @@ See also: [Build an Alexa Skill in Node.js with Jovo](https://www.jovo.tech/blog
 
 To get you started as quickly as possible, we're going to create a simple Action that responds with "Hello World!"
 
-Please note: This is a tutorial for beginners and explains the essential steps of Google Action development in detail. If you already have experience with Google Home or Google Assistant and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/framework/docs).
+Please note: This is a tutorial for beginners and explains the essential steps of Google Action development in detail. If you already have experience with Google Home or Google Assistant and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/docs).
 
 
 ## How Google Actions Work
@@ -38,8 +38,8 @@ We will take a deeper look into Dialogflow in section 2: [Create an Agent on Dia
 
 To understand how Google Actions work, let's take a look at the two important elements:
 
-*   [a) User Input](#user-input)
-*   [b) Assistant Output](#assistant-output)
+*   [User Input](#user-input)
+*   [Assistant Output](#assistant-output)
 
 ### User Input
 
@@ -137,7 +137,7 @@ Now that we know a little bit about how language models work, let's create our f
 
 ### Create a New Intent: HelloWorldIntent
 
-After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/framework/docs/intents-states#intents) intent.
+After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/docs/routing#intents) intent.
 
 ![](./img/dialogflow_agent_intent_page.png)
 
@@ -178,10 +178,10 @@ Now let's build the logic of our Google Action.
 
 We're going to use our [Jovo Framework](https://www.jovo.tech/framework/) which works for both Alexa Skills and Actions on Google Home.
 
-- [a) Install the Jovo CLI](#install-the-jovo-cli)
-- [b) Create a new Project](#create-a-new-project)
-- [c) A First Look at a Jovo Project](#a-first-look-at-a-jovo-project)
-- [d) Understanding the App Logic](#understanding-the-app-logic)
+- [Install the Jovo CLI](#install-the-jovo-cli)
+- [Create a new Project](#create-a-new-project)
+- [A First Look at a Jovo Project](#a-first-look-at-a-jovo-project)
+- [Understanding the App Logic](#understanding-the-app-logic)
 
 ### Install the Jovo CLI
 
@@ -191,7 +191,7 @@ The Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovo
 $ npm install -g jovo-cli
 ```
 
-This should be downloaded and installed now ([see our documentation for more information like technical requirements](https://www.jovo.tech/framework/docs/getting-started#technical-requirements)). After the installation, you can test if everything worked with the following command:
+This should be downloaded and installed now ([see our documentation for more information like technical requirements](https://www.jovo.tech/docs/getting-started#technical-requirements)). After the installation, you can test if everything worked with the following command:
 
 ```sh
 $ jovo
@@ -237,7 +237,7 @@ $ jovo new myGoogleAction
 
 ### A First Look at a Jovo Project
 
-For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/framework/docs/building-a-voice-app#jovo-app-structure).
+For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
 
 Let's take a look at `app.js`:
 
@@ -261,9 +261,9 @@ app.setHandler({
 });
 ```
 
-What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/framework/docs/intents-states#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/framework/docs/intents-states#tointent-tostateintent) call to switch to the HelloWorldIntent. Here, the [ask](https://www.jovo.tech/framework/docs/output#ask) method is called to ask for your user's name. After they answer, the MyNameIsIntent gets triggered, which greets your user with their name.
+What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#tointent-tostateintent) call to switch to the HelloWorldIntent. Here, the [ask](https://www.jovo.tech/docs/output#ask) method is called to ask for your user's name. After they answer, the MyNameIsIntent gets triggered, which greets your user with their name.
 
-That's it for now. Of course, feel free to modify this as you wish. To create more complex Google Actions, take a look at the framework's capabilities here: [Jovo Framework Docs: Building a Voice App](https://www.jovo.tech/framework/docs/building-a-voice-app).
+That's it for now. Of course, feel free to modify this as you wish. To create more complex Google Actions, take a look at the framework's capabilities here: [Jovo Framework Docs: Building a Voice App](https://www.jovo.tech/docs/building-a-voice-app).
 
 
 ## App Configuration: Where to Run Your Code
@@ -619,6 +619,6 @@ Then, use the invocation that was provided by the Simulator:
 
 Great job! You've gone through all the necessary steps to prototype your own Google Action. The next challenge is to build a real Action. For this, take a look at the Jovo Documentation to see what else you can do with our Framework:
 
-[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/framework/docs/)
+[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/docs/)
 
 <!--[metadata]: { "description": "Learn how to build Google Actions with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Google Assistant", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/08/google-action-tutorial-og-image.jpg" }-->
