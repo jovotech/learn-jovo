@@ -6,13 +6,13 @@ See also: [Build an Alexa Skill in Node.js with Jovo](https://www.jovo.tech/blog
 
 ### What you'll learn
 
-* [How Google Actions Work](how-google-actions-work)
-* [Create an Agent on Dialogflow](create-an-agent-on-dialogflow)
-* [Create a Language Model](create-a-language-model)
-* [Build Your Action's Code](build-your-actions-code)
-* [App Configuration: Where to Run Your Code](app-configuration-where-to-run-your-code)
-* [Add Endpoint to Dialogflow](add-endpoint-to-dialogflow)
-* [Hello World](hello-world)
+* [How Google Actions Work](#how-google-actions-work)
+* [Create an Agent on Dialogflow](#create-an-agent-on-dialogflow)
+* [Create a Language Model](#create-a-language-model)
+* [Build Your Action's Code](#build-your-actions-code)
+* [App Configuration: Where to Run Your Code](#app-configuration-where-to-run-your-code)
+* [Add Endpoint to Dialogflow](#add-endpoint-to-dialogflow)
+* [Hello World](#hello-world)
 * [Next Steps](#next-steps)
 
 ### What We're Building
