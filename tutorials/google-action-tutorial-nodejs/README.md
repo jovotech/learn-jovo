@@ -6,15 +6,14 @@ See also: [Build an Alexa Skill in Node.js with Jovo](https://www.jovo.tech/blog
 
 ### What you'll learn
 
-
-- [1) How do Google Actions Work?](#1-how-do-google-actions-work)
-- [2) Create an Agent on Dialogflow](#2-create-an-agent-on-dialogflow)
-- [3) Create a Language Model](#3-create-a-language-model)
-- [4) Build Your Action's Code](#4-build-your-actions-code)
-- [5) App Configuration: Where to Run Your Code](#5-app-configuration-where-to-run-your-code)
-- [6) Add Endpoint to Dialogflow](#6-add-endpoint-to-dialogflow)
-- [7) "Hello World!"](#7-%22hello-world%22)
-- [Next Steps](#next-steps)
+* [How Google Actions Work](how-google-actions-work)
+* [Create an Agent on Dialogflow](create-an-agent-on-dialogflow)
+* [Create a Language Model](create-a-language-model)
+* [Build Your Action's Code](build-your-actions-code)
+* [App Configuration: Where to Run Your Code](app-configuration-where-to-run-your-code)
+* [Add Endpoint to Dialogflow](add-endpoint-to-dialogflow)
+* [Hello World](hello-world)
+* [Next Steps](#next-steps)
 
 ### What We're Building
 
@@ -23,7 +22,7 @@ To get you started as quickly as possible, we're going to create a simple Action
 Please note: This is a tutorial for beginners and explains the essential steps of Google Action development in detail. If you already have experience with Google Home or Google Assistant and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/framework/docs).
 
 
-## 1) How do Google Actions Work?
+## How Google Actions Work
 
 In this section, you will learn more about the architecture of Google Assistant and how users interact with its Actions. First, let's take a look at the wording of the different kinds of software and hardware that's involved:
 
@@ -42,7 +41,7 @@ To understand how Google Actions work, let's take a look at the two important el
 *   [a) User Input](#user-input)
 *   [b) Assistant Output](#assistant-output)
 
-### a) User Input
+### User Input
 
 There are a few steps that happen before a user's speech input is reaching your Action. The voice input process (from left to right) consists of three stages that happen at three (four, if you count Google and Dialogflow as two) different places:
 
@@ -52,7 +51,7 @@ There are a few steps that happen before a user's speech input is reaching your 
 2.  the **Actions API** which uses its **Dialogflow integration** to understand what the user wants (through natural language understanding), and creates a request, which is passed to...
 3.  your **Action code** which knows what to do with the request.
 
-### b) Assistant Output
+### Assistant Output
 
 The voice output process (from right to left) goes back and passes the stages again:
 
@@ -64,16 +63,16 @@ The voice output process (from right to left) goes back and passes the stages ag
 
 In order to make the Action work, we need to configure it on both **Dialogflow** (for the natural language understanding) and the **Actions on Google Console** (for the Assistant integration). We're going to create a new Dialogflow Agent in the next step.
 
-## 2) Create an Agent on Dialogflow
+## Create an Agent on Dialogflow
 
 An [Dialogflow agent](https://dialogflow.com/docs/agents) offers a set of modules and integrations to add natural language understanding (NLU) to your product. Although it's owned by Google, it's platform agnostic and works for other channels like Facebook Messenger, as well.
 
 We're going to add our own agent now. Let's get started:
 
-- [a) Log in with your Google Account](#a-log-in-with-your-google-account)
-- [b) Create a New Agent](#b-create-a-new-agent)
+- [Log in with your Google Account](#log-in-with-your-google-account)
+- [Create a New Agent](#create-a-new-agent)
 
-### a) Log in with your Google Account
+### Log in with your Google Account
 
 Go to [dialogflow.com](https://dialogflow.com/) and click "Go to console" on the upper right:
 
@@ -83,7 +82,7 @@ Now sign in with your Google account. To simplify things, make sure to use the s
 
 ![](./img/dialogflow_login_page.png)
 
-### b) Create a New Agent
+### Create a New Agent
 
 Great! Once you're in the console, click "create agent":
 
@@ -99,16 +98,16 @@ After creating the agent, you can see the screen **Intents**:
 
 These intents are part of the Agent's language model. Let's take a deeper look into how it works in the next section.
 
-## 3) Create a Language Model
+## Create a Language Model
 
 Dialogflow offers an easy (but also highly customizable) way to create a language model for your Google Action.
 
 Let's take a look:
 
-- [a) An Introduction to Dialogflow Interaction Models](#a-an-introduction-to-dialogflow-interaction-models)
-- [b) Create a New Intent: HelloWorldIntent](#b-create-a-new-intent-helloworldintent)
+- [An Introduction to Dialogflow Interaction Models](#an-introduction-to-dialogflow-interaction-models)
+- [Create a New Intent: HelloWorldIntent](#create-a-new-intent-helloworldintent)
 
-### a) An Introduction to Dialogflow Interaction Models
+### An Introduction to Dialogflow Interaction Models
 
 Google Assistant and Dialogflow help you with several steps in processing input. First, they take a user's speech and transform it into written text (speech to text). Afterward, they use a language model to make sense out of what the user means (natural language understanding).
 
@@ -136,7 +135,7 @@ These are just the very basic components for you to get introduced to some terms
 
 Now that we know a little bit about how language models work, let's create our first intent that's being used to ask for our user's name.
 
-### b) Create a New Intent: HelloWorldIntent
+### Create a New Intent: HelloWorldIntent
 
 After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/framework/docs/intents-states#intents) intent.
 
@@ -173,7 +172,7 @@ Now we have to map the entity we created to the "**Training Phrases**" section b
 
 Now, let's look at the code!
 
-## 4) Build Your Action's Code
+## Build Your Action's Code
 
 Now let's build the logic of our Google Action.
 
@@ -184,7 +183,7 @@ We're going to use our [Jovo Framework](https://www.jovo.tech/framework/) which 
 - [c) A First Look at a Jovo Project](#c-a-first-look-at-a-jovo-project)
 - [d) Understanding the App Logic](#d-understanding-the-app-logic)
 
-### a) Install the Jovo CLI
+### Install the Jovo CLI
 
 The Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovotech/jovo-cli)) offer a great starting point for your voice application, as it makes it easy to create new projects from templates.
 
@@ -218,7 +217,7 @@ This should look like this:
                                  (webhook).
 ```
 
-### b) Create a new Project
+### Create a new Project
 
 Let's create a new project with the `$ jovo new` command ("helloworld" is the default template and will clone our [Jovo Sample App](https://github.com/jovotech/jovo-sample-voice-app-nodejs) into the specified directory):
 
@@ -236,13 +235,13 @@ $ jovo new myGoogleAction
   Installation completed.
 ```
 
-### c) A First Look at a Jovo Project
+### A First Look at a Jovo Project
 
 For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/framework/docs/building-a-voice-app#jovo-app-structure).
 
 Let's take a look at `app.js`:
 
-### d) Understanding the App Logic
+### Understanding the App Logic
 
 The handlers variable is where you will spend most of your time when you're building the logic behind your Google Action. The "helloworld" template already has three intents:
 
@@ -267,7 +266,7 @@ What's happening here? When your skill is opened, it triggers the [LAUNCH](https
 That's it for now. Of course, feel free to modify this as you wish. To create more complex Google Actions, take a look at the framework's capabilities here: [Jovo Framework Docs: Building a Voice App](https://www.jovo.tech/framework/docs/building-a-voice-app).
 
 
-## 5) App Configuration: Where to Run Your Code
+## App Configuration: Where to Run Your Code
 
 - [Local Prototyping with Express](#local-prototyping-with-express)
 - [Host your Code on AWS Lambda](#host-your-code-on-aws-lambda)
@@ -521,20 +520,20 @@ Yes! Finally, you can get the URL for the API Gateway from here:
 
 There's one more step we need to do before testing: we need to use this link and add it to Dialogflow.
 
-## 6) Add Endpoint to Dialogflow
+## Add Endpoint to Dialogflow
 
 Now that have either our local webhook or the API Gateway to AWS Lambda set up, it's time use the provided URL to connect our application with our agent on Dialogflow.
 
 - [a) Agent Fulfillment Section](#a-agent-fulfillment-section)
 - [b) Add Webhook to Intents](#b-add-webhook-to-intents)
 
-### a) Agent Fulfillment Section
+### Agent Fulfillment Section
 
 Go back to the Dialogflow console and choose the **Fulfillment** navigation item. Enable the webhook and paste either your Jovo webhook URL or the API Gateway:
 
 ![](./img/dialogflow_fulfillment-1.png)
 
-### b) Add Webhook to Intents
+### Add Webhook to Intents
 
 Dialogflow offers the ability to customize your language model in a way that you can choose for every intent how it's going to be handled.
 
@@ -550,16 +549,16 @@ Do the same for the "MyNameIsIntent" and also take a look at the "Default Welcom
 
 Great! Now let's test your Action.
 
-## 7) "Hello World!"
+## Hello World
 
 The work is done. It's now time to see if Google Assistant is returning the "Hello World!" we've been awaiting for so long. There are several options to test our Google Action:
 
-- [a) Test in Dialogflow](#a-test-in-dialogflow)
-- [b) Test in the Actions on Google Simulator](#b-test-in-the-actions-on-google-simulator)
+- [Test in Dialogflow](#test-in-dialogflow)
+- [Test in the Actions on Google Simulator](#test-in-the-actions-on-google-simulator)
 	- [Troubleshooting](#troubleshooting)
-- [c) Test on your Assistant enabled device](#c-test-on-your-assistant-enabled-device)
+- [Test on your Assistant enabled device](#test-on-your-assistant-enabled-device)
 
-### a) Test in Dialogflow
+### Test in Dialogflow
 
 For quick testing of your language model and to see if your webhook works, you can use the internal testing tool of Dialogflow.
 
@@ -569,7 +568,7 @@ You can find it to the right. Just type in the expression you want to test (in o
 
 Testing with Dialogflow will often be enough (and especially useful, as other tools can sometimes be a bit buggy). However, it doesn't test the integration between Dialogflow and Google Assistant. For this, you need to use the Actions on Google Simulator (see next step).  
 
-### b) Test in the Actions on Google Simulator
+### Test in the Actions on Google Simulator
 
 Now, let's make our Dialogflow agent work with Google Assistant. Open the Integrations panel from the sidebar menu: 
 
@@ -608,7 +607,7 @@ It can also be helpful to go through the process one more time. Go to **Integrat
 
 Let us know in the comments if it worked!
 
-### c) Test on your Assistant enabled device
+### Test on your Assistant enabled device
 
 If you want to test your Action on a Google Home (or other device that works with Google Assistant), make sure you're connected to it with the same Google account you're using for the Simulator (and that testing is enabled, see previous step).
 
