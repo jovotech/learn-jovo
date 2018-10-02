@@ -80,3 +80,5 @@ We're going to set the projects up in the following two steps:
 > [Step 3: Create a Project on the Amazon Developer Portal](https://www.jovo.tech/blog/step-3-amazon-developer-portal/)
 
 > [Step 4: Create a Project on Dialogflow and Google Assistant](https://www.jovo.tech/blog/p1s4-dialogflow-google-assistant/)
+
+<!--[metadata]: { "description": "In this lecture, you will learn the basics of how voice platforms like Alexa and Google Assistant use natural language understanding (NLU) for your voice app, and how you can build interaction and language models for them.", "author": "jan-koenig" }-->

@@ -112,3 +112,6 @@ You can either go directly into the coding section and create a Jovo project, or
 > [Step 4: Create a Project on Dialogflow and Google Assistant](https://www.jovo.tech/blog/p1s4-dialogflow-google-assistant/)
 
 > [Step 5: Create a Jovo Project](https://www.jovo.tech/blog/step-5-create-jovo-project/)
+
+
+<!--[metadata]: { "description": "In this lecture, you will learn how to create an Alexa Skill project and interaction model on the Amazon Developer Portal.", "author": "jan-koenig" }-->

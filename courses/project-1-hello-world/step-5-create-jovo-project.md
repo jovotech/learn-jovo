@@ -113,3 +113,6 @@ When your app is opened, it triggers the [LAUNCH](https://www.jovo.tech/framewor
 We have the voice app platform projects and the source code in place. In the last step of this course, we're connecting the code to the voice APIs from Amazon Alexa and Google Assistant (Dialogflow) to receive our first "Hello World":
 
 > [Step 6: Hello World!](https://www.jovo.tech/blog/step-6-hello-world/)
+
+
+<!--[metadata]: { "description": "In this lecture, you will learn how to create a new voice app project with Jovo, an open source development framework for Alexa Skills and Google Actions.", "author": "jan-koenig" }-->

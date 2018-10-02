@@ -165,3 +165,5 @@ Yeah! Your application is now an Action on Google Assistant.
 Congrats! 👏
 
 You just finished your first course on voice app development. Check out [jovo.tech/learn](https://www.jovo.tech/learn) for more advanced courses.
+
+<!--[metadata]: { "description": "In this lecture, you will learn how to connect your Jovo code to the Amazon Alexa and Google Actions APIs, and test your first Hello World voice application.", "author": "jan-koenig" }-->
