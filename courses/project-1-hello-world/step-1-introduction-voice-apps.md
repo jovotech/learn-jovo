@@ -72,6 +72,6 @@ For now, there is one more thing to keep in mind (which we will also cover in th
 
 Now that we know the very simple basics of voice applications, let's dive a little deeper into the language models that need to be developed to make your Alexa Skills and Google Actions work.
 
-> [Step 2: Introduction to Language Models](https://www.jovo.tech/blog/step-2-introduction-language-models/)
+> [Step 2: Introduction to Language Models](./step-2-introduction-language-models.md)
 
 <!--[metadata]: { "description": "In this lecture, you will learn the basics of voice applications for both Amazon Alexa (Alexa Skills) and Google Home (Actions on Google).", "author": "jan-koenig" }-->
