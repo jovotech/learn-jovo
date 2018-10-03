@@ -25,8 +25,8 @@ Ready? Now let's go with [Step 1: Introduction to Voice Apps](./step-1-introdu
 
 Prefer to go from start to finish in one tutorial instead? Then go ahead with the resources below:
 
-* [Google Action Beginner Tutorial](../tutorials/google-action-tutorial-nodejs/)
-* [Alexa Skill Beginner Tutorial](..tutorials/alexa-skill-tutorial-nodejs/)
+* [Google Action Beginner Tutorial](../../tutorials/google-action-tutorial-nodejs/)
+* [Alexa Skill Beginner Tutorial](../../tutorials/alexa-skill-tutorial-nodejs/)
 
 
 <!--[metadata]: { "description": "Learn the basics of voice app development for Amazon Alexa and Google Assistant in this free course.", "author": "jan-koenig" }-->
