@@ -65,7 +65,6 @@ Besides the request and response, there are many other little differences betwe
 
 For now, there is one more thing to keep in mind (which we will also cover in the next lecture): While on Amazon Alexa, the API also does the **natural language understanding**, the Google Actions API doesn't do that itself. For this, you have to integrate with an NLU tool. Most Action developers use [Dialogflow](https://dialogflow.com/) to configure their application’s language model:
 
-
 ![](./img/google-assistant-api-ai.png)
 
 ## Next Steps
