@@ -7,7 +7,7 @@ In this step, we are going to take a look at the interaction design and the lang
 * [Initial Interaction: Blue Door or Red Door?](#initial-interaction-blue-door-or-red-door)
 * [Second Interaction: Yes or No?](#second-interaction-yes-or-no)
 * [Create the Interaction Model on Amazon Alexa](#create-the-interaction-model-on-amazon-alexa)
-* [Optional: Create the Language Model on Dialogflow](#optional-create-the-language-model-on-dialogflow)
+* [Create the Language Model on Dialogflow](#create-the-language-model-on-dialogflow)
 * [Next Steps](#next-steps)
 
 **A note on cross-platform development**: We will guide you through all the necessary steps to develop for both Amazon Alexa and Google Assistant (with Dialogflow). However, it's not necessary to build for both platforms right away. We usually suggest to start with Alexa and then port the experience over to Google Assistant.  
@@ -61,7 +61,7 @@ For the interaction model, we're going to add 4 intents:
 * 2 intents for the first step: _BlueDoorIntent_ and _RedDoorIntent_
 * 2 intents for the second step: _AMAZON.YesIntent_ and _AMAZON.NoIntent_
 
-### BlueDoorIntent and RedDoorIntent
+### Alexa: BlueDoorIntent and RedDoorIntent
 
 In the Skill Builder Beta, we're adding two custom intents _BlueDoorIntent_ and _RedDoorIntent_.
 
@@ -108,7 +108,7 @@ After a bit, it should be successfully created.
 
 You can now either go to the [next step](#next-steps) or take a look how a language model is created on Dialogflow to use with Google Assistant.
 
-## Optional: Create the Language Model on Dialogflow
+## Create the Language Model on Dialogflow
 
 Creating a language model for Google Assistant is a little different compared to Alexa, where it's done all on one platform, the Amazon Developer Portal. As we learned in [Project 1 Step 4: Create a Project on Dialogflow and Google Assistant](../project-1-hello-world/step-4-dialogflow-google-assistant.md), it is common to use Dialogflow to do the natural language understanding for Google Assistant, and use the built-in integration to connect both.
 
@@ -121,7 +121,7 @@ We’re going to add 4 intents to this agent:
 * 2 intents for the first step: _BlueDoorIntent_ and _RedDoorIntent_
 * 2 intents for the second step: _YesIntent_ and _NoIntent_
 
-### BlueDoorIntent and RedDoorIntent
+### Dialogflow: BlueDoorIntent and RedDoorIntent
 
 Just like we did for Amazon Alexa, we're creating an intent for each door, for example with these phrases for _BlueDoorIntent_:
 
