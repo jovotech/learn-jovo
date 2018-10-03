@@ -39,7 +39,7 @@ These intents are part of the agent's language model. We're going to create a ne
 
 ## Create an Interaction Model
 
-After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/framework/docs/intents-states#intents) intent.
+After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/docs/routing#launch-intent) intent.
 
 Let's create another intent and name it "HelloWorldIntent":
 
@@ -94,6 +94,6 @@ This is it for now. This is how your project looks like on the **Actions on Goog
 
 Yay! Finally, we're ready to dive into the code and the Jovo Framework. We're going to do this in the next step of this course:
 
-> [Step 5: Create a Jovo Project](https://www.jovo.tech/blog/step-5-create-jovo-project/)
+> [Step 5: Create a Jovo Project](./step-5-create-jovo-project.md)
 
 <!--[metadata]: { "description": "In this lecture, you will learn how to create an agent on Dialogflow for the language model, and connect it to a Google Action project on the Google developer console.", "author": "jan-koenig" }-->

@@ -71,7 +71,7 @@ Let's move on to the language model of your Skill.
 
 ## Create an Interaction Model
 
-As mentioned in [step 2](https://www.jovo.tech/blog/step-2-introduction-language-models/), for our simple voice app we only need to create two intents and add a few sample utterances, as well as a slot. So let's dive into the Amazon Developer Console and do this.
+As mentioned in [step 2](./step-2-introduction-language-models.md), for our simple voice app we only need to create two intents and add a few sample utterances, as well as a slot. So let's dive into the Amazon Developer Console and do this.
 
 Let's create the "HelloWorldIntent" first:
 
@@ -97,7 +97,7 @@ it's {name}
 
 ![](./img/amazon_developer_alexa_myNameIsIntent.png)
 
-After you did that, you will see that the console automatically added an intent slot called "name", but we still have to assign a slot type, so our Skill knows what kind of input it should execpt. In our case it's "AMAZON.US_NAME":
+After you did that, you will see that the console automatically added an intent slot called "name", but we still have to assign a slot type, so our Skill knows what kind of input it should except. In our case it's "AMAZON.US_NAME":
 
 ![](./img/amazon_developer_alexa_slotType.png)
 
@@ -109,9 +109,9 @@ That's all we need. Now click on the "Build Model" button on the top:
 
 You can either go directly into the coding section and create a Jovo project, or set up the Google Assistant language model on Dialogflow first.
 
-> [Step 4: Create a Project on Dialogflow and Google Assistant](https://www.jovo.tech/blog/p1s4-dialogflow-google-assistant/)
+> [Step 4: Create a Project on Dialogflow and Google Assistant](./step-4-dialogflow-google-assistant.md)
 
-> [Step 5: Create a Jovo Project](https://www.jovo.tech/blog/step-5-create-jovo-project/)
+> [Step 5: Create a Jovo Project](./step-5-create-jovo-project.md)
 
 
 <!--[metadata]: { "description": "In this lecture, you will learn how to create an Alexa Skill project and interaction model on the Amazon Developer Portal.", "author": "jan-koenig" }-->
