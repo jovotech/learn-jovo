@@ -119,9 +119,9 @@ The Skill is configured to use the Jovo Webhook as its HTTPS endpoint (the `endp
 # Run Jovo Webhook
 $ jovo run
 ```
-There are several options to test the Skill:
 
-* The default invocation name of the template is "button demo"
+The default invocation name of the template is "button demo". There are two options to test the Skill:
+
 * If you have actual Echo Buttons, you can use them to test the Skill on the device that they are paired with
 * If you don't have Echo Buttons, you can test the Skill in the Amazon Developer console's test tab
 
@@ -165,7 +165,7 @@ const buttonDownEvent = this.alexaSkill().gameEngine()
     .build();
 ```
 
-We also need a `timeoutEvent` to know when the designated time to press buttons has ended. This one uses the built-in `timed out` recognizer and ends the input handler, so that we recieve no more Button events in this seesion.
+We also need a `timeoutEvent` to know when the designated time to press buttons has ended. This one uses the built-in `timed out` recognizer and ends the input handler, so that we receive no more Button events in this session.
 
 ```js
 const timeoutEvent = this.alexaSkill().gameEngine()
