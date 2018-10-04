@@ -210,20 +210,32 @@ this.alexaSkill().gadgetController()
 ```
 We define exactly the same animation for the `'buttonUp'` event, to replace a default blue flash animation.
 
-For when the button is idle, i.e. not (yet) pressed, we want a soft white pulsating animation. We create a single sequence of the animation using the helper class `buildBreathAnimation()` and repeat it 20 times.
+For when the button is idle, i.e. not (yet) pressed, we want a soft white pulsating animation. We create a single sequence of the animation by blending 500 miliseconds of black (`#000000`) and dark gray (`#111111`) each, and repeating it 20 times.
 
 ```js
-const breathAnimationWhite = buildBreathAnimation('111111', '000000', 30, 1200);
 this.alexaSkill().gadgetController()
     .setNoneTriggerEvent()
     .setAnimations(
-        [{
-            'repeat': 20,
-            'targetLights': ['1'],
-            'sequence': breathAnimationWhite
-        }]
+        [
+            {
+                'repeat': 20,
+                'targetLights': ['1'],
+                'sequence': [
+                    {
+                        'durationMs': 500,
+                        'color': '111111',
+                        'blend': true,
+                    },
+                    {
+                        'durationMs': 500,
+                        'color': '000000',
+                        'blend': true,
+                    },
+                ],
+            },
+        ]
     )
-.setLight([], 0, []); // Let's ignore these parameters for now
+    .setLight([], 0, []); // Let's ignore these parameters for now
 ```
 
 Now we can add a text (with a sound effect) and send the request using either the `gameEngine` or the `gadgetController`'s `respond()` method. We can't use the regular `ask()` method at this point, because in the response, the `shouldEndSession` attribute has to be deleted.
@@ -259,7 +271,7 @@ if (
 
 In case of the `buttonDownEvent`, there are two different cases we need to cover: Either a 'new' button is pressed for the first time, or a 'known' button has been pressed more then once.
 
-In case of a new button, we assign it an index `buttonNumber`, add a greeting and build a new colored animation with one of the colors stored in the `BUTTON_COLORS` array:
+In case of a new button, we assign it an index `buttonNumber` and add a greeting.
 
 ```js
 this.speech
@@ -267,20 +279,32 @@ this.speech
         `https://s3.amazonaws.com/ask-soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_player${buttonNumber}_01.mp3`
     )
     .addText(`Welcome, button ${buttonNumber}!`);
-const breathAnimation = buildBreathAnimation(BUTTON_COLORS[buttonNumber - 1], '000000', 30, 1200);
 ```
 
-Now we change the button's animation by changing the configuration of the gadget controller for only the respective button, using the animation we just created:
+Now we change the button's animation by changing the configuration of the gadget controller for only the respective button, using the corresponding color from the `BUTTON_COLORS` array:
 
 ```js
 this.alexaSkill().gadgetController()
     .setNoneTriggerEvent()
     .setAnimations(
-        [{
-            'repeat': 20,
-            'targetLights': ['1'],
-            'sequence': breathAnimation
-        }]
+        [
+            {
+                'repeat': 20,
+                'targetLights': ['1'],
+                'sequence': [
+                    {
+                        'durationMs': 500,
+                        'color': BUTTON_COLORS[buttonNumber - 1],
+                        'blend': true,
+                    },
+                    {
+                        'durationMs': 500,
+                        'color': '000000',
+                        'blend': true,
+                    },
+                ],
+            },
+        ]
     )
     .setLight(
         [buttonId], // This applies the new animation to only this button
@@ -316,4 +340,4 @@ this.tell(
 Congratulations on building your first Echo Button Skill! :)
 
 
-<!--[metadata]: { "description": "Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Controller and Gadgets API.", "author": "florian-hollandt", "tags": "Amazon Alexa, Echo Buttons", "og-image": "https://www.jovo.tech/img/alexa-echo-buttons/alexa-echo-buttons.jpg" }-->
+<!--[metadata]: { "description": "Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Controller and Gadgets API.", "author": "florian-hollandt", "tags": "Amazon Alexa, Echo Buttons", "og-image": "https://www.jovo.tech/img/alexa-echo-buttons/alexa-echo-buttons.jpg"  }-->
