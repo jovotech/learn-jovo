@@ -65,13 +65,12 @@ Besides the request and response, there are many other little differences betwe
 
 For now, there is one more thing to keep in mind (which we will also cover in the next lecture): While on Amazon Alexa, the API also does the **natural language understanding**, the Google Actions API doesn't do that itself. For this, you have to integrate with an NLU tool. Most Action developers use [Dialogflow](https://dialogflow.com/) to configure their application’s language model:
 
-
 ![](./img/google-assistant-api-ai.png)
 
 ## Next Steps
 
 Now that we know the very simple basics of voice applications, let's dive a little deeper into the language models that need to be developed to make your Alexa Skills and Google Actions work.
 
-> [Step 2: Introduction to Language Models](https://www.jovo.tech/blog/step-2-introduction-language-models/)
+> [Step 2: Introduction to Language Models](./step-2-introduction-language-models.md)
 
 <!--[metadata]: { "description": "In this lecture, you will learn the basics of voice applications for both Amazon Alexa (Alexa Skills) and Google Home (Actions on Google).", "author": "jan-koenig" }-->

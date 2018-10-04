@@ -17,12 +17,12 @@ In this lecture, you will learn how to create a new voice app project with Jovo,
 Jovo is a simple and open source framework to build cross-platform voice applications. Instead of having to build distinct apps for your Alexa Skill and Google Action, you can now have one platform-agnostic source of code that works with both voice APIs. Throughout this course, you will learn how to use the Jovo Framework step by step. If you're interested in learning more about Jovo now, here are some resources:
 
 * [Jovo Framework Repository on GitHub](https://github.com/jovotech/jovo-framework-nodejs/) ⭐️
-* [Jovo Framework Documentation](https://www.jovo.tech/framework/docs/)
+* [Jovo Framework Documentation](https://www.jovo.tech/docs/)
 * [Join our Newsletter](https://www.jovo.tech/newsletter)
 
 ## Installation
 
-The best way to get started with Jovo is to install the Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovotech/jovo-cli)), as it makes it easy to create new projects from templates. [See our documentation for more other ways to get started with Jovo](https://www.jovo.tech/framework/docs/getting-started#technical-requirements).
+The best way to get started with Jovo is to install the Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovotech/jovo-cli)), as it makes it easy to create new projects from templates. [See our documentation for more other ways to get started with Jovo](https://www.jovo.tech/docs/installation).
 
 You can install the Jovo CLI by using the following command:
 
@@ -82,7 +82,7 @@ Success!
 
 ## Understanding the Jovo App Logic
 
-Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. The folder structure ([see the docs](https://www.jovo.tech/framework/docs/building-a-voice-app#jovo-app-structure)) looks like this:
+Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/configuration#jovo-app-structure)) looks like this:
 
 ![](./img/folder-structure-simple.png)
 
@@ -106,13 +106,13 @@ app.setHandler({
 
 What's happening here?
 
-When your app is opened, it triggers the [LAUNCH](https://www.jovo.tech/framework/docs/intents-states#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/framework/docs/intents-states#tointent-tostateintent) call to switch to the HelloWorldIntent. Here, the ask method is called to ask for the user's name. After they answer, the MyNameIsIntent gets triggered, which greets them with their name.
+When your app is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing#launch-intent) intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#tointent) call to switch to the HelloWorldIntent. Here, the ask method is called to ask for the user's name. After they answer, the MyNameIsIntent gets triggered, which greets them with their name.
 
 ## Next Steps
 
 We have the voice app platform projects and the source code in place. In the last step of this course, we're connecting the code to the voice APIs from Amazon Alexa and Google Assistant (Dialogflow) to receive our first "Hello World":
 
-> [Step 6: Hello World!](https://www.jovo.tech/blog/step-6-hello-world/)
+> [Step 6: Hello World!](./step-6-hello-world.md)
 
 
 <!--[metadata]: { "description": "In this lecture, you will learn how to create a new voice app project with Jovo, an open source development framework for Alexa Skills and Google Actions.", "author": "jan-koenig" }-->
