@@ -7,7 +7,6 @@ Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Cont
    * [Create new Project](#create-new-project)
    * [Project Configuration](#project-configuration)
    * [Deploy Project](#deploy-project)
-   * [Run Jovo Webhook](#run-jovo-webhook)
    * [Test the Skill](#test-the-skill)
 * [Understand the Code](#understand-the-code)
    * [Setting up the Game Engine](#setting-up-the-game-engine)
@@ -112,7 +111,7 @@ The Skill should now show up in your Alexa Developer Console:
 ![The new Skill in the Alexa Developer Console](./img/new-skill-alexa-console.jpg)
 
 
-### Run Jovo Webhook
+### Test the Skill
 
 The Skill is configured to use the Jovo Webhook as its HTTPS endpoint (the `endpoint` element in the `app.json` file), so your Jovo Webhook needs to be active in order to process requests.
 
@@ -120,17 +119,13 @@ The Skill is configured to use the Jovo Webhook as its HTTPS endpoint (the `endp
 # Run Jovo Webhook
 $ jovo run
 ```
-
-### Test the Skill
-
-![Testing button skills in the Alexa Simulator](./img/test-buttons-in-alexa-simulator.jpg)
-
 There are several options to test the Skill:
 
 * The default invocation name of the template is "button demo"
 * If you have actual Echo Buttons, you can use them to test the Skill on the device that they are paired with
 * If you don't have Echo Buttons, you can test the Skill in the Amazon Developer console's test tab
 
+![Testing button skills in the Alexa Simulator](./img/test-buttons-in-alexa-simulator.jpg)
 
 
 ## Understand the Code
