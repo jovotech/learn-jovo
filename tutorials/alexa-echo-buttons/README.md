@@ -1,5 +1,7 @@
 # Build an Alexa Skill with Echo Buttons
 
+![Build an Echo Button Alexa Skill with Jovo](./img/alexa-echo-buttons.jpg)
+
 Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Controller and Gadgets API.
 
 * [Introduction](#introduction)
@@ -314,4 +316,4 @@ this.tell(
 Congratulations on building your first Echo Button Skill! :)
 
 
-<!--[metadata]: { "description": "Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Controller and Gadgets API.", "author": "florian-hollandt", "tags": "Amazon Alexa, Echo Buttons" }-->
+<!--[metadata]: { "description": "Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Controller and Gadgets API.", "author": "florian-hollandt", "tags": "Amazon Alexa, Echo Buttons", "og-image": "https://www.jovo.tech/img/alexa-echo-buttons/alexa-echo-buttons.jpg" }-->
