@@ -15,7 +15,7 @@ Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Cont
    * [Setting up the Gadget Controller](#seting-up-the-gadget-controller)
    * [Responding to Game Engine Events](#responding-to-game-engine-events)
 
-# Introduction
+## Introduction
 
 With Jovo, you can build Alexa Skills that use the *Game Engine* ([Official Amazon Docs](https://developer.amazon.com/docs/custom-skills/game-engine-interface-reference.html), [Jovo Docs](https://www.jovo.tech/docs/amazon-alexa/game-engine)) and the *Gadget Controller Interfaces* ([Official Amazon Docs](https://developer.amazon.com/docs/custom-skills/gadget-controller-interface-reference.html), [Jovo Docs](https://www.jovo.tech/docs/amazon-alexa/gadget-controller)) of the Gadgets Skill API.
 
