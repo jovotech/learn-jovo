@@ -171,7 +171,7 @@ In the Jovo APL template, we split up these elements and put them into different
 
 Just say `Alexa, ask my APL test to show Body Template three`, and it should display the right template:
 
-![Alexa APL Console: Body Template 3](./img/apl-body-template-3-authoring.jpg "Body Template 3 in the Alexa Console with APL")
+![Alexa APL Console: Body Template 3](./img/apl-body-template-3-console.jpg "Body Template 3 in the Alexa Console with APL")
 
 ### Next Steps
 
