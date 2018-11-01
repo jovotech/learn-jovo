@@ -1,5 +1,7 @@
 # Using the Alexa Presentation Language (APL) with Jovo
 
+![Using the Alexa Presentation Language (APL) with Jovo](./img/alexa-presentation-language-og.jpg "Using the Alexa Presentation Language (APL) with Jovo")
+
 Learn how to build visual Alexa Skills with the Alexa Presentation Language (APL) and the Jovo Framework.
 
 You can also find the Jovo beginner template for APL here: [jovo-templates/alexa/apl](https://github.com/jovotech/jovo-templates/tree/master/alexa/apl)
@@ -182,4 +184,4 @@ In the next tutorials, we are going to look at additional elements of APL:
 * Layouts for different viewports
 * UserEvent requests
 
-<!--[metadata]: { "description": "Learn how to build visual Alexa Skills with the Alexa Presentation Language (APL) and the Jovo Framework.", "author": "jan-koenig", "tags": "Amazon Alexa" }-->
+<!--[metadata]: { "description": "Learn how to build visual Alexa Skills with the Alexa Presentation Language (APL) and the Jovo Framework.", "author": "jan-koenig", "tags": "Amazon Alexa", "og-image": "https://www.jovo.tech/img/tutorials/alexa-presentation-language/alexa-presentation-language-og.jpg" }-->
