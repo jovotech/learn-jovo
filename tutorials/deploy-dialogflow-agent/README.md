@@ -38,7 +38,7 @@ First of all, go to the [Dialogflow console](https://console.dialogflow.com/api-
 
 ![](./img/dialogflow_agent_settings.png)
 
- n the bottom of the page you can find the toggle for the V2 API. The system will ask you, if you're sure, that you want to change the API version, since the request and response format will change, but no worries, the Jovo framework can handle both the V1 and V2 API.
+On the bottom of the page you can find the toggle for the V2 API. The system will ask you, if you're sure, that you want to change the API version, since the request and response format will change, but no worries, the Jovo framework can handle both the V1 and V2 API.
 
 ![](./img/dialogflow_agent_changeAPI.png)
 
