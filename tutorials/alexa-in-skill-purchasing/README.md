@@ -396,7 +396,7 @@ For the message/prompt, Amazon offers the following guidelines:
 
 In general, you should also avoid suggesting multiple products in a row or suggestion products too often, so you don't interrupt and annoy the user.
 
-Alright, now that we discussed all that, we can start the transaction using the  `upsellByReferenceName()` method, which takes the `reference_name`, `prompt` and `token` as parameters, after we've checked if the user already owns the product:
+Alright, now that we discussed all that, we can start the transaction using the  `upsell()` method, which takes the `productId`, `prompt` and `token` as parameters, after we've checked if the user already owns the product:
 
 ```javascript
 'UpsellIntent': function() {
@@ -451,7 +451,8 @@ In the other scenario the user specifies the product and we use the input's id a
                 this.tell('You have already bought this item.');
                 return;
             }
-            this.alexaSkill().inSkillPurchase().buy(product.productId);
+            let token = 'testToken';
+            this.alexaSkill().inSkillPurchase().buy(product.productId, token);
         });
 },
 ```
@@ -473,7 +474,8 @@ Next, the `RefundSkillItemIntent`. Same procedure, get the input's id, use it to
             if (product.entitled !== 'ENTITLED') {
                 this.tell('You have not bought this item yet.');
             }
-            this.alexaSkill().inSkillPurchase().cancel(product.productId);
+            let token = 'testToken';
+            this.alexaSkill().inSkillPurchase().cancel(product.productId, token);
         });
 },
 ```
