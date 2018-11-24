@@ -1,6 +1,6 @@
-# Alexa In-Skill-Purchasing
+# Use Alexa In-Skill-Purchasing (ISP) with Jovo
  
-In this blogpost, we will dive into the implementation of [Alexa's in-skill purchasing (ISP)](https://developer.amazon.com/alexa-skills-kit/make-money/in-skill-purchasing) with Jovo/
+In this tutorial, you will learn how to sell digital goods with your Alexa Skill by using [Alexa's in-skill purchasing (ISP)](https://developer.amazon.com/alexa-skills-kit/make-money/in-skill-purchasing) with Jovo.
 
 📋 You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
 
@@ -541,4 +541,4 @@ That's the basic implementation of Alexa in-skill-purchasing (ISP) with Jovo.
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to implement the Alexa In-Skill-Purchasing (ISP) with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2018/01/alexa-og-image.jpg"}-->
+<!--[metadata]: { "description": "Learn how to make money with Alexa Skills by implementing the Alexa In-Skill-Purchasing (ISP) feature with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa"}-->
