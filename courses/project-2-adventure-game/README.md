@@ -41,7 +41,7 @@ Follow the tutorials below to build your choose-your-own-adventure game in 6 ste
 
 Ready? Now let's go with [Step 1: Adventure Game Interaction Design](./step-1-adventure-game-interaction-design.md).
 
-Need a refresher? Go to [Project 1: Hello World](../courses/project-1-hello-world/) for an introduction to the concept and basic features.
+Need a refresher? Go to [Project 1: Hello World](../../courses/project-1-hello-world/) for an introduction to the concept and basic features.
 
 _Photo by [Letizia Bordoni](https://unsplash.com/photos/IZGNcO_8CDg) on [Unsplash](https://unsplash.com/)_
 
