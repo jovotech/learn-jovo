@@ -110,18 +110,18 @@ Remember that our app logic looked something like this:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         let speech = 'Do you either go through the blue door, or through the red door?';
         let reprompt = 'You have two options, the blue door, or the red door.';
         this.ask(speech, reprompt);
     },
 
-    'BlueDoorIntent': function() {
+    BlueDoorIntent() {
         let speech = 'You chose to go through the blue door.';
         this.tell(speech);
     },
 
-    'RedDoorIntent': function() {
+    RedDoorIntent() {
         let speech = 'You chose to go through the red door.';
         this.tell(speech);
     }
@@ -133,39 +133,37 @@ Let's merge the two intents. The response could look something like this:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         let speech = 'Do you either go through the blue door, or through the red door?';
         let reprompt = 'You have two options, the blue door, or the red door.';
         this.ask(speech, reprompt);
     },
 
-    'EnterDoorIntent': function() {
+    EnterDoorIntent() {
         let speech = 'You chose to go through the ' + color + ' door.';
         this.tell(speech);
     },
 });
 ```
 
-However, how can we access the values a user provided with a slot or entity? With the Jovo Framework, it is as easy as adding a parameter to your intent's function:
+However, how can we access the values a user provided with a slot or entity? With the Jovo Framework they are stored in the `$inputs` object:
 
 ```javascript
-'EnterDoorIntent': function(color) {
-    let speech = 'You chose to go through the ' + color.value + ' door.';
+EnterDoorIntent() {
+    let speech = 'You chose to go through the ' + this.$inputs.color.value + ' door.';
     this.tell(speech);
 },
 ```
 
-Make sure that the name of the parameter is the same as the name of the intent slot on Alexa and parameter on API.AI, so that Jovo can do the matching in the background.
-
 Also, let's add some error handling, so that users are asked again if they miss to provide either blue or red:
 
 ```javascript
-'EnterDoorIntent': function(color) {
+EnterDoorIntent() {
     let speech = '';
     let reprompt = '';
 
-    if (color.value === 'blue' || color.value === 'red') {
-        speech = 'You chose to go through the ' + color.value + ' door.';
+    if (this.$inputs.color.value === 'blue' || this.$inputs.color.value === 'red') {
+        speech = 'You chose to go through the ' + this.$inputs.color.value + ' door.';
         this.tell(speech);
     } else {
         speech = 'Please choose either the blue door or the red door.';

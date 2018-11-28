@@ -41,33 +41,38 @@ In the next steps we're going to modify the [app.js](https://github.com/jovotech
 'use strict';
 
 // =================================================================================
-// App Configuration
+// APP INITIALIZATION
 // =================================================================================
 
 const {App} = require('jovo-framework');
+const {Alexa} = require('jovo-platform-alexa');
+const {GoogleAssistant} = require('jovo-platform-googleassistant');
+const {JovoDebugger} = require('jovo-plugin-debugger');
 
-const config = {
-    logging: true,
-};
+const app = new App();
 
-const app = new App(config);
+app.use(
+    new Alexa(),
+    new GoogleAssistant(),
+    new JovoDebugger()
+);
 
 
 // =================================================================================
-// App Logic
+// APP LOGIC
 // =================================================================================
 
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
+    HelloWorldIntent() {
         this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 
@@ -86,16 +91,16 @@ Here is what the off-the-shelf logic for a "Hello World" voice app looks like, w
 
 ```javascript
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
+    HelloWorldIntent() {
         this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 ```
@@ -109,15 +114,15 @@ Let's get rid of HelloWorldIntent and create intents for both doors:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         //
     },
 
-    'BlueDoorIntent': function() {
+    BlueDoorIntent() {
         //
     },
 
-    'RedDoorIntent': function() {
+    RedDoorIntent() {
         //
     }
 });
@@ -141,18 +146,18 @@ Let's build this into our code:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         let speech = 'Do you either go through the blue door, or through the red door?';
         let reprompt = 'You have two options, the blue door, or the red door.';
         this.ask(speech, reprompt);
     },
 
-    'BlueDoorIntent': function() {
+    BlueDoorIntent() {
         let speech = 'You chose to go through the blue door.';
         this.tell(speech);
     },
 
-    'RedDoorIntent': function() {
+    RedDoorIntent() {
         let speech = 'You chose to go through the red door.';
         this.tell(speech);
     }

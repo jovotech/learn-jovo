@@ -93,7 +93,7 @@ The method will either return the access token or `undefined`.
 To prompt the user to link their account, you just add an **Account Linking Card** to your response object:
 
 ```javascript
-this.alexaSkill().showAccountLinkingCard();
+this.$alexaSkill.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
@@ -135,7 +135,7 @@ At the end, your code should look like this:
 
 ```javascript
 if (!this.getAccessToken()) {
-    this.alexaSkill().showAccountLinkingCard();
+    this.$alexaSkill.showAccountLinkingCard();
     this.tell('Please your link your Account');
 }
 else {

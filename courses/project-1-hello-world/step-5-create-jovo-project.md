@@ -82,7 +82,7 @@ Success!
 
 ## Understanding the Jovo App Logic
 
-Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/configuration#jovo-app-structure)) looks like this:
+Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/configuration#jovo-app-structure)) looks like this:
 
 ![](./img/folder-structure-simple.png)
 
@@ -90,16 +90,16 @@ Let's take a look at the lower part first: The handler is where you will spend m
 
 ```javascript
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
-        this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
+    HelloWorldIntent() {
+        this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 ```

@@ -38,7 +38,7 @@ module.exports = {
 const PLAY_STATE = require('./states/play.js');
 
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toStateIntent('PLAY_STATE', 'playIntent');
     },
     PLAY_STATE,
@@ -76,12 +76,12 @@ Here's an example:
 
 ```javascript
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.tell('Hello user!');
     },
 });
 app.setAlexaHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.tell('Hello Alexa user!');
     },
 });

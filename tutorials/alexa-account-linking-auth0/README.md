@@ -154,7 +154,7 @@ Now before you close both tabs, we have to add the _Redirect URLs_ provided by A
 You're pretty much at the end of this tutorial. The last thing we want to show you is a code example, which should give you an idea how to implement Account Linking in your own code.
 
 ```javascript
-this.alexaSkill().showAccountLinkingCard();
+this.$alexaSkill.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
@@ -217,7 +217,7 @@ No access token -> Ask the user to sign in
 If there is one -> API call to access user data 
 */
 if (!this.getAccessToken()){
-    this.alexaSkill().showAccountLinkingCard();
+    this.$alexaSkill.showAccountLinkingCard();
     this.tell('Please link your account');
 } else {
     let token = this.getAccessToken();

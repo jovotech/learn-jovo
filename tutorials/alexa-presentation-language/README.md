@@ -80,7 +80,7 @@ To use APL templates, you need to add an additional directive called `Alexa.Pres
 For this, you can use the `addDirective` method and add the following elements:
 
 ```javascript
-this.alexaSkill().addDirective({
+this.$alexaSkill.addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         version: '1.0',
         document: {},
@@ -93,7 +93,7 @@ We will talk a little bit more about the `document` and `datasources` elements i
 For example, the Jovo APL template uses the main layout by Amazon as a `main.json` file in a dedicated `apl` folder:
 
 ```javascript
-this.alexaSkill().addDirective({
+this.$alexaSkill.addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         version: '1.0',
         document: require(`./apl/main.json`),
@@ -154,11 +154,11 @@ By clicking on the upper right "Export Code" button, we can download a JSON call
 In the Jovo APL template, we split up these elements and put them into different folders, so you can see how the display templates differ from each other.
 
 ```javascript
-'ShowTemplateIntent': function() {
+ShowTemplateIntent() {
     let template = this.getInput('template');
 
     // Retrieve document and data from folder
-    this.alexaSkill().addDirective({
+    this.$alexaSkill.addDirective({
             type: 'Alexa.Presentation.APL.RenderDocument',
             version: '1.0',
             document: require(`./apl/${template.id}/document.json`),

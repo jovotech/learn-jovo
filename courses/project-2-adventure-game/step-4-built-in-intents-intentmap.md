@@ -33,12 +33,12 @@ Let's build this into our code.
 This is what our _EnterDoorIntent_ currently looks like:
 
 ```javascript
-'EnterDoorIntent': function(color) {
+EnterDoorIntent() {
     let speech = '';
     let reprompt = '';
 
-    if (color.value === 'blue' || color.value === 'red') {
-        speech = 'You chose to go through the ' + color.value + ' door.';
+    if (this.$inputs.color.value === 'blue' || this.$inputs.color.value === 'red') {
+        speech = 'You chose to go through the ' + this.$inputs.color.value + ' door.';
         this.tell(speech);
     } else {
         speech = 'Please choose either the blue door or the red door.';
@@ -53,17 +53,17 @@ As we want to ask another question and not stop the session, we need to switch f
 Let's restructure the code a little bit and add the script from above.
 
 ```javascript
-'EnterDoorIntent': function(color) {
+EnterDoorIntent() {
     let speech = '';
     let reprompt = '';
 
-    if (color.value === 'blue') {
+    if (this.$inputs.color.value === 'blue') {
         speech = 'You chose to go through the blue door.'
             \+ ' There is a dark, long floor. Suddenly, you hear a sound from a room at the end of it.'
             \+ ' Do you want to follow the sound?';
         reprompt = 'Please say yes or no.';
         this.ask(speech, reprompt);
-    } else if (color.value === 'red') {
+    } else if (this.$inputs.color.value === 'red') {
         speech = 'You chose to go through the red door.'
             \+ ' You find yourself in a small room with only one door, and a dog sleeping in front of it.'
             \+ ' To go through it, you would have to wake up the dog. Do you want to do it?';
@@ -99,25 +99,22 @@ In this example, we want to map incoming _AMAZON.YesIntent_ requests from Alexa
 
 Let's do this for both _YesIntent_ and _NoIntent_.
 
-In the [configuration part](../project-1-hello-world/step-5-create-jovo-project.md#understanding-the-jovo-app-logic) of your voice app, add the following:
+In the configuration part of your voice app, `config.js`, add the following:
 
 ```javascript
-'use strict';
+// ------------------------------------------------------------------
+// APP CONFIGURATION
+// ------------------------------------------------------------------
 
-// =================================================================================
-// App Configuration
-// =================================================================================
-const {App} = require('jovo-framework');
+module.exports = {
+   logging: true,
 
-const config = {
-    logging: true,
-    intentMap: {
-        'AMAZON.YesIntent': 'YesIntent',
-        'AMAZON.NoIntent': 'NoIntent',
-    },
+   intentMap: {
+      'AMAZON.StopIntent': 'END',
+      'AMAZON.YesIntent': 'YesIntent',
+      'AMAZON.NoIntent': 'NoIntent'
+   },
 };
-
-const app = new App(config);
 ```
 
 This is all you need to do to map different intent names. We're going add the intents for yes and no to our logic next.
@@ -129,23 +126,23 @@ First we're going to add this to the handlers variable for testing:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         let speech = 'Do you either go through the blue door, or through the red door?';
         let reprompt = 'You have two options, the blue door, or the red door.';
         this.ask(speech, reprompt);
     },
 
-    'EnterDoorIntent': function(color) {
+    EnterDoorIntent() {
         let speech = '';
         let reprompt = '';
 
-        if (color.value === 'blue') {
+        if (this.$inputs.color.value === 'blue') {
             speech = 'You chose to go through the blue door.'
                 \+ ' There is a dark, long floor. Suddenly, you hear a sound from a room at the end of it.'
                 \+ ' Do you want to follow the sound?';
             reprompt = 'Please say yes or no.';
             this.ask(speech, reprompt);
-        } else if (color.value === 'red') {
+        } else if (this.$inputs.color.value === 'red') {
             speech = 'You chose to go through the red door.'
                 \+ ' You find yourself in a small room with only one door, and a dog sleeping in front of it.'
                 \+ ' To go through it, you would have to wake up the dog. Do you want to do it?';
@@ -158,12 +155,12 @@ app.setHandler({
         }
     },
 
-    'YesIntent': function() {
+    YesIntent() {
         let speech = 'You chose Yes!';
         this.tell(speech);
     },
 
-    'NoIntent': function() {
+    NoIntent() {
         let speech = 'You chose No!';
         this.tell(speech);
     },

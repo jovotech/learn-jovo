@@ -43,17 +43,17 @@ We're doing this by adding a [followUpState](https://www.jovo.tech/framework/doc
 Remember the _EnterDoorIntent_:
 
 ```javascript
-'EnterDoorIntent': function(color.value) {
+EnterDoorIntent() {
     let speech = '';
     let reprompt = '';
 
-    if (color.value === 'blue') {
+    if (this.$inputs.color.value === 'blue') {
         speech = 'You chose to go through the blue door.'
             \+ ' There is a dark, long floor. Suddenly, you hear a sound from a room at the end of it.'
             \+ ' Do you want to follow the sound?';
         reprompt = 'Please say yes or no.';
         this.ask(speech, reprompt);
-    } else if (color.value === 'red') {
+    } else if (this.$inputs.color.value === 'red') {
         speech = 'You chose to go through the red door.'
             \+ ' You find yourself in a small room with only one door, and a dog sleeping in front of it.'
             \+ ' To go through it, you would have to wake up the dog. Do you want to do it?';
@@ -82,17 +82,17 @@ this.followUpState('BlueDoorState')
 This way, the state will be saved as a session attribute, and at the next request, we will know where the user is coming from. Let's do the same for the red door, leaving us with this version of the complete intent:
 
 ```javascript
-'EnterDoorIntent': function(color) {
+EnterDoorIntent() {
     let speech = '';
     let reprompt = '';
 
-    if (color.value === 'blue') {
+    if (this.$inputs.color.value === 'blue') {
         speech = 'You chose to go through the blue door.'
             \+ ' There is a dark, long floor. Suddenly, you hear a sound from a room at the end of it.'
             \+ ' Do you want to follow the sound?';
         reprompt = 'Please say yes or no.';
         this.followUpState('BlueDoorState').ask(speech, reprompt);
-    } else if (color.value === 'red') {
+    } else if (this.$inputs.color.value === 'red') {
         speech = 'You chose to go through the red door.'
             \+ ' You find yourself in a small room with only one door, and a dog sleeping in front of it.'
             \+ ' To go through it, you would have to wake up the dog. Do you want to do it?';
@@ -115,27 +115,27 @@ States can simply be added as objects to the handlers variable.
 For example, we're adding the following below the _EnterDoorIntent_:
 
 ```javascript
-'EnterDoorIntent': function() {
+EnterDoorIntent() {
     // Shortened
 },
 'BlueDoorState': {
-    'YesIntent': function() {
+    YesIntent() {
         let speech = 'Blue Door: You chose Yes!';
         this.tell(speech);
     },
 
-    'NoIntent': function() {
+    NoIntent() {
         let speech = 'Blue Door: You chose No!';
         this.tell(speech);
     },
 },
 'RedDoorState': {
-    'YesIntent': function() {
+    YesIntent() {
         let speech = 'Red Door: You chose Yes!';
         this.tell(speech);
     },
 
-    'NoIntent': function() {
+    NoIntent() {
         let speech = 'Red Door: You chose No!';
         this.tell(speech);
     },
@@ -191,7 +191,7 @@ For the sake of this tutorial, let's just map global unhandled intents to the _L
 app.setHandler({
     // Other intents and states above
 
-    'Unhandled': function() {
+    Unhandled() {
         this.toIntent('LAUNCH');
     },
 });
@@ -212,17 +212,17 @@ app.setHandler({
     // Other intents and states above
 
     'BlueDoorState': {
-        'YesIntent': function() {
+        YesIntent() {
             let speech = 'Blue Door: You chose Yes!';
             this.tell(speech);
         },
 
-        'NoIntent': function() {
+        NoIntent() {
             let speech = 'Blue Door: You chose No!';
             this.tell(speech);
         },
 
-        'Unhandled': function() {
+        Unhandled() {
             this.followUpState('BlueDoorState')
                 .ask('You have to answer with yes or no.', 'Please say yes or no');
         },

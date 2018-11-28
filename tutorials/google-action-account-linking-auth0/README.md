@@ -196,7 +196,7 @@ So the following code will check if there's an access token and if that's not th
 
 ```javascript
 if (!this.getAccessToken()){
-    this.googleAction().showAccountLinkingCard();
+    this.$googleAction.showAccountLinkingCard();
 }
 ```
 
@@ -208,15 +208,15 @@ And that's how the sign in page will look like:
 
 ![](./img/auth0Setup_10.png)
 
-After the user completed the sign in, your Action will get another request, which will be mapped to the Jovo built-in intent `ON_SIGN_IN`. There you can check for the result using `this.googleAction().getSignInStatus()`, which will return either `CANCELLED`, `OK` or `ERROR`:
+After the user completed the sign in, your Action will get another request, which will be mapped to the Jovo built-in intent `ON_SIGN_IN`. There you can check for the result using `this.$googleAction.getSignInStatus()`, which will return either `CANCELLED`, `OK` or `ERROR`:
 
 ```javascript
-'ON_SIGN_IN': function() {
-    if (this.googleAction().getSignInStatus() === 'CANCELLED') {
+ON_SIGN_IN() {
+    if (this.$googleAction.getSignInStatus() === 'CANCELLED') {
 		// User did not link their account
-    } else if (this.googleAction().getSignInStatus() === 'OK') {
+    } else if (this.$googleAction.getSignInStatus() === 'OK') {
 		// User linked their account
-    } else if (this.googleAction().getSignInStatus() === 'ERROR') {
+    } else if (this.$googleAction.getSignInStatus() === 'ERROR') {
 		// There was an error
     }
 },
@@ -268,8 +268,8 @@ request(options, (error, response, body) => {
 At the end your request should look like this:
 
 ```javascript
-'ON_SIGN_IN': function() {
-    if (this.googleAction().getSignInStatus() === 'OK') {
+ON_SIGN_IN() {
+    if (this.$googleAction.getSignInStatus() === 'OK') {
         let token = this.getAccessToken();
         let options = {
             method: 'GET',

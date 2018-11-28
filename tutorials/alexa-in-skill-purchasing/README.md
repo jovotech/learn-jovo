@@ -332,12 +332,12 @@ That's everything we need for our language model. We just have to run the `jovo 
 
 As we discussed earlier, our only task is to **start** the transaction, since Alexa will handle the transaction herself. After the transaction finished, we will receive a request notifying us about the outcome, i.e. the purchase was successful or not. Inside that request, there will also be a `token`, which we can define while starting the transaction, to help us resume the Skill at the place the user left off.
 
-To access the Alexa ISP API in Jovo we use `this.alexaSkill().inSkillPurchase()`.
+To access the Alexa ISP API in Jovo we use `this.$alexaSkill.inSkillPurchase()`.
 
 Before we start any kind of transaction or refund process, we always retrieve the product first:
 
 ```javascript
-this.alexaSkill()
+this.$alexaSkill
     .inSkillPurchase()
     .getProductByReferenceName(productReferenceName, (error, product) => {
 
@@ -362,7 +362,7 @@ The data we get looks like this:
 Using that data we can check if the user already owns the product:
 
 ```javascript
-this.alexaSkill()
+this.$alexaSkill
     .inSkillPurchase()
     .getProductByReferenceName(productReferenceName, (error, product) => {
         if (error) {
@@ -399,9 +399,9 @@ In general, you should also avoid suggesting multiple products in a row or sugge
 Alright, now that we discussed all that, we can start the transaction using the  `upsell()` method, which takes the `productId`, `prompt` and `token` as parameters, after we've checked if the user already owns the product:
 
 ```javascript
-'UpsellIntent': function() {
+UpsellIntent() {
     let productReferenceName = 'frozen_sword';
-    this.alexaSkill()
+    this.$alexaSkill
     .inSkillPurchase()
     .getProductByReferenceName(productReferenceName, (error, product) => {
         if (error) {
@@ -413,7 +413,7 @@ Alright, now that we discussed all that, we can start the transaction using the 
         } else {
             let prompt = 'The frozen sword will help you on your journey. Are you interested?';
             let token = 'testToken';
-            this.alexaSkill().inSkillPurchase().upsell(product.productId, prompt, token);
+            this.$alexaSkill.inSkillPurchase().upsell(product.productId, prompt, token);
         }
     });
 },
@@ -426,8 +426,8 @@ Now we can get to the first user requested intent, `BuySkillItemIntent`.
 There are two scenarios at which the intent gets invoked. In the first one, the user does not specify which item they want to buy, i.e. there is no value for our input variable, where we just suggest them some.
 
 ```javascript
-'BuySkillItemIntent': function(productName) {
-    if (!productName) {
+BuySkillItemIntent() {
+    if (!this.$inputs.productName) {
         this.ask('You can choose either the premium pass. or frozen sword. Which are you interested in?');
     }
 }
@@ -436,12 +436,12 @@ There are two scenarios at which the intent gets invoked. In the first one, the 
 In the other scenario the user specifies the product and we use the input's id as our product's `reference_name` to check whether they already own it. If that's not the case, we start the transaction:
 
 ```javascript
-'BuySkillItemIntent': function(productName) {
-    if (!productName) {
+BuySkillItemIntent() {
+    if (!this.$inputs.productName) {
         this.ask('You can choose either the premium pass. or frozen sword. Which are you interested in?');
     }
     let productReferenceName = productName.id;
-    this.alexaSkill()
+    this.$alexaSkill
         .inSkillPurchase()
         .getProductByReferenceName(productReferenceName, (error, product) => {
             if (error) {
@@ -452,7 +452,7 @@ In the other scenario the user specifies the product and we use the input's id a
                 return;
             }
             let token = 'testToken';
-            this.alexaSkill().inSkillPurchase().buy(product.productId, token);
+            this.$alexaSkill.inSkillPurchase().buy(product.productId, token);
         });
 },
 ```
@@ -462,9 +462,9 @@ In the other scenario the user specifies the product and we use the input's id a
 Next, the `RefundSkillItemIntent`. Same procedure, get the input's id, use it to get the product, check if the user even owns the product and start the refund process:
 
 ```javascript
-'RefundSkillItemIntent': function(productName) {
-    let productReferenceName = productName.id;
-    this.alexaSkill()
+RefundSkillItemIntent() {
+    let productReferenceName = this.$inputs.productName.id;
+    this.$alexaSkill
         .inSkillPurchase()
         .getProductByReferenceName(productReferenceName, (error, product) => {
             if (error) {
@@ -475,7 +475,7 @@ Next, the `RefundSkillItemIntent`. Same procedure, get the input's id, use it to
                 this.tell('You have not bought this item yet.');
             }
             let token = 'testToken';
-            this.alexaSkill().inSkillPurchase().cancel(product.productId, token);
+            this.$alexaSkill.inSkillPurchase().cancel(product.productId, token);
         });
 },
 ```
@@ -515,11 +515,11 @@ Name | Description
 The incoming request will be mapped to the Jovo built-in `ON_PURCHASE` intent, where you can resume the Skill at the point before the transaction. The `token` you can send is supposed to help you with that.
 
 ```javascript
-'ON_PURCHASE': function() {
-    const name = this.request().name;
-    const productId = this.alexaSkill().inSkillPurchase().getProductId();
-    const purchaseResult = this.alexaSkill().inSkillPurchase().getPurchaseResult();
-    const token = this.request().token;
+ON_PURCHASE() {
+    const name = this.$request.name;
+    const productId = this.$alexaSkill.inSkillPurchase().getProductId();
+    const purchaseResult = this.$alexaSkill.inSkillPurchase().getPurchaseResult();
+    const token = this.$request.token;
 
     if (purchaseResult === 'ACCEPTED') {
         this.tell('Great! Let\'s use your new item');

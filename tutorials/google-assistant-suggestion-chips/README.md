@@ -35,7 +35,7 @@ In this example, we are just going to modify our [Hello World Sample Voice App](
 Suggestion chips are really easy to implement in Jovo. Technically it only takes one line of code:
 
 ```javascript
-this.googleAction().showSuggestionChips(['Elliot', 'J.D', 'Turk']);
+this.$googleAction.showSuggestionChips(['Elliot', 'J.D', 'Turk']);
 this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
 ```
 

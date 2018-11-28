@@ -322,7 +322,7 @@ As I said earlier, the incoming requests are mapped to handlers of the Jovo fram
 
 Currently this implementation will only log that these events occured, which is not that useful, but I am sure you will find great use cases for the Alexa Skill Events.
 
-You can access the bodies of the event requests with `this.alexaSkill().getSkillEventBody()`.
+You can access the bodies of the event requests with `this.$alexaSkill.getSkillEventBody()`.
 
 That's it, you made it to the end!
 

@@ -25,15 +25,15 @@ Switching between these different database types for local development and deplo
 
 To add DynamoDB as a database, you have several options.
 
-For example, you could add it to the config file in your `app.js`:
+For example, you could add it to the config file `config.js`:
 
 ```javascript
-const config = {
+module.exports = {
+    // Other configurations
     db: {
         type: 'dynamodb',
         tableName: '<your-table-name>',
     },
-    // Other configurations
 };
 ```
 
