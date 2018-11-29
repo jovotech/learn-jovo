@@ -48,15 +48,15 @@ You can either do this in the "Interfaces" tab in the Alexa Developer console:
 
 ![Enable the APL Interface in the Developer Console](./img/apl-interface-alexa-console.jpg "Alexa Presentation Language in the Developer Console")
 
-Or you can deploy with the Jovo CLI. The Jovo APL template has the right configurations for the interface in its [app.json](https://github.com/jovotech/jovo-templates/blob/master/alexa/apl/app.json):
+Or you can deploy with the Jovo CLI. The Jovo APL template has the right configurations for the interface in its [project.js](https://github.com/jovotech/jovo-templates/blob/master/alexa/apl/project.js):
 
-```
-"manifest": {
-    "apis": {
-        "custom": {
-            "interfaces": [
+```javascript
+manifest: {
+    apis: {
+        custom: {
+            interfaces: [
                 {
-                    "type": "ALEXA_PRESENTATION_APL"
+                    type: 'ALEXA_PRESENTATION_APL'
                 }
             ]
         }
@@ -103,7 +103,7 @@ this.$alexaSkill.addDirective({
 
 For example, this `main.json` file looks like this:
 
-```
+```javascript
 {
     "type": "APL",
     "version": "1.0",
