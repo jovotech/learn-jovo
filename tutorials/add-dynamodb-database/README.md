@@ -31,23 +31,25 @@ For example, you could add it to the config file `config.js`:
 module.exports = {
     // Other configurations
     db: {
-        type: 'dynamodb',
-        tableName: '<your-table-name>',
-    },
+        DynamoDb: {
+            tableName: process.env.TABLE_NAME,
+        }
+    }
 };
 ```
 
-However, this will add DynamoDB to the app no matter which stage it is currently in, disabling the FilePersistence database. This is why we recommend to use the `app.json` to override the config for a certain stage as explained here: [app.json > Config Overrides](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md#config-overrides 'docs/app-json#config-overrides').
+However, this will add DynamoDB to the app no matter which stage it is currently in, disabling the FilePersistence database. This is why we recommend to use different config files for each stage (`config.dev.js`, `config.prod.js`, etc.), to override the default configuration: PLACEHOLDER (LINK TO DOCS WHERE MULTIPLE CONFIG FILES ARE EXPLAINED IN GREATER DETAIL)
 
 ```javascript
-"stages": {
-        "config": {
-                "db": {
-                        "type": "dynamodb",
-                        "tableName": "<your-table-name>"
-                }
+// config.dev.js
+module.exports = {
+    // Other configurations
+    db: {
+        DynamoDb: {
+            tableName: process.env.DEV_TABLE_NAME,
         }
-}
+    }
+};
 ```
 
 ## Additional Steps
@@ -63,13 +65,15 @@ In case you haven't done so yet, there are a few more steps to do to make it wor
 
 ### Specify Stage on AWS Lambda
 
+PLACEHOLDER (LINKS)
+
 As described in [Advanced > Staging](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/07_advanced#staging 'docs/advanced#staging'), you need to let your code know which stage it is currently in.
 
 You can do so by adding `STAGE` to the environment variables on AWS Lambda:
 
 ![Staging environment variable in AWS Lambda](./img/staging-env-lambda.png "How to set the stage variable in Lambda")
 
-This will override the `defaultStage` element in your `app.json`, in case you've set it.
+This will be used to determine, which config file should be used, in case you've set it.
 
 ### Add Permissions to Lambda Role
 
