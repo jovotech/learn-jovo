@@ -365,10 +365,10 @@ If one of our Alexa users says *Alexa, next* or *Alexa, previous one* it will in
 'AMAZON.PreviousIntent': function() {
 
 },
-'NextIntent': function() {
+NextIntent() {
 
 },
-'PreviousIntent': function() {
+PreviousIntent() {
 
 },
 ```
@@ -406,31 +406,31 @@ The actual logic of both intents is fairly easy. We get the current episode's in
 
 ```javascript
 // app/app.js
-'NextIntent': function() {
-	let currentIndex = this.user().data.currentIndex;
+NextIntent() {
+	let currentIndex = this.$user.data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
-	this.user().data.currentIndex = currentIndex;
+	this.$user.data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
 		this.endSession();
 	} else if (this.isGoogleAction()) {
-		this.googleAction().audioPlayer().play(nextEpisode.url, nextEpisode.title);
-		this.googleAction().showSuggestionChips(['pause', 'start over']);
+		this.$googleAction.audioPlayer().play(nextEpisode.url, nextEpisode.title);
+		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
-'PreviousIntent': function() {
-	let currentIndex = this.user().data.currentIndex;
+PreviousIntent() {
+	let currentIndex = this.$user.data.currentIndex;
 	let previousEpisode = Player.getPreviousEpisode(currentIndex);
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
-	this.user().data.currentIndex = currentIndex;
+	this.$user.data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
 		this.endSession();
 	} else if (this.isGoogleAction()) {
-		this.googleAction().audioPlayer().play(previousEpisode.url, previousEpisode.title);
-		this.googleAction().showSuggestionChips(['pause', 'start over']);
+		this.$googleAction.audioPlayer().play(previousEpisode.url, previousEpisode.title);
+		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
@@ -442,39 +442,39 @@ Implementing that is easy. Since Javascript will return `undefined` if we try to
 
 ```javascript
 // app/app.js
-'NextIntent': function() {
-	let currentIndex = this.user().data.currentIndex;
+NextIntent() {
+	let currentIndex = this.$user.data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
 	if (!nextEpisode) {
 		this.tell('That was the most recent episode. You have to wait until a new episode gets released.');
 		return;
 	}
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
-	this.user().data.currentIndex = currentIndex;
+	this.$user.data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
 		this.endSession();
 	} else if (this.isGoogleAction()) {
-		this.googleAction().audioPlayer().play(nextEpisode.url, nextEpisode.title);
-		this.googleAction().showSuggestionChips(['pause', 'start over']);
+		this.$googleAction.audioPlayer().play(nextEpisode.url, nextEpisode.title);
+		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
-'PreviousIntent': function() {
-	let currentIndex = this.user().data.currentIndex;
+PreviousIntent() {
+	let currentIndex = this.$user.data.currentIndex;
 	let previousEpisode = Player.getPreviousEpisode(currentIndex);
 	if (!previousEpisode) {
 		this.tell('You are already at the oldest episode.');
 		return;
 	}
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
-	this.user().data.currentIndex = currentIndex;
+	this.$user.data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
 		this.endSession();
 	} else if (this.isGoogleAction()) {
-		this.googleAction().audioPlayer().play(previousEpisode.url, previousEpisode.title);
-		this.googleAction().showSuggestionChips(['pause', 'start over']);
+		this.$googleAction.audioPlayer().play(previousEpisode.url, previousEpisode.title);
+		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },

@@ -158,12 +158,12 @@ If it's a new user, let's just play the first episode for now. We will improve t
 
 ```javascript
 // app/app.js
-'LAUNCH': function () {
+LAUNCH() {
     let episode;
-    if (this.user().isNewUser()) {
+    if (this.$user.isNewUser()) {
         episode = Player.getFirstEpisode();
         let currentIndex = Player.getEpisodeIndex(episode);
-        this.user().data.currentIndex = currentIndex;
+        this.$user.data.currentIndex = currentIndex;
     }
     // ...
 },
@@ -189,15 +189,15 @@ Now we use the function to play the episode the user last listened to:
 
 ```javascript
 // app/app.js
-'LAUNCH': function () {
+LAUNCH() {
     let episode;
     let currentIndex;
-    if (this.user().isNewUser()) {
+    if (this.$user.isNewUser()) {
         episode = Player.getFirstEpisode();
         currentIndex = Player.getEpisodeIndex(episode);
-        this.user().data.currentIndex = currentIndex;
+        this.$user.data.currentIndex = currentIndex;
     } else {
-        currentIndex = this.user().data.currentIndex;
+        currentIndex = this.$user.data.currentIndex;
         episode = Player.getEpisode(currentIndex);
     }
     // ...
@@ -208,14 +208,14 @@ There is one more thing to fix before we can test it out. Since the episode vari
 
 ```javascript
 // app/app.js
-'LAUNCH': function () {
+LAUNCH() {
     // ...
     if (this.isAlexaSkill()) {
-        this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
         this.endSession();
     } else if (this.isGoogleAction()) {
-        this.googleAction().audioPlayer().play(episode.url, episode.title);
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
 }
@@ -236,11 +236,11 @@ Let's start with the Alexa part. In the `AudioPlayer.PlaybackNearlyFinished` int
 ```javascript
 // app/app.js
 'AudioPlayer.PlaybackNearlyFinished': function () {
-    let currentIndex = this.user().data.currentIndex;
+    let currentIndex = this.$user.data.currentIndex;
     let episode = Player.getNextEpisode(currentIndex);
     let nextIndex = Player.getEpisodeIndex(episode);
     if (episode) {
-        this.alexaSkill().audioPlayer().setExpectedPreviousToken(`${currentIndex}`).enqueue(episode.url, `${nextIndex}`);
+        this.$alexaSkill.audioPlayer().setExpectedPreviousToken(`${currentIndex}`).enqueue(episode.url, `${nextIndex}`);
     } else {
         this.endSession();
     }
@@ -252,9 +252,9 @@ The `AudioPlayer.PlaybackFinished` intent will be used to decrease the index as 
 ```javascript
 // app/app.js
 'AudioPlayer.PlaybackFinished': function () {
-    let currentIndex = this.user().data.currentIndex;
+    let currentIndex = this.$user.data.currentIndex;
     if (currentIndex > 0) {
-        this.user().data.currentIndex = currentIndex - 1;
+        this.$user.data.currentIndex = currentIndex - 1;
     }
     this.endSession();
 },
@@ -267,12 +267,12 @@ For Google we do the same with the small difference that it will be all done ins
 ```javascript
 // app/app.js
 'GoogleAction.Finished': function() {
-    let index = this.user().data.currentIndex;
+    let index = this.$user.data.currentIndex;
     let episode = Player.getNextEpisode(index);
     if (episode) {
-        this.user().data.currentIndex -= 1;
-        this.googleAction().audioPlayer().play(episode.url, episode.title);
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$user.data.currentIndex -= 1;
+        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     } else {
         this.endSession();
@@ -287,11 +287,11 @@ We also have to fix the `AMAZON.ResumeIntent`:
 ```javascript
 // app/app.js
 'AMAZON.ResumeIntent': function () {
-    let offset = this.user().data.offset;
-    let currentIndex = this.user().data.currentIndex;
+    let offset = this.$user.data.offset;
+    let currentIndex = this.$user.data.currentIndex;
     let episode = Player.getEpisode(currentIndex);
 
-    this.alexaSkill().audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
+    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
     this.endSession();
 },
 ```

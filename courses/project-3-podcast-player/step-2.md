@@ -82,7 +82,7 @@ Since our goal in this step is to play another file after the first one finished
 // app/app.js
 'AudioPlayer.PlaybackNearlyFinished': function() {
     const secondSong = 'PLACEHOLDER';
-    this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+    this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
 },
 ```
 
@@ -91,12 +91,12 @@ Your handler should currently look like this:
 ```javascript
 // app/app.js
 app.setHandler({
-    'LAUNCH': function () {
+    LAUNCH() {
         const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+            this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(song, 'song one');
+            this.$googleAction.audioPlayer().play(song, 'song one');
         }
         this.tell('Enjoy');
     },
@@ -106,7 +106,7 @@ app.setHandler({
         },
         'AudioPlayer.PlaybackNearlyFinished': function () {
             const secondSong = 'PLACEHOLDER';
-            this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+            this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
         },
         'AudioPlayer.PlaybackFinished': function () {
 
@@ -133,7 +133,7 @@ Before we go on and play the second file on Google as well, let's fix the errors
    },
    'AudioPlayer.PlaybackNearlyFinished': function() {
         const secondSong = 'PLACEHOLDER';
-        this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+        this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
    },
    'AudioPlayer.PlaybackFinished': function() {
         this.endSession();
@@ -171,7 +171,7 @@ Inside that state, we simply play the next file using the same command introduce
     // Other Alexa intents
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
-        this.googleAction().audioPlayer().play(song, 'song one');
+        this.$googleAction.audioPlayer().play(song, 'song one');
         this.tell('Enjoy');
     }
 }
@@ -187,13 +187,13 @@ We will make these changes both to the `LAUNCH` as well as the `GoogleAction.Fin
 
 ```javascript
 // app/app.js
-'LAUNCH': function () {
+LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
-        this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
     } else if (this.isGoogleAction()) {
-        this.googleAction().audioPlayer().play(song, 'song one');
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
     }
     this.ask('Enjoy');
 },
@@ -201,8 +201,8 @@ We will make these changes both to the `LAUNCH` as well as the `GoogleAction.Fin
     // Other Alexa intents
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
-        this.googleAction().audioPlayer().play(song, 'song one');
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
 }
@@ -212,13 +212,13 @@ In this case, it is important to not use the `ask()` method if the incoming requ
 
 ```javascript
 // app/app.js
-'LAUNCH': function () {
+LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
-        this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
     } else if (this.isGoogleAction()) {
-        this.googleAction().audioPlayer().play(song, 'song one');
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
 },
@@ -233,7 +233,7 @@ Fixing it is pretty easy. You add `this.endSession()` to signal the Jovo Framewo
 ```javascript
 // app/app.js
 if (this.isAlexaSkill()) {
-    this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
     this.endSession();
 }
 ```
@@ -245,14 +245,14 @@ Before we move on to the next step, here's our handlers current state:
 ```javascript
 // app/app.js
 app.setHandler({
-    'LAUNCH': function () {
+    LAUNCH() {
         const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+            this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(song, 'song one');
-            this.googleAction().showSuggestionChips(['pause', 'start over']);
+            this.$googleAction.audioPlayer().play(song, 'song one');
+            this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
     },
@@ -262,7 +262,7 @@ app.setHandler({
         },
         'AudioPlayer.PlaybackNearlyFinished': function () {
             const secondSong = 'PLACEHOLDER';
-            this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+            this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
         },
         'AudioPlayer.PlaybackFinished': function () {
             this.endSession();
@@ -275,8 +275,8 @@ app.setHandler({
         },
         'GoogleAction.Finished': function() {
             const secondSong = 'PLACEHOLDER';
-            this.googleAction().audioPlayer().play(secondSong, 'song one');
-            this.googleAction().showSuggestionChips(['pause', 'start over']);
+            this.$googleAction.audioPlayer().play(secondSong, 'song one');
+            this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
     },

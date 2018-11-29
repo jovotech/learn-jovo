@@ -48,7 +48,7 @@ After that we add it to our handler:
 
 ```javascript
 // app/app.js
-'HelpIntent': function() {
+HelpIntent() {
     this.ask('You can either listen to episode one or the latest episode or choose from a random list of episodes. Which one would you like to do?');
 },
 ```
@@ -117,34 +117,34 @@ Google | `AUDIOPLAYER` | `GoogleAction.Finished`
 ```javascript
 // app/app.js
 app.setHandler({
-    'LAUNCH': function () {
+    LAUNCH() {
         // ...
     },
-    'NEW_USER': function() {
+    NEW_USER() {
         // ...
     },
-    'ListIntent': function() {
+    ListIntent() {
         // ...
     },
-    'ChooseFromListIntent': function(ordinal) {
+    ChooseFromListIntent(ordinal) {
         // ...
     },
-    'LatestEpisodeIntent': function() {
+    LatestEpisodeIntent() {
         // ...
     },
-    'FirstEpisodeIntent': function() {
+    FirstEpisodeIntent() {
         // ...
     },
-    'NextIntent': function() {
+    NextIntent() {
         // ...
     },
-    'PreviousIntent': function() {
+    PreviousIntent() {
         // ...
     },
-    'ResumeIntent': function() {
+    ResumeIntent() {
         // ...
     },
-    'HelpIntent': function() {
+    HelpIntent() {
         // ...
     }
 )};
@@ -286,34 +286,34 @@ const AlexaHandler = require('./alexa/handler.js');
 const GoogleHandler = require('./google/handler.js');
 
 app.setHandler({
-    'LAUNCH': function () {
+    LAUNCH() {
         // ...
     },
-    'NEW_USER': function() {
+    NEW_USER() {
         // ...
     },
-    'ListIntent': function() {
+    ListIntent() {
         // ...
     },
-    'ChooseFromListIntent': function(ordinal) {
+    ChooseFromListIntent(ordinal) {
         // ...
     },
-    'LatestEpisodeIntent': function() {
+    LatestEpisodeIntent() {
         // ...
     },
-    'FirstEpisodeIntent': function() {
+    FirstEpisodeIntent() {
         // ...
     },
-    'NextIntent': function() {
+    NextIntent() {
         // ...
     },
-    'PreviousIntent': function() {
+    PreviousIntent() {
         // ...
     },
-    'ResumeIntent': function() {
+    ResumeIntent() {
         // ...
     },
-    'HelpIntent': function() {
+    HelpIntent() {
         // ...
     }
 });

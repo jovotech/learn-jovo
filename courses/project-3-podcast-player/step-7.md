@@ -47,16 +47,16 @@ The intent itself will use the `player.js` file's `getFirstEpisode()` method, sa
 
 ```javascript
 // app/app.js
-'FirstEpisodeIntent': function() {
+FirstEpisodeIntent() {
     let episode = Player.getFirstEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
-    this.user().data.currentIndex = currentIndex
+    this.$user.data.currentIndex = currentIndex
 	if (this.isAlexaSkill()) {
-		this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
 		this.endSession();
 	} else if (this.isGoogleAction()) {
-		this.googleAction().audioPlayer().play(episode.url, episode.title);
-		this.googleAction().showSuggestionChips(['pause', 'start over']);
+		this.$googleAction.audioPlayer().play(episode.url, episode.title);
+		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
@@ -89,16 +89,16 @@ Works almost completely the same way as `FirstEpisodeIntent`:
 
 ```javascript
 // app/app.js
-'LatestEpisodeIntent': function() {
+LatestEpisodeIntent() {
     let episode = Player.getLatestEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
-    this.user().data.currentIndex = currentIndex;
+    this.$user.data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
 		this.endSession();
 	} else if (this.isGoogleAction()) {
-		this.googleAction().audioPlayer().play(episode.url, episode.title);
-		this.googleAction().showSuggestionChips(['pause', 'start over']);
+		this.$googleAction.audioPlayer().play(episode.url, episode.title);
+		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
@@ -166,7 +166,7 @@ The intent will first get the random indices and save them in our session attrib
 
 ```javascript
 // app/app.js
-'ListIntent': function() {
+ListIntent() {
     const indices = Player.getRandomIndices(4);
     this.setSessionAttribute('episodeIndices', indices);
 },
@@ -214,7 +214,7 @@ The complete intent looks like this:
 
 ```javascript
 // app/app.js
-'ListIntent': function() {
+ListIntent() {
     const indices = Player.getRandomIndices(4);
     this.setSessionAttribute('episodeIndices', indices);
 
@@ -584,18 +584,18 @@ We're done with the trickier part, as this one will be fairly easy again. We fir
 
 ```javascript
 // app/app.js
-'ChooseFromListIntent': function(ordinal) {
+ChooseFromListIntent(ordinal) {
     let episodeIndices = this.getSessionAttribute('episodeIndices');
     let episodeIndex = episodeIndices[parseInt(ordinal.key) - 1];
-    this.user().data.currentIndex = episodeIndex;
+    this.$user.data.currentIndex = episodeIndex;
     let episode = Player.getEpisode(episodeIndex);
 
     if (this.isAlexaSkill()) {
-        this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${episodeIndex}`);
+        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${episodeIndex}`);
         this.endSession();
     } else if (this.isGoogleAction()) {
-        this.googleAction().audioPlayer().play(episode.url, episode.title);
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
 },
@@ -609,7 +609,7 @@ So we use the `NEW_USER` intent to ask new users, if they want to choose an epis
 
 ```javascript
 // app/app.js
-'NEW_USER': function() {
+NEW_USER() {
     this.ask('Would you like to begin listening from episode one or rather choose from a list?');
 },
 ```
@@ -620,7 +620,7 @@ At the `LAUNCH` intent we will handle the interaction with returning users. The 
 
 ```javascript
 // app/app.js
-'LAUNCH': function () {
+LAUNCH() {
     this.ask('Would you like to resume where you left off or listen to the latest episode?');
 },
 ```
@@ -667,17 +667,17 @@ Rename the intent in our handler from `AMAZON.ResumeIntent` to `ResumeIntent` an
 
 ```javascript
 // app/app.js
-'ResumeIntent': function () {
-    let currentIndex = this.user().data.currentIndex;
+ResumeIntent() {
+    let currentIndex = this.$user.data.currentIndex;
     let episode = Player.getEpisode(currentIndex);
 
     if (this.isAlexaSkill()) {
-        let offset = this.user().data.offset;
-        this.alexaSkill().audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
+        let offset = this.$user.data.offset;
+        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
         this.endSession();
     } else if (this.isGoogleAction()) {
-        this.googleAction().audioPlayer().play(episode.url, episode.title);
-        this.googleAction().showSuggestionChips(['pause', 'start over']);
+        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
 },
