@@ -58,43 +58,50 @@ $ cd <directory>
 
 To make use of the Game Engine and Gadget Controller interfaces, you need to enable certain configurations in the Alexa Skill's `skill.json` file.
 
-The template comes with a pre-configured [app.json](https://www.jovo.tech/docs/app-json) file that does the job for you by using the `jovo build` command:
+The template comes with a pre-configured [project.js](https://www.jovo.tech/docs/project-js) file that does the job for you by using the `jovo build` command:
 
 ```sh
-# Build Platform Files (for all platforms in app.json)
+# Build Platform Files (for all platforms in project.js)
 $ jovo build
 
 # Alternative for only Alexa
 $ jovo build -p alexaSkill
 ```
 
-This will use the information in the `app.json` file to write the right information into the Alexa `skill.json` that will be used in the next step.
+This will use the information in the `project.js` file to write the right information into the Alexa `skill.json` that will be used in the next step.
 
-The Alexa-specific configuration in the `app.json` looks like this:
+The Alexa-specific configuration in the `project.js` looks like this:
 
-```
-"manifest": {
-			"publishingInformation": {
-				"gadgetSupport": {
-					"maxGadgetButtons": 4,
-					"numPlayersMax": 1,
-					"minGadgetButtons": 1,
-					"requirement": "REQUIRED",
-					"numPlayersMin": 1
-				}
-			},
-			"apis": {
-				"custom": {
-					"interfaces": [
-						{
-							"type": "GAME_ENGINE"
-						},
-						{
-							"type": "GADGET_CONTROLLER"
-						}
-					]
-				}
-			}
+```javascript
+module.exports = {
+   alexaSkill: {
+        nlu: 'alexa',
+        manifest: {
+            publishingInformation: {
+                gadgetSupport: {
+                    maxGadgetButtons: 4,
+                    numPlayersMax: 1,
+                    minGadgetButtons: 1,
+                    requirement: 'REQUIRED',
+                    numPlayersMin: 1
+                }
+            },
+            apis: {
+                custom: {
+                    interfaces: [
+                        {
+                            type: 'GAME_ENGINE'
+                        },
+                        {
+                            type: 'GADGET_CONTROLLER'
+                        }
+                    ]
+                }
+            }
+        }
+   },
+   // other configurations
+}
 ```
 
 ### Deploy Project
