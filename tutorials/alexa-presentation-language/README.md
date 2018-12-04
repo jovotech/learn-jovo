@@ -24,7 +24,7 @@ As [recently announced by Amazon](https://developer.amazon.com/blogs/alexa/post/
 
 APL allows you to build visual (or, multimodal) experiences for Alexa. Devices like the Echo Show, the Echo Spot, or even TVs can now display visual information that goes beyond the previously known [Display Templates](https://www.jovo.tech/docs/amazon-alexa/visual-output).
 
-The Alexa Presentation Language is quite compley, so we're using this tutorial just to get started with some simple displays to make it easier for you to dive into this topic. Let us know in the comments if you have specific questions about APL where you would want to see a tutorial.
+The Alexa Presentation Language is quite complex, so we're using this tutorial just to get started with some simple displays to make it easier for you to dive into this topic. Let us know in the comments if you have specific questions about APL where you would want to see a tutorial.
 
 Here are more resources for you to get started:
 * Amazon Docs: [Alexa Presentation Language (APL) Overview](https://developer.amazon.com/docs/alexa-presentation-language/apl-overview.html)
