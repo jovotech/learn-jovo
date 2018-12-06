@@ -179,7 +179,7 @@ Take a look at the [Heroku sample app's Procfile here](https://github.com/heroku
 
 When you're not host your Alexa Skill on AWS Lambda, you need to do one more thing: You need to verify that the requests are coming from Amazon. You can learn more in our docs: [Server Configuration > Deploy to a Server](https://www.jovo.tech/framework/docs/server/webhook#deploy-to-a-server).
 
-To do this, simply replace this code in your [index.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/index.js)
+To do this, simply replace this code in your [index.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/index.js)
 
 ```javascript
 const {Webhook} = require('jovo-framework');

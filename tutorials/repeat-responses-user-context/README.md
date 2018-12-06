@@ -33,17 +33,19 @@ As easy as it sounds, until today it was still a manual task to store all the ne
 
 The Jovo [User Context](https://www.jovo.tech/framework/docs/data/user#context) automatically saves the essential data of the past interaction pairs (request and response) in your database. This includes the **intent**, **state**, **inputs** (slots/entities), **output speech**, **reprompt**, and **timestamp**.
 
-The pairs are stored inside an array, which has the most recent pair at index `0` and the least recent at index `size - 1`. For example, you can get the latest output speech using either `this.user().context.prev[0].response.speech` or `this.user().getPrevSpeech(0)`.
+The pairs are stored inside an array, which has the most recent pair at index `0` and the least recent at index `size - 1`. For example, you can get the latest output speech using either `this.$user.context.prev[0].response.speech` or `this.$user.getPrevSpeech(0)`.
 
 By default, only the last interaction pair is stored in the database (which is enough for [implementing the repeat functionality](#implementing-the-repeat-functionality) below).
 
 ### Configuration
 
-You are also able to freely decide how many interaction pairs, as well as what exactly you want to save, by changing your application's configuration, which has the following default values:
+You are also able to freely decide how many interaction pairs, as well as what exactly you want to save, by changing your application's configuration, `config.js`, which has the following default values:
 
 ```javascript
-const config = {
+module.exports = {
+    // Other configurations
     userContext: {
+        enabled: false,
         prev: {
             size: 1,
             request: {
@@ -59,14 +61,16 @@ const config = {
             },
         },
     },
-}
+};
 ```
 
-The `size` value defines how many pairs are saved. If you don't want to save anything you can simply set `size` to 0. To disable the storage of certain elements, simply change their value to `false`. Here's an example:
+The `size` value defines how many pairs are saved. To disable the storage of certain elements, simply change their value to `false`. Here's an example:
 
 ```javascript
-const config = {
+module.exports = {
+    // Other configurations
     userContext: {
+        enabled: true,
         prev: {
             size: 3,
             request: {
@@ -181,7 +185,7 @@ After that choose the **Restore from ZIP** option and upload your zip file:
 With version 1.2 of the Jovo framework you can simply use the `repeat()` method to repeat your applications last response. Let's add that together with the `RepeatIntent` itself to our handler:
 
 ```javascript
-'RepeatIntent': function() {
+RepeatIntent() {
     this.repeat();
 }
 ```
@@ -189,9 +193,9 @@ With version 1.2 of the Jovo framework you can simply use the `repeat()` method 
 If you want to access the speech and reprompt directly, you can also use the user class' getter methods:
 
 ```javascript
-'RepeatIntent': function() {
-    let speech = this.user().getPrevSpeech(0);
-    let reprompt = this.user().getPrevReprompt(0);
+RepeatIntent() {
+    let speech = this.$user.getPrevSpeech(0);
+    let reprompt = this.$user.getPrevReprompt(0);
     
     this.ask(speech, reprompt);
 }

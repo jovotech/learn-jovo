@@ -154,7 +154,7 @@ Now before you close both tabs, we have to add the _Redirect URLs_ provided by A
 You're pretty much at the end of this tutorial. The last thing we want to show you is a code example, which should give you an idea how to implement Account Linking in your own code.
 
 ```javascript
-this.alexaSkill().showAccountLinkingCard();
+this.$alexaSkill.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
@@ -166,22 +166,22 @@ That's how the Auth0 login page looks like:
 
 ![](./img/auth0Setup_10.png)
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. I recommend the `request` package since it is the simplest solution. You can install it with npm:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
 
 ```sh
-$ npm install --save request
+$ npm install --save request request-promise
 ```
 
 After that import it in your `app.js` file:
 
 ```javascript
-const request = require('request');
+const rp = require('request-promise');
 ```
 
 Now let's get to the request:
 
 ```javascript
-let token = this.getAccessToken();
+let token = this.$request.getAccessToken();
 let options = {
     method: 'GET',
     url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
@@ -192,59 +192,49 @@ let options = {
 };
 
 // API request
-request(options,(error, response, body) => {
-    if (!error && response.statusCode === 200){
-
-        let data = JSON.parse(body); //Store the data we got from the API request
-        console.log(data);
-        /*
-        To see how the user data was stored,
-        go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
-        */
-        this.tell('Hi, ' + data.given_name);
-    } else {
-        this.tell('Error');
-    }
-}
+await rp(options).then((body) => {
+    let data = JSON.parse(body);
+    /*
+    To see how the user data was stored,
+    go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
+    */
+    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+});
 ```
 
 At the end your code should look like this:
 
 ```javascript
-/*
-Checks if there is an access token. 
-No access token -> Ask the user to sign in
-If there is one -> API call to access user data 
-*/
-if (!this.getAccessToken()){
-    this.alexaSkill().showAccountLinkingCard();
-    this.tell('Please link your account');
-} else {
-    let token = this.getAccessToken();
-    let options = {
-        method: 'GET',
-        url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
-                                                     // Advanced Settings --> Endpoints --> OAuth User Info URL
-        headers:{
-            authorization: 'Bearer ' + token,
-        }
-    };
-            
-    // API request
-    request(options, (error, response, body) => {
-        if (!error && response.statusCode === 200){   
-            var data = JSON.parse(body); // Store the data we got from the API request
-            console.log(data);
+async LAUNCH() {
+    /*
+    Checks if there is an access token. 
+    No access token -> Ask the user to sign in
+    If there is one -> API call to access user data 
+    */
+    if (!this.$request.getAccessToken()) {
+        this.showAccountLinkingCard();
+        this.tell('Please link you Account');
+    } else {
+        let token = this.$request.getAccessToken();
+        let options = {
+            method: 'GET',
+            uri: 'https://jovotest.auth0.com/userinfo', // You can find your URL on Client --> Settings --> 
+            // Advanced Settings --> Endpoints --> OAuth User Info URL
+            headers: {
+                authorization: 'Bearer ' + token,
+            }
+        };
+
+        await rp(options).then((body) => {
+            let data = JSON.parse(body);
             /*
             To see how the user data was stored,
             go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
             */
-            this.tell('Hi, ' + data.given_name);
-        } else {
-            this.tell('Error');
-        }
-    });
-}
+            this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+        });
+    }
+},
 ```
 
 That's it, you made it!

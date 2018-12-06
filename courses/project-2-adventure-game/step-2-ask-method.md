@@ -35,39 +35,44 @@ This will create a new folder and clone the [Jovo Sample Voice App](https://gith
   Installation completed.
 ```
 
-In the next steps we're going to modify the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) of our app and create a logic that reflects how the flow of our adventure game should be. The app file generally consists of two parts: the **App Configuration** and the **App Logic**.
+In the next steps we're going to modify the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) of our app and create a logic that reflects how the flow of our adventure game should be. The app file generally consists of two parts: the **App Initialization** and the **App Logic**.
 
 ```javascript
 'use strict';
 
 // =================================================================================
-// App Configuration
+// APP INITIALIZATION
 // =================================================================================
 
 const {App} = require('jovo-framework');
+const {Alexa} = require('jovo-platform-alexa');
+const {GoogleAssistant} = require('jovo-platform-googleassistant');
+const {JovoDebugger} = require('jovo-plugin-debugger');
 
-const config = {
-    logging: true,
-};
+const app = new App();
 
-const app = new App(config);
+app.use(
+    new Alexa(),
+    new GoogleAssistant(),
+    new JovoDebugger()
+);
 
 
 // =================================================================================
-// App Logic
+// APP LOGIC
 // =================================================================================
 
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
-        this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
+    HelloWorldIntent() {
+        this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 
@@ -86,16 +91,16 @@ Here is what the off-the-shelf logic for a "Hello World" voice app looks like, w
 
 ```javascript
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
-        this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
+    HelloWorldIntent() {
+        this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 ```
@@ -109,15 +114,15 @@ Let's get rid of HelloWorldIntent and create intents for both doors:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         //
     },
 
-    'BlueDoorIntent': function() {
+    BlueDoorIntent() {
         //
     },
 
-    'RedDoorIntent': function() {
+    RedDoorIntent() {
         //
     }
 });
@@ -131,8 +136,8 @@ So, how do we now set up the code so we can ask users for additional input? As t
 
 For speech output, you can use two common methods with the Jovo Framework:
 
-* [tell](https://www.jovo.tech/docs/output#tell): Returns speech output and ends the session
-* [ask](https://www.jovo.tech/docs/output#ask): Returns a speech prompt and waits for user input, reprompts if user stays quiet
+* [tell](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/output#tell 'docs/basic-concepts/output#tell'): Returns speech output and ends the session
+* [ask](https://github.com/jovotech/jovo-framework-nodejs/tree/v2/docs/basic-concepts/output#ask 'docs/basic-concepts/output#ask'): Returns a speech prompt and waits for user input, reprompts if user stays quiet
 
 So, for a basic interaction, we would use _ask_ in our _LAUNCH_ intent to prompt users to either say "blue door" or "red door". If this happens, we will first just return a simple statement like "You chose to go through the blue door" for testing the model.
 
@@ -141,18 +146,18 @@ Let's build this into our code:
 ```javascript
 app.setHandler({
 
-    'LAUNCH': function() {
+    LAUNCH() {
         let speech = 'Do you either go through the blue door, or through the red door?';
         let reprompt = 'You have two options, the blue door, or the red door.';
         this.ask(speech, reprompt);
     },
 
-    'BlueDoorIntent': function() {
+    BlueDoorIntent() {
         let speech = 'You chose to go through the blue door.';
         this.tell(speech);
     },
 
-    'RedDoorIntent': function() {
+    RedDoorIntent() {
         let speech = 'You chose to go through the red door.';
         this.tell(speech);
     }

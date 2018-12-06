@@ -242,7 +242,7 @@ Let's take a look at the code provided by the sample application. This is what t
 
 ![](./img/folder-structure-simple.png)
 
-For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
+For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
 
 Let's take a look at the App Logic first:
 
@@ -252,16 +252,16 @@ The setHandler method is where you will spend most of your time when you're buil
 
 ```javascript
 app.setHandler({
- 'LAUNCH': function() {
+ LAUNCH() {
  this.toIntent('HelloWorldIntent');
  },
 
- 'HelloWorldIntent': function() {
+ HelloWorldIntent() {
  this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
  },
 
- 'MyNameIsIntent': function(name) {
- this.tell('Hey ' + name.value + ', nice to meet you!');
+ MyNameIsIntent() {
+ this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
  },
 });
 ```

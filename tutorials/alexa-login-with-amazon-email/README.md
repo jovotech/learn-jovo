@@ -85,7 +85,7 @@ The first thing you should know is that there will be an access token sent with 
 In Jovo you can do it the following way:
 
 ```javascript
-this.getAccessToken()
+this.$request.getAccessToken()
 ```
 
 The method will either return the access token or `undefined`.
@@ -93,57 +93,52 @@ The method will either return the access token or `undefined`.
 To prompt the user to link their account, you just add an **Account Linking Card** to your response object:
 
 ```javascript
-this.alexaSkill().showAccountLinkingCard();
+this.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. I recommend the `request` package since it is the simplest solution. You can install it with npm:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
 
 ```sh
-$ npm install --save request
+$ npm install --save request request-promise
 ```
 
 After that import it in your `app.js` file:
 
 ```javascript
-const request = require('request');
+const rp = require('request-promise');
 ```
 
-here's how the API call might look like:
+Here's how the API call might look like:
 
 ```javascript
-let url = 'https://api.amazon.com/user/profile?access_token=' + this.getAccessToken();
+let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
 
-// API request using the url we created earlier
-request(url,(error, response, body) => {
-    if (!error && response.statusCode === 200){
-                  
-        let data = JSON.parse(body); //Store the data we got from the API request
-        /*
-        * Depending on your scope you have access to the following data:
-        * data.user_id : "amzn1.account.XXXXYYYYZZZ"
-        * data.email : "email@jovo.tech"
-        * data.name : "Kaan Kilic"
-        * data.postal_code : "12345"
-        */
-        this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
-    }
-})
+await rp(url).then((body) => {
+    let data = JSON.parse(body);
+    /*
+    * Depending on your scope you have access to the following data:
+    * data.user_id : "amzn1.account.XXXXYYYYZZZ"
+    * data.email : "email@jovo.tech"
+    * data.name : "Kaan Kilic"
+    * data.postal_code : "12345"
+    */
+    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+});
 ```
 
 At the end, your code should look like this:
 
 ```javascript
-if (!this.getAccessToken()) {
-    this.alexaSkill().showAccountLinkingCard();
-    this.tell('Please your link your Account');
-}
-else {
-    let url = 'https://api.amazon.com/user/profile?access_token=' + this.getAccessToken();
-    request(url, (error, response, body) => {
-        if (!error && response.statusCode === 200){
-                      
-            let data = JSON.parse(body); // Store the data we got from the API request
+async LAUNCH() {
+    if (!this.$request.getAccessToken()) {
+        this.showAccountLinkingCard();
+        this.tell('Please link you Account');
+    } else {
+        let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
+
+        await rp(url).then((body) => {
+            let data = JSON.parse(body);
             /*
             * Depending on your scope you have access to the following data:
             * data.user_id : "amzn1.account.XXXXYYYYZZZ"
@@ -152,9 +147,9 @@ else {
             * data.postal_code : "12345"
             */
             this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
-        }
-    })
-}
+        });
+    }
+},
 ```
 
 That's it, you made it to the end!

@@ -31,7 +31,7 @@ In this section, we will create and deploy a project that you can use to play wi
 The template contains:
 
 * A language model (`models/en-US.json`) corresponding to the default one of a custom Skill, with the invocation name `button demo`
-* App logic (`app/app.js`) that uses the Jovo implementation of the Gadgets Skill API for Amazon Alexa
+* App logic (`src/app.js`) that uses the Jovo implementation of the Gadgets Skill API for Amazon Alexa
 * A demo implementation of:
   *  an input handler directive to define Gadget events
   *  a handler function to respond to these events
@@ -58,43 +58,50 @@ $ cd <directory>
 
 To make use of the Game Engine and Gadget Controller interfaces, you need to enable certain configurations in the Alexa Skill's `skill.json` file.
 
-The template comes with a pre-configured [app.json](https://www.jovo.tech/docs/app-json) file that does the job for you by using the `jovo build` command:
+The template comes with a pre-configured [project.js](https://www.jovo.tech/docs/project-js) file that does the job for you by using the `jovo build` command:
 
 ```sh
-# Build Platform Files (for all platforms in app.json)
+# Build Platform Files (for all platforms in project.js)
 $ jovo build
 
 # Alternative for only Alexa
 $ jovo build -p alexaSkill
 ```
 
-This will use the information in the `app.json` file to write the right information into the Alexa `skill.json` that will be used in the next step.
+This will use the information in the `project.js` file to write the right information into the Alexa `skill.json` that will be used in the next step.
 
-The Alexa-specific configuration in the `app.json` looks like this:
+The Alexa-specific configuration in the `project.js` looks like this:
 
-```
-"manifest": {
-			"publishingInformation": {
-				"gadgetSupport": {
-					"maxGadgetButtons": 4,
-					"numPlayersMax": 1,
-					"minGadgetButtons": 1,
-					"requirement": "REQUIRED",
-					"numPlayersMin": 1
-				}
-			},
-			"apis": {
-				"custom": {
-					"interfaces": [
-						{
-							"type": "GAME_ENGINE"
-						},
-						{
-							"type": "GADGET_CONTROLLER"
-						}
-					]
-				}
-			}
+```javascript
+module.exports = {
+   alexaSkill: {
+        nlu: 'alexa',
+        manifest: {
+            publishingInformation: {
+                gadgetSupport: {
+                    maxGadgetButtons: 4,
+                    numPlayersMax: 1,
+                    minGadgetButtons: 1,
+                    requirement: 'REQUIRED',
+                    numPlayersMin: 1
+                }
+            },
+            apis: {
+                custom: {
+                    interfaces: [
+                        {
+                            type: 'GAME_ENGINE'
+                        },
+                        {
+                            type: 'GADGET_CONTROLLER'
+                        }
+                    ]
+                }
+            }
+        }
+   },
+   // other configurations
+}
 ```
 
 ### Deploy Project
@@ -141,14 +148,14 @@ The logic of the Skill has three main parts:
 
 ### Setting up the Game Engine
 
-The details of how the code works can be found in the comments of `app.js` ([find the file here](https://github.com/jovotech/jovo-templates/blob/master/alexa/buttons/app/app.js)), and here's a general outline.
+The details of how the code works can be found in the comments of `app.js` ([find the file here](https://github.com/jovotech/jovo-templates/blob/master/alexa/buttons/src/app.js)), and here's a general outline.
 
-Upon launching the Skill, we define which button events we want to receive. Technically, this means we have to set the input handler for the **Game Engine Interface** using the `jovo.alexaSkill().gameEngine()` class.
+Upon launching the Skill, we define which button events we want to receive. Technically, this means we have to set the input handler for the **Game Engine Interface** using the `jovo.$alexaSkill.gameEngine()` class.
 
 First, we define a **recognizer** to recognize one type of button event. In this template, we only have one recognizer `buttonDownRecognizer` to recognize when a button is pressed down:
 
 ```js
-const buttonDownRecognizer = this.alexaSkill().gameEngine()
+const buttonDownRecognizer = this.$alexaSkill.gameEngine()
     .getPatternRecognizerBuilder('buttonDownRecognizer')
     .anchorEnd()
     .fuzzy(false)
@@ -159,7 +166,7 @@ const buttonDownRecognizer = this.alexaSkill().gameEngine()
 Now we can use this recognizer to define an **event** `buttonDownEvent` that we want to receive from the Button (i.e. the Game Engine interface):
 
 ```js
-const buttonDownEvent = this.alexaSkill().gameEngine()
+const buttonDownEvent = this.$alexaSkill.gameEngine()
     .getEventsBuilder('buttonDownEvent')
     .meets(['buttonDownRecognizer'])
     .reportsMatches()
@@ -170,7 +177,7 @@ const buttonDownEvent = this.alexaSkill().gameEngine()
 We also need a `timeoutEvent` to know when the designated time to press buttons has ended. This one uses the built-in `timed out` recognizer and ends the input handler, so that we receive no more Button events in this session.
 
 ```js
-const timeoutEvent = this.alexaSkill().gameEngine()
+const timeoutEvent = this.$alexaSkill.gameEngine()
     .getEventsBuilder('timeoutEvent')
     .meets(['timed out'])
     .reportsNothing()
@@ -181,7 +188,7 @@ const timeoutEvent = this.alexaSkill().gameEngine()
 Finally, we need to register our recognizer and the two events with the game engine. The `timeout` and `proxies` aren't relevant at this point.
 
 ```js
-this.alexaSkill().gameEngine()
+this.$alexaSkill.gameEngine()
     .setEvents([buttonDownEvents, timeoutEvents])
     .setRecognizers([buttonDownRecognizer])
     .startInputHandler(timeout, proxies);
@@ -193,7 +200,7 @@ For the lights, we need to set up one gadget controller object for each of the t
 
 For the easiest case of the button being pressed (`'buttonDown'` event), we want it to simply light up for one second in bright white color, without repetition:
 ```js
-this.alexaSkill().gadgetController()
+this.$alexaSkill.gadgetController()
     .setTriggerEvent('buttonDown')
     .setAnimations(
         [{
@@ -213,7 +220,7 @@ We define exactly the same animation for the `'buttonUp'` event, to replace a de
 For when the button is idle, i.e. not (yet) pressed, we want a soft white pulsating animation. We create a single sequence of the animation by blending 500 miliseconds of black (`#000000`) and dark gray (`#111111`) each, and repeating it 20 times.
 
 ```js
-this.alexaSkill().gadgetController()
+this.$alexaSkill.gadgetController()
     .setNoneTriggerEvent()
     .setAnimations(
         [
@@ -245,7 +252,7 @@ this.speech
     .addAudio('https://s3.amazonaws.com/ask-soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_intro_01.mp3')
     .addText('Hello there! Show me your sweet buttons!');
 
-this.alexaSkill().gameEngine().respond(
+this.$alexaSkill.gameEngine().respond(
     this.speech
 );
 ```
@@ -255,7 +262,7 @@ For processing button requests, the Jovo framework has a `ON_GAME_ENGINE_INPUT_H
 
 The `timeoutEvent` is the easy case, in which we say goodbye and quit the demo:
 ```js
-const inputEvent = this.request().getEvents()[0];
+const inputEvent = this.$request.getEvents()[0];
 const eventName = inputEvent.name;
 console.log(`Event name: ${eventName}`);
 
@@ -284,7 +291,7 @@ this.speech
 Now we change the button's animation by changing the configuration of the gadget controller for only the respective button, using the corresponding color from the `BUTTON_COLORS` array:
 
 ```js
-this.alexaSkill().gadgetController()
+this.$alexaSkill.gadgetController()
     .setNoneTriggerEvent()
     .setAnimations(
         [
@@ -312,7 +319,7 @@ this.alexaSkill().gadgetController()
         []
     );
 ```
-This was it, now we can again send the response using the `this.alexaSkill().gadgetController().respond()` method .
+This was it, now we can again send the response using the `this.$alexaSkill.gadgetController().respond()` method .
 
 **Short summary**: The input handler for the game engine we defined initially, as well as the gadget controller settings we made for the other buttons are still active. We only changed the idle animation of one single button.
 We could also change the animations for the specific button's `'buttonUp'` and `'buttonDown'` event, but this is beyond the scope of this simple demo.
@@ -322,7 +329,7 @@ In case of a known button, don't make changes in the game engine or gadget contr
 this.speech.addAudio(
     'https://s3.amazonaws.com/ask-soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_neutral_response_02.mp3'
 );
-this.alexaSkill().gadgetController().respond(
+this.$alexaSkill.gadgetController().respond(
     this.speech
 );
 ```

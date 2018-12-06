@@ -13,9 +13,9 @@ Watch the video here:
 
 ## Introduction
 
-The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/02_cli 'docs/cli') offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
+The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/workflows/cli 'docs/workflows/cli') offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
 
-You can upload your voice app to AWS Lambda by using the command `jovo deploy`, but first, you need to create the Lambda function, add it as an endpoint to your `app.json`, and make sure you have the right AWS credentials to programmatically deploy it there.
+You can upload your voice app to AWS Lambda by using the command `jovo deploy`, but first, you need to create the Lambda function, add it as an endpoint to your `project.js`, and make sure you have the right AWS credentials to programmatically deploy it there.
 
 
 ## Add Lambda ARN as Endpoint
@@ -26,30 +26,31 @@ After creating your AWS Lambda function, you can find its resource number (the `
 
 ![AWS Lambda ARN](./img/lambda-arn.jpg)
 
-Now copy this and add it as an endpoint to your `app.json` file:
+Now copy this and add it as an endpoint to your `project.js` file:
 
-```
-{
-        "endpoint": "<your-lambda-arn>
-}
+```js
+module.exports = {
+  // other configurations
+  endpoint: '<your-lambda-arn>'
+};
 ```
 
 One likely setup could be to have a `local` stage with the Jovo Webhook for local development, and a `dev` stage shared with the team hosted on AWS Lambda:
 
-```
-{
-        "stages": {
-                "local": {
-                        "endpoint": "${JOVO_WEBHOOK_URL}"
-                },
-                "dev": {
-                        "endpoint": "<your-lambda-arn>"
-                }
-        }
+```js
+module.exports = {
+  stages: {
+    local: {
+      endpoint: '${JOVO_WEBHOOK_URL}'
+    },
+    dev: {
+      endpoint: '<your-lambda-arn>'
+    }
+  }
 }
 ```
 
-Learn more about everything that can go into the `app.json` file here: [app.json - Project Configuration](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json').
+Learn more about everything that can go into the `project.js` file here: [Configuration > project.js](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/configuration/project-js.md 'docs/configuration/project-js').
 
 
 
@@ -99,6 +100,6 @@ $ jovo build --stage dev
 $ jovo deploy --stage dev
 ```
 
-You can learn more about the `jovo deploy` command here: [Jovo CLI > jovo deploy](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/02_cli#jovo-deploy 'docs/cli#jovo-deploy').
+You can learn more about the `jovo deploy` command here: [Jovo CLI > jovo deploy](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/workflows/cli/deploy 'docs/workflows/cli/deploy').
 
 <!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to AWS Lambda by using the Jovo CLI.", "author": "jan-koenig", "tags": "AWS Lambda, Deployment" }-->

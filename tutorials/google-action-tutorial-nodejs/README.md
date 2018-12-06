@@ -237,7 +237,7 @@ $ jovo new myGoogleAction
 
 ### A First Look at a Jovo Project
 
-For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
+For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
 
 Let's take a look at `app.js`:
 
@@ -247,16 +247,16 @@ The handlers variable is where you will spend most of your time when you're buil
 
 ```javascript
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
+    HelloWorldIntent() {
         this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 ```
@@ -287,7 +287,7 @@ You can find that part in the `index.js` file:
 
 ```javascript
 const {Webhook} = require('jovo-framework');
-const {app} = require('./app/app.js');
+const {app} = require('./src/app.js');
 
 // =================================================================================
 // Server Configuration

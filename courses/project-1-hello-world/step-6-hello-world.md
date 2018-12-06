@@ -16,34 +16,38 @@ In this lecture, you will learn how to connect your Jovo code to the Amazon Alex
 
 ## Where to Run Your Code
 
-To connect our voice app's code to the Alexa and Dialogflow platforms, we need to run it somewhere and create an endpoint the APIs can call. Jovo currently supports an Express server and AWS Lambda.
+To connect our voice app's code to the Alexa and Dialogflow platforms, we need to run it somewhere and create an endpoint the APIs can call. Jovo currently supports an Express server, AWS Lambda and Azure Functions.
 
 For this project, the focus is on **local prototyping** to get started quickly and to be able to test and debug your voice app locally. We're going to use a local Express server for this, and look into hosting solutions at a later course. If you prefer to run your code on Lambda while prototyping, you can take a look at these tutorials for [Amazon Alexa](https://www.jovo.tech/tutorials/alexa-skill-tutorial-nodejs#host-your-code-on-aws-lambda) and [Google Assistant](https://www.jovo.tech/tutorials/host-google-action-on-lambda).
 
-The [index.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/index.js) comes with off-the-shelf server support so that you can start developing locally as easy as possible:
+The [index.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/index.js) comes with off-the-shelf server support so that you can start developing locally as easy as possible:
 
 ```javascript
 'use strict';
 
-const {Webhook} = require('jovo-framework');
-const {app} = require('./app/app.js');
+const { Webhook, ExpressJS, Lambda } = require('jovo-framework');
+const { app } = require ('./app.js');
 
-// =================================================================================
-// Server Configuration
-// =================================================================================
+// ------------------------------------------------------------------
+// HOST CONFIGURATION
+// ------------------------------------------------------------------
 
-if (app.isWebhook()) {
+// ExpressJS (Jovo Webhook)
+if (process.argv.indexOf('--webhook') > -1) {
     const port = process.env.PORT || 3000;
+
     Webhook.listen(port, () => {
-        console.log(undefined);
+        console.info(`Local server listening on port ${port}.`);
     });
-    Webhook.post('/webhook', (req, res) => {
-        app.handleWebhook(req, res);
+
+    Webhook.post('/webhook', async (req, res) => {
+        await app.handle(new ExpressJS(req, res));
     });
 }
 
-exports.handler = (event, context, callback) => {
-    app.handleLambda(event, context, callback);
+// AWS Lambda
+exports.handler = async (event, context, callback) => {
+    await app.handle(new Lambda(event, context, callback));
 };
 ```
 
@@ -59,7 +63,7 @@ This will start the express server. We now need to create a connection to the vo
 
 ## Connecting Your Platform Project to an Endpoint
 
-Your code is currently running locally, so it's not accessible for outside APIs. We need to find a way to create an endpoint that we can post to the Amazon Developer Portal and the Dialogflow Agent Console.Fortunately, since [Jovo Framework v1](https://www.jovo.tech/blog/jovo-v1/) we have a feature called the [Jovo Webhook](https://www.jovo.tech/docs/server/webhook#jovo-webhook), which will do exactly this for you.
+Your code is currently running locally, so it's not accessible for outside APIs. We need to find a way to create an endpoint that we can post to the Amazon Developer Portal and the Dialogflow Agent Console.Fortunately, since [Jovo Framework v1](https://www.jovo.tech/blog/jovo-v1/) we have a feature called the [Jovo Webhook](https://github.com/jovotech/jovo-framework-nodejs/blob/v2/docs/configuration/hosting/express-js.md 'docs/configuration/hosting/express-js'), which will do exactly this for you.
 
 ```sh
 $ jovo run
