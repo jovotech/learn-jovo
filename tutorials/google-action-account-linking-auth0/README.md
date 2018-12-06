@@ -187,7 +187,7 @@ First of all you have to know that your Action will get an **access token** adde
 In Jovo you check for access token like this:
 
 ```javascript
-this.getAccessToken()
+this.$request.getAccessToken()
 ```
 
 It will either return the access token or `undefined`.
@@ -195,8 +195,8 @@ It will either return the access token or `undefined`.
 So the following code will check if there's an access token and if that's not the case it will prompt your user to sign in:
 
 ```javascript
-if (!this.getAccessToken()){
-    this.$googleAction.showAccountLinkingCard();
+if (!this.$request.getAccessToken()){
+    this.showAccountLinkingCard();
 }
 ```
 
@@ -222,22 +222,22 @@ ON_SIGN_IN() {
 },
 ```
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. I recommend the `request` package since it is the simplest solution. You can install it with npm:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
 
 ```sh
-$ npm install --save request
+$ npm install --save request request-promise
 ```
 
 After that import it in your `app.js` file:
 
 ```javascript
-const request = require('request');
+const rp = require('request-promise');
 ```
 
 Now let's get to the request:
 
 ```javascript
-let token = this.getAccessToken();
+let token = this.$request.getAccessToken();
 let options = {
     method: 'GET',
     url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
@@ -248,54 +248,43 @@ let options = {
 };
 
 // API request
-request(options, (error, response, body) => {
-    if (!error && response.statusCode === 200){
-
-        let data = JSON.parse(body); //Store the data we got from the API request
-        console.log(data);
-        /*
-        To see how the user data was stored,
-        go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
-        */
-        this.tell("Hi, " + data.given_name);
-    }
-    else {
-        this.tell("Error");
-    }
-}
+await rp(options).then((body) => {
+    let data = JSON.parse(body);
+    /*
+    To see how the user data was stored,
+    go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
+    */
+    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+});
 ```
 
 At the end your request should look like this:
 
 ```javascript
-ON_SIGN_IN() {
-    if (this.$googleAction.getSignInStatus() === 'OK') {
-        let token = this.getAccessToken();
-        let options = {
-            method: 'GET',
-            url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
-            // Advanced Settings --> Endpoints --> OAuth User Info URL
-            headers: {
-                authorization: 'Bearer ' + token,
-            }
-        };
-        
-        // API request
-        request(options, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-                let data = JSON.parse(body); //Store the data we got from the API request
-                console.log(data);
+    async ON_SIGN_IN() {
+        if (this.$googleAction.getSignInStatus() === 'OK') {
+            let token = this.$request.getAccessToken();
+            let options = {
+                method: 'GET',
+                uri: 'https://jovo-blog.auth0.com/userinfo', // You can find your URL on Client --> Settings --> 
+                // Advanced Settings --> Endpoints --> OAuth User Info URL
+                headers: {
+                    authorization: 'Bearer ' + token,
+                }
+            };
+
+            await rp(options).then((body) => {
+                let data = JSON.parse(body);
                 /*
                 To see how the user data was stored,
                 go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
                 */
-                this.tell("Hi, " + data.given_name);
-            } else {
-                this.tell("Error");
-            }
-        });
+                this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+            });
+        } else {
+            this.tell('There was an error. We could not sign in you in.');
+        }
     }
-}
 ```
 
 That's it, you made it!

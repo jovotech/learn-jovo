@@ -46,16 +46,16 @@ Probably the easiest one. We first add the intent to our language model just lik
 The intent itself will use the `player.js` file's `getFirstEpisode()` method, save the current index to our database and send out a *play directive*:
 
 ```javascript
-// app/app.js
+// src/app.js
 FirstEpisodeIntent() {
     let episode = Player.getFirstEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
-    this.$user.data.currentIndex = currentIndex
+    this.$user.$data.currentIndex = currentIndex
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.audioPlayer().play(episode.url, episode.title);
+		this.$googleAction.$audioPlayer.play(episode.url, episode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
@@ -88,16 +88,16 @@ Works almost completely the same way as `FirstEpisodeIntent`:
 ```
 
 ```javascript
-// app/app.js
+// src/app.js
 LatestEpisodeIntent() {
     let episode = Player.getLatestEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
-    this.$user.data.currentIndex = currentIndex;
+    this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.audioPlayer().play(episode.url, episode.title);
+		this.$googleAction.$audioPlayer.play(episode.url, episode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
@@ -142,7 +142,7 @@ Platform: *starts playing episode 66*
 We first need to add a method to our `player.js` file, which returns us `n` random unique indices:
 
 ```javascript
-// app/player.js
+// src/player.js
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -165,7 +165,7 @@ After that, we implement the intent
 The intent will first get the random indices and save them in our session attributes. That's a way to store data, that we only need across a single session. Every time the conversation ends, the session attributes are reset so it's not a viable option to store data for longer periods of time. In our case, it works perfectly though.
 
 ```javascript
-// app/app.js
+// src/app.js
 ListIntent() {
     const indices = Player.getRandomIndices(4);
     this.setSessionAttribute('episodeIndices', indices);
@@ -193,12 +193,12 @@ this.tell(speech);
 Hey, you are the first visitor today. *small break* How are you?
 ```
 
-You can find the full list of features [here](https://www.jovo.tech/docs/output/speechbuilder#features).
+You can find the full list of features [here](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/output/speechbuilder.md 'docs/basic-concepts/output/speechbuilder').
 
 In our case, it will look like this:
 
 ```javascript
-// app/app.js
+// src/app.js
 let speech = this.speechBuilder().addText('Here\'s a list of episodes: ');
 for (let i = 0; i < indices.length; i++) {
     let episode = Player.getEpisode(indices[i]);
@@ -213,7 +213,7 @@ We add the pretext, use a for loop to get each episode using its index and add i
 The complete intent looks like this:
 
 ```javascript
-// app/app.js
+// src/app.js
 ListIntent() {
     const indices = Player.getRandomIndices(4);
     this.setSessionAttribute('episodeIndices', indices);
@@ -583,18 +583,18 @@ Before we move on to add the intent to our handler, let's delete the `HelloWorld
 We're done with the trickier part, as this one will be fairly easy again. We first get the indices array from our session attributes, use the input to get the correct index from it, save the index to our database, use it to get the episode data and last but not least send out a *play directive*.
 
 ```javascript
-// app/app.js
-ChooseFromListIntent(ordinal) {
+// src/app.js
+ChooseFromListIntent() {
     let episodeIndices = this.getSessionAttribute('episodeIndices');
-    let episodeIndex = episodeIndices[parseInt(ordinal.key) - 1];
-    this.$user.data.currentIndex = episodeIndex;
+    let episodeIndex = episodeIndices[parseInt(this.$inputs.ordinal.key) - 1];
+    this.$user.$data.currentIndex = episodeIndex;
     let episode = Player.getEpisode(episodeIndex);
 
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${episodeIndex}`);
-        this.endSession();
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${episodeIndex}`);
+        
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -608,7 +608,7 @@ Now we can use all of the intents to update the user interaction at app's launch
 So we use the `NEW_USER` intent to ask new users, if they want to choose an episode from a list or rather start with the very first one:
 
 ```javascript
-// app/app.js
+// src/app.js
 NEW_USER() {
     this.ask('Would you like to begin listening from episode one or rather choose from a list?');
 },
@@ -619,7 +619,7 @@ Depending on the user's choice, the `ListIntent` or `FirstEpisodeIntent` will be
 At the `LAUNCH` intent we will handle the interaction with returning users. The current logic inside the `LAUNCH` intent is not needed anymore so we have to delete that and replace it with a question similar to the `NEW_USER` intent's one:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     this.ask('Would you like to resume where you left off or listen to the latest episode?');
 },
@@ -655,7 +655,7 @@ We add the intent to our Jovo Language Model and specify that we still use Amazo
 Update the intent map:
 
 ```javascript
-// app/app.js
+// src/app.js
 let myIntentMap = {
     'AMAZON.NextIntent': 'NextIntent',
     'AMAZON.PreviousIntent': 'PreviousIntent',
@@ -666,17 +666,17 @@ let myIntentMap = {
 Rename the intent in our handler from `AMAZON.ResumeIntent` to `ResumeIntent` and fix its logic:
 
 ```javascript
-// app/app.js
+// src/app.js
 ResumeIntent() {
-    let currentIndex = this.$user.data.currentIndex;
+    let currentIndex = this.$user.$data.currentIndex;
     let episode = Player.getEpisode(currentIndex);
 
     if (this.isAlexaSkill()) {
-        let offset = this.$user.data.offset;
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
-        this.endSession();
+        let offset = this.$user.$data.offset;
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
+        
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }

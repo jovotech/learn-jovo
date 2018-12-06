@@ -35,7 +35,7 @@ This will create a new folder and clone the [Jovo Sample Voice App](https://gith
   Installation completed.
 ```
 
-In the next steps we're going to modify the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) of our app and create a logic that reflects how the flow of our adventure game should be. The app file generally consists of two parts: the **App Configuration** and the **App Logic**.
+In the next steps we're going to modify the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) of our app and create a logic that reflects how the flow of our adventure game should be. The app file generally consists of two parts: the **App Initialization** and the **App Logic**.
 
 ```javascript
 'use strict';
@@ -68,7 +68,7 @@ app.setHandler({
     },
 
     HelloWorldIntent() {
-        this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
+        this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
     MyNameIsIntent() {
@@ -96,7 +96,7 @@ app.setHandler({
     },
 
     HelloWorldIntent() {
-        this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
+        this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
     MyNameIsIntent() {
@@ -136,8 +136,8 @@ So, how do we now set up the code so we can ask users for additional input? As t
 
 For speech output, you can use two common methods with the Jovo Framework:
 
-* [tell](https://www.jovo.tech/docs/output#tell): Returns speech output and ends the session
-* [ask](https://www.jovo.tech/docs/output#ask): Returns a speech prompt and waits for user input, reprompts if user stays quiet
+* [tell](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/output#tell 'docs/basic-concepts/output#tell'): Returns speech output and ends the session
+* [ask](https://github.com/jovotech/jovo-framework-nodejs/tree/v2/docs/basic-concepts/output#ask 'docs/basic-concepts/output#ask'): Returns a speech prompt and waits for user input, reprompts if user stays quiet
 
 So, for a basic interaction, we would use _ask_ in our _LAUNCH_ intent to prompt users to either say "blue door" or "red door". If this happens, we will first just return a simple statement like "You chose to go through the blue door" for testing the model.
 

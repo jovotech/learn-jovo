@@ -26,7 +26,7 @@ The most convenient approaches is to split up each state into a separate file. Y
 // File in ./states/play.js
 
 module.exports = {
-    playIntent: function() {
+    PlayIntent() {
         this.tell('hey');
     }
 }
@@ -39,7 +39,7 @@ const PLAY_STATE = require('./states/play.js');
 
 app.setHandler({
     LAUNCH() {
-        this.toStateIntent('PLAY_STATE', 'playIntent');
+        this.toStateIntent('PLAY_STATE', 'PlayIntent');
     },
     PLAY_STATE,
 });

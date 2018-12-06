@@ -31,7 +31,7 @@ In this section, we will create and deploy a project that you can use to play wi
 The template contains:
 
 * A language model (`models/en-US.json`) corresponding to the default one of a custom Skill, with the invocation name `button demo`
-* App logic (`app/app.js`) that uses the Jovo implementation of the Gadgets Skill API for Amazon Alexa
+* App logic (`src/app.js`) that uses the Jovo implementation of the Gadgets Skill API for Amazon Alexa
 * A demo implementation of:
   *  an input handler directive to define Gadget events
   *  a handler function to respond to these events
@@ -148,7 +148,7 @@ The logic of the Skill has three main parts:
 
 ### Setting up the Game Engine
 
-The details of how the code works can be found in the comments of `app.js` ([find the file here](https://github.com/jovotech/jovo-templates/blob/master/alexa/buttons/app/app.js)), and here's a general outline.
+The details of how the code works can be found in the comments of `app.js` ([find the file here](https://github.com/jovotech/jovo-templates/blob/master/alexa/buttons/src/app.js)), and here's a general outline.
 
 Upon launching the Skill, we define which button events we want to receive. Technically, this means we have to set the input handler for the **Game Engine Interface** using the `jovo.$alexaSkill.gameEngine()` class.
 

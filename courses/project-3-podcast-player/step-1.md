@@ -32,7 +32,7 @@ Streaming an audio file works differently on both platforms, so we will go over 
 
 ```javascript
 const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
-this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
 this.tell('Enjoy');
 ```
 
@@ -43,10 +43,10 @@ After that, we call the AudioPlayer interface's play function and pass in the UR
 We place that snippet inside your `LAUNCH` intent, so it gets triggered every time our app is launched:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
-    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+    this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
     this.tell('Enjoy');
 },
 ```
@@ -80,13 +80,13 @@ Let’s do the same for our Google Action.
 
 ### Google Action
 
-We simply add `this.$googleAction.audioPlayer().play(song, 'song one');`, where the first parameter is the audio files url and the second one the title, to our LAUNCH intent.
+We simply add `this.$googleAction.$audioPlayer.play(song, 'song one');`, where the first parameter is the audio files url and the second one the title, to our LAUNCH intent.
 
 ```javascript
-// app/app.js
+// src/app.js
 const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
-this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
-this.$googleAction.audioPlayer().play(song, 'song one');
+this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
+this.$googleAction.$audioPlayer.play(song, 'song one');
 this.tell('Enjoy');
 ```
 
@@ -95,12 +95,12 @@ As you can see there’s a slight difference between the Alexa function and the 
 But, there's still a small issue. We don't want to use both interfaces with every request, because that would cause an error, so we have to first check from which platform the request is being sent:
 
 ```javascript
-// app/app.js
+// src/app.js
 const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
 if (this.isAlexaSkill()) {
-    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+    this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
 } else if (this.isGoogleAction()) {
-    this.$googleAction.audioPlayer().play(song, 'song one');
+    this.$googleAction.$audioPlayer.play(song, 'song one');
 }
 this.tell('Enjoy');
 ```
@@ -108,13 +108,13 @@ this.tell('Enjoy');
 So our `LAUNCH` intent should look like this now:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.$audioPlayer.play(song, 'song one');
     }
     this.tell('Enjoy');
 },

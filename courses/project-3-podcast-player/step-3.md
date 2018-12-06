@@ -33,43 +33,43 @@ These settings are stored inside the `skill.json` file, which every Alexa Skill 
 
 So making changes directly in that file is counterproductive, since it will be overridden every time we rebuild the project.
 
-These configurations have to be made inside the `app.json` file in our root folder. 
+These configurations have to be made inside the `project.js` file in our root folder. 
 
 ```javascript
-// app.json
-{
-	"alexaSkill": {
-		"nlu": {
-			"name": "alexa"
+// project.js
+module.exports = {
+	alexaSkill: {
+		nlu: {
+			name: 'alexa'
 		}
 	},
-	"endpoint": "${JOVO_WEBHOOK_URL}"
+	endpoint: '${JOVO_WEBHOOK_URL}'
 }
 ```
 
-We simply use the same path the settings, that we want to override, have in the `skill.json` and every time we use the `build` command, the Jovo CLI will use the content of the `app.json` to modify the `skill.json` file:
+We simply use the same path the settings, that we want to override, have in the `skill.json` and every time we use the `build` command, the Jovo CLI will use the content of the `project.js` to modify the `skill.json` file:
 
 ```javascript
-// app.json
-{
-    "alexaSkill": {
-        "nlu": {
-			"name": "alexa"
+// project.js
+module.exports = {
+    alexaSkill: {
+        nlu: {
+			name: 'alexa'
 		}
-        "manifest": {
-            "apis": {
-                "custom": {
-                  "interfaces": [
+        manifest: {
+            apis: {
+                custom: {
+                  interfaces: [
                     {
-                      "type": "AUDIO_PLAYER"
+                      type: 'AUDIO_PLAYER'
                     }
                   ]
                 }
             }
         }
     },
-    "endpoint": "${JOVO_WEBHOOK_URL}"
-}
+    endpoint: '${JOVO_WEBHOOK_URL}'
+};
 ```
 
 ## Google Action
@@ -112,14 +112,16 @@ Now we need the Google Cloud SDK, which the Jovo CLI uses to access Dialogflow p
 
 Install the SDK and initialize it using the [quickstart guide](https://cloud.google.com/sdk/docs/quickstarts) from Google.
 
-After that we add both the `projectId` of our Dialogflow agent (can be found in our Dialogflow agent's settings) and the path to the `keyFile` to our project's `app.json`:
+After that we add both the `projectId` of our Dialogflow agent (can be found in our Dialogflow agent's settings) and the path to the `keyFile` to our project's `project.js`:
 
 ```js
-// app.json
-"googleAction": {
-  "dialogflow": {
-    "projectId": "<your-project-id>",
-    "keyFile": "<path-to-key-file>"
+// project.js
+module.exports = {
+    googleAction: {
+        dialogflow: {
+            projectId: '<your-project-id>',
+            keyFile: '<path-to-key-file>'
+        }
     }
 }
 ```
@@ -130,34 +132,34 @@ Now we can run the `build` and `deploy` command and our Dialogflow agent will be
 $ jovo build -p googleAction --deploy
 ```
 
-At the end our `app.json` file should look like this:
+At the end our `project.js` file should look like this:
 
 ```javascript
-// app.json
-{
-    "alexaSkill": {
-        "nlu": {
-			"name": "alexa"
+// project.js
+module.exports = {
+    alexaSkill: {
+        nlu: {
+			name: 'alexa'
 		}
-        "manifest": {
-            "apis": {
-                "custom": {
-                  "interfaces": [
+        manifest: {
+            apis: {
+                custom: {
+                  interfaces: [
                     {
-                      "type": "AUDIO_PLAYER"
+                      type: 'AUDIO_PLAYER'
                     }
                   ]
                 }
             }
         }
     },
-    "googleAction": {
-        "dialogflow": {
-            "projectId": "<your-project-id>",
-            "keyFile": "<path-to-key-file>"
+    googleAction: {
+        dialogflow: {
+            projectId: '<your-project-id>',
+            keyFile: '<path-to-key-file>'
         }
     },
-    "endpoint": "${JOVO_WEBHOOK_URL}"
+    endpoint: '${JOVO_WEBHOOK_URL}'
 }
 ```
 

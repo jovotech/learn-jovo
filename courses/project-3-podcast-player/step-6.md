@@ -359,10 +359,10 @@ Before we add the Next- and PreviousIntent to our handler, we have to first make
 If one of our Alexa users says *Alexa, next* or *Alexa, previous one* it will invoke the `AMAZON.NextIntent` or `AMAZON.PreviousIntent`, while Google Assistant users trigger the `NextIntent` or `PreviousIntent`, which means our handler has to have all four intents:
 
 ```javascript
-'AMAZON.NextIntent': function() {
+'AMAZON.NextIntent'() {
 
 },
-'AMAZON.PreviousIntent': function() {
+'AMAZON.PreviousIntent'() {
 
 },
 NextIntent() {
@@ -373,31 +373,19 @@ PreviousIntent() {
 },
 ```
 
-That's bad code. It's redundant. To help with that Jovo offers a simple mapping function for intents. We can specify which intents should be mapped, or routed, to another intent automatically:
+That's bad code. It's redundant. To help with that Jovo offers a simple mapping function for intents. We can specify which intents should be mapped, or routed, to another intent automatically, using the `intentMap` inside the `config.js` file:
 
 ```javascript
-// app/app.js
-let myIntentMap = {
-    'AMAZON.NextIntent': 'NextIntent',
-	'AMAZON.PreviousIntent': 'PreviousIntent'
+// src/config.js
+
+module.exports = {
+	// other configurations
+    intentMap: {
+        'AMAZON.StopIntent': 'END',
+		'AMAZON.NextIntent': 'NextIntent',
+		'AMAZON.PreviousIntent': 'PreviousIntent
+    }
 };
-```
-
-The object containing the intent map has to be added to the app's configuration, which we can find at the top of our `app.js` file by default:
-
-```javascript
-// app/app.js
-let myIntentMap = {
-    'AMAZON.NextIntent': 'NextIntent',
-	'AMAZON.PreviousIntent': 'PreviousIntent'
-};
-
-const config = {
-    logging: true,
-    intentMap: myIntentMap
-};
-
-const app = new App(config);
 ```
 
 This way we have to only have a single `NextIntent` and `PreviousIntent` inside our handler.
@@ -405,31 +393,31 @@ This way we have to only have a single `NextIntent` and `PreviousIntent` inside 
 The actual logic of both intents is fairly easy. We get the current episode's index from the database, get the next/previous episode, save the new index and send out a *play directive*:
 
 ```javascript
-// app/app.js
+// src/app.js
 NextIntent() {
-	let currentIndex = this.$user.data.currentIndex;
+	let currentIndex = this.$user.$data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
-	this.$user.data.currentIndex = currentIndex;
+	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
+		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.audioPlayer().play(nextEpisode.url, nextEpisode.title);
+		this.$googleAction.$audioPlayer.play(nextEpisode.url, nextEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
 PreviousIntent() {
-	let currentIndex = this.$user.data.currentIndex;
+	let currentIndex = this.$user.$data.currentIndex;
 	let previousEpisode = Player.getPreviousEpisode(currentIndex);
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
-	this.$user.data.currentIndex = currentIndex;
+	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
+		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.audioPlayer().play(previousEpisode.url, previousEpisode.title);
+		this.$googleAction.$audioPlayer.play(previousEpisode.url, previousEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
@@ -441,39 +429,39 @@ While we are at it, we should check for a corner case that might cause an error.
 Implementing that is easy. Since Javascript will return `undefined` if we try to access an array at an index without a value, our `getPreviousEpisode()` and `getNextEpisode()` methods will also return `undefined` if we are at the first/last episode. So simply before we try to send out a *play directive* we check for that and respond accordingly:
 
 ```javascript
-// app/app.js
+// src/app.js
 NextIntent() {
-	let currentIndex = this.$user.data.currentIndex;
+	let currentIndex = this.$user.$data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
 	if (!nextEpisode) {
 		this.tell('That was the most recent episode. You have to wait until a new episode gets released.');
 		return;
 	}
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
-	this.$user.data.currentIndex = currentIndex;
+	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
+		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.audioPlayer().play(nextEpisode.url, nextEpisode.title);
+		this.$googleAction.$audioPlayer.play(nextEpisode.url, nextEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
 PreviousIntent() {
-	let currentIndex = this.$user.data.currentIndex;
+	let currentIndex = this.$user.$data.currentIndex;
 	let previousEpisode = Player.getPreviousEpisode(currentIndex);
 	if (!previousEpisode) {
 		this.tell('You are already at the oldest episode.');
 		return;
 	}
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
-	this.$user.data.currentIndex = currentIndex;
+	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
+		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.audioPlayer().play(previousEpisode.url, previousEpisode.title);
+		this.$googleAction.$audioPlayer.play(previousEpisode.url, previousEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}

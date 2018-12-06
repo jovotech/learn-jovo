@@ -38,16 +38,19 @@ First we add it to our language model and delete the `AMAZON.HelpIntent` inside 
 We add the intent to our intent map:
 
 ```javascript
-// app/app.js
-let myIntentMap = {
-    // other intents
-    'AMAZON.HelpIntent': 'HelpIntent'
+// src/config.js
+module.exports = {
+    // other configurations
+    myIntentMap = {
+        // other intents
+        'AMAZON.HelpIntent': 'HelpIntent'
+    };
 };
 ```
 After that we add it to our handler:
 
 ```javascript
-// app/app.js
+// src/app.js
 HelpIntent() {
     this.ask('You can either listen to episode one or the latest episode or choose from a random list of episodes. Which one would you like to do?');
 },
@@ -60,8 +63,8 @@ The user also has to be able to exit the app. For that we use the `AMAZON.Cancel
 Inside our handler we simply tell the user *goodbye*.
 
 ```javascript
-// app/app.js
-'AMAZON.CancelIntent': function() {
+// src/app.js
+'AMAZON.CancelIntent'() {
     this.tell('Alright, see you next time!');
 },
 ```
@@ -71,7 +74,7 @@ Inside our handler we simply tell the user *goodbye*.
 Amazon also wants us to have the `AMAZON.StopIntent` implemented. Since it technically has the same task as the `AMAZON.CancelIntent`, we will simply map the `AMAZON.StopIntent` to the `AMAZON.CancelIntent` in our intent map:
 
 ```javascript
-// app/app.js
+// src/app.js
 let myIntentMap = {
     // other intents
     'AMAZON.StopIntent': 'CancelIntent' 
@@ -107,15 +110,15 @@ Alexa | - | `AMAZON.PauseIntent`
 &nbsp; | - | `AMAZON.ShuffleOnIntent`
 &nbsp; | - | `AMAZON.ShuffleOffIntent`
 &nbsp; | - | `AMAZON.StartOverIntent`
-&nbsp; | `AUDIOPLAYER` | `AudioPlayer.PlaybackStarted`
-&nbsp; | `AUDIOPLAYER` | `AudioPlayer.PlaybackNearlyFinished`
-&nbsp; | `AUDIOPLAYER` | `AudioPlayer.PlaybackFinished`
-&nbsp; | `AUDIOPLAYER` | `AudioPlayer.PlaybackStopped`
-&nbsp; | `AUDIOPLAYER` | `AudioPlayer.PlaybackFailed`
+&nbsp; | `AUDIOPLAYER` | `AlexaSkill.PlaybackStarted`
+&nbsp; | `AUDIOPLAYER` | `AlexaSkill.PlaybackNearlyFinished`
+&nbsp; | `AUDIOPLAYER` | `AlexaSkill.PlaybackFinished`
+&nbsp; | `AUDIOPLAYER` | `AlexaSkill.PlaybackStopped`
+&nbsp; | `AUDIOPLAYER` | `AlexaSkill.PlaybackFailed`
 Google | `AUDIOPLAYER` | `GoogleAction.Finished`
 
 ```javascript
-// app/app.js
+// src/app.js
 app.setHandler({
     LAUNCH() {
         // ...
@@ -150,54 +153,54 @@ app.setHandler({
 )};
 
 app.setAlexaHandler({
-    'AMAZON.CancelIntent': function() {
+    'AMAZON.CancelIntent'() {
         // ...
     },
-    'AMAZON.PauseIntent': function() {
+    'AMAZON.PauseIntent'() {
         // ...
     },
-    'AMAZON.LoopOffIntent': function() {
+    'AMAZON.LoopOffIntent'() {
         // ...
     },
-    'AMAZON.LoopOnIntent': function() {
+    'AMAZON.LoopOnIntent'() {
         // ...
     },
-    'AMAZON.LoopOffIntent': function() {
+    'AMAZON.LoopOffIntent'() {
         // ...
     },
-    'AMAZON.RepeatIntent': function() {
+    'AMAZON.RepeatIntent'() {
         // ...
     },
-    'AMAZON.ShuffleOffIntent': function() {
+    'AMAZON.ShuffleOffIntent'() {
         // ...
     },
-    'AMAZON.ShuffleOnIntent': function() {
+    'AMAZON.ShuffleOnIntent'() {
         // ...
     },
-    'AMAZON.StartOverIntent': function() {
+    'AMAZON.StartOverIntent'() {
         // ...
     },
-    'AUDIOPLAYER': {
-        'AudioPlayer.PlaybackStarted': function () {
+    AUDIOPLAYER': {
+        'AlexaSkill.PlaybackStarted'() {
             // ...
         },
-        'AudioPlayer.PlaybackNearlyFinished': function () {
+        'AlexaSkill.PlaybackNearlyFinished'() {
             // ...
         },
-        'AudioPlayer.PlaybackFinished': function () {
+        'AlexaSkill.PlaybackFinished'() {
             // ...
         },
-        'AudioPlayer.PlaybackStopped': function () {
+        'AlexaSkill.PlaybackStopped'() {
             // ...
         },
-        'AudioPlayer.PlaybackFailed': function () {
+        'AlexaSkill.PlaybackFailed'() {
             // ...
         }
     }
 });
 
 app.setGoogleActionHandler({
-    'AUDIOPLAYER': {
+    AUDIOPLAYER': {
         'GoogleAction.Finished': function() {
             // ...
         }
@@ -210,51 +213,51 @@ We can also go one step further and move the platform specific handlers to separ
 We create an `alexa` folder inside the `app` folder and add a `handler.js` file. Inside that file we store the content of our `AlexaHandler`:
 
 ```javascript
-// app/alexa/handler.js
+// src/alexa/handler.js
 const Player = require('../player.js');
 
 module.exports = {
-    'AMAZON.CancelIntent': function() {
+    'AMAZON.CancelIntent'() {
         // ...
     },
-    'AMAZON.PauseIntent': function() {
+    'AMAZON.PauseIntent'() {
         // ...
     },
-    'AMAZON.LoopOffIntent': function() {
+    'AMAZON.LoopOffIntent'() {
         // ...
     },
-    'AMAZON.LoopOnIntent': function() {
+    'AMAZON.LoopOnIntent'() {
         // ...
     },
-    'AMAZON.LoopOffIntent': function() {
+    'AMAZON.LoopOffIntent'() {
         // ...
     },
-    'AMAZON.RepeatIntent': function() {
+    'AMAZON.RepeatIntent'() {
         // ...
     },
-    'AMAZON.ShuffleOffIntent': function() {
+    'AMAZON.ShuffleOffIntent'() {
         // ...
     },
-    'AMAZON.ShuffleOnIntent': function() {
+    'AMAZON.ShuffleOnIntent'() {
         // ...
     },
-    'AMAZON.StartOverIntent': function() {
+    'AMAZON.StartOverIntent'() {
         // ...
     },
-    'AUDIOPLAYER': {
-        'AudioPlayer.PlaybackStarted': function () {
+    AUDIOPLAYER': {
+        'AlexaSkill.PlaybackStarted'() {
             // ...
         },
-        'AudioPlayer.PlaybackNearlyFinished': function () {
+        'AlexaSkill.PlaybackNearlyFinished'() {
             // ...
         },
-        'AudioPlayer.PlaybackFinished': function () {
+        'AlexaSkill.PlaybackFinished'() {
             // ...
         },
-        'AudioPlayer.PlaybackStopped': function () {
+        'AlexaSkill.PlaybackStopped'() {
             // ...
         },
-        'AudioPlayer.PlaybackFailed': function () {
+        'AlexaSkill.PlaybackFailed'() {
             // ...
         }
     }
@@ -264,11 +267,11 @@ module.exports = {
 We do the same for our `GoogleHandler`. Again, we create a `google` folder inside the `app` folder, add a `handler.js` file and move the content of our `GoogleHandler` over:
 
 ```javascript
-// app/google/handler.js
+// src/google/handler.js
 const Player = require('../player.js');
 
 module.exports = {
-    'AUDIOPLAYER': {
+    AUDIOPLAYER': {
         'GoogleAction.Finished': function() {
             // ...
         }
@@ -279,7 +282,7 @@ module.exports = {
 Now we can import both files in our `app.js` file and place them inside the `AlexaHandler` and `GoogleHandler`:
 
 ```javascript
-// app/app.js
+// src/app.js
 
 // rest of the app.js file
 const AlexaHandler = require('./alexa/handler.js');

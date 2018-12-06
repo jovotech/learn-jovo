@@ -45,6 +45,7 @@ You are also able to freely decide how many interaction pairs, as well as what e
 module.exports = {
     // Other configurations
     userContext: {
+        enabled: false,
         prev: {
             size: 1,
             request: {
@@ -63,12 +64,13 @@ module.exports = {
 };
 ```
 
-The `size` value defines how many pairs are saved. If you don't want to save anything you can simply set `size` to 0. To disable the storage of certain elements, simply change their value to `false`. Here's an example:
+The `size` value defines how many pairs are saved. To disable the storage of certain elements, simply change their value to `false`. Here's an example:
 
 ```javascript
 module.exports = {
     // Other configurations
     userContext: {
+        enabled: true,
         prev: {
             size: 3,
             request: {

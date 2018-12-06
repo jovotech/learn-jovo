@@ -11,33 +11,35 @@ Learn how to use environment variables in your [app.json](https://github.com/jov
 
 Watch the video here:
 
-[![Video: Use DynamoDB to Store User Data in your Voice Apps](./img/video-env-variables.jpg "youtube-video")](https://www.youtube.com/watch?v=F_xaDXSuDGs)
+[![Video: Reference environment variables in your app.json with Jovo](./img/video-env-variables.jpg "youtube-video")](https://www.youtube.com/watch?v=F_xaDXSuDGs)
 
 ## Introduction
 
-The [app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json') is Jovo project configuration file that stores information like which platforms are used (`alexaSkill`, `googleAction`), including additional information like project IDs, endpoints, etc.
+The [`project.js`](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/configuration/project-js.md 'docs/configuration/project-js') is Jovo project configuration file that stores information like which platforms are used (`alexaSkill`, `googleAction`), including additional information like project IDs, endpoints, etc.
 
-One of the useful features of the `app.json` is the ability to add stages to deploy your voice app to different environments (like `local` on your computer and `dev` on Lambda). Environment variables are a great way to define values that are directly linked to the current environment. 
+One of the useful features of the `project.js` is the ability to add stages to deploy your voice app to different environments (like `local` on your computer and `dev` on Lambda). Environment variables are a great way to define values that are directly linked to the current environment. 
 
-Referencing environment variables in your project can be helpful if you want to use the `app.json` as a generic template and then leave it to each environment how to set its values.
+Referencing environment variables in your project can be helpful if you want to use the `project.js` as a generic template and then leave it to each environment how to set its values.
 
 ## How to use env variables
 
-You need to do two steps to use env variables in your `app.json` file:
+You need to do two steps to use env variables in your `project.js` file:
 
 * [Referencing env keys](#referencing-env-keys)
 * [Setting env values](#setting-env-values)
 
 ### Referencing env key
 
-You can reference env variables in your `app.json` with `${process.env.KEY}`. For example, if you want to reference the Alexa Skill ID, you can do it like this:
+You can reference env variables in your `project.js` with `${process.env.KEY}`. For example, if you want to reference the Alexa Skill ID, you can do it like this:
 
 ```javascript
-{
-    "alexaSkill": {
-        "skillId": "${process.env.SKILL_ID}"
-    }
-}
+module.exports = {
+  alexaSkill: {
+    nlu: 'alexa',
+    skillId: process.env.SKILL_ID
+  },
+  // other configurations
+};
 ```
 
 ### Setting env values

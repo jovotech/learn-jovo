@@ -10,8 +10,6 @@ In [Step 1: Adventure Game Interaction Design](./step-1-adventure-game-interacti
 * [Adding YesIntent and NoIntent to the Logic](#adding-yesintent-and-nointent-to-the-logic)
 * [Next Steps](#next-steps)
 
-  
-
 ## Second Step Interaction Design
 
 First, let's take a look at the interaction to see what we could ask the user. For this course, we won't go too deep into scripting games (there are whole books written about this topic), but let's think about some different scenarios for both doors:
@@ -91,7 +89,7 @@ If you click into them on the Skill Builder, they are explained like this:
 
 This means we don't need to create a any phrases for these intents. Great, right? However, those built-in intents do come with one problem: If we're developing for cross-platform, we probably don't want to call our intents on Dialogflow (for Google Assistant) _AMAZON.x_.
 
-For this, Jovo offers the ability to match different names to one with an [intentMap](https://www.jovo.tech/docs/routing#intentmap). In it, you can define new names for certain intents, so that they have the same key across platforms.
+For this, Jovo offers the ability to match different names to one with an [intentMap](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/routing/intents.md#intentmap 'docs/basic-concepts/routing/intents#intentmap'). In it, you can define new names for certain intents, so that they have the same key across platforms.
 
 In this example, we want to map incoming _AMAZON.YesIntent_ requests from Alexa and _YesIntent_ requests from Google Assistant to one intent called _YesIntent_:
 

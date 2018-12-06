@@ -30,21 +30,21 @@ Our skill will receive at least one of the requests no matter what, which means 
 To make handling these requests easier for us, Jovo maps them to built-in intents inside the **AUDIOPLAYER** state.
 
 ```javascript  
-// app/app.js
-'AUDIOPLAYER': {
-   'AudioPlayer.PlaybackStarted': function() {
+// src/app.js
+AUDIOPLAYER: {
+   'AlexaSkill.PlaybackStarted'() {
 
    },
-   'AudioPlayer.PlaybackNearlyFinished': function() {
+   'AlexaSkill.PlaybackNearlyFinished'() {
 
    },
-   'AudioPlayer.PlaybackFinished': function() {
+   'AlexaSkill.PlaybackFinished'() {
 
    },
-   'AudioPlayer.PlaybackStopped': function() {
+   'AlexaSkill.PlaybackStopped'() {
 
    },
-   'AudioPlayer.PlaybackFailed': function() {
+   'AlexaSkill.PlaybackFailed'() {
 
    }
 },
@@ -79,42 +79,42 @@ Currently we simply use the string `token` as our token, since we don't have a s
 Since our goal in this step is to play another file after the first one finished, the most interesting one of these requests is the **PlaybackNearlyFinished** one. That request is used to notify us that it's time to enqueue the next song. We set the expected token and enqueue the file using its URL and a new token:
 
 ```javascript
-// app/app.js
-'AudioPlayer.PlaybackNearlyFinished': function() {
+// src/app.js
+'AlexaSkill.PlaybackNearlyFinished'() {
     const secondSong = 'PLACEHOLDER';
-    this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+    this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
 },
 ```
 
 Your handler should currently look like this:
 
 ```javascript
-// app/app.js
+// src/app.js
 app.setHandler({
     LAUNCH() {
         const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
         if (this.isAlexaSkill()) {
-            this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+            this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
         } else if (this.isGoogleAction()) {
-            this.$googleAction.audioPlayer().play(song, 'song one');
+            this.$googleAction.$audioPlayer.play(song, 'song one');
         }
         this.tell('Enjoy');
     },
-    'AUDIOPLAYER': {
-        'AudioPlayer.PlaybackStarted': function () {
+    AUDIOPLAYER': {
+        'AlexaSkill.PlaybackStarted'() {
 
         },
-        'AudioPlayer.PlaybackNearlyFinished': function () {
+        'AlexaSkill.PlaybackNearlyFinished'() {
             const secondSong = 'PLACEHOLDER';
-            this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+            this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
         },
-        'AudioPlayer.PlaybackFinished': function () {
+        'AlexaSkill.PlaybackFinished'() {
 
         },
-        'AudioPlayer.PlaybackStopped': function () {
+        'AlexaSkill.PlaybackStopped'() {
 
         },
-        'AudioPlayer.PlaybackFailed': function () {
+        'AlexaSkill.PlaybackFailed'() {
 
         }
     },
@@ -122,30 +122,6 @@ app.setHandler({
 ```
 
 Save the file and run the Jovo Webhook. It's time to test. Open up the debugger and press the **LAUNCH** button, but don't forget to change your device back to an Alexa Echo.
-
-Before we go on and play the second file on Google as well, let's fix the errors we encountered in step one by simply ending the session if one the other AudioPlayer requests come in, since we're not required to return a response:
-
-```javascript
-// app/app.js
-'AUDIOPLAYER': {
-   'AudioPlayer.PlaybackStarted': function() {
-        this.endSession();
-   },
-   'AudioPlayer.PlaybackNearlyFinished': function() {
-        const secondSong = 'PLACEHOLDER';
-        this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
-   },
-   'AudioPlayer.PlaybackFinished': function() {
-        this.endSession();
-   },
-   'AudioPlayer.PlaybackStopped': function() {
-        this.endSession();
-   },
-   'AudioPlayer.PlaybackFailed': function() {
-        this.endSession();
-   }
-},
-```
   
 ## The Google Assistant Media Response
 
@@ -154,8 +130,8 @@ The Google Assistant Media Response works a little different than Alexa's AudioP
 Inside that state, Google takes over and handles stuff like pausing, resuming, skipping ahead X seconds and more for you. Just like with Alexa, you will also be notified, in form of a request, after the audio stream finished, at which point you can simply start streaming the next one. These requests will also be mapped to a built-in intent inside the **AUDIOPLAYER** state:
 
 ```javascript
-// app/app.js
-'AUDIOPLAYER': {
+// src/app.js
+AUDIOPLAYER': {
     // Other Alexa intents
     'GoogleAction.Finished': function() {
   
@@ -166,12 +142,12 @@ Inside that state, Google takes over and handles stuff like pausing, resuming, s
 Inside that state, we simply play the next file using the same command introduced earlier in step one:
 
 ```javascript
-// app/app.js
-'AUDIOPLAYER': {
+// src/app.js
+AUDIOPLAYER': {
     // Other Alexa intents
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
-        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.$audioPlayer.play(song, 'song one');
         this.tell('Enjoy');
     }
 }
@@ -186,22 +162,22 @@ You can find a tutorial about them [here](https://www.jovo.tech/tutorials/google
 We will make these changes both to the `LAUNCH` as well as the `GoogleAction.Finished` intent:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.$audioPlayer.play(song, 'song one');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
     }
     this.ask('Enjoy');
 },
-'AUDIOPLAYER': {
+AUDIOPLAYER': {
     // Other Alexa intents
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
-        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.$audioPlayer.play(song, 'song one');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -211,13 +187,13 @@ LAUNCH() {
 In this case, it is important to not use the `ask()` method if the incoming request is from an Alexa device. While Google uses the ask as a signal to receive the notification, Alexa handles it completely differently. It treats like every other speech output and waits for the user's response, which delays the actual audio stream until after the reprompt. To fix that we simply move the `ask()` statement inside the correct if-block.
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.$audioPlayer.play(song, 'song one');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -226,56 +202,41 @@ LAUNCH() {
 
 Alright, time to test. You probably already know how it works.
 
-If by any chance you forgot to change the device, you might have encountered a bug. The application does not respond to the request coming from Alexa anymore. Why? The reason is pretty straightforward, we never send out a response. In the prior version, the response was sent with the `this.tell()` statement, which is not there anymore, instead we only have the AudioPlayer statement. In theory that would work out. Alexa does not force you to add any kind of speech output to your *play directive*, but you still have to somehow send out the response, which the *directive* was added to.
-
-Fixing it is pretty easy. You add `this.endSession()` to signal the Jovo Framework that it's time to send out the response:
-
-```javascript
-// app/app.js
-if (this.isAlexaSkill()) {
-    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
-    this.endSession();
-}
-```
-
-Test it out again to make sure everything is working now.
-
 Before we move on to the next step, here's our handlers current state:
 
 ```javascript
-// app/app.js
+// src/app.js
 app.setHandler({
     LAUNCH() {
         const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
         if (this.isAlexaSkill()) {
-            this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
-            this.endSession();
+            this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
         } else if (this.isGoogleAction()) {
-            this.$googleAction.audioPlayer().play(song, 'song one');
+            this.$googleAction.$audioPlayer.play(song, 'song one');
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
     },
-    'AUDIOPLAYER': {
-        'AudioPlayer.PlaybackStarted': function () {
-            this.endSession();
+    AUDIOPLAYER': {
+        'AlexaSkill.PlaybackStarted'() {
+            
         },
-        'AudioPlayer.PlaybackNearlyFinished': function () {
+        'AlexaSkill.PlaybackNearlyFinished'() {
             const secondSong = 'PLACEHOLDER';
-            this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+            this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
         },
-        'AudioPlayer.PlaybackFinished': function () {
-            this.endSession();
+        'AlexaSkill.PlaybackFinished'() {
+            
         },
-        'AudioPlayer.PlaybackStopped': function () {
-            this.endSession();
+        'AlexaSkill.PlaybackStopped'() {
+            
         },
-        'AudioPlayer.PlaybackFailed': function () {
-            this.endSession();
+        'AlexaSkill.PlaybackFailed'() {
+            
         },
         'GoogleAction.Finished': function() {
             const secondSong = 'PLACEHOLDER';
-            this.$googleAction.audioPlayer().play(secondSong, 'song one');
+            this.$googleAction.$audioPlayer.play(secondSong, 'song one');
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }

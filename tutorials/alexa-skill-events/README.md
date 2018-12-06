@@ -111,8 +111,7 @@ $ jovo deploy
 The incoming requests are mapped to built-in intents of the Jovo framework. The only thing you have to do is to add them to your handlers in your `app.js` file. These handlers are placed into the `ON_EVENT` directive state to keep things organized:
 
 ```javascript
-// PLACEHOLDER (Correct intent syntax?)
-'ON_EVENT': {
+ON_EVENT: {
     'AlexaSkillEvent.SkillEnabled'() {
         console.log('AlexaSkillEvent.SkillEnabled');
     },

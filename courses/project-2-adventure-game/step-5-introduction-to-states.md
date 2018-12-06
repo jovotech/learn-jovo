@@ -24,7 +24,7 @@ It looks more like this:
 
 So how can we create some hierarchy?
 
-We need to find some (frictionless) way to save where a user is coming from when going to the next intent. We could do this manually by saving it in a database, or use [session attributes](https://www.jovo.tech/framework/docs/intents-states#session-attributes). This is basically what we're doing, but without worrying about saving the data ourselves: with Jovo State Handling.
+We need to find some (frictionless) way to save where a user is coming from when going to the next intent. We could do this manually by saving it in a database, or use [session attributes](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/data#session-data 'docs/basic-concepts/data#session-data'). This is basically what we're doing, but without worrying about saving the data ourselves: with Jovo State Handling.
 
 ## How States Work
 
@@ -38,7 +38,7 @@ In the next step we're going to use states for the first time.
 
 ## Adding States with followUpState
 
-We're doing this by adding a [followUpState](https://www.jovo.tech/framework/docs/intents-states#followupstate) to the app before an _ask_ call.
+We're doing this by adding a [followUpState](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/routing/states.md#followupstate 'docs/basic-concepts/routing/states#followupstate') to the app before an _ask_ call.
 
 Remember the _EnterDoorIntent_:
 
@@ -118,7 +118,7 @@ For example, we're adding the following below the _EnterDoorIntent_:
 EnterDoorIntent() {
     // Shortened
 },
-'BlueDoorState': {
+BlueDoorState: {
     YesIntent() {
         let speech = 'Blue Door: You chose Yes!';
         this.tell(speech);
@@ -129,7 +129,7 @@ EnterDoorIntent() {
         this.tell(speech);
     },
 },
-'RedDoorState': {
+RedDoorState: {
     YesIntent() {
         let speech = 'Red Door: You chose Yes!';
         this.tell(speech);
@@ -211,7 +211,7 @@ The _Unhandled_ intent can also be used inside a state. For example, if we don'
 app.setHandler({
     // Other intents and states above
 
-    'BlueDoorState': {
+    BlueDoorState: {
         YesIntent() {
             let speech = 'Blue Door: You chose Yes!';
             this.tell(speech);
@@ -237,7 +237,7 @@ This makes for a more robust experience whenever you need to guide users through
 _Unhandled_ intents can also help you find out if people are trying to access different features that aren't part of the flow you imagined. This can help you evaluate the concept of your interaction design. For example, we can log the intent people used:
 
 ```javascript
-console.log(this.getIntentName());
+console.log(this.$request.getIntentName());
 ```
 
 ![](./img/amazon_developer_alexa_unhandled2.png)

@@ -242,7 +242,7 @@ Let's take a look at the code provided by the sample application. This is what t
 
 ![](./img/folder-structure-simple.png)
 
-For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
+For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
 
 Let's take a look at the App Logic first:
 

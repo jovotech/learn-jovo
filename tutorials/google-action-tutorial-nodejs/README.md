@@ -237,7 +237,7 @@ $ jovo new myGoogleAction
 
 ### A First Look at a Jovo Project
 
-For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
+For now, you only have to touch the `[app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js)` file in the `/app` folder. This is where all the configurations and app logic will happen. You can learn more about the Jovo Architecture [here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
 
 Let's take a look at `app.js`:
 
@@ -287,7 +287,7 @@ You can find that part in the `index.js` file:
 
 ```javascript
 const {Webhook} = require('jovo-framework');
-const {app} = require('./app/app.js');
+const {app} = require('./src/app.js');
 
 // =================================================================================
 // Server Configuration

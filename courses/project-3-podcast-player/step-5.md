@@ -18,7 +18,7 @@ Until now we've simply hard coded the episodes URLs. Obviously, that's wrong, bu
 Instead, we will now store everything inside a `JSON` file, called `episodes.json` inside our `app` folder, with the following structure:
 
 ```javascript
-// app/episodes.json
+// src/episodes.json
 [
     {
         "title": "Episode Five",
@@ -56,7 +56,7 @@ To retrieve and work with the `JSON` file, we will create an interface called `p
 The interface will allow us to access the latest, first, next and previous episode, which we all need for the finished podcast player. The latest one is needed for people who want to directly start with that or have already listened to every other episode. The first one is for people who want to start from the beginning. The next and previous one, are needed if the user manually changes the episode, as well as when they finished one and it's time to enqueue the next.
 
 ```javascript
-// app/player.js
+// src/player.js
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -78,7 +78,7 @@ module.exports = {
 The first two are easy. We simply import the `episodes.json` file and return the content at the correct index:
 
 ```javascript
-// app/player.js
+// src/player.js
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -94,7 +94,7 @@ module.exports = {
 The other two will simply take in an index as a parameter and return the episode at the next/previous index.
 
 ```javascript
-// app/player.js
+// src/player.js
 module.exports = {
     getNextEpisode: function(index) {
         return episodesJSON[index - 1];
@@ -108,7 +108,7 @@ module.exports = {
 Our `player.js` file should look like this now:
 
 ```javascript
-// app/player.js
+// src/player.js
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -134,7 +134,7 @@ Now we can use our interface to replace the hard-coded episode URLs.
 First of all, import the `player.js` file:
 
 ```javascript
-// app/app.js
+// src/app.js
 const Player = require('./player.js');
 ```
 
@@ -143,7 +143,7 @@ Now, the first thing to replace is the logic inside the `LAUNCH` intent. Instead
 The `getEpisodeIndex` function will return us the correct index at which the episode is stored in our `episodes.json` array.
 
 ```javascript
-// app/player.js
+// src/player.js
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -157,13 +157,13 @@ module.exports = {
 If it's a new user, let's just play the first episode for now. We will improve the user experience later on.
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     let episode;
     if (this.$user.isNewUser()) {
         episode = Player.getFirstEpisode();
         let currentIndex = Player.getEpisodeIndex(episode);
-        this.$user.data.currentIndex = currentIndex;
+        this.$user.$data.currentIndex = currentIndex;
     }
     // ...
 },
@@ -174,7 +174,7 @@ Otherwise, we previously resumed playing the episode the user last listened to. 
 We have to add a function to the `player.js` interface, that takes the index as a parameter and returns us the episode object.
 
 ```javascript
-// app/player.js
+// src/player.js
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -188,16 +188,16 @@ module.exports = {
 Now we use the function to play the episode the user last listened to:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     let episode;
     let currentIndex;
     if (this.$user.isNewUser()) {
         episode = Player.getFirstEpisode();
         currentIndex = Player.getEpisodeIndex(episode);
-        this.$user.data.currentIndex = currentIndex;
+        this.$user.$data.currentIndex = currentIndex;
     } else {
-        currentIndex = this.$user.data.currentIndex;
+        currentIndex = this.$user.$data.currentIndex;
         episode = Player.getEpisode(currentIndex);
     }
     // ...
@@ -207,14 +207,14 @@ LAUNCH() {
 There is one more thing to fix before we can test it out. Since the episode variable is now an object instead of a string containing the url, we have to fix the reference from `.play(episode, token)` to `.play(episode.url, token)`:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     // ...
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
-        this.endSession();
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+        
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -231,32 +231,29 @@ There's still more to update besides the `LAUNCH` intent. It's time to fix the e
 
 #### Alexa
 
-Let's start with the Alexa part. In the `AudioPlayer.PlaybackNearlyFinished` intent we simply get the current index from the database and use the `getNextEpisode()` method from our `player.js` file. We also check if `episode` has a value since the player will reach the last episode at some point:
+Let's start with the Alexa part. In the `AlexaSkill.PlaybackNearlyFinished` intent we simply get the current index from the database and use the `getNextEpisode()` method from our `player.js` file. We also check if `episode` has a value since the player will reach the last episode at some point:
 
 ```javascript
-// app/app.js
-'AudioPlayer.PlaybackNearlyFinished': function () {
-    let currentIndex = this.$user.data.currentIndex;
+// src/app.js
+'AlexaSkill.PlaybackNearlyFinished'() {
+    let currentIndex = this.$user.$data.currentIndex;
     let episode = Player.getNextEpisode(currentIndex);
     let nextIndex = Player.getEpisodeIndex(episode);
     if (episode) {
-        this.$alexaSkill.audioPlayer().setExpectedPreviousToken(`${currentIndex}`).enqueue(episode.url, `${nextIndex}`);
-    } else {
-        this.endSession();
+        this.$alexaSkill.$audioPlayer.setExpectedPreviousToken(`${currentIndex}`).enqueue(episode.url, `${nextIndex}`);
     }
 },
 ```
 
-The `AudioPlayer.PlaybackFinished` intent will be used to decrease the index as long as it's bigger than `0`:
+The `AlexaSkill.PlaybackFinished` intent will be used to decrease the index as long as it's bigger than `0`:
 
 ```javascript
-// app/app.js
-'AudioPlayer.PlaybackFinished': function () {
-    let currentIndex = this.$user.data.currentIndex;
+// src/app.js
+'AlexaSkill.PlaybackFinished'() {
+    let currentIndex = this.$user.$data.currentIndex;
     if (currentIndex > 0) {
-        this.$user.data.currentIndex = currentIndex - 1;
+        this.$user.$data.currentIndex = currentIndex - 1;
     }
-    this.endSession();
 },
 ```
 
@@ -265,17 +262,15 @@ The `AudioPlayer.PlaybackFinished` intent will be used to decrease the index as 
 For Google we do the same with the small difference that it will be all done inside a single intent:
 
 ```javascript
-// app/app.js
+// src/app.js
 'GoogleAction.Finished': function() {
-    let index = this.$user.data.currentIndex;
+    let index = this.$user.$data.currentIndex;
     let episode = Player.getNextEpisode(index);
     if (episode) {
-        this.$user.data.currentIndex -= 1;
-        this.$googleAction.audioPlayer().play(episode.url, episode.title);
+        this.$user.$data.currentIndex -= 1;
+        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
-    } else {
-        this.endSession();
     }
 }
 ```
@@ -285,14 +280,13 @@ For Google we do the same with the small difference that it will be all done ins
 We also have to fix the `AMAZON.ResumeIntent`:
 
 ```javascript
-// app/app.js
-'AMAZON.ResumeIntent': function () {
-    let offset = this.$user.data.offset;
-    let currentIndex = this.$user.data.currentIndex;
+// src/app.js
+'AMAZON.ResumeIntent'() {
+    let offset = this.$user.$data.offset;
+    let currentIndex = this.$user.$data.currentIndex;
     let episode = Player.getEpisode(currentIndex);
 
-    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
-    this.endSession();
+    this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
 },
 ```
 

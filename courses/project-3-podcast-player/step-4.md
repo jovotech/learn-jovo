@@ -71,43 +71,6 @@ Here's its default state:
 			]
 		}
 	],
-}
-```
-
-After adding the respective platforms to the project using the `jovo init` command, the Jovo language model will be updated to include platform-specific objects as well. These objects can be used to add the platform's built-in intents and input types, which is exactly what we need.
-
-```javascript
-// model/en-US.json
-{
-	"invocation": "my test app",
-	"intents": [
-		{
-			"name": "HelloWorldIntent",
-			"phrases": [
-				"hello",
-				"say hello",
-				"say hello world"
-			]
-		},
-		{
-			"name": "MyNameIsIntent",
-			"phrases": [
-				"{name}",
-				"my name is {name}",
-				"i am {name}",
-				"you can call me {name}"
-			],
-			"inputs": [
-				{
-					"name": "name",
-					"type": {
-						"alexa": "AMAZON.US_FIRST_NAME",
-						"dialogflow": "@sys.given-name"
-					}
-				}
-			]
-		}
-	],
 	"alexa": {
 		"interactionModel": {
 			"languageModel": {
@@ -151,7 +114,7 @@ After adding the respective platforms to the project using the `jovo init` comma
 }
 ```
 
-Right next to the other Alexa built-in intents, we will add the `AMAZON.PauseIntent` and `AMAZON.ResumeIntent` in the same format:
+Right next to the other Alexa built-in intents inside the `alexa` object, which is used to add platform-specific intents and input types, we will add the `AMAZON.PauseIntent` and `AMAZON.ResumeIntent` in the same format:
 
 ```javascript
 // model/en-US.json
@@ -199,17 +162,17 @@ This is was just a small sneak peek into the Jovo Language Model. We will use th
 
 #### AMAZON.PauseIntent
 
-Now open up the `app.js` file inside your `app/` folder and add the `AMAZON.PauseIntent` intent to our handler.
+Now open up the `app.js` file inside your `src/` folder and add the `AMAZON.PauseIntent` intent to our handler.
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
 	// ...
 },
-'AMAZON.PauseIntent': function() {
+'AMAZON.PauseIntent'() {
 
 },
-'AUDIOPLAYER': {
+AUDIOPLAYER': {
 	// ...
 }
 ```
@@ -217,10 +180,9 @@ LAUNCH() {
 Every time the intent is called we want to pause the audio stream by sending out a [*stop directive*](https://developer.amazon.com/docs/custom-skills/audioplayer-interface-reference.html#stop):
 
 ```javascript
-// app/app.js
-'AMAZON.PauseIntent': function() {
-    this.$alexaSkill.audioPlayer().stop();
-    this.endSession();
+// src/app.js
+'AMAZON.PauseIntent'() {
+    this.$alexaSkill.$audioPlayer.stop();
 },
 ```
 
@@ -238,10 +200,10 @@ The Jovo Persistence Layer allows us to store data across sessions. For local de
 
 ```javascript
 // save data:
-this.$user.data.key = value;
+this.$user.$data.key = value;
 
 // load data:
-let data = this.$user.data.key;
+let data = this.$user.$data.key;
 ```
 
 ```text
@@ -250,7 +212,7 @@ Later on, when you prepare to launch your application and host your app on AWS L
 
 ##### PlaybackStopped
 
-The most convenient way to save the offset is with the help of the `AudioPlayer.PlaybackStopped` request.
+The most convenient way to save the offset is with the help of the `AlexaSkill.PlaybackStopped` request.
 
 The request will be sent if:
 
@@ -275,19 +237,18 @@ That `JSON` request will contain the data we need:
 We save the offset to our database using one of `audioPlayer` classes built-in methods:
 
 ```javascript
-// app/app.js
-'AudioPlayer.PlaybackStopped': function() {
-    this.$user.data.offset = this.$alexaSkill.audioPlayer().getOffsetInMilliseconds();
-    this.endSession();
+// src/app.js
+'AlexaSkill.PlaybackStopped'() {
+    this.$user.$data.offset = this.$alexaSkill.$audioPlayer.getOffsetInMilliseconds();
 },
 ```
 
 Now we add the `AMAZON.ResumeIntent` to our handler and retrieve the `offset` from the database.
 
 ```javascript
-// app/app.js
-'AMAZON.ResumeIntent': function () {
-    let offset = this.$user.data.offset;
+// src/app.js
+'AMAZON.ResumeIntent'() {
+    let offset = this.$user.$data.offset;
 },
 ```
 
@@ -298,10 +259,10 @@ But, there's one more thing missing. How do we know, which audio file to stream?
 The first step is to save the current episode before we send out the first *play directive*:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
-    this.$user.data.currentEpisode = song;
+    this.$user.$data.currentEpisode = song;
     // rest of the intent
 },
 ```
@@ -309,28 +270,26 @@ LAUNCH() {
 Besides that, we have to remember that we enqueue the next song, which we have to save as the current episode after the first one finished playing. For that we save the audio file, which we enqueue, as the `nextEpisode` and switch out `currentEpisode` with `nextEpisode` as soon as the audio stream finishes, which we get notified about with the `PlaybackFinished` request:
 
 ```javascript
-// app/app.js
-'AudioPlayer.PlaybackNearlyFinished': function () {
+// src/app.js
+'AlexaSkill.PlaybackNearlyFinished'() {
     const secondSong = 'PLACEHOLDER';
-    this.$user.data.nextEpisode = secondSong;
-    this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+    this.$user.$data.nextEpisode = secondSong;
+    this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
 },
-'AudioPlayer.PlaybackFinished': function() {
-    this.$user.data.currentEpisode = this.$user.data.nextEpisode;
-    this.endSession();
+'AlexaSkill.PlaybackFinished'() {
+    this.$user.$data.currentEpisode = this.$user.$data.nextEpisode;
 },
 ```
 
 Now we can finish implementing the `AMAZON.ResumeIntent`. Simply retrieve the current episode from the database and send out a *play directive* using that and the `offset`:
 
 ```javascript
-// app/app.js
-'AMAZON.ResumeIntent': function () {
-    let offset = this.$user.data.offset;
-    let episode = this.$user.data.currentEpisode;
+// src/app.js
+'AMAZON.ResumeIntent'() {
+    let offset = this.$user.$data.offset;
+    let episode = this.$user.$data.currentEpisode;
 
-    this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(offset).play(episode, 'token');
-    this.endSession();
+    this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode, 'token');
 },
 ```
 
@@ -345,11 +304,11 @@ But, there's one thing we can do. Instead of starting with the very first audio 
 To do that we have to additionally save the current episode in the `GoogleAction.Finished` intent:
 
 ```javascript
-// app/app.js
+// src/app.js
 'GoogleAction.Finished': function() {
     const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
-    this.$user.data.currentEpisode = secondSong;
-    this.$googleAction.audioPlayer().play(secondSong, 'song one');
+    this.$user.$data.currentEpisode = secondSong;
+    this.$googleAction.$audioPlayer.play(secondSong, 'song one');
 	this.$googleAction.showSuggestionChips(['pause', 'start over']);
     this.tell('Enjoy');
 }
@@ -359,20 +318,20 @@ To do that we have to additionally save the current episode in the `GoogleAction
 Now we can check at our `LAUNCH` intent if the request is from a new user, if that's the case we start with the first track, otherwise we stream the most recently listened one:
 
 ```javascript
-// app/app.js
+// src/app.js
 LAUNCH() {
     let song;
     if (this.$user.isNewUser()) {
         song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
-        this.$user.data.currentEpisode = song;
+        this.$user.$data.currentEpisode = song;
     } else {
-        song = this.$user.data.currentEpisode;
+        song = this.$user.$data.currentEpisode;
     }
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
-        this.endSession();
+        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
+        
     } else if (this.isGoogleAction()) {
-        this.$googleAction.audioPlayer().play(song, 'song one');
+        this.$googleAction.$audioPlayer.play(song, 'song one');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -384,32 +343,32 @@ LAUNCH() {
 There are still quite many built-in intents remaining. For now we will simply tell the user that these are not implemented and revisit at least two of them at a later point:
 
 ```javascript
-// app/app.js
-'AMAZON.LoopOffIntent': function() {
+// src/app.js
+'AMAZON.LoopOffIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.LoopOnIntent': function() {
+'AMAZON.LoopOnIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.LoopOffIntent': function() {
+'AMAZON.LoopOffIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.RepeatIntent': function() {
+'AMAZON.RepeatIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.ShuffleOffIntent': function() {
+'AMAZON.ShuffleOffIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.ShuffleOnIntent': function() {
+'AMAZON.ShuffleOnIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.NextIntent': function() {
+'AMAZON.NextIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.PreviousIntent': function() {
+'AMAZON.PreviousIntent'() {
     this.tell('Not implemented');
 },
-'AMAZON.StartOverIntent': function() {
+'AMAZON.StartOverIntent'() {
     this.tell('Not implemented');
 },
 ```
@@ -417,87 +376,83 @@ There are still quite many built-in intents remaining. For now we will simply te
 At the end our handler should look like this:
 
 ```javascript
-// app/app.js
+// src/app.js
 app.setHandler({
 	LAUNCH() {
 		let song;
 		if (this.$user.isNewUser()) {
 			song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
-			this.$user.data.currentEpisode = song;
+			this.$user.$data.currentEpisode = song;
 		} else {
-			song = this.$user.data.currentEpisode;
+			song = this.$user.$data.currentEpisode;
 		}
 		if (this.isAlexaSkill()) {
-			this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(0).play(song, 'token');
-			this.endSession();
+			this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
+			
 		} else if (this.isGoogleAction()) {
-			this.$googleAction.audioPlayer().play(song, 'song one');
+			this.$googleAction.$audioPlayer.play(song, 'song one');
 			this.$googleAction.showSuggestionChips(['pause', 'start over']);
 			this.ask('Enjoy');
 		}
 	},
-	'AMAZON.PauseIntent': function() {
-		this.$alexaSkill.audioPlayer().stop();
-		this.endSession();
+	'AMAZON.PauseIntent'() {
+		this.$alexaSkill.$audioPlayer.stop();
 	},
-	'AMAZON.ResumeIntent': function () {
-		let offset = this.$user.data.offset;
-		let episode = this.$user.data.currentEpisode;
+	'AMAZON.ResumeIntent'() {
+		let offset = this.$user.$data.offset;
+		let episode = this.$user.$data.currentEpisode;
 
-		this.$alexaSkill.audioPlayer().setOffsetInMilliseconds(offset).play(episode, 'token');
-		this.endSession();
+		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode, 'token');
 	},
-	'AMAZON.LoopOffIntent': function() {
+	'AMAZON.LoopOffIntent'() {
     	this.tell('Not implemented');
 	},
-	'AMAZON.LoopOnIntent': function() {
+	'AMAZON.LoopOnIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.LoopOffIntent': function() {
+	'AMAZON.LoopOffIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.RepeatIntent': function() {
+	'AMAZON.RepeatIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.ShuffleOffIntent': function() {
+	'AMAZON.ShuffleOffIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.ShuffleOnIntent': function() {
+	'AMAZON.ShuffleOnIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.NextIntent': function() {
+	'AMAZON.NextIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.PreviousIntent': function() {
+	'AMAZON.PreviousIntent'() {
 		this.tell('Not implemented');
 	},
-	'AMAZON.StartOverIntent': function() {
+	'AMAZON.StartOverIntent'() {
 		this.tell('Not implemented');
 	},
-	'AUDIOPLAYER': {
-	   	'AudioPlayer.PlaybackStarted': function() {
-			this.endSession();
+	AUDIOPLAYER': {
+	   	'AlexaSkill.PlaybackStarted'() {
+			
 	   	},
-	   	'AudioPlayer.PlaybackNearlyFinished': function() {
+	   	'AlexaSkill.PlaybackNearlyFinished'() {
 			const secondSong = 'PLACEHOLDER';
-			this.$user.data.nextEpisode = secondSong;
-			this.$alexaSkill.audioPlayer().setExpectedPreviousToken('token').enqueue(secondSong, 'token');
+			this.$user.$data.nextEpisode = secondSong;
+			this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
 	   	},
-	   	'AudioPlayer.PlaybackFinished': function() {
-			this.$user.data.currentEpisode = this.$user.data.nextEpisode;
-			this.endSession();
+	   	'AlexaSkill.PlaybackFinished'() {
+			this.$user.$data.currentEpisode = this.$user.$data.nextEpisode;	
 	   	},
-	   	'AudioPlayer.PlaybackStopped': function() {
-			this.$user.data.offset = this.$alexaSkill.audioPlayer().getOffsetInMilliseconds();
-			this.endSession();
+	   	'AlexaSkill.PlaybackStopped'() {
+			this.$user.$data.offset = this.$alexaSkill.$audioPlayer.getOffsetInMilliseconds();
 	   	},
-	   	'AudioPlayer.PlaybackFailed': function() {
-			this.endSession();
+	   	'AlexaSkill.PlaybackFailed'() {
+			
 	   	},
 	    'GoogleAction.Finished': function() {
 			const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
-			this.$user.data.currentEpisode = secondSong;
-			this.$googleAction.audioPlayer().play(secondSong, 'song one');
+			this.$user.$data.currentEpisode = secondSong;
+			this.$googleAction.$audioPlayer.play(secondSong, 'song one');
 			this.$googleAction.showSuggestionChips(['pause', 'start over']);
 			this.tell('Enjoy');
         }
