@@ -35,8 +35,6 @@ module.exports = {
 };
 ```
 
-PLACEHOLDER (Deployment in verschiedenen stages)
-
 One likely setup could be to have a `local` stage with the Jovo Webhook for local development, and a `dev` stage shared with the team hosted on AWS Lambda:
 
 ```js
