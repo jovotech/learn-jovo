@@ -1,4 +1,4 @@
-﻿# Step 2: Stream Multiple Files in a Row
+﻿# Step 2: Streaming Multiple Files in a Row
 
 Alright, it's time for the more interesting part. Before we can stream multiple files in a row we need at least some understanding how the respective audio players work.
 
@@ -248,6 +248,6 @@ app.setHandler({
 
 In the next step, we will prepare our development environment to test our app on an Amazon Alexa or Google Assistant device from then on.
 
-> [Step 3: Preparing the Development Environment](./step-3.md)
+> [Step 3: Preparing the Development Environment](./step-3-development-environment.md)
 
 <!--[metadata]: { "description": "In this lecture, you learn more about the Alexa AudioPlayer and the Google Media Response interface to play multiple audio files in a row", "author": "kaan-kilic" }-->

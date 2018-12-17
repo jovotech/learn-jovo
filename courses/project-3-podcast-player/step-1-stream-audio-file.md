@@ -134,6 +134,6 @@ Alright, we're now able to play a simple audio file on both Amazon Alexa and the
 
 In the next step, we will learn how to keep streaming audio files, after the first song finished.
 
-> [Step 2: Stream Multiple Files in a Row](./step-2.md)
+> [Step 2: Stream Multiple Files in a Row](./step-2-stream-multiple-files.md)
 
 <!--[metadata]: { "description": "In this lecture, you learn how to stream an audio file on Amazon Alexa and Google Action", "author": "kaan-kilic" }-->

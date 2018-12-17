@@ -1,4 +1,4 @@
-# Step 4: Pause and Resume the Audio Stream
+# Step 4: Pausing and Resuming the Audio Stream
 
 In this step, we will flesh out our podcast player and allow the user to pause and resume the audio file.
 
@@ -464,6 +464,6 @@ app.setHandler({
 
 In the next step we will build a system to store and retrieve the episodes of our podcast.
 
-> [Step 5: Store and Retrieve Multiple Episodes](./step-5.md)
+> [Step 5: Store and Retrieve Multiple Episodes](./step-5-episode-list.md)
 
 <!--[metadata]: { "description": "In this lecture, we flesh out our podcast player and allow the user to pause and resume the audio file.", "author": "kaan-kilic" }-->

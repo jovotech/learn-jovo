@@ -1,4 +1,4 @@
-# Step 5: Store and Retrieve Multiple Episodes
+# Step 5: Storing and Retrieving Multiple Episodes
 
 In this step, we will build a system to store and retrieve the episodes of our podcast.
 
@@ -19,6 +19,7 @@ Instead, we will now store everything inside a `JSON` file, called `episodes.jso
 
 ```javascript
 // src/episodes.json
+
 [
     {
         "title": "Episode Five",
@@ -57,6 +58,7 @@ The interface will allow us to access the latest, first, next and previous episo
 
 ```javascript
 // src/player.js
+
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -79,6 +81,7 @@ The first two are easy. We simply import the `episodes.json` file and return the
 
 ```javascript
 // src/player.js
+
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -95,6 +98,7 @@ The other two will simply take in an index as a parameter and return the episode
 
 ```javascript
 // src/player.js
+
 module.exports = {
     getNextEpisode: function(index) {
         return episodesJSON[index - 1];
@@ -109,6 +113,7 @@ Our `player.js` file should look like this now:
 
 ```javascript
 // src/player.js
+
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -135,6 +140,7 @@ First of all, import the `player.js` file:
 
 ```javascript
 // src/app.js
+
 const Player = require('./player.js');
 ```
 
@@ -144,6 +150,7 @@ The `getEpisodeIndex` function will return us the correct index at which the epi
 
 ```javascript
 // src/player.js
+
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -158,6 +165,7 @@ If it's a new user, let's just play the first episode for now. We will improve t
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     let episode;
     if (this.$user.isNewUser()) {
@@ -175,6 +183,7 @@ We have to add a function to the `player.js` interface, that takes the index as 
 
 ```javascript
 // src/player.js
+
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -192,7 +201,7 @@ Now we use the function to play the episode the user last listened to:
 LAUNCH() {
     let episode;
     let currentIndex;
-    if (this.$user.isNewUser()) {
+    if (this.$user.isNew()) {
         episode = Player.getFirstEpisode();
         currentIndex = Player.getEpisodeIndex(episode);
         this.$user.$data.currentIndex = currentIndex;
@@ -221,7 +230,7 @@ LAUNCH() {
 }
 ```
 
-Before we test out our new implementation, we have to delete the content of the `./db/db.json` file, since we made changes to the database structure. We simply delete everything and save the blank file.
+Before we test out our new implementation, we have to delete the content of the `../db/db.json` file, since we made changes to the database structure. We simply delete everything and save the blank file.
 
 Alright, now we can test it out. The audio file should start playing without any errors.
 
@@ -235,6 +244,7 @@ Let's start with the Alexa part. In the `AlexaSkill.PlaybackNearlyFinished` inte
 
 ```javascript
 // src/app.js
+
 'AlexaSkill.PlaybackNearlyFinished'() {
     let currentIndex = this.$user.$data.currentIndex;
     let episode = Player.getNextEpisode(currentIndex);
@@ -249,6 +259,7 @@ The `AlexaSkill.PlaybackFinished` intent will be used to decrease the index as l
 
 ```javascript
 // src/app.js
+
 'AlexaSkill.PlaybackFinished'() {
     let currentIndex = this.$user.$data.currentIndex;
     if (currentIndex > 0) {
@@ -263,6 +274,7 @@ For Google we do the same with the small difference that it will be all done ins
 
 ```javascript
 // src/app.js
+
 'GoogleAction.Finished': function() {
     let index = this.$user.$data.currentIndex;
     let episode = Player.getNextEpisode(index);
@@ -281,6 +293,7 @@ We also have to fix the `AMAZON.ResumeIntent`:
 
 ```javascript
 // src/app.js
+
 'AMAZON.ResumeIntent'() {
     let offset = this.$user.$data.offset;
     let currentIndex = this.$user.$data.currentIndex;
@@ -294,6 +307,6 @@ We also have to fix the `AMAZON.ResumeIntent`:
 
 In the next step we will use the new system to allow our user to manually switch between episodes.
 
-> [Step 6: Manually Switch between Episodes](./step-6.md)
+> [Step 6: Manually Switch between Episodes](./step-6-switch-episodes.md)
 
 <!--[metadata]: { "description": "In this lecture, we update the way we store and retrieve each episode", "author": "kaan-kilic" }-->

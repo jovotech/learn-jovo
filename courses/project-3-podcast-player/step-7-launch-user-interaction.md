@@ -1,4 +1,4 @@
-# Step 7: Rework the User Interaction at Launch
+# Step 7: Reworking the User Interaction at Launch
 
 We're almost done. Our podcast player can play multiple episodes in a row, allows our user to pause, resume an episode as well as skip ahead or back to another episode. All that on both platforms with a minimal amount of code.
 
@@ -31,6 +31,7 @@ Probably the easiest one. We first add the intent to our language model just lik
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "FirstEpisodeIntent",
     "phrases": [
@@ -47,6 +48,7 @@ The intent itself will use the `player.js` file's `getFirstEpisode()` method, sa
 
 ```javascript
 // src/app.js
+
 FirstEpisodeIntent() {
     let episode = Player.getFirstEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
@@ -68,6 +70,7 @@ Works almost completely the same way as `FirstEpisodeIntent`:
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "LatestEpisodeIntent",
     "phrases": [
@@ -89,6 +92,7 @@ Works almost completely the same way as `FirstEpisodeIntent`:
 
 ```javascript
 // src/app.js
+
 LatestEpisodeIntent() {
     let episode = Player.getLatestEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
@@ -110,6 +114,7 @@ This is one will be a little trickier, but before we add the intent to our handl
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "ListIntent",
     "phrases": [
@@ -143,6 +148,7 @@ We first need to add a method to our `player.js` file, which returns us `n` rand
 
 ```javascript
 // src/player.js
+
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
@@ -166,6 +172,7 @@ The intent will first get the random indices and save them in our session attrib
 
 ```javascript
 // src/app.js
+
 ListIntent() {
     const indices = Player.getRandomIndices(4);
     this.setSessionAttribute('episodeIndices', indices);
@@ -199,6 +206,7 @@ In our case, it will look like this:
 
 ```javascript
 // src/app.js
+
 let speech = this.speechBuilder().addText('Here\'s a list of episodes: ');
 for (let i = 0; i < indices.length; i++) {
     let episode = Player.getEpisode(indices[i]);
@@ -214,6 +222,7 @@ The complete intent looks like this:
 
 ```javascript
 // src/app.js
+
 ListIntent() {
     const indices = Player.getRandomIndices(4);
     this.setSessionAttribute('episodeIndices', indices);
@@ -240,6 +249,7 @@ Every input type needs a `name`, which is used to reference it later on. Besides
 
 ```javascript
 // model/en-US.json
+
 "inputTypes": [
     {
         "name": "myCityInputType",
@@ -276,6 +286,7 @@ Here's how that would look like:
 
 ```javascript
 // model/en-US.json
+
 "inputTypes": [
     {
         "name": "ordinal",
@@ -325,6 +336,7 @@ We place the `inputTypes` array at the same level as the rest of the stuff in ou
 
 ```javascript
 // model/en-US.json
+
 {
 	"invocation": "my test app",
 	"intents": [
@@ -346,6 +358,7 @@ Now we can add the `ChooseFromListIntent` and reference our custom input type as
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "ChooseFromListIntent",
     "phrases": [
@@ -380,6 +393,7 @@ Before we move on to add the intent to our handler, let's delete the `HelloWorld
 
 ```javascript
 // model/en-US.json
+
 {
 	"invocation": "my test app",
 	"intents": [
@@ -584,6 +598,7 @@ We're done with the trickier part, as this one will be fairly easy again. We fir
 
 ```javascript
 // src/app.js
+
 ChooseFromListIntent() {
     let episodeIndices = this.getSessionAttribute('episodeIndices');
     let episodeIndex = episodeIndices[parseInt(this.$inputs.ordinal.key) - 1];
@@ -609,6 +624,7 @@ So we use the `NEW_USER` intent to ask new users, if they want to choose an epis
 
 ```javascript
 // src/app.js
+
 NEW_USER() {
     this.ask('Would you like to begin listening from episode one or rather choose from a list?');
 },
@@ -620,6 +636,7 @@ At the `LAUNCH` intent we will handle the interaction with returning users. The 
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     this.ask('Would you like to resume where you left off or listen to the latest episode?');
 },
@@ -633,6 +650,7 @@ We add the intent to our Jovo Language Model and specify that we still use Amazo
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "ResumeIntent",
     "alexa": {
@@ -656,6 +674,7 @@ Update the intent map:
 
 ```javascript
 // src/app.js
+
 let myIntentMap = {
     'AMAZON.NextIntent': 'NextIntent',
     'AMAZON.PreviousIntent': 'PreviousIntent',
@@ -667,6 +686,7 @@ Rename the intent in our handler from `AMAZON.ResumeIntent` to `ResumeIntent` an
 
 ```javascript
 // src/app.js
+
 ResumeIntent() {
     let currentIndex = this.$user.$data.currentIndex;
     let episode = Player.getEpisode(currentIndex);
@@ -689,6 +709,6 @@ We've made big changes to the Jovo Language Model. These changes have to be push
 
 In the next and final step, we will refactor the project's structure, add small required intents and look ahead what else could be added to the project.
 
-> [Step 8: The Final Steps](./step-8.md)
+> [Step 8: The Final Steps](./step-8-final-steps.md)
 
 <!--[metadata]: { "description": "In this lecture, we rework the user interaction at our app's launch.", "author": "kaan-kilic" }-->

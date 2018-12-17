@@ -167,6 +167,6 @@ module.exports = {
 
 In the next step, we will flesh out our podcast player and allow the user to pause and resume the audio file.
 
-> [Step 4: Pause and Resume the Audio Stream](./step-4.md)
+> [Step 4: Pause and Resume the Audio Stream](./step-4-pause-resume-stream.md)
 
 <!--[metadata]: { "description": "In this lecture, we prepare our development environment to start testing on Amazon Alexa or Google Assistant devices", "author": "kaan-kilic" }-->

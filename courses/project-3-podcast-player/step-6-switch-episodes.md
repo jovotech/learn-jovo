@@ -21,6 +21,7 @@ Currently our model looks like this:
 
 ```javascript
 // model/en-US.json
+
 {
 	"invocation": "my test app",
 	"intents": [
@@ -124,6 +125,7 @@ For these cases, we can specify inside our Jovo Language Model, that the intent 
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "NextIntent",
     "alexa": {
@@ -173,6 +175,7 @@ Some of these built-in intents are also [expendable](https://developer.amazon.co
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "NextIntent",
     "alexa": {
@@ -224,6 +227,7 @@ Our language model should look like this now:
 
 ```javascript
 // model/en-US.json
+
 {
 	"invocation": "my test app",
 	"intents": [
@@ -394,6 +398,7 @@ The actual logic of both intents is fairly easy. We get the current episode's in
 
 ```javascript
 // src/app.js
+
 NextIntent() {
 	let currentIndex = this.$user.$data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
@@ -430,6 +435,7 @@ Implementing that is easy. Since Javascript will return `undefined` if we try to
 
 ```javascript
 // src/app.js
+
 NextIntent() {
 	let currentIndex = this.$user.$data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
@@ -476,6 +482,6 @@ Before you can test everything out, don't forget to remove the `AMAZON.NextInten
 
 In the next step, we will rework the user interaction at the app's launch!
 
-> [Step 7: Rework the User Interaction at Launch](./step-7.md)
+> [Step 7: Rework the User Interaction at Launch](./step-7-launch-user-interaction.md)
 
 <!--[metadata]: { "description": "In this lecture, we add the Next- and PreviousIntent to let our user switch between episodes", "author": "kaan-kilic" }-->

@@ -19,6 +19,7 @@ First we add it to our language model and delete the `AMAZON.HelpIntent` inside 
 
 ```javascript
 // model/en-US.json
+
 {
     "name": "HelpIntent",
     "alexa": {
@@ -39,6 +40,7 @@ We add the intent to our intent map:
 
 ```javascript
 // src/config.js
+
 module.exports = {
     // other configurations
     myIntentMap = {
@@ -51,6 +53,7 @@ After that we add it to our handler:
 
 ```javascript
 // src/app.js
+
 HelpIntent() {
     this.ask('You can either listen to episode one or the latest episode or choose from a random list of episodes. Which one would you like to do?');
 },
@@ -64,6 +67,7 @@ Inside our handler we simply tell the user *goodbye*.
 
 ```javascript
 // src/app.js
+
 'AMAZON.CancelIntent'() {
     this.tell('Alright, see you next time!');
 },
@@ -75,6 +79,7 @@ Amazon also wants us to have the `AMAZON.StopIntent` implemented. Since it techn
 
 ```javascript
 // src/app.js
+
 let myIntentMap = {
     // other intents
     'AMAZON.StopIntent': 'CancelIntent' 
@@ -214,6 +219,7 @@ We create an `alexa` folder inside the `app` folder and add a `handler.js` file.
 
 ```javascript
 // src/alexa/handler.js
+
 const Player = require('../player.js');
 
 module.exports = {
@@ -268,6 +274,7 @@ We do the same for our `GoogleHandler`. Again, we create a `google` folder insid
 
 ```javascript
 // src/google/handler.js
+
 const Player = require('../player.js');
 
 module.exports = {
@@ -284,7 +291,7 @@ Now we can import both files in our `app.js` file and place them inside the `Ale
 ```javascript
 // src/app.js
 
-// rest of the app.js file
+// Rest of the app.js file
 const AlexaHandler = require('./alexa/handler.js');
 const GoogleHandler = require('./google/handler.js');
 
@@ -324,7 +331,7 @@ app.setHandler({
 app.setAlexaHandler(AlexaHandler);
 app.setGoogleHandler(GoogleHandler);
 
-// rest of the app.js file
+// Rest of the app.js file
 ```
 
 ## Next Steps
