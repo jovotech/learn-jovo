@@ -82,15 +82,17 @@ Install the SDK and initialize it using the [quickstart guide](https://cloud.goo
 After that add both the `projectId` of your Dialogflow agent and the path to the `keyFile` to your project's `project.js` file:
 
 ```js
+// project.js
+
 module.exports = {
     googleAction: {
       nlu: 'dialogflow',
       dialogflow: {
         projectId: '<your-project-id>',
-        keyFile: '<path-to-key-file>'
+        keyFile: './path/to/key-file'
       }
     },
-    // other configurations
+    // Other configurations
 };
 ```
 
