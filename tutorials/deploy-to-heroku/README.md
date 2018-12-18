@@ -2,8 +2,6 @@
 
 In this guide, you will learn how to host your voice apps on Heroku, a cloud service that offers an easy solution for developers to deploy, manage, and scale their code. We will walk you through the process of creating a Heroku app and modifying your code step by step.
 
-### Contents
-
 * [Introduction](#introduction)
 * [Setting up Heroku](#setting-up-heroku)
   * [Creating a Heroku App](#creating-a-heroku-app)
@@ -16,15 +14,15 @@ In this guide, you will learn how to host your voice apps on Heroku, a cloud ser
 
 ## Introduction
 
-Righ now, Jovo offers two ways to host your voice app: Either on [AWS Lambda](https://www.jovo.tech/framework/docs/server/aws-lambda) or on a server by using a [webhook](https://www.jovo.tech/framework/docs/server/webhook).
+Righ now, Jovo offers two ways to host your voice app: Either on [AWS Lambda](https://www.jovo.tech/framework/docs/hosting/aws-lambda) or on a server by using a [webhook](https://www.jovo.tech/docs/jovo-webhook).
 
-In our [voice app tutorials](https://www.jovo.tech/learn), we usually use a webhook with a tunnel service like ngrok or bst proxy for easy [local prototyping](https://www.jovo.tech/framework/docs/server/webhook#run-the-webhook-locally). However, when it's time to run your app in production, most people deploy their code to AWS Lambda.
+In our [voice app tutorials](https://www.jovo.tech/learn), we usually use a webhook with a tunnel service like ngrok or bst proxy for easy [local prototyping](https://www.jovo.tech/docs/project-lifecycle#local-development). However, when it's time to run your app in production, most people deploy their code to AWS Lambda.
 
 But what if you want to host your code on a web server, for example [Heroku](https://www.heroku.com/)?
 
 Let's try it out.
 
-In this example, we will host our ["Hello World!" sample voice app](https://github.com/jovotech/jovo-sample-voice-app-nodejs) on Heroku. For a detailed overview on how to get started, take a look at our step by step course [Project 1: Hello World](https://www.jovo.tech/blog/project-1-hello-world/). We'll assume you've followed all the necessary steps until the last one ([Project 1 Step 6](https://www.jovo.tech/blog/p1s6-hello-world/)), where we're running the voice app on a local server.
+In this example, we will host our ["Hello World!" sample voice app](https://github.com/jovotech/jovo-sample-voice-app-nodejs) on Heroku. For a detailed overview on how to get started, take a look at our step by step course [Project 1: Hello World](https://www.jovo.tech/courses/project-1-hello-world/). We'll assume you've followed all the necessary steps until the last one ([Project 1 Step 6](https://www.jovo.tech/courses/project-1-hello-world/step-6-hello-world)), where we're running the voice app on a local server.
 
 Instead, we're now deploying it to Heroku.
 
