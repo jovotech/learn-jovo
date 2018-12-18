@@ -24,8 +24,8 @@ You can change the invocation name by adding the following to any of your stages
 
 ```javascript
 languageModel: {
-  en-US: {
-    invocation: 'my test app dev'
+  'en-US': {
+    invocation: 'my test app dev',
   }
 }
 ```
@@ -37,27 +37,27 @@ module.exports = {
 	// Other configurations
   stages: {
     local: {
-      endpoint: '${JOVO_WEBHOOK_URL}'
+      endpoint: `${JOVO_WEBHOOK_URL}`,
       languageModel: {
-          en-US: {
-            invocation: 'my test app local'
-          }
-        }
+          'en-US': {
+            invocation: 'my test app local',
+          },
+        },
     },
     dev: {
       {
-        endpoint: '<your-lambda-dev-arn>'
+        endpoint: '<your-lambda-dev-arn>',
         languageModel: {
-          en-US: {
-            invocation: 'my test app dev'
-          }
-        }
-      }
+          'en-US': {
+            invocation: 'my test app dev',
+          },
+        },
+      },
     },
     prod: {
-      endpoint: '<your-lambda-prod-arn>'
-    }
-  }
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -99,28 +99,30 @@ $ jovo build -p alexaSkill --stage dev --deploy
 
 ## Additional Options
 
-You can find additional options to add to the language model in [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json').
+You can find additional options to add to the language model here: [`project.js` Documentation](https://www.jovo.tech/docs/project-js).
 
 For example, you can also add specific intents for certain stages:
 
 ```javascript
+// project.js
+
 module.exports = {
   stages: {
     dev: {
       languageModel: {
-        en-US: {
+        'en-US': {
           intents: [
             {
               name: 'WhatEnvIntent',
               samples: [
                 'what is the stage',
-                'what is the environment'
-              ]
-            }
-          ]
-        }
-      }
-    }
+                'what is the environment',
+              ],
+            },
+          ],
+        },
+      },
+    },
   },
 }
 ```
