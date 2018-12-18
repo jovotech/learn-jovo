@@ -155,7 +155,7 @@ In the Jovo APL template, we split up these elements and put them into different
 
 ```javascript
 ShowTemplateIntent() {
-    let template = this.getInput('template');
+    let template = this.$inputs.template;
 
     // Retrieve document and data from folder
     this.$alexaSkill.addDirective({
