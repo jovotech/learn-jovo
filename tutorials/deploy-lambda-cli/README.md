@@ -20,7 +20,7 @@ You can upload your voice app to AWS Lambda by using the command `jovo deploy`, 
 
 ## Add Lambda ARN as Endpoint
 
-This article assumes you already have a Lambda function or know how to create one. If you need help with that, take a look here: [Alexa Skill Tutorial: Host your Code on AWS Lambda](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/#aws-lambda).
+This article assumes you already have a Lambda function or know how to create one. If you need help with that, take a look here: [Alexa Skill Tutorial: Host your Code on AWS Lambda](https://www.jovo.tech/tutorials/alexa-skill-tutorial-nodejs/#aws-lambda).
 
 After creating your AWS Lambda function, you can find its resource number (the `ARN`) in the upper right corner of the console:
 
@@ -29,8 +29,11 @@ After creating your AWS Lambda function, you can find its resource number (the `
 Now copy this and add it as an endpoint to your `project.js` file:
 
 ```js
+// project.js
+
 module.exports = {
-  // other configurations
+  // Other configurations
+  
   endpoint: '<your-lambda-arn>'
 };
 ```
@@ -50,7 +53,7 @@ module.exports = {
 }
 ```
 
-Learn more about everything that can go into the `project.js` file here: [Configuration > project.js](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/configuration/project-js.md 'docs/configuration/project-js').
+> [Learn more about the `project.js` file here](https://www.jovo.tech/docs/project-js).
 
 
 
@@ -80,7 +83,6 @@ aws_secret_access_key=<your-secret-key>
 Learn more in the official [Amazon Docs: Set Up Credentials for an Amazon Web Services (AWS) Account](https://developer.amazon.com/docs/smapi/set-up-credentials-for-an-amazon-web-services-account.html).
 
 
-
 ## jovo deploy
 
 After you have everything ready, you can use the `jovo deploy` command to automatically upload the code to AWS Lambda:
@@ -100,6 +102,15 @@ $ jovo build --stage dev
 $ jovo deploy --stage dev
 ```
 
-You can learn more about the `jovo deploy` command here: [Jovo CLI > jovo deploy](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/workflows/cli/deploy 'docs/workflows/cli/deploy').
+Alternatively, you can also generate a zip file that can be uploaded to Lambda manually:
+
+```sh
+$ jovo deploy --target zip
+
+# Alternative
+$ npm run bundle
+```
+
+> [Learn more about the `jovo deploy` command here](https://www.jovo.tech/docs/cli/deploy).
 
 <!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to AWS Lambda by using the Jovo CLI.", "author": "jan-koenig", "tags": "AWS Lambda, Deployment" }-->
