@@ -14,9 +14,9 @@ In this guide, we will show you how to set up **Account Linking for your Amazon 
     - [3. Add Account Linking to Your Code](#3-add-account-linking-to-your-code)
 
 
-👉 Just interested in a user's email address? Take a look at [Login with Amazon](https://www.jovo.tech/blog/alexa-login-with-amazon-email/). 
+👉 Just interested in a user's email address? Take a look at [Login with Amazon](https://www.jovo.tech/tutorial/alexa-login-with-amazon-email/). 
 
-👉 Interested in Google Assistant Account Linking? [How to set up Account Linking for Google Actions with Auth0 and Jovo](https://www.jovo.tech/blog/google-action-account-linking-auth0/).   
+👉 Interested in Google Assistant Account Linking? [How to set up Account Linking for Google Actions with Auth0 and Jovo](https://www.jovo.tech/tutorial/google-action-account-linking-auth0/).   
 
 ## Introduction
 
@@ -149,7 +149,7 @@ Now before you close both tabs, we have to add the _Redirect URLs_ provided by A
 
 ### 3. Add Account Linking to Your Code
 
-👉 Just getting started with Alexa Skill development? Take a look here: [Build an Alexa Skill in Node.js with Jovo](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/).
+👉 Just getting started with Alexa Skill development? Take a look here: [Build an Alexa Skill in Node.js with Jovo](https://www.jovo.tech/tutorial/alexa-skill-tutorial-nodejs/).
 
 You're pretty much at the end of this tutorial. The last thing we want to show you is a code example, which should give you an idea how to implement Account Linking in your own code.
 
@@ -212,7 +212,7 @@ async LAUNCH() {
     If there is one -> API call to access user data 
     */
     if (!this.$request.getAccessToken()) {
-        this.showAccountLinkingCard();
+        this.$alexaSkill.showAccountLinkingCard();
         this.tell('Please link you Account');
     } else {
         let token = this.$request.getAccessToken();
