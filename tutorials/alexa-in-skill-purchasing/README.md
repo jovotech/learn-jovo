@@ -4,8 +4,6 @@ In this tutorial, you will learn how to sell digital goods with your Alexa Skill
 
 > You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
 
-### Contents
-
 * [Introduction to Alexa In-Skill Purchasing](#introduction-to-alexa-in-skill-purchasing)
 * [Implementing Alexa ISP](#implementing-alexa-isp)
     * [Add Products with ASK CLI](#add-products-with-ask-cli)

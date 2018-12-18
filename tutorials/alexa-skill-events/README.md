@@ -2,11 +2,7 @@
 
 Learn more about the implementation of Alexa Skill Events in your Jovo project to get notified when your users interact with your Skill outside the active usage, for example when they enable your Skill or do account linking.
 
-📋 You can find the full code example of this tutorial here: [jovo-templates/alexa/skillevents](https://github.com/jovotech/jovo-templates/tree/master/alexa/skillevents).
-
-
-
-### Contents
+> You can find the full code example of this tutorial here: [jovo-templates/alexa/skillevents](https://github.com/jovotech/jovo-templates/tree/master/alexa/skillevents).
 
 * [Introduction to Alexa Skill Events](#introduction-to-alexa-skill-events)
   * [Supported Events](#supported-events)
@@ -41,7 +37,7 @@ These are the most basic events. Your Skill gets a notification when someone ena
 
 #### Account Linked
 
-This event is triggered after your user has linked their account with your service using the Alexa companion app. The incoming request after the event is triggered will contain the same access token, which you also get with every request after your user linked their account. Learn more about Alexa Account Linking here: [Login with Amazon](https://www.jovo.tech/blog/alexa-login-with-amazon-email/), [Account Linking with Auth0](https://www.jovo.tech/blog/alexa-account-linking-auth0/).
+This event is triggered after your user has linked their account with your service using the Alexa companion app. The incoming request after the event is triggered will contain the same access token, which you also get with every request after your user linked their account. Learn more about Alexa Account Linking here: [Login with Amazon](https://www.jovo.tech/tutorials/alexa-login-with-amazon-email/), [Account Linking with Auth0](https://www.jovo.tech/tutorials/alexa-account-linking-auth0/).
 
 #### Skill Permission Accepted
 
@@ -70,7 +66,7 @@ module.exports = {
     manifest: {
       events: {
         endpoint: {
-          uri: 'YOUR ENDPOINT'
+          uri: 'YOUR SKILL EVENT ENDPOINT' // Lambda only
         },
         subscriptions: [
 					{
@@ -92,7 +88,7 @@ module.exports = {
       }
     }
   },
-  // other configurations
+  // Other configurations
 };
 ```
 

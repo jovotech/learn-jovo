@@ -25,7 +25,7 @@ Account Linking is the process of connecting user accounts between your Alexa Sk
 
 ![](./img/alexa-account-linking.png)
 
-However, setting up account linking for Alexa can be quite difficult, as you have to follow certain guidelines and set up your own oAuth 2.0 provider (read a [tutorial about Alexa Account Linking with Auth0 here](https://www.jovo.tech/blog/alexa-account-linking-auth0/)).
+However, setting up account linking for Alexa can be quite difficult, as you have to follow certain guidelines and set up your own oAuth 2.0 provider (read a [tutorial about Alexa Account Linking with Auth0 here](https://www.jovo.tech/tutorials/alexa-account-linking-auth0/)).
 
 Fortunately, if you just want to get your user's email address and some other basic information, there is a simple way to do so without having to deal with all the complexities of account linking: **Login with Amazon**. In this tutorial, we're going to show you how it works.
 
