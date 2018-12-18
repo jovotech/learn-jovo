@@ -8,9 +8,11 @@ This time we will show you how to use Alexa **Login with Amazon** account linkin
   - [Enabling Account Linking in the Alexa Developer Console](#enabling-account-linking-in-the-alexa-developer-console)
   - [The Code](#the-code)
 
-Watch the video: https://www.youtube.com/watch?v=jBaM7HqPA7Q&feature=youtu.be
+Watch the video: 
 
-👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
+[![Video: Use Alexa Login with Amazon Account Linking](./img/video-login-with-amazon.jpg "youtube-video")](https://www.youtube.com/watch?v=jBaM7HqPA7Q)
+
+> Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
 
 
 ## Introduction
@@ -93,7 +95,7 @@ The method will either return the access token or `undefined`.
 To prompt the user to link their account, you just add an **Account Linking Card** to your response object:
 
 ```javascript
-this.showAccountLinkingCard();
+this.$alexaSkill.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
@@ -132,7 +134,7 @@ At the end, your code should look like this:
 ```javascript
 async LAUNCH() {
     if (!this.$request.getAccessToken()) {
-        this.showAccountLinkingCard();
+        this.$alexaSkill.showAccountLinkingCard();
         this.tell('Please link you Account');
     } else {
         let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
