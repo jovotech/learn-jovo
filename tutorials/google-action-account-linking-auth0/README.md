@@ -2,7 +2,6 @@
 
 In this guide, we will show you how to set up **Account Linking for your Google Assistant App** with the help of [Auth0](https://auth0.com/), a service for developers to authorize and authenticate users. You won't have to run your own OAuth 2.0 server and deal with security issues. Let's walk through the process of Google Action Account Linking together in simple steps.
 
-### Contents
 - [Introduction](#introduction)
 - [Requirements to use Account Linking with Google Actions](#requirements-to-use-account-linking-with-google-actions)
 - [How OAuth2 Works](#how-oauth2-works)
@@ -16,7 +15,7 @@ In this guide, we will show you how to set up **Account Linking for your Google 
     - [Google Actions Console](#google-actions-console)
 - [3. Add Account linking to your code](#3-add-account-linking-to-your-code)
 
-👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
+> Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/tutorials/alexa-account-linking-auth0/).   
 
 
 ## Introduction
@@ -180,7 +179,7 @@ That's it! The last thing we want to show you is how to access the stored user d
 
 ### 3. Add Account linking to your code
 
-👉 Just getting started with Google Action development? Take a look here: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/).
+> Just getting started with Google Action development? Take a look here: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/tutorials/google-action-tutorial-nodejs/).
 
 First of all you have to know that your Action will get an **access token** added to the request, if your user has linked their account. So by checking if there is an access token, you will know if the user has already linked their account or not.
 
