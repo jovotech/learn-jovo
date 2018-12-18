@@ -16,7 +16,9 @@ The Jovo Framework will look for the requested intent inside the current state f
 Let's say the incoming request contains a `PlayIntent`, but we're currently in the `DoNotPlayState` which does not have a `PlayIntent`, but globally there is one. Without the `Unhandled` state, the system would jump to the global scope and map the request to the `PlayIntent`. But with the `Unhandled` intent it would catch the request and remain in the current state:
 
 ```javascript
-'DoNotPlayState': {
+// app.js
+
+DoNotPlayState: {
     Unhandled() {
         // intent will be caught here
     },
@@ -32,8 +34,8 @@ PlayIntent() {
 There is also the possiblity to have nested states in which case the intent will be mapped to the first `Unhandled` intent it comes across:
 
 ```javascript
-'FirstState': {
-    'SecondState': {
+FirstState: {
+    SecondState: {
         DoNotPlayIntent() {
             // do stuff here
         }
@@ -57,8 +59,8 @@ Let's say the requested intent is called `PlayIntent`, but we don't have that in
 Unhandled() {
     // intent will be caught here
 },
-'StateOne': {
-    'StateTwo': {
+StateOne: {
+    StateTwo: {
         DoNotPlayIntent() {
             // do stuff here
         }
@@ -79,8 +81,11 @@ The Jovo framework also provides the possiblity to define intents, which won't b
 You can define these intents inside your app's config, `config.js` the following way:
 
 ```javascript
+// config.js
+
 module.exports = {
     // Other configurations
+
    intentsToSkipUnhandled: [
        'CancelIntent',
        'HelpIntent',
@@ -92,7 +97,9 @@ module.exports = {
 Let's say we have the configuration above and the app is currently inside `StateOne` and the `HelpIntent` was requested, but that intent was not defined inside `StateOne`. Instead of the request being mapped to the `Unhandled` intent inside `StateOne`, the global `HelpIntent` will be used.
 
 ```javascript
-'StateOne': {
+// app.js
+
+StateOne: {
     PlayIntent() {
         // do stuff here
     },
