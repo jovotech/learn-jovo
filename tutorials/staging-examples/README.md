@@ -1,6 +1,6 @@
 # Staging Examples
 
-This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [Configuration > project.js](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/configuration/project-js.md#stages 'docs/configuration/project-js#stages')
+This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [project.js Staging](https://www.jovo.tech/docs/project-js#stages) and [config.js Staging](https://www.jovo.tech/docs/config-js#staging)
 
 * [Basic Setup](#basic-setup)
 * [Different Endpoints](#different-endpoints)
@@ -16,15 +16,15 @@ This is how your `project.js` could look like with three stages `local`, `dev`, 
 
   stages: {
     local: {
-      endpoint: 'https://webhook.jovo.cloud/<your-unique-id>'
+      endpoint: `${JOVO_WEBHOOK_URL}`,
     },
     dev: {
-      endpoint: '<your-lambda-dev-arn>'
+      endpoint: '<your-lambda-dev-arn>',
     },
     prod: {
-      endpoint: '<your-lambda-prod-arn>'
-    }
-  }
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -42,15 +42,15 @@ You can add a `defaultStage` like this:
   defaultStage: 'local',
   stages: {
     local: {
-      endpoint: 'https://webhook.jovo.cloud/<your-unique-id>'
+      endpoint: `${JOVO_WEBHOOK_URL}`,
     },
     dev: {
-      endpoint: '<your-lambda-dev-arn>'
+      endpoint: '<your-lambda-dev-arn>',
     },
     prod: {
-      endpoint: '<your-lambda-prod-arn>'
-    }
-  }
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -60,15 +60,15 @@ As the content inside the active stage is just merged into the other "stage-less
 {
 	// Other configurations
 
-  endpoint: 'https://webhook.jovo.cloud/<your-unique-id>',
+  endpoint: `${JOVO_WEBHOOK_URL}`,
   stages: {
     dev: {
-      endpoint: '<your-lambda-dev-arn>'
+      endpoint: '<your-lambda-dev-arn>',
     },
     prod: {
-      endpoint: '<your-lambda-prod-arn>'
-    }
-  }
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -88,29 +88,29 @@ Here's how you can do it with a basic setup:
 {
 	// Other configurations
 
-  endpoint: 'https://webhook.jovo.cloud/<your-unique-id>',
+  endpoint: `${JOVO_WEBHOOK_URL}`,
   stages: {
     dev: {
       alexaSkill: {
-        endpoint: '<your-lambda-dev-arn>'
+        endpoint: '<your-lambda-dev-arn>',
       },
       googleAction: {
         dialogflow: {
-          endpoint: '<your-api-gateway-dev-link>'
-        }
-      }
+          endpoint: '<your-api-gateway-dev-link>',
+        },
+      },
     },
     prod: {
       alexaSkill: {
-        endpoint: '<your-lambda-prod-arn>'
+        endpoint: '<your-lambda-prod-arn>',
       },
       googleAction: {
         dialogflow: {
-          endpoint: '<your-api-gateway-prod-link>'
-        }
-      }
-    }
-  }
+          endpoint: '<your-api-gateway-prod-link>',
+        },
+      },
+    },
+  },
 }
 ```
 As the Jovo CLI uses ASK CLI to deploy to Lambda, it is sufficient for deployment if only the Alexa `endpoint` references the Lambda function, because this is the one passed to ASK CLI. For a little more structure, however, you can also use the newly introduced `host` object and define which `askProfile` to use to deploy it:
@@ -119,41 +119,41 @@ As the Jovo CLI uses ASK CLI to deploy to Lambda, it is sufficient for deploymen
 {
 	// Other configurations
 
-  endpoint: 'https://webhook.jovo.cloud/<your-unique-id>',
+  endpoint: `${JOVO_WEBHOOK_URL}`,
   stages: {
     dev: {
       host: {
         lambda: {
           arn: '<your-lambda-dev-arn>',
-          askProfile: '<your-ask-cli-dev-profile>'
-        }
+          askProfile: '<your-ask-cli-dev-profile>',
+        },
       },
       alexaSkill: {
         
       },
       googleAction: {
         dialogflow: {
-          endpoint: '<your-api-gateway-dev-link>'
-        }
-      }
+          endpoint: '<your-api-gateway-dev-link>',
+        },
+      },
     },
     prod: {
       host: {
         lambda: {
           arn: '<your-lambda-prod-arn>',
-          askProfile: '<your-ask-cli-prod-profile>'
-        }
+          askProfile: '<your-ask-cli-prod-profile>',
+        },
       },
       alexaSkill: {
         
       },
       googleAction: {
         dialogflow: {
-          endpoint: '<your-api-gateway-prod-link>'
-        }
-      }
-    }
-  }
+          endpoint: '<your-api-gateway-prod-link>',
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -167,45 +167,45 @@ You may also want to use different platform projects (e.g. Alexa Skill IDs and G
 {
 	// Other configurations
 
-  endpoint: 'https://webhook.jovo.cloud/<your-unique-id>',
+  endpoint: `${JOVO_WEBHOOK_URL}`,
   stages: {
     dev: {
       host: {
         lambda: {
           arn: '<your-lambda-dev-arn>',
-          askProfile: '<your-ask-cli-dev-profile>'
+          askProfile: '<your-ask-cli-dev-profile>',
         }
       },
       alexaSkill: {
-        skillId: '<your-dev-skill-id>'
+        skillId: '<your-dev-skill-id>',
       },
       googleAction: {
         dialogflow: {
           endpoint: '<your-api-gateway-dev-link>',
           projectId: '<your-dev-project-id>',
-          keyFile: '<path-to-dev-key-file>'
-        }
-      }
+          keyFile: '<path-to-dev-key-file>',
+        },
+      },
     },
     prod: {
       host: {
         lambda: {
           arn: '<your-lambda-prod-arn>',
-          askProfile: '<your-ask-cli-prod-profile>'
-        }
+          askProfile: '<your-ask-cli-prod-profile>',
+        },
       },
       alexaSkill: {
-        skillId: '<your-prod-skill-id>'
+        skillId: '<your-prod-skill-id>',
       },
       googleAction: {
         dialogflow: {
           endpoint: '<your-api-gateway-prod-link>',
           projectId: '<your-prod-project-id>',
-          keyFile: '<path-to-prod-key-file>'
-        }
-      }
-    }
-  }
+          keyFile: '<path-to-prod-key-file>',
+        },
+      },
+    },
+  },
 }
 ```
 
