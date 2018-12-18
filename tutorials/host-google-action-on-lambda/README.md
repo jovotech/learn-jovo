@@ -39,9 +39,18 @@ Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or cre
 
 ## Upload Your Code
 
-Now let's get to the fun part. You can either enter to code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function. To upload the code to Lambda, please make sure to zip the actual files inside the directory, **not** the HelloWorld folder itself: 
+Now let's get to the fun part. You can either enter to code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function. 
 
-![Select and zip all files in the folder](./img/aws_lambda_function_08.png)
+To create a zip file that is ready to upload, run the following command:
+
+```sh
+$ jovo deploy --target zip
+
+// Alternative
+$ npm run bundle
+```
+
+This will create an optimizeds `bundle.zip` file into your project directory, which includes all necessary dependencies.
 
  Let's go back to the AWS Developer Console and upload the zip: 
 
