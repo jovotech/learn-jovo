@@ -35,51 +35,79 @@ The Jovo [User Context](https://www.jovo.tech/framework/docs/data/user#context) 
 
 The pairs are stored inside an array, which has the most recent pair at index `0` and the least recent at index `size - 1`. For example, you can get the latest output speech using either `this.$user.context.prev[0].response.speech` or `this.$user.getPrevSpeech(0)`.
 
-By default, only the last interaction pair is stored in the database (which is enough for [implementing the repeat functionality](#implementing-the-repeat-functionality) below).
+By default, the Jovo Context feature isn't implemented. We are going to do this in the next step.
 
 ### Configuration
 
-You are also able to freely decide how many interaction pairs, as well as what exactly you want to save, by changing your application's configuration, `config.js`, which has the following default values:
+You can enable user context in your `config.js` file:
 
 ```javascript
+// config.js
+
 module.exports = {
     // Other configurations
-    userContext: {
-        enabled: false,
-        prev: {
-            size: 1,
-            request: {
-                intent: true,
-                state: true,
-                inputs: true,
-                timestamp: true,
-            },
-            response: {
-                speech: true,
-                reprompt: true,
-                state: true,
-            },
-        },
+    
+    user: {
+        context: true,
     },
 };
 ```
 
-The `size` value defines how many pairs are saved. To disable the storage of certain elements, simply change their value to `false`. Here's an example:
+By default, only the last interaction pair is stored in the database (which is enough for [implementing the repeat functionality](#implementing-the-repeat-functionality) below).
+
+You are also able to freely decide how many interaction pairs, as well as what exactly you want to save, by changing your application's configuration, `config.js`, which has the following default values:
 
 ```javascript
+// config.js
+
 module.exports = {
     // Other configurations
-    userContext: {
-        enabled: true,
-        prev: {
-            size: 3,
-            request: {
-                timestamp: false,
+    
+    user: {
+        context: {
+            enabled: false, // Set this to true
+            prev: {
+                size: 1,
+                request: {
+                    intent: true,
+                    state: true,
+                    inputs: true,
+                    timestamp: true,
+                },
+                response: {
+                    speech: true,
+                    reprompt: true,
+                    state: true,
+                },
             },
-            response: {
-                state: false,
+        }
+    },
+};
+```
+
+The `size` value defines how many pairs are saved. To disable the storage of certain elements, simply change their value to `false`.
+
+Here's an example:
+
+```javascript
+// config.js
+
+module.exports = {
+    // Other configurations
+    
+    user: {
+        context: {
+            enabled: true,
+            prev: {
+                size: 3,
+                request: {
+                    timestamp: false,
+                },
+                response: {
+                    state: false,
+                },
             },
-        },
+        }
     },
 };
 ```
@@ -105,10 +133,8 @@ $ jovo new RepeatTutorial
 # Option 2: Complete tutorial source code
 jovo new RepeatTutorial --template tutorials/repeat
 
-# Initialize platforms
+# Go into project directory
 $ cd RepeatTutorial
-$ jovo init alexaSkill
-$ jovo init googleAction
 ```
 
 ### Adding the RepeatIntent to your Language Model
@@ -201,9 +227,8 @@ RepeatIntent() {
 }
 ```
 
-Alright, that's pretty much it for the `RepeatIntent`. I will skip the testing part, since there is not much to say there.
+Alright, that's pretty much it for the `RepeatIntent`.
 
-Feel feel to play around with the other things the user context feature has to offer, as well as the [other features introduced with the update to V1.2](https://www.jovo.tech/blog/jovo-framework-v1-2/).
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
