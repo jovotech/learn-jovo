@@ -2,7 +2,7 @@
  
 In this tutorial, you will learn how to sell digital goods with your Alexa Skill by using [Alexa's in-skill purchasing (ISP)](https://developer.amazon.com/alexa-skills-kit/make-money/in-skill-purchasing) with Jovo.
 
-📋 You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
+> You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
 
 ### Contents
 
@@ -44,7 +44,7 @@ Before we can implement the interactions in our code base, we have to first crea
 
 To add items, we need the ASK CLI (version `1.4.3` or later). If you did not install or initialize the ASK CLI yet, check out this [quickstart guide](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html#step-2-install-and-initialize-ask-cli).
 
-To run the ASK CLI's commands we have to move from the projects root folder to the `alexaSkill` folder:
+To run the ASK CLI's commands we have to move from the project's root folder to the `alexaSkill` folder:
 
 ```text
 $ cd platforms/alexaSkill
@@ -224,13 +224,13 @@ First of all, we will add a custom slot type for our product names. The importan
 
 
 ```javascript
-// rest of the language model
+// Rest of the language model
 "alexa": {
     "interactionModel": {
         "languageModel": {
             "intents": [
                 /*
-                 * intents
+                 * Intents
                  */
             ],
             "types": [
@@ -261,13 +261,13 @@ First of all, we will add a custom slot type for our product names. The importan
 Next up the intents. Amazon provides sample intents for both buy and refund requests.:
 
 ```javascript
-// rest of the language model
+// Rest of the language model
 "alexa": {
     "interactionModel": {
         "languageModel": {
             "intents": [
                 /*
-                 * other intents
+                 * Other intents
                  */
                 {
                     "name": "RefundSkillItemIntent",
@@ -332,13 +332,13 @@ That's everything we need for our language model. We just have to run the `jovo 
 
 As we discussed earlier, our only task is to **start** the transaction, since Alexa will handle the transaction herself. After the transaction finished, we will receive a request notifying us about the outcome, i.e. the purchase was successful or not. Inside that request, there will also be a `token`, which we can define while starting the transaction, to help us resume the Skill at the place the user left off.
 
-To access the Alexa ISP API in Jovo we use `this.$alexaSkill.inSkillPurchase()`.
+To access the Alexa ISP API in Jovo we use `this.$alexaSkill.$inSkillPurchase`.
 
 Before we start any kind of transaction or refund process, we always retrieve the product first:
 
 ```javascript
 this.$alexaSkill
-    .inSkillPurchase()
+    .$inSkillPurchase
     .getProductByReferenceName(productReferenceName, (error, product) => {
 
     });
@@ -363,7 +363,7 @@ Using that data we can check if the user already owns the product:
 
 ```javascript
 this.$alexaSkill
-    .inSkillPurchase()
+    .$inSkillPurchase
     .getProductByReferenceName(productReferenceName, (error, product) => {
         if (error) {
             console.log(error);
@@ -402,7 +402,7 @@ Alright, now that we discussed all that, we can start the transaction using the 
 UpsellIntent() {
     let productReferenceName = 'frozen_sword';
     this.$alexaSkill
-    .inSkillPurchase()
+    .$inSkillPurchase
     .getProductByReferenceName(productReferenceName, (error, product) => {
         if (error) {
             console.log(error);
@@ -413,7 +413,7 @@ UpsellIntent() {
         } else {
             let prompt = 'The frozen sword will help you on your journey. Are you interested?';
             let token = 'testToken';
-            this.$alexaSkill.inSkillPurchase().upsell(product.productId, prompt, token);
+            this.$alexaSkill.$inSkillPurchase.upsell(product.productId, prompt, token);
         }
     });
 },
@@ -442,7 +442,7 @@ BuySkillItemIntent() {
     }
     let productReferenceName = productName.id;
     this.$alexaSkill
-        .inSkillPurchase()
+        .$inSkillPurchase
         .getProductByReferenceName(productReferenceName, (error, product) => {
             if (error) {
                 console.log(error);
@@ -452,7 +452,7 @@ BuySkillItemIntent() {
                 return;
             }
             let token = 'testToken';
-            this.$alexaSkill.inSkillPurchase().buy(product.productId, token);
+            this.$alexaSkill.$inSkillPurchase.buy(product.productId, token);
         });
 },
 ```
@@ -465,7 +465,7 @@ Next, the `RefundSkillItemIntent`. Same procedure, get the input's id, use it to
 RefundSkillItemIntent() {
     let productReferenceName = this.$inputs.productName.id;
     this.$alexaSkill
-        .inSkillPurchase()
+        .$inSkillPurchase
         .getProductByReferenceName(productReferenceName, (error, product) => {
             if (error) {
                 console.log(error);
@@ -475,7 +475,7 @@ RefundSkillItemIntent() {
                 this.tell('You have not bought this item yet.');
             }
             let token = 'testToken';
-            this.$alexaSkill.inSkillPurchase().cancel(product.productId, token);
+            this.$alexaSkill.$inSkillPurchase.cancel(product.productId, token);
         });
 },
 ```
@@ -517,8 +517,8 @@ The incoming request will be mapped to the Jovo built-in `ON_PURCHASE` intent, w
 ```javascript
 ON_PURCHASE() {
     const name = this.$request.name;
-    const productId = this.$alexaSkill.inSkillPurchase().getProductId();
-    const purchaseResult = this.$alexaSkill.inSkillPurchase().getPurchaseResult();
+    const productId = this.$alexaSkill.$inSkillPurchase.getProductId();
+    const purchaseResult = this.$alexaSkill.$inSkillPurchase.getPurchaseResult();
     const token = this.$request.token;
 
     if (purchaseResult === 'ACCEPTED') {
