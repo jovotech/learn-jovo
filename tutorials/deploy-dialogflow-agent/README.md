@@ -48,19 +48,25 @@ That's it! Now we need to set up the authentication to be able to access the Dia
 
 After saving the changes (Dialogflow v2 API), you will find a service account right beneath the project ID: 
 
-![](./img/dialogflow_agent_service_account.png)
+![Dialogflow Service Account](./img/dialogflow_agent_service_account.png)
 
 ### Step 2.1: Creating a new Service Account
 
-It will lead you to the Google Cloud Platform, where we will create a new service account using the button at the top of the page:
+It will lead us to the Google Cloud Platform, where we will create a new service account using the button at the top of the page:
 
-![](./img/google_cloud_platform_IAM_landing.png)
+![Google Cloud IAM](./img/google_cloud_platform_IAM_landing.png)
 
-Add the **Dialogflow API Admin** role and furnish a new private key:
+![Google Cloud IAM New Account](img/google_cloud_platform_IAM_newAccount.png)
 
-![](./img/google_cloud_platform_IAM_newAccount.png)
+We select `Dialogflow API Admin` as the role:
 
-Make sure to download the key and remember where it's stored, as you can only download it once.
+![Google Cloud IAM Role](img/google_cloud_platform_IAM_role.png)
+
+After that we create a new `JSON` key:
+
+![Google Cloud IAM Key](img/google_cloud_platform_IAM_key.png)
+
+Last but not least move the key file to our project's root folder.
 
 ### Step 2.2: Activating the Account with the Cloud SDK
 
@@ -73,15 +79,21 @@ Install the SDK and initialize it using the [quickstart guide](https://cloud.goo
 ## Step 3: Deploying your Agent with the Jovo CLI
 
 
-After that add both the `projectId` of your Dialogflow agent and the path to the `keyFile` to your project's `app.json`:
+After that add both the `projectId` of your Dialogflow agent and the path to the `keyFile` to your project's `project.js` file:
 
 ```js
-"googleAction": {
-  "dialogflow": {
-    "projectId": "<your-project-id>",
-    "keyFile": "<path-to-key-file>"
-    }
-}
+// project.js
+
+module.exports = {
+    googleAction: {
+      nlu: 'dialogflow',
+      dialogflow: {
+        projectId: '<your-project-id>',
+        keyFile: './path/to/key-file'
+      }
+    },
+    // Other configurations
+};
 ```
 
 Now run the build and deploy command and your agent will be updated:

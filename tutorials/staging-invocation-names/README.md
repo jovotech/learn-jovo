@@ -13,7 +13,7 @@ Watch the video here:
 
 ## Introduction
 
-Jovo allows you to deploy your Alexa Skills and Google Actions to different environments, for example `local` (for local development), `dev`, and `prod` (both hosted on AWS Lambda). To learn more about the essentials of different stages, take a look at [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json'), [Advanced Features > Staging](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/07_advanced#staging 'docs/advanced#staging'), and the [Staging Examples](./staging-examples.md './staging-examples') in the Jovo Knowledge Base.
+Jovo allows you to deploy your Alexa Skills and Google Actions to different environments, for example `local` (for local development), `dev`, and `prod` (both hosted on AWS Lambda). To learn more about the essentials of different stages, take a look at [Configuration > project.js](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/configuration/project-js.md#stages 'docs/configuration/project-js#stages'), and the [Staging Examples](./staging-examples.md './staging-examples') in the Jovo Knowledge Base.
 
 If you have different stages, it's sometimes difficult to figure out which version of your voice app you're currently talking to. This is why Jovo offers a way for you to override the invocation name of your Alexa Skills (unfortunately, Dialogflow does not offer this functionality yet).
 
@@ -23,41 +23,41 @@ If you have different stages, it's sometimes difficult to figure out which versi
 You can change the invocation name by adding the following to any of your stages:
 
 ```javascript
-"languageModel": {
-          "en-US": {
-            "invocation": "my test app dev"
-          }
-        }
+languageModel: {
+  'en-US': {
+    invocation: 'my test app dev',
+  }
+}
 ```
+
 In the below example, we change the invocation name for both the `local` and `dev` stage and keep it how it is defined in the `en-US.json` for the `prod` stage:
 
 ```javascript
-{
+module.exports = {
 	// Other configurations
-
-  "stages": {
-    "local": {
-      "endpoint": "${JOVO_WEBHOOK_URL}"
-      "languageModel": {
-          "en-US": {
-            "invocation": "my test app local"
-          }
-        }
+  stages: {
+    local: {
+      endpoint: `${JOVO_WEBHOOK_URL}`,
+      languageModel: {
+          'en-US': {
+            invocation: 'my test app local',
+          },
+        },
     },
-    "dev": {
+    dev: {
       {
-        "endpoint": "<your-lambda-dev-arn>"
-        "languageModel": {
-          "en-US": {
-            "invocation": "my test app dev"
-          }
-        }
-      }
+        endpoint: '<your-lambda-dev-arn>',
+        languageModel: {
+          'en-US': {
+            invocation: 'my test app dev',
+          },
+        },
+      },
     },
-    "prod": {
-      "endpoint": "<your-lambda-prod-arn>"
-    }
-  }
+    prod: {
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -85,7 +85,7 @@ $ jovo deploy --stage dev
 $ jovo deploy -p alexaSkill --stage dev
 ```
 
-*NOTE*: You don't necessarily need to specify `stage` in `jovo deploy`, if you don't use specific deployment information in your `app.json` (like a specific `askProfile` or a different `skillID`). But as you probably do, we recommend specifying the stage parameter.
+*NOTE*: You don't necessarily need to specify `stage` in `jovo deploy`, if you don't use specific deployment information in your `project.js` (like a specific `askProfile` or a different `skillID`). But as you probably do, we recommend specifying the stage parameter.
 
 You can also use the following shortcut for both:
 
@@ -99,28 +99,32 @@ $ jovo build -p alexaSkill --stage dev --deploy
 
 ## Additional Options
 
-You can find additional options to add to the language model in [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json').
+You can find additional options to add to the language model here: [`project.js` Documentation](https://www.jovo.tech/docs/project-js).
 
 For example, you can also add specific intents for certain stages:
 
 ```javascript
-"stages": {
-	"dev": {
-		"languageModel": {
-			"en-US": {
-				"intents": [
-          {
-            "name": "WhatEnvIntent",
-            "samples": [
-              "what is the stage",
-              "what is the environment"
-            ]
-          }
-        ]
-			}
-		}
-	}
-},
+// project.js
+
+module.exports = {
+  stages: {
+    dev: {
+      languageModel: {
+        'en-US': {
+          intents: [
+            {
+              name: 'WhatEnvIntent',
+              samples: [
+                'what is the stage',
+                'what is the environment',
+              ],
+            },
+          ],
+        },
+      },
+    },
+  },
+}
 ```
 
 

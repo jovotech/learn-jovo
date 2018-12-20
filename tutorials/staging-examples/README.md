@@ -1,30 +1,30 @@
 # Staging Examples
 
-This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [App Configuration > app.json](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/03_app-configuration/app-json.md 'docs/app-json') and [Advanced Features > Staging](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/07_advanced#staging 'docs/advanced#staging').
+This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [project.js Staging](https://www.jovo.tech/docs/project-js#stages) and [config.js Staging](https://www.jovo.tech/docs/config-js#staging)
 
-* [Basic setup](#basic-setup)
-* [Different endpoints](#different-endpoints)
-* [Different platform projects](#different-platform-projects)
+* [Basic Setup](#basic-setup)
+* [Different Endpoints](#different-endpoints)
+* [Different Platform Projects](#different-platform-projects)
 
 ## Basic Setup
 
-This is how your `app.json` could look like with three stages `local`, `dev`, and `prod` that use different endpoints (the Jovo webhook for local development and AWS Lambda for testing and production):
+This is how your `project.js` could look like with three stages `local`, `dev`, and `prod` that use different endpoints (the Jovo webhook for local development and AWS Lambda for testing and production):
 
 ```javascript
 {
 	// Other configurations
 
-  "stages": {
-    "local": {
-      "endpoint": "https://webhook.jovo.cloud/<your-unique-id>"
+  stages: {
+    local: {
+      endpoint: `${JOVO_WEBHOOK_URL}`,
     },
-    "dev": {
-      "endpoint": "<your-lambda-dev-arn>"
+    dev: {
+      endpoint: '<your-lambda-dev-arn>',
     },
-    "prod": {
-      "endpoint": "<your-lambda-prod-arn>"
-    }
-  }
+    prod: {
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -39,18 +39,18 @@ You can add a `defaultStage` like this:
 {
 	// Other configurations
 
-  "defaultStage": "local",
-  "stages": {
-    "local": {
-      "endpoint": "https://webhook.jovo.cloud/<your-unique-id>"
+  defaultStage: 'local',
+  stages: {
+    local: {
+      endpoint: `${JOVO_WEBHOOK_URL}`,
     },
-    "dev": {
-      "endpoint": "<your-lambda-dev-arn>"
+    dev: {
+      endpoint: '<your-lambda-dev-arn>',
     },
-    "prod": {
-      "endpoint": "<your-lambda-prod-arn>"
-    }
-  }
+    prod: {
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -60,15 +60,15 @@ As the content inside the active stage is just merged into the other "stage-less
 {
 	// Other configurations
 
-  "endpoint": "https://webhook.jovo.cloud/<your-unique-id>",
-  "stages": {
-    "dev": {
-      "endpoint": "<your-lambda-dev-arn>"
+  endpoint: `${JOVO_WEBHOOK_URL}`,
+  stages: {
+    dev: {
+      endpoint: '<your-lambda-dev-arn>',
     },
-    "prod": {
-      "endpoint": "<your-lambda-prod-arn>"
-    }
-  }
+    prod: {
+      endpoint: '<your-lambda-prod-arn>',
+    },
+  },
 }
 ```
 
@@ -88,29 +88,29 @@ Here's how you can do it with a basic setup:
 {
 	// Other configurations
 
-  "endpoint": "https://webhook.jovo.cloud/<your-unique-id>",
-  "stages": {
-    "dev": {
-      "alexaSkill": {
-        "endpoint": "<your-lambda-dev-arn>"
+  endpoint: `${JOVO_WEBHOOK_URL}`,
+  stages: {
+    dev: {
+      alexaSkill: {
+        endpoint: '<your-lambda-dev-arn>',
       },
-      "googleAction": {
-        "dialogflow": {
-          "endpoint": "<your-api-gateway-dev-link>"
-        }
-      }
+      googleAction: {
+        dialogflow: {
+          endpoint: '<your-api-gateway-dev-link>',
+        },
+      },
     },
-    "prod": {
-      "alexaSkill": {
-        "endpoint": "<your-lambda-prod-arn>"
+    prod: {
+      alexaSkill: {
+        endpoint: '<your-lambda-prod-arn>',
       },
-      "googleAction": {
-        "dialogflow": {
-          "endpoint": "<your-api-gateway-prod-link>"
-        }
-      }
-    }
-  }
+      googleAction: {
+        dialogflow: {
+          endpoint: '<your-api-gateway-prod-link>',
+        },
+      },
+    },
+  },
 }
 ```
 As the Jovo CLI uses ASK CLI to deploy to Lambda, it is sufficient for deployment if only the Alexa `endpoint` references the Lambda function, because this is the one passed to ASK CLI. For a little more structure, however, you can also use the newly introduced `host` object and define which `askProfile` to use to deploy it:
@@ -119,41 +119,41 @@ As the Jovo CLI uses ASK CLI to deploy to Lambda, it is sufficient for deploymen
 {
 	// Other configurations
 
-  "endpoint": "https://webhook.jovo.cloud/<your-unique-id>",
-  "stages": {
-    "dev": {
-      "host": {
-        "lambda": {
-          "arn": "<your-lambda-dev-arn>",
-          "askProfile": "<your-ask-cli-dev-profile>"
-        }
+  endpoint: `${JOVO_WEBHOOK_URL}`,
+  stages: {
+    dev: {
+      host: {
+        lambda: {
+          arn: '<your-lambda-dev-arn>',
+          askProfile: '<your-ask-cli-dev-profile>',
+        },
       },
-      "alexaSkill": {
+      alexaSkill: {
         
       },
-      "googleAction": {
-        "dialogflow": {
-          "endpoint": "<your-api-gateway-dev-link>"
-        }
-      }
+      googleAction: {
+        dialogflow: {
+          endpoint: '<your-api-gateway-dev-link>',
+        },
+      },
     },
-    "prod": {
-      "host": {
-        "lambda": {
-          "arn": "<your-lambda-prod-arn>",
-          "askProfile": "<your-ask-cli-prod-profile>"
-        }
+    prod: {
+      host: {
+        lambda: {
+          arn: '<your-lambda-prod-arn>',
+          askProfile: '<your-ask-cli-prod-profile>',
+        },
       },
-      "alexaSkill": {
+      alexaSkill: {
         
       },
-      "googleAction": {
-        "dialogflow": {
-          "endpoint": "<your-api-gateway-prod-link>"
-        }
-      }
-    }
-  }
+      googleAction: {
+        dialogflow: {
+          endpoint: '<your-api-gateway-prod-link>',
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -167,45 +167,45 @@ You may also want to use different platform projects (e.g. Alexa Skill IDs and G
 {
 	// Other configurations
 
-  "endpoint": "https://webhook.jovo.cloud/<your-unique-id>",
-  "stages": {
-    "dev": {
-      "host": {
-        "lambda": {
-          "arn": "<your-lambda-dev-arn>",
-          "askProfile": "<your-ask-cli-dev-profile>"
+  endpoint: `${JOVO_WEBHOOK_URL}`,
+  stages: {
+    dev: {
+      host: {
+        lambda: {
+          arn: '<your-lambda-dev-arn>',
+          askProfile: '<your-ask-cli-dev-profile>',
         }
       },
-      "alexaSkill": {
-        "skillId": "<your-dev-skill-id>"
+      alexaSkill: {
+        skillId: '<your-dev-skill-id>',
       },
-      "googleAction": {
-        "dialogflow": {
-          "endpoint": "<your-api-gateway-dev-link>",
-          "projectId": "<your-dev-project-id>",
-          "keyFile": "<path-to-dev-key-file>"
-        }
-      }
+      googleAction: {
+        dialogflow: {
+          endpoint: '<your-api-gateway-dev-link>',
+          projectId: '<your-dev-project-id>',
+          keyFile: '<path-to-dev-key-file>',
+        },
+      },
     },
-    "prod": {
-      "host": {
-        "lambda": {
-          "arn": "<your-lambda-prod-arn>",
-          "askProfile": "<your-ask-cli-prod-profile>"
-        }
+    prod: {
+      host: {
+        lambda: {
+          arn: '<your-lambda-prod-arn>',
+          askProfile: '<your-ask-cli-prod-profile>',
+        },
       },
-      "alexaSkill": {
-        "skillId": "<your-prod-skill-id>"
+      alexaSkill: {
+        skillId: '<your-prod-skill-id>',
       },
-      "googleAction": {
-        "dialogflow": {
-          "endpoint": "<your-api-gateway-prod-link>",
-          "projectId": "<your-prod-project-id>",
-          "keyFile": "<path-to-prod-key-file>"
-        }
-      }
-    }
-  }
+      googleAction: {
+        dialogflow: {
+          endpoint: '<your-api-gateway-prod-link>',
+          projectId: '<your-prod-project-id>',
+          keyFile: '<path-to-prod-key-file>',
+        },
+      },
+    },
+  },
 }
 ```
 

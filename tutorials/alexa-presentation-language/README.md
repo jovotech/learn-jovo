@@ -48,15 +48,15 @@ You can either do this in the "Interfaces" tab in the Alexa Developer console:
 
 ![Enable the APL Interface in the Developer Console](./img/apl-interface-alexa-console.jpg "Alexa Presentation Language in the Developer Console")
 
-Or you can deploy with the Jovo CLI. The Jovo APL template has the right configurations for the interface in its [app.json](https://github.com/jovotech/jovo-templates/blob/master/alexa/apl/app.json):
+Or you can deploy with the Jovo CLI. The Jovo APL template has the right configurations for the interface in its [project.js](https://github.com/jovotech/jovo-templates/blob/master/alexa/apl/project.js):
 
-```
-"manifest": {
-    "apis": {
-        "custom": {
-            "interfaces": [
+```javascript
+manifest: {
+    apis: {
+        custom: {
+            interfaces: [
                 {
-                    "type": "ALEXA_PRESENTATION_APL"
+                    type: 'ALEXA_PRESENTATION_APL'
                 }
             ]
         }
@@ -80,7 +80,7 @@ To use APL templates, you need to add an additional directive called `Alexa.Pres
 For this, you can use the `addDirective` method and add the following elements:
 
 ```javascript
-this.alexaSkill().addDirective({
+this.$alexaSkill.addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         version: '1.0',
         document: {},
@@ -93,7 +93,7 @@ We will talk a little bit more about the `document` and `datasources` elements i
 For example, the Jovo APL template uses the main layout by Amazon as a `main.json` file in a dedicated `apl` folder:
 
 ```javascript
-this.alexaSkill().addDirective({
+this.$alexaSkill.addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         version: '1.0',
         document: require(`./apl/main.json`),
@@ -103,7 +103,7 @@ this.alexaSkill().addDirective({
 
 For example, this `main.json` file looks like this:
 
-```
+```javascript
 {
     "type": "APL",
     "version": "1.0",
@@ -154,11 +154,11 @@ By clicking on the upper right "Export Code" button, we can download a JSON call
 In the Jovo APL template, we split up these elements and put them into different folders, so you can see how the display templates differ from each other.
 
 ```javascript
-'ShowTemplateIntent': function() {
-    let template = this.getInput('template');
+ShowTemplateIntent() {
+    let template = this.$inputs.template;
 
     // Retrieve document and data from folder
-    this.alexaSkill().addDirective({
+    this.$alexaSkill.addDirective({
             type: 'Alexa.Presentation.APL.RenderDocument',
             version: '1.0',
             document: require(`./apl/${template.id}/document.json`),

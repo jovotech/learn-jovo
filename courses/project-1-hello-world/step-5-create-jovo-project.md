@@ -82,7 +82,7 @@ Success!
 
 ## Understanding the Jovo App Logic
 
-Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/configuration#jovo-app-structure)) looks like this:
+Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/configuration/project-structure 'docs/configuration/project-structure')) looks like this:
 
 ![](./img/folder-structure-simple.png)
 
@@ -90,23 +90,23 @@ Let's take a look at the lower part first: The handler is where you will spend m
 
 ```javascript
 app.setHandler({
-    'LAUNCH': function() {
+    LAUNCH() {
         this.toIntent('HelloWorldIntent');
     },
 
-    'HelloWorldIntent': function() {
-        this.ask('Hello World! What\\'s your name?', 'Please tell me your name.');
+    HelloWorldIntent() {
+        this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
     },
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name.value + ', nice to meet you!');
+    MyNameIsIntent() {
+        this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 });
 ```
 
 What's happening here?
 
-When your app is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing#launch-intent) intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#tointent) call to switch to the HelloWorldIntent. Here, the ask method is called to ask for the user's name. After they answer, the MyNameIsIntent gets triggered, which greets them with their name.
+When your app is opened, it triggers the [LAUNCH](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/routing/intents.md#launch-intent 'docs/basic-concepts/routing/intents#launch-intent) intent, which contains a [toIntent](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/routing#tointent 'docs/basic-concepts/routing#tointent') call to switch to the HelloWorldIntent. Here, the ask method is called to ask for the user's name. After they answer, the MyNameIsIntent gets triggered, which greets them with their name.
 
 ## Next Steps
 

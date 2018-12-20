@@ -9,7 +9,7 @@ By default, Google Assistant immediately exits the app when a user says things l
 
 ## Introduction
 
-Jovo comes with a default `'END'` handler that lets you clean up some data and send a final response after a person wants to exit your voice app. For Alexa Skills, the `AMAZON.StopIntent` and `SessionEnded` requests are mapped to `END` by default. Learn more here: [Routing > 'END' Intent](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/04_app-logic/01_routing#end-intent 'docs/routing#end-intent')).
+Jovo comes with a default `'END'` handler that lets you clean up some data and send a final response after a person wants to exit your voice app. For Alexa Skills, the `AMAZON.StopIntent` and `SessionEnded` requests are mapped to `END` by default. Learn more here: [Routing > 'END' Intent](https://www.jovo.tech/docs/routing/intents#end).
 
 Google Assistant, however, doesn't offer this behavior by default, but rather exits the conversation by just playing an earcon. Read more here: [Actions on Google Documentation > Conversation Exits](https://developers.google.com/actions/assistant/conversation-exits).
 

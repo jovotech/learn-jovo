@@ -10,11 +10,11 @@ Or download it using the Jovo CLI:
 $ jovo new --template tutorials/plugin
 ```
 
-### Contents
-
 - [Introduction to Jovo Plugins](#introduction-to-jovo-plugins)
 - [How Jovo Plugins Work](#how-jovo-plugins-work)
 - [Creating a Custom Logger](#creating-a-custom-logger)
+
+> Note: This example uses Jovo `v1`. [Learn more about Jovo `v2` here](https://www.jovo.tech/docs/installation/v1-migration).
 
 ## Introduction to Jovo Plugins
 

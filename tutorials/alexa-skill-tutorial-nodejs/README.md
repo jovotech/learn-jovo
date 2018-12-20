@@ -1,10 +1,6 @@
 # Build an Alexa Skill in Node.js with Jovo
 
-In this Alexa Skill tutorial for beginners, you will learn how to build a project for the popular voice platform from scratch. We will cover the essentials of building an app for Alexa, how to set everything up on the Amazon Developer Portal, and how to use [Jovo](https://www.jovo.tech/framework) to build your Skill's logic. 
-
-See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/)
-
-### What you'll learn
+In this Alexa Skill tutorial for beginners, you will learn how to build a project for the popular voice platform from scratch. We will cover the essentials of building an app for Alexa, how to set everything up on the Amazon Developer Portal, and how to use [Jovo](https://www.jovo.tech) to build your Skill's logic. 
 
 - [How Alexa Skills Work](#how-alexa-skills-work)
 - [Create a Skill on the Amazon Developer Portal](#create-a-skill-on-the-amazon-developer-portal)
@@ -13,6 +9,8 @@ See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blo
 - [App Configuration: Where to Run Your Code](vapp-configuration-where-to-run-your-code)
 - [Hello World](#hello-world)
 - [Next Steps](#next-steps)
+
+> See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/)
 
 ### What We're Building
 
@@ -189,33 +187,13 @@ We're going to use our [Jovo Framework](https://www.jovo.tech/framework/) which 
 The Jovo Command Line Tools ([see the GitHub repository](https://github.com/jovotech/jovo-cli)) offer a great starting point for your voice application, as it makes it easy to create new projects from templates.
 
 ```sh
-$ npm install -g
+$ npm install -g jovo-cli
 ```
 
-This should be downloaded and installed now ([see our documentation for more information like technical requirements](https://www.jovo.tech/docs/getting-started#technical-requirements)). After the installation, you can test if everything worked with the following command:
+This should be downloaded and installed now ([see our documentation for more information like technical requirements](https://www.jovo.tech/docs/installation)). After the installation, you can test if everything worked with the following command, which should return the current version of the CLI:
 
 ```sh
-$ jovo
-```
-
-This should look like this:
-
-```sh
-  Commands:
-
-    help [command...]             Provides help for a given command.
-    exit                         Exits application.
-    new [options] [directory]      Create a new Jovo project
-    init [options] [platform]      Initializes platform-specific projects in
-                                 app.json.
-    build [options]               Build platform-specific language models
-                                 based on jovo models folder.
-    deploy [options]              Deploys the project to the voice
-                                 platform.
-    get [options]      		 	  Downloads an existing platform project
-                                 into the platforms folder.
-    run [options]   		 	  Runs a local development server
-                                 (webhook).
+$ jovo -v
 ```
 
 ### Create a new Project
@@ -229,7 +207,7 @@ $ jovo new HelloWorld
 ```text
   I'm setting everything up
 
-   V Creating new directory /myGoogleAction
+   V Creating new directory /HelloWorld
    V Downloading and extracting template helloworld
    V Installing npm dependencies
 
@@ -242,7 +220,7 @@ Let's take a look at the code provided by the sample application. This is what t
 
 ![](./img/folder-structure-simple.png)
 
-For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/app/app.js) file. This is where all the configurations and app logic will happen. Learn more about the [App Architecture here](https://www.jovo.tech/docs/configuration#jovo-app-structure).
+For now, you only have to touch the `app.js` file in the `src` folder. This is where all the configurations and app logic will happen. Learn more about the [Jovo Project Structure here](https://www.jovo.tech/docs/project-structure).
 
 Let's take a look at the App Logic first:
 
@@ -252,23 +230,23 @@ The setHandler method is where you will spend most of your time when you're buil
 
 ```javascript
 app.setHandler({
- 'LAUNCH': function() {
- this.toIntent('HelloWorldIntent');
+ LAUNCH() {
+  this.toIntent('HelloWorldIntent');
  },
 
- 'HelloWorldIntent': function() {
- this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
+ HelloWorldIntent() {
+  this.ask('Hello World! What\'s your name?', 'Please tell me your name.');
  },
 
- 'MyNameIsIntent': function(name) {
- this.tell('Hey ' + name.value + ', nice to meet you!');
+ MyNameIsIntent() {
+  this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
  },
 });
 ```
 
-What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing#launch-intent)-intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#tointent-tostateintent) call to switch to the HelloWorldIntent. The [ask](https://www.jovo.tech/sdocs/output#tell) method is used to ask a user for a name.
+What's happening here? When your skill is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing/intents#launch)-intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#intent-redirects) call to switch to the `HelloWorldIntent`. The [ask](https://www.jovo.tech/docs/output#ask) method is used to ask a user for a name.
 
-If a user responds with a name, the MyNameIsIntent is triggered. Here, the [tell](https://www.jovo.tech/docs/output#tell) method is called to respond to your users with a "Nice to meet you!"
+If a user responds with a name, the `MyNameIsIntent` is triggered. Here, the [tell](https://www.jovo.tech/docs/output#tell) method is called to respond to your users with a "Nice to meet you!"
 
 ## App Configuration: Where to Run Your Code
 
@@ -302,7 +280,7 @@ Local development server listening on port 3000.
 This is your webhook url: https://webhook.jovo.cloud/[your-id]
 ```
 
-As you can see above, Jovo is automatically creating a link to your local server: the [Jovo Webhook](https://www.jovo.tech/docs/server/webhook#jovo-webhook). Paste the link into the field of the Amazon Developer Console and choose the second option for the SSL Certificate (the link Jovo webhook provides you is a secure subdomain):
+As you can see above, Jovo is automatically creating a link to your local server: the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook). Paste the link into the field of the Amazon Developer Console and choose the second option for the SSL Certificate (the link Jovo webhook provides you is a secure subdomain):
 
 ![](./img/jovo-webhook.jpg)
 
@@ -346,9 +324,16 @@ You can enable skill ID verification, if you want, but it's not neccessary.
 
 Now let's get to the fun part. You can either enter to code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function.
 
-To upload the code to Lambda, please make sure to zip the actual files inside the directory, **not** the HelloWorld folder itself:
+To create a zip file that is ready to upload, run the following command:
 
-![](./img/aws_lambda_function_08.png)
+```sh
+$ jovo deploy --target zip
+
+// Alternative
+$ npm run bundle
+```
+
+This will create an optimizeds `bundle.zip` file into your project directory, which includes all necessary dependencies.
 
 Let's go back to the AWS Developer Console and upload the zip:
 

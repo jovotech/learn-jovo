@@ -8,9 +8,11 @@ This time we will show you how to use Alexa **Login with Amazon** account linkin
   - [Enabling Account Linking in the Alexa Developer Console](#enabling-account-linking-in-the-alexa-developer-console)
   - [The Code](#the-code)
 
-Watch the video: https://www.youtube.com/watch?v=jBaM7HqPA7Q&feature=youtu.be
+Watch the video: 
 
-👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
+[![Video: Use Alexa Login with Amazon Account Linking](./img/video-login-with-amazon.jpg "youtube-video")](https://www.youtube.com/watch?v=jBaM7HqPA7Q)
+
+> Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
 
 
 ## Introduction
@@ -23,7 +25,7 @@ Account Linking is the process of connecting user accounts between your Alexa Sk
 
 ![](./img/alexa-account-linking.png)
 
-However, setting up account linking for Alexa can be quite difficult, as you have to follow certain guidelines and set up your own oAuth 2.0 provider (read a [tutorial about Alexa Account Linking with Auth0 here](https://www.jovo.tech/blog/alexa-account-linking-auth0/)).
+However, setting up account linking for Alexa can be quite difficult, as you have to follow certain guidelines and set up your own oAuth 2.0 provider (read a [tutorial about Alexa Account Linking with Auth0 here](https://www.jovo.tech/tutorials/alexa-account-linking-auth0/)).
 
 Fortunately, if you just want to get your user's email address and some other basic information, there is a simple way to do so without having to deal with all the complexities of account linking: **Login with Amazon**. In this tutorial, we're going to show you how it works.
 
@@ -85,7 +87,7 @@ The first thing you should know is that there will be an access token sent with 
 In Jovo you can do it the following way:
 
 ```javascript
-this.getAccessToken()
+this.$request.getAccessToken()
 ```
 
 The method will either return the access token or `undefined`.
@@ -93,57 +95,52 @@ The method will either return the access token or `undefined`.
 To prompt the user to link their account, you just add an **Account Linking Card** to your response object:
 
 ```javascript
-this.alexaSkill().showAccountLinkingCard();
+this.$alexaSkill.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. I recommend the `request` package since it is the simplest solution. You can install it with npm:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
 
 ```sh
-$ npm install --save request
+$ npm install --save request request-promise
 ```
 
 After that import it in your `app.js` file:
 
 ```javascript
-const request = require('request');
+const rp = require('request-promise');
 ```
 
-here's how the API call might look like:
+Here's how the API call might look like:
 
 ```javascript
-let url = 'https://api.amazon.com/user/profile?access_token=' + this.getAccessToken();
+let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
 
-// API request using the url we created earlier
-request(url,(error, response, body) => {
-    if (!error && response.statusCode === 200){
-                  
-        let data = JSON.parse(body); //Store the data we got from the API request
-        /*
-        * Depending on your scope you have access to the following data:
-        * data.user_id : "amzn1.account.XXXXYYYYZZZ"
-        * data.email : "email@jovo.tech"
-        * data.name : "Kaan Kilic"
-        * data.postal_code : "12345"
-        */
-        this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
-    }
-})
+await rp(url).then((body) => {
+    let data = JSON.parse(body);
+    /*
+    * Depending on your scope you have access to the following data:
+    * data.user_id : "amzn1.account.XXXXYYYYZZZ"
+    * data.email : "email@jovo.tech"
+    * data.name : "Kaan Kilic"
+    * data.postal_code : "12345"
+    */
+    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+});
 ```
 
 At the end, your code should look like this:
 
 ```javascript
-if (!this.getAccessToken()) {
-    this.alexaSkill().showAccountLinkingCard();
-    this.tell('Please your link your Account');
-}
-else {
-    let url = 'https://api.amazon.com/user/profile?access_token=' + this.getAccessToken();
-    request(url, (error, response, body) => {
-        if (!error && response.statusCode === 200){
-                      
-            let data = JSON.parse(body); // Store the data we got from the API request
+async LAUNCH() {
+    if (!this.$request.getAccessToken()) {
+        this.$alexaSkill.showAccountLinkingCard();
+        this.tell('Please link you Account');
+    } else {
+        let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
+
+        await rp(url).then((body) => {
+            let data = JSON.parse(body);
             /*
             * Depending on your scope you have access to the following data:
             * data.user_id : "amzn1.account.XXXXYYYYZZZ"
@@ -152,9 +149,9 @@ else {
             * data.postal_code : "12345"
             */
             this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
-        }
-    })
-}
+        });
+    }
+},
 ```
 
 That's it, you made it to the end!

@@ -2,7 +2,6 @@
 
 In this guide, we will show you how to set up **Account Linking for your Google Assistant App** with the help of [Auth0](https://auth0.com/), a service for developers to authorize and authenticate users. You won't have to run your own OAuth 2.0 server and deal with security issues. Let's walk through the process of Google Action Account Linking together in simple steps.
 
-### Contents
 - [Introduction](#introduction)
 - [Requirements to use Account Linking with Google Actions](#requirements-to-use-account-linking-with-google-actions)
 - [How OAuth2 Works](#how-oauth2-works)
@@ -16,7 +15,7 @@ In this guide, we will show you how to set up **Account Linking for your Google 
     - [Google Actions Console](#google-actions-console)
 - [3. Add Account linking to your code](#3-add-account-linking-to-your-code)
 
-👉 Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
+> Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/tutorials/alexa-account-linking-auth0/).   
 
 
 ## Introduction
@@ -180,14 +179,14 @@ That's it! The last thing we want to show you is how to access the stored user d
 
 ### 3. Add Account linking to your code
 
-👉 Just getting started with Google Action development? Take a look here: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/).
+> Just getting started with Google Action development? Take a look here: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/tutorials/google-action-tutorial-nodejs/).
 
 First of all you have to know that your Action will get an **access token** added to the request, if your user has linked their account. So by checking if there is an access token, you will know if the user has already linked their account or not.
 
 In Jovo you check for access token like this:
 
 ```javascript
-this.getAccessToken()
+this.$request.getAccessToken()
 ```
 
 It will either return the access token or `undefined`.
@@ -195,8 +194,8 @@ It will either return the access token or `undefined`.
 So the following code will check if there's an access token and if that's not the case it will prompt your user to sign in:
 
 ```javascript
-if (!this.getAccessToken()){
-    this.googleAction().showAccountLinkingCard();
+if (!this.$request.getAccessToken()){
+    this.showAccountLinkingCard();
 }
 ```
 
@@ -208,36 +207,36 @@ And that's how the sign in page will look like:
 
 ![](./img/auth0Setup_10.png)
 
-After the user completed the sign in, your Action will get another request, which will be mapped to the Jovo built-in intent `ON_SIGN_IN`. There you can check for the result using `this.googleAction().getSignInStatus()`, which will return either `CANCELLED`, `OK` or `ERROR`:
+After the user completed the sign in, your Action will get another request, which will be mapped to the Jovo built-in intent `ON_SIGN_IN`. There you can check for the result using `this.$googleAction.getSignInStatus()`, which will return either `CANCELLED`, `OK` or `ERROR`:
 
 ```javascript
-'ON_SIGN_IN': function() {
-    if (this.googleAction().getSignInStatus() === 'CANCELLED') {
+ON_SIGN_IN() {
+    if (this.$googleAction.getSignInStatus() === 'CANCELLED') {
 		// User did not link their account
-    } else if (this.googleAction().getSignInStatus() === 'OK') {
+    } else if (this.$googleAction.getSignInStatus() === 'OK') {
 		// User linked their account
-    } else if (this.googleAction().getSignInStatus() === 'ERROR') {
+    } else if (this.$googleAction.getSignInStatus() === 'ERROR') {
 		// There was an error
     }
 },
 ```
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. I recommend the `request` package since it is the simplest solution. You can install it with npm:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
 
 ```sh
-$ npm install --save request
+$ npm install --save request request-promise
 ```
 
 After that import it in your `app.js` file:
 
 ```javascript
-const request = require('request');
+const rp = require('request-promise');
 ```
 
 Now let's get to the request:
 
 ```javascript
-let token = this.getAccessToken();
+let token = this.$request.getAccessToken();
 let options = {
     method: 'GET',
     url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
@@ -248,54 +247,43 @@ let options = {
 };
 
 // API request
-request(options, (error, response, body) => {
-    if (!error && response.statusCode === 200){
-
-        let data = JSON.parse(body); //Store the data we got from the API request
-        console.log(data);
-        /*
-        To see how the user data was stored,
-        go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
-        */
-        this.tell("Hi, " + data.given_name);
-    }
-    else {
-        this.tell("Error");
-    }
-}
+await rp(options).then((body) => {
+    let data = JSON.parse(body);
+    /*
+    To see how the user data was stored,
+    go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
+    */
+    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+});
 ```
 
 At the end your request should look like this:
 
 ```javascript
-'ON_SIGN_IN': function() {
-    if (this.googleAction().getSignInStatus() === 'OK') {
-        let token = this.getAccessToken();
-        let options = {
-            method: 'GET',
-            url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
-            // Advanced Settings --> Endpoints --> OAuth User Info URL
-            headers: {
-                authorization: 'Bearer ' + token,
-            }
-        };
-        
-        // API request
-        request(options, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-                let data = JSON.parse(body); //Store the data we got from the API request
-                console.log(data);
+    async ON_SIGN_IN() {
+        if (this.$googleAction.getSignInStatus() === 'OK') {
+            let token = this.$request.getAccessToken();
+            let options = {
+                method: 'GET',
+                uri: 'https://jovo-blog.auth0.com/userinfo', // You can find your URL on Client --> Settings --> 
+                // Advanced Settings --> Endpoints --> OAuth User Info URL
+                headers: {
+                    authorization: 'Bearer ' + token,
+                }
+            };
+
+            await rp(options).then((body) => {
+                let data = JSON.parse(body);
                 /*
                 To see how the user data was stored,
                 go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
                 */
-                this.tell("Hi, " + data.given_name);
-            } else {
-                this.tell("Error");
-            }
-        });
+                this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+            });
+        } else {
+            this.tell('There was an error. We could not sign in you in.');
+        }
     }
-}
 ```
 
 That's it, you made it!
