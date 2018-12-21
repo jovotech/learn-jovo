@@ -18,7 +18,7 @@ Learn how to use Google Spreadsheets as a content management system (CMS) for yo
 
 Watch the video here:
 
-[![Tutorial: Using Google Sheets for your Alexa Skills and Google Actions](./img/video-google-sheets.jpg)](https://www.youtube.com/watch?v=B1dWJoVkGag 'youtube-video')
+[![Tutorial: Using Google Sheets for your Alexa Skills and Google Actions](./img/video-google-sheets.jpg 'youtube-video')](https://www.youtube.com/watch?v=B1dWJoVkGag)
 
 ## Introduction
 
