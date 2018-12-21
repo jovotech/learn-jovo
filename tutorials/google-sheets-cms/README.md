@@ -183,4 +183,4 @@ For example:
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to use Google Spreadsheets as a content management system (CMS) for your Alexa Skills and Google Actions with Jovo.", "author": "jan-koenig", "tags": "Google Sheets, CMS"}-->
+<!--[metadata]: { "description": "Learn how to use Google Spreadsheets as a content management system (CMS) for your Alexa Skills and Google Actions with Jovo.", "author": "jan-koenig", "tags": "Google Sheets, CMS", "og-image": "https://www.jovo.tech/img/tutorials/google-sheets-cms/google-sheets-cms.jpg" }-->
