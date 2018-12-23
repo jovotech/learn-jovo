@@ -16,7 +16,7 @@ This is how your `project.js` could look like with three stages `local`, `dev`, 
 
   stages: {
     local: {
-      endpoint: `${JOVO_WEBHOOK_URL}`,
+      endpoint: ${JOVO_WEBHOOK_URL}',
     },
     dev: {
       endpoint: '<your-lambda-dev-arn>',
@@ -42,7 +42,7 @@ You can add a `defaultStage` like this:
   defaultStage: 'local',
   stages: {
     local: {
-      endpoint: `${JOVO_WEBHOOK_URL}`,
+      endpoint: '${JOVO_WEBHOOK_URL}',
     },
     dev: {
       endpoint: '<your-lambda-dev-arn>',
@@ -60,7 +60,7 @@ As the content inside the active stage is just merged into the other "stage-less
 {
 	// Other configurations
 
-  endpoint: `${JOVO_WEBHOOK_URL}`,
+  endpoint: '${JOVO_WEBHOOK_URL}',
   stages: {
     dev: {
       endpoint: '<your-lambda-dev-arn>',
@@ -88,7 +88,7 @@ Here's how you can do it with a basic setup:
 {
 	// Other configurations
 
-  endpoint: `${JOVO_WEBHOOK_URL}`,
+  endpoint: '${JOVO_WEBHOOK_URL}',
   stages: {
     dev: {
       alexaSkill: {
@@ -119,7 +119,7 @@ As the Jovo CLI uses ASK CLI to deploy to Lambda, it is sufficient for deploymen
 {
 	// Other configurations
 
-  endpoint: `${JOVO_WEBHOOK_URL}`,
+  endpoint: '${JOVO_WEBHOOK_URL}',
   stages: {
     dev: {
       host: {
@@ -167,7 +167,7 @@ You may also want to use different platform projects (e.g. Alexa Skill IDs and G
 {
 	// Other configurations
 
-  endpoint: `${JOVO_WEBHOOK_URL}`,
+  endpoint: '${JOVO_WEBHOOK_URL}',
   stages: {
     dev: {
       host: {
