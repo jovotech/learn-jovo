@@ -2,7 +2,7 @@
 
 Learn how to add a custom logger using the [Jovo Plugin feature](https://www.jovo.tech/docs/plugins).
 
-You can find the full code example of this tutorial here: [jovo-templates/tutorials/plugin](https://github.com/jovotech/jovo-templates/tree/master/tutorials/plugin).
+> You can find the full code example of this tutorial here: [jovo-templates/tutorials/plugin](https://github.com/jovotech/jovo-templates/tree/master/tutorials/plugin).
 
 Or download it using the Jovo CLI:
 
@@ -10,9 +10,13 @@ Or download it using the Jovo CLI:
 $ jovo new --template tutorials/plugin
 ```
 
-- [Introduction to Jovo Plugins](#introduction-to-jovo-plugins)
-- [How Jovo Plugins Work](#how-jovo-plugins-work)
-- [Creating a Custom Logger](#creating-a-custom-logger)
+* [Introduction to Jovo Plugins](#introduction-to-jovo-plugins)
+* [How Jovo Plugins Work](#how-jovo-plugins-work)
+* [Creating a Custom Logger](#creating-a-custom-logger)
+   * [Save Response](#save-response)
+   * [Log the Default Fallback Intent](#log-the-default-fallback-intent)
+   * [Enable Plugin](#enable-plugin)
+
 
 ## Introduction to Jovo Plugins
 
@@ -20,11 +24,11 @@ We added the Jovo Plugin feature in order to allow our users to customize the fr
 
 Plugins allow you to easily extend the Jovo Framework without having to mess with its core code and architecture. You can, for example, integrate your own analytics API or create a custom logger.
 
-[See example plugins here.](https://www.jovo.tech/plugins)
+> [See example plugins here.](https://www.jovo.tech/plugins)
 
 ## How Jovo Plugins Work
 
-The plugins work with middlewares, which all combined handle the complete request execution. As soon as the execution reaches the middleware your plugin is connected to, it will run your specified function.
+The plugins work with middlewares, which all combined handle the complete request execution. As soon as the execution reaches the middleware your plugin is connected to, it will run your specified function. [Learn more about the Jovo framework architecture here](https://www.jovo.tech/docs/architecture).
 
 Middleware | Description
 --- | --- 
@@ -236,7 +240,7 @@ class CustomLogging {
 }
 ```
 
-## Enable Plugin
+### Enable Plugin
 
 Last but not least, we add the plugin to our app using the `app.use()` function, which we can find at the top of our `./src/app.js` file:
 
