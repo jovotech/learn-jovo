@@ -37,7 +37,7 @@ module.exports = {
 	// Other configurations
   stages: {
     local: {
-      endpoint:'`${JOVO_WEBHOOK_URL}',
+      endpoint:'${JOVO_WEBHOOK_URL}',
       languageModel: {
           'en-US': {
             invocation: 'my test app local',
