@@ -16,7 +16,7 @@ This is how your `project.js` could look like with three stages `local`, `dev`, 
 
   stages: {
     local: {
-      endpoint: ${JOVO_WEBHOOK_URL}',
+      endpoint: '${JOVO_WEBHOOK_URL}',
     },
     dev: {
       endpoint: '<your-lambda-dev-arn>',
