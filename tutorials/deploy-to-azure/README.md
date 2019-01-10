@@ -1,20 +1,29 @@
 # Deploy your Voice App to Azure
 
-> In this tutorial you will learn how to host your voice app on Azure Functions and use Cosmos DB as your database.
+Learn how to host your Alexa Skills and Google Actions on Microsoft Azure with Azure Functions and Cosmos DB as your database.
 
 * [Introduction](#introduction)
 * [Azure Functions](#azure-functions)
-  * [Create Azure FunctionApp](#create-azure-functionapp)
-  * [Project Configuration to host on Azure Functions](#project-configuration-to-host-on-azure-functions)
+   * [Create Azure FunctionApp](#create-azure-functionapp)
+   * [Project Configuration to host on Azure Functions](#project-configuration-to-host-on-azure-functions)
 * [Cosmos DB](#cosmos-db)
-  * [Create Cosmos DB Account](#create-cosmos-db-account)
-  * [Project Configuration to use Cosmos DB](#project-configuration-to-use-cosmos-db)
+   * [Create Cosmos DB Account](#create-cosmos-db-account)
+   * [Project Configuration to use Cosmos DB](#project-configuration-to-use-cosmos-db)
 
 ## Introduction
 
-You will go through the steps needed to host your voice application on Azure by using both Azure Functions, an serverless compute service equivalent to AWS Lambda, as well as Azure Cosmos DB, a database service.
+[Microsoft Azure](https://azure.microsoft.com) is the cloud provider by Microsoft. Azure provides a variety of cloud services, including Azure Functions (a serverless compute service) and Cosmos DB (a NoQSL database service). 
+
+In this tutorial, you will go through the steps needed to host your Alexa Skills and Google Actions on Microsoft Azure by using Azure Functions for your code, and Azure Cosmos DB for storing user specific data.
 
 ## Azure Functions
+
+> Find the Docs here: [Hosting: Azure Functions](https://www.jovo.tech/docs/hosting/azure-functions).
+
+In this section, you will go through the necessary steps to host your voice app's code on Azure Functions:
+
+* [Create Azure FunctionApp](#create-azure-functionapp)
+* [Project Configuration to host on Azure Functions](#project-configuration-to-host-on-azure-functions)
 
 ### Create Azure FunctionApp
 
@@ -44,11 +53,11 @@ That's all you need to do here. Next, you have to make some configurations to yo
 
 ### Project Configuration to host on Azure Functions
 
-To host your app on Azure, there has to be changes made to an existing file as well as create new ones.
+To host your app on Azure, you need to make some changes to an existing file as well as create new ones.
 
 Let's start with the existing one, which is the `index.js` file.
 
-You have to first import the `AzureFunction` class. Simply replace the `Lambda` with `AzureFunction` at the top of the file:
+You have to first import the `AzureFunction` class. For example, you can simply replace the `Lambda` with `AzureFunction` at the top of the file:
 
 ```javascript
 // index.js
@@ -66,7 +75,7 @@ exports.handler = async (context, req) => {
 };
 ```
 
-Now create a new file called `host.json` inside the same directory as your `index.js` file with the following content:
+Now create a new file called `host.json` inside the same directory as your `index.js` file (typically the `src` folder) with the following content:
 
 ```javascript
 // host.json
@@ -104,7 +113,7 @@ To upload your project to Azure, you need to zip everything and upload it using 
 
 To create an optimized zip file run the `npm run bundle` command:
 
-```text
+```sh
 $ npm run bundle
 ```
 
@@ -112,7 +121,7 @@ To upload the zip file, you need to the Azure CLI. You can find an installation 
 
 After you have successfully installed the CLI run the following command to upload the zip file:
 
-```text
+```sh
 $ az functionapp deployment source config-zip  -g <resource_group_name> -n <app_name> --src <zip_file_path>
 ```
 
@@ -127,6 +136,13 @@ Copy the URL, add it as your endpoint for each platform and you're done.
 The last thing left to do, is to set up Cosmos DB as your project's database.
 
 ## Cosmos DB
+
+> Find the Docs here: [Database: Cosmos DB](https://www.jovo.tech/docs/databases/cosmosdb).
+
+Now that we have our code running on Azure Functions, we can't rely on the default database integration ([FileDB](https://www.jovo.tech/docs/databases/file-db)) anymore. Learn how to use the Azure Cosmos DB to store user data in the following steps.
+
+* [Create Cosmos DB Account](#create-cosmos-db-account)
+* [Project Configuration to use Cosmos DB](#project-configuration-to-use-cosmos-db)
 
 ### Create Cosmos DB Account
 
@@ -156,7 +172,7 @@ Now you need to open up your Jovo project, because it's time to make the necessa
 
 To use Cosmos DB in your project, you will need the `jovo-db-cosmosdb` plugin:
 
-```text
+```sh
 $ npm install jovo-db-cosmosdb --save
 ```
 
@@ -164,10 +180,11 @@ After that go to your `app.js` file and import as well as enable it:
 
 ```javascript
 // app.js
+
 const {CosmosDb} = require('jovo-db-cosmosdb');
 
 app.use(
-    // other plugins
+    // Other plugins
     new CosmosDb()
 );
 ```
@@ -177,7 +194,8 @@ Last but not least, you have to add the `primary connection string` and the tabl
 ```javascript
 // config.js
 module.exports = {
-    // other configurations
+    // Other configurations
+
     db: {
         CosmosDb: {
             uri: '<primary-connection-string>',
@@ -191,7 +209,8 @@ Optionally you can also add the `collectionName`, which is `UserData` by default
 
 ```javascript
 module.exports = {
-    // other configurations
+    // Other configurations
+
     db: {
         CosmosDb: {
             uri: '<primary-connection-string>',
@@ -202,7 +221,7 @@ module.exports = {
 };
 ```
 
-That's it. You're project will now use Cosmos DB as it's database.
+That's it. Your project will now use Cosmos DB as its database.
 
 
 <!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to Azure Functions.", "author": "kaan-kilic", "tags": "Azure, Deployment, Hosting" }-->
