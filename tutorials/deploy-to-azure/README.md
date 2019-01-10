@@ -1,5 +1,7 @@
 # Deploy your Voice App to Microsoft Azure
 
+![Deploy your Alexa Skill and Google Action to Microsoft Azure](./img/deploy-to-azure.jpg "Host your Voice Apps on Azure Functions and Cosmos DB")
+
 Learn how to host your Alexa Skills and Google Actions on Microsoft Azure with Azure Functions and Cosmos DB as your database.
 
 * [Introduction](#introduction)
@@ -224,4 +226,4 @@ module.exports = {
 That's it. Your project will now use Cosmos DB as its database.
 
 
-<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to Azure Functions.", "author": "kaan-kilic", "tags": "Azure, Deployment, Hosting" }-->
+<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to Azure Functions.", "author": "kaan-kilic", "tags": "Azure, Deployment, Hosting", "og-image": "https://www.jovo.tech/img/tutorials/deploy-to-azure/deploy-to-azure.jpg" }-->
