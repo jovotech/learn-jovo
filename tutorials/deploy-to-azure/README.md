@@ -1,4 +1,4 @@
-# Deploy your Voice App to Azure
+# Deploy your Voice App to Microsoft Azure
 
 Learn how to host your Alexa Skills and Google Actions on Microsoft Azure with Azure Functions and Cosmos DB as your database.
 
