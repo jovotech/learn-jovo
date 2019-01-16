@@ -11,6 +11,9 @@ Learn how to build a voice app that calls an external API and leverages the mode
 * [Next Steps](#next-steps)
 * [Troubleshooting](#troubleshooting)
 
+Watch the video here:
+
+[![Tutorial: Make an API Call from an Alexa Skill and Google Action](./img/video-api-call.jpg 'youtube-video')](https://www.youtube.com/watch?v=LbI0zRIJuzE)
 
 ## Introduction
 
