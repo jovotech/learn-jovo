@@ -1,5 +1,7 @@
 # Make an API Call from an Alexa Skill and Google Action
 
+![Make an async API call with Jovo](./img/api-call-jovo.jpg "Using async await for Alexa Skills and Google Actions with Jovo")
+
 Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.
 
 * [Introduction](#introduction)
@@ -153,4 +155,4 @@ return this.toIntent('HelloWorldIntent');
 ```
 
 
-<!--[metadata]: { "description": "Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.", "author": "jan-koenig", "tags": "API" }-->
+<!--[metadata]: { "description": "Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.", "author": "jan-koenig", "tags": "API", "og-image": "https://www.jovo.tech/img/tutorials/api-call/api-call-jovo.jpg"  }-->
