@@ -65,7 +65,7 @@ The other two are separate handlers for the different platforms:
 app.setAlexaHandler({
     // States & intents
 });
-app.setGoogleActionHandler({
+app.setGoogleAssistantHandler({
     // States & intents
 });
 ```
