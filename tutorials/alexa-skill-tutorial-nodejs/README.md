@@ -6,7 +6,7 @@ In this Alexa Skill tutorial for beginners, you will learn how to build a projec
 - [Create a Skill on the Amazon Developer Portal](#create-a-skill-on-the-amazon-developer-portal)
 - [Create a Language Model](#create-a-language-model)
 - [Build Your Skill's Code](#build-your-skills-code)
-- [App Configuration: Where to Run Your Code](#app-configuration-where-to-run-your-code)
+- [App Configuration: Where to Run Your Code](#app-configuration:-where-to-run-your-code)
 - [Hello World](#hello-world)
 - [Next Steps](#next-steps)
 
