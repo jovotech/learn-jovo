@@ -6,7 +6,7 @@ In this Alexa Skill tutorial for beginners, you will learn how to build a projec
 - [Create a Skill on the Amazon Developer Portal](#create-a-skill-on-the-amazon-developer-portal)
 - [Create a Language Model](#create-a-language-model)
 - [Build Your Skill's Code](#build-your-skills-code)
-- [App Configuration: Where to Run Your Code](#app-configuration-where-to-run-your-code)
+- [Where to Run Your Code](#where-to-run-your-code)
 - [Hello World](#hello-world)
 - [Next Steps](#next-steps)
 
@@ -248,7 +248,7 @@ What's happening here? When your skill is opened, it triggers the [LAUNCH](https
 
 If a user responds with a name, the `MyNameIsIntent` is triggered. Here, the [tell](https://www.jovo.tech/docs/output#tell) method is called to respond to your users with a "Nice to meet you!"
 
-## App Configuration: Where to Run Your Code
+## Where to Run Your Code
 
 - [Local Prototyping with the Jovo Webhook](#local-prototyping-with-the-jovo-webhook)
 - [Host your Code on AWS Lambda](#host-your-code-on-aws-lambda)
