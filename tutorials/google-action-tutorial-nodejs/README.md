@@ -10,7 +10,7 @@ In this Google Action tutorial for beginners, you will learn how to build an Act
 * [Create an Agent on Dialogflow](#create-an-agent-on-dialogflow)
 * [Create a Language Model](#create-a-language-model)
 * [Build Your Action's Code](#build-your-actions-code)
-* [App Configuration: Where to Run Your Code](#app-configuration-where-to-run-your-code)
+* [Where to Run Your Code](#where-to-run-your-code)
 * [Add Endpoint to Dialogflow](#add-endpoint-to-dialogflow)
 * [Hello World](#hello-world)
 * [Next Steps](#next-steps)
@@ -248,7 +248,7 @@ If a user responds with a name, the `MyNameIsIntent` is triggered. Here, the [te
 That's it for now. Of course, feel free to modify this as you wish. To create more complex Google Actions, take a look at the framework's capabilities here: [Jovo Framework Docs](https://www.jovo.tech/docs).
 
 
-## App Configuration: Where to Run Your Code
+## Where to Run Your Code
 
 - [Local Prototyping with Express](#local-prototyping-with-express)
 - [Host your Code on AWS Lambda](#host-your-code-on-aws-lambda)
