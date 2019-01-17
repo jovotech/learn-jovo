@@ -2,9 +2,9 @@
 
 ![Tutorial: Using Google Spreadsheets for your Alexa Skills and Google Actions](./img/jovo-plugin-tutorial.jpg)
 
-Learn how to add a custom logger using the [Jovo Plugin feature](https://www.jovo.tech/docs/plugins).
+Learn how to write your own [Jovo Plugin](https://www.jovo.tech/docs/plugins). In this tutorial, we are creating a custom logger plugin for voice apps built with the Jovo Framework. 
 
-> You can find the full code example of this tutorial here: [jovo-templates/tutorials/plugin](https://github.com/jovotech/jovo-templates/tree/master/tutorials/plugin).
+You can find the full code example of this tutorial here: [jovo-templates/tutorials/plugin](https://github.com/jovotech/jovo-templates/tree/master/tutorials/plugin).
 
 Or download it using the Jovo CLI:
 
