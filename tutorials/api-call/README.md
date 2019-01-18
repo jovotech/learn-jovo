@@ -77,10 +77,10 @@ We are going to use the `request-promise-native` package for this:
 
 ```sh
 # Install request-promise-native
-$ npm install request-promise-native
+$ npm install request-promise-native --save
 
 # Install request (needed as peer dependency)
-$ npm install request
+$ npm install request --save
 ```
 
 In the app instantiation section, we can require it like this:
@@ -113,7 +113,7 @@ If you're used to the traditional `request` package, you can use this as well:
 
 ```sh
 # Install request (needed as peer dependency)
-$ npm install request
+$ npm install request --save
 ```
 
 And initialize it like thos:
