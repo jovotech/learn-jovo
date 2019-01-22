@@ -13,7 +13,7 @@ Watch the video here:
 
 ## Introduction
 
-The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/workflows/cli 'docs/workflows/cli') offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
+The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](https://www.jovo.tech/docs/cli) offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
 
 You can upload your voice app to AWS Lambda by using the command `jovo deploy`, but first, you need to create the Lambda function, add it as an endpoint to your `project.js`, and make sure you have the right AWS credentials to programmatically deploy it there.
 
