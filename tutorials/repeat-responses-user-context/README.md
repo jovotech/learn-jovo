@@ -1,9 +1,9 @@
 # How to Repeat Responses using the Jovo User Context Object
 
-Learn how to easily add a repeat functionality to your voice application using the [Jovo User Context](https://www.jovo.tech/framework/docs/data/user#context) (available since Jovo v1.2).
+Learn how to easily add a repeat functionality to your voice application using the [Jovo User Context](https://www.jovo.tech/docs/data/user#context) (available since Jovo v1.2).
 
 - [Why you should add a Repeat Intent](#why-you-should-add-a-repeat-intent)
-- [How does the User Context work?](#how-does-the-user-context-work)
+- [How the User Context works](#how-the-user-context-works)
     - [Configuration](#configuration)
 - [Implementing the Repeat Functionality](#implementing-the-repeat-functionality)
     - [Creating a Jovo Project](#creating-a-jovo-project)
@@ -29,9 +29,9 @@ I am talking about repeating yourself if the person on the other end missed what
 
 As easy as it sounds, until today it was still a manual task to store all the necessary information in session attributes or a database so that they are later available to use. The [newly introduced](https://www.jovo.tech/blog/jovo-framework-v1-2/) User Context feature makes the implementation of the repeat feature easier.
 
-## How does the User Context work?
+## How the User Context works
 
-The Jovo [User Context](https://www.jovo.tech/framework/docs/data/user#context) automatically saves the essential data of the past interaction pairs (request and response) in your database. This includes the **intent**, **state**, **inputs** (slots/entities), **output speech**, **reprompt**, and **timestamp**.
+The Jovo [User Context](https://www.jovo.tech/docs/data/user#context) automatically saves the essential data of the past interaction pairs (request and response) in your database. This includes the **intent**, **state**, **inputs** (slots/entities), **output speech**, **reprompt**, and **timestamp**.
 
 The pairs are stored inside an array, which has the most recent pair at index `0` and the least recent at index `size - 1`. For example, you can get the latest output speech using either `this.$user.context.prev[0].response.speech` or `this.$user.getPrevSpeech(0)`.
 
