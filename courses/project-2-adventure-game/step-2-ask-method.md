@@ -15,7 +15,7 @@ We're first creating a new Jovo project, then building the app logic for the fir
 
 ## Create a Jovo Project
 
-If you're new to the Jovo Framework, you can learn more about the command line tools and the creation of a new project in in the previous course: [Project 1 Step 5: Create a Jovo Project](../project-1-hello-world/step-5-create-jovo-project.md).
+If you're new to the Jovo Framework, you can learn more about the command line tools and the creation of a new project in in the previous course: [Project 1 Step 5: Create a Jovo Project](../project-1-hello-world/step-5-create-jovo-project.md '../../project-1-hello-world/step-5-create-jovo-project').
 
 Let's create a new project named **AdventureGame**:
 
