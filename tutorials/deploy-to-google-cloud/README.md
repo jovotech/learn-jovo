@@ -2,7 +2,7 @@
 
 ![Deploy your Alexa Skill and Google Action to Google Cloud](./img/deploy-to-google-cloud.jpg "Host your Voice Apps on Cloud Functions and Firestore")
 
-Learn how to host your Alexa Skills and Google Actions on Google Cloud with Cloud Functions and Firestore as your database.
+Learn how to host your Alexa Skills and Google Actions on Google Cloud with Cloud Functions and Firebase (Google Cloud Firestore) as your database.
 
 * [Introduction](#introduction)
 * [Google Cloud Functions](#google-cloud-functions)
@@ -14,7 +14,7 @@ Learn how to host your Alexa Skills and Google Actions on Google Cloud with Clou
 
 ## Introduction
 
-[Google Cloud](https://azure.microsoft.com) is the cloud computing service by Google. It provides a variety of cloud services, including Cloud Functions (a serverless compute service) and Firestore (a NoQSL database service). 
+[Google Cloud](https://cloud.google.com/) is the cloud computing service by Google. It provides a variety of cloud services, including Cloud Functions (a serverless compute service) and Firestore (the NoQSL database service by Firebase). 
 
 In this tutorial, you will go through the steps needed to host your Alexa Skills and Google Actions on Google Cloud by using Cloud Functions for your code, and Firestore for storing user specific data.
 
@@ -24,12 +24,12 @@ In this tutorial, you will go through the steps needed to host your Alexa Skills
 
 In this section, you will go through the necessary steps to host your voice app's code on Google Cloud Functions:
 
-* [Project Configuration to host on Google Cloud](#project-configuration-to-host-on-google-cloud)
+* [Project Configuration to Host on Google Cloud](#project-configuration-to-host-on-google-cloud)
 * [Create Google Cloud Function](#create-google-cloud-function)
 
-### Project Configuration to host on Google Cloud
+### Project Configuration to Host on Google Cloud
 
-The only change you have to make to your project, to be able to host on Google Cloud Functions, will be made inside your `index.js` file. Instead of using `Lambda`, you have to use `GoogleCloudFunction`.
+The only change you have to make to your project to be able to host on Google Cloud Functions, will be made inside your `index.js` file. Instead of using `Lambda`, you have to use `GoogleCloudFunction`.
 
 For that, first replace `Lambda` with `GoogleCloudFunction` at the `require` statement at the top of the file:
 
@@ -59,7 +59,11 @@ You will be prompted to enable the Cloud Functions API as well as to create a ne
 
 The `trigger` and `memory allocated` settings can be left untouched, but I would recommend to change the `Runtime` to `Node.js 8` to allow the use of `async/await`.
 
-Also, instead of using the `Inline editor`, select the `ZIP upload` option, and upload the `bundle.zip` you created earlier.
+Also, instead of using the `Inline editor`, select the `ZIP upload` option. You can generate a `bundle.zip` file to upload by using the following command in your Jovo project:
+
+```sh
+$ npm run bundle
+```
 
 You also need to specify a `Stage bucket`, which you have to create, if you don't have one already, that will be used to store your code:
 
@@ -75,7 +79,7 @@ The filled form should look like this:
 
 Press `Create` and lean back, as this will take a minute or two.
 
-After your functions was created, you will be redirected to the landing page of `Google Cloud Functions`, where you can select your new function:
+After your function was created, you will be redirected to the landing page of `Google Cloud Functions`, where you can select your new function:
 
 ![Google Cloud Functions Landing Page](img/google_cloud_functions_landing_page.png)
 
@@ -92,7 +96,9 @@ On the landing page of your function, you can find the `Trigger` section, where 
 
 Now that you have your code running on Google Cloud Functions, you can't rely on the default database integration ([FileDB](https://www.jovo.tech/docs/databases/file-db)) anymore.
 
-Learn how to use Google Firestore to store user data in the following steps.
+Instead, we are going to use Google Cloud Firestore, the NoSQL database by Firebase. An alternative could also be Google Cloud Datastore, which is also supported by Jovo. [You can find the Docs for Google Cloud Datastore here](https://www.jovo.tech/docs/databases/google-datastore).
+
+Learn how to use Firestore to store user data in the following steps. 
 
 ### Create Firestore Database
 
@@ -161,6 +167,7 @@ Move the `JSON` file inside your project's `src` folder and add the following to
 
 ```javascript
 // config.js
+
 module.exports = {
     // Other configurations
 
@@ -175,4 +182,4 @@ module.exports = {
 
 That's it. Your project will now use Firestore as its database.
 
-<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to Google Cloud Functions", "author": "kaan-kilic", "tags": "Google Cloud, Deployment, Hosting", "og-image": "TODO" }-->
+<!--[metadata]: { "description": "Learn how to deploy your Alexa Skill and Google Action to Google Cloud with Cloud Functions and Firebase Firestore.", "author": "kaan-kilic", "tags": "Google Cloud, Deployment, Hosting", "og-image": "https://www.jovo.tech/img/tutorials/deploy-to-google-cloud/deploy-to-google-cloud.jpg" }-->
