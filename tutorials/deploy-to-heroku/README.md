@@ -14,9 +14,9 @@ In this guide, you will learn how to host your voice apps on Heroku, a cloud ser
 
 ## Introduction
 
-Righ now, Jovo offers two ways to host your voice app: Either on [AWS Lambda](https://www.jovo.tech/framework/docs/hosting/aws-lambda) or on a server by using a [webhook](https://www.jovo.tech/docs/jovo-webhook).
+Righ now, Jovo offers two ways to host your voice app: Either on [AWS Lambda](https://www.jovo.tech/docs/hosting/aws-lambda) or on a server by using a [ExpressJS](https://www.jovo.tech/docs/hosting/express-js).
 
-In our [voice app tutorials](https://www.jovo.tech/learn), we usually use a webhook with a tunnel service like ngrok or bst proxy for easy [local prototyping](https://www.jovo.tech/docs/project-lifecycle#local-development). However, when it's time to run your app in production, most people deploy their code to AWS Lambda.
+In our [voice app tutorials](https://www.jovo.tech/learn), we usually use the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook) for easy [local prototyping](https://www.jovo.tech/docs/project-lifecycle#local-development). However, when it's time to run your app in production, most people deploy their code to AWS Lambda.
 
 But what if you want to host your code on a web server, for example [Heroku](https://www.heroku.com/)?
 
@@ -105,29 +105,29 @@ This opens the application in your browers, which should look like this:
 
 ![](./img/heroku-application-error.jpg)
  
-It doesn't seem like the server is running already. And it makes sense: We usually use a command like [_jovo run_](https://www.jovo.tech/framework/docs/cli#jovo-run) or _node index.js_ to get the webhook started locally.
+It doesn't seem like the server is running already. And it makes sense: We usually use a command like [`jovo run`](https://www.jovo.tech/docs/cli/run) or `node src/index.js --cwd src` to get the webhook started locally.
 
 In the case of hosting the code online, we need to find a way to do that as well.
 
 ## Preparing the Jovo Code for Heroku
 
-As mentioned above, we would usually use a command like [_jovo run_](https://www.jovo.tech/framework/docs/cli#jovo-run) or _node index.js_ to start the server. Now, we need to find a way to tell Heroku to execute this command when the app is started.
+As mentioned above, we would usually use a command like [_jovo run_](https://www.jovo.tech/docs/cli/run) or `node src/index.js --cwd src` to start the server. Now, we need to find a way to tell Heroku to execute this command when the app is started.
 
 ### Updating the Package.json
 
-Heroku suggests two things, to do so, first, to add a [postinstall script](https://devcenter.heroku.com/articles/nodejs-support#customizing-the-build-process) to your _package.json_ file. You can do this by adding the following:
+Heroku suggests two things, to do so, first, to add a [postinstall script](https://devcenter.heroku.com/articles/nodejs-support#customizing-the-build-process) to your `package.json` file. You can do this by adding the following (the latest version of the Jovo voice app templates already has this script):
 
 ```javascript
 "scripts": {
-    "start": "node index.js --webhook"
+    "start": "cd src && node index.js --webhook"
 },
 ```
 
-Also, Heroku wants you to specify the node version you're using for the app ([learn more here](https://devcenter.heroku.com/articles/nodejs-support#specifying-a-node-js-version)). In this example, we're adding the following to _package.json_:
+Also, Heroku wants you to specify the node version you're using for the app ([learn more here](https://devcenter.heroku.com/articles/nodejs-support#specifying-a-node-js-version)). In this example, we're adding the following to `package.json`:
 
 ```javascript
 "engines": {
-    "node": "6.12.0"
+    "node": "8.10.0"
 },
 ```
 
@@ -136,20 +136,33 @@ This is what the complete file looks like in our example:
 ```javascript
 {
   "name": "jovo-sample-voice-app-nodejs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A sample voice app that works with the Jovo framework",
   "engines": {
     "node": "6.12.0"
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js --webhook",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tsc": "node -v",
+    "test": "jest",
+    "bundle": "gulp --gulpfile node_modules/jovo-framework/gulpfile.js --cwd ./",
+    "start": "cd src && node index.js --webhook",
+    "launch": "npm start -- --launch"
   },
   "dependencies": {
-    "jovo-framework": "^1.0.0"
+    "jovo-db-filedb": "^2.0.2",
+    "jovo-framework": "^2.0.2",
+    "jovo-platform-alexa": "^2.0.2",
+    "jovo-platform-googleassistant": "^2.0.2",
+    "jovo-plugin-debugger": "^2.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-install": "^1.1.0",
+    "gulp-run-command": "0.0.9",
+    "gulp-zip": "^4.2.0",
+    "jest": "^23.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jovotech/jovo-sample-voice-app-nodejs.git"
@@ -168,31 +181,33 @@ This is what the complete file looks like in our example:
 In the Heroku Getting Started guide, we learn that we can use a [Procfile](https://devcenter.heroku.com/articles/getting-started-with-nodejs#define-a-procfile) to let script Heroku execute scripts when deploying the code. We can use following line:
 
 ```sh
-web: node index.js --webhook
+web: node src/index.js --webhook --cwd src
 ```
 
 Take a look at the [Heroku sample app's Procfile here](https://github.com/heroku/node-js-getting-started/blob/master/Procfile). You can download the file from there or create it manually.
 
 ### Adding Alexa Verification
 
-When you're not host your Alexa Skill on AWS Lambda, you need to do one more thing: You need to verify that the requests are coming from Amazon. You can learn more in our docs: [Server Configuration > Deploy to a Server](https://www.jovo.tech/framework/docs/server/webhook#deploy-to-a-server).
+> [Learn more about verification here](https://www.jovo.tech/docs/hosting/express-js#verification).
+
+When you're not host your Alexa Skill on AWS Lambda, you need to do one more thing: You need to verify that the requests are coming from Amazon.
 
 To do this, simply replace this code in your [index.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/index.js)
 
 ```javascript
-const {Webhook} = require('jovo-framework');
+const { Webhook, ExpressJS } = require('jovo-framework');
 ```
 
 with this:
 
 ```javascript
-const {WebhookVerified} = require('jovo-framework');
+const { WebhookVerified as Webhook, ExpressJS } = require('jovo-framework');
 ```
 
 Also, install the verifier like so:
 
 ```sh
-$ npm install alexa-verifier-middleware
+$ npm install alexa-verifier-middleware --save
 ```
 
 That's it! Let's test your voice app on Heroku.
