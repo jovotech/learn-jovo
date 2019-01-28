@@ -29,22 +29,33 @@ In this section, you will go through the necessary steps to host your voice app'
 
 ### Project Configuration to Host on Google Cloud
 
-The only change you have to make to your project to be able to host on Google Cloud Functions, will be made inside your `index.js` file. Instead of using `Lambda`, you have to use `GoogleCloudFunction`.
+The only change you have to make to your project to be able to host on Google Cloud Functions, will be made inside your `index.js` and `package.json` file. Instead of using `Lambda`, you have to use `GoogleCloudFunction`.
 
 For that, first replace `Lambda` with `GoogleCloudFunction` at the `require` statement at the top of the file:
 
 ```javascript
+// index.js
+
 const { Webhook, ExpressJS, GoogleCloudFunction } = require('jovo-framework');
 ```
 
 After that, replace the code snipped at the bottom, where it says `AWS Lambda` with the following piece:
 
 ```javascript
+// index.js
+
 exports.handler = async (req, res) => {
     await app.handle(new GoogleCloudFunction(req, res));
 };
 ```
 
+Inside your `package.json` file, you have to change value of the `main` option, which specifies the entry point to your program, from `src/index` to `index`:
+
+```javascript
+// package.json
+
+"main": "index.js",
+```
 That's it.
 
 ### Create Google Cloud Function
