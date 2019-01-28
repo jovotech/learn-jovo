@@ -49,7 +49,7 @@ exports.handler = async (req, res) => {
 };
 ```
 
-Inside your `package.json` file, you have to change value of the `main` option, which specifies the entry point to your program, from `src/index` to `index`:
+Inside your `package.json` file, you have to change value of the `main` option, which specifies the entry point to your program, from `src/index.js` to `index.js`:
 
 ```javascript
 // package.json
