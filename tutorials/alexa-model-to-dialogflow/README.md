@@ -439,4 +439,4 @@ The `deploy` command will create a zip file that you can then import into Dialog
 
 Learn more about how to deploy your Dialogflow Agent here: [Deploy a Dialogflow Agent with the Jovo CLI](../deploy-dialogflow-agent './deploy-dialogflow-agent').
 
-<!--[metadata]: { "description": "Learn how to turn an existing Alexa Interaction Model into a Dialogflow Agent.", "author": "jan-koenig", "tags": "Dialogflow, Language Model" }-->
+<!--[metadata]: { "description": "Learn how to turn an existing Alexa Interaction Model into a Dialogflow Agent.", "author": "jan-koenig", "tags": "Dialogflow, Language Model", "og-image": "https://www.jovo.tech/img/tutorials/alexa-model-to-dialogflow/alexa-to-dialogflow.jpg" }-->
