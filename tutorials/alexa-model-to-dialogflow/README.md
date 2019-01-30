@@ -27,7 +27,7 @@ Watch the video:
 
 > [Learn more about the Jovo Language Model here](https://www.jovo.tech/docs/model).
 
-Creating and maintaining language models for both Alexa Skills and Google Actions can be a timeconsuming task. Fortunately, Jovo offers an abstraction for language model definitions with the [Jovo Language Model](https://www.jovo.tech/docs/model). The Jovo Language Model allows you to specify language model documents that can be translated into both an Alexa Interaction Model and a Dialogflow Agent.
+Creating and maintaining language models for both Alexa Skills and Google Actions can be a timeconsuming task. Fortunately, Jovo offers an abstraction for language model definitions with the [Jovo Language Model](https://www.jovo.tech/docs/model). The Jovo Language Model allows you to specify language model documents that can be translated into both an Alexa Interaction Model and a [Dialogflow](https://dialogflow.com/) Agent.
 
 Starting with the Jovo Language Model right away sounds like a great idea, however, many people usually get started with one platform, and then find themselves having difficulties converting from one to the other platform. For example, if you get started with an Alexa Skill, it can be tedious to create a Dialogflow Agent with essentially the same information, by hand.
 
