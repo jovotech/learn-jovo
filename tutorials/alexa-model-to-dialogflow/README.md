@@ -1,4 +1,4 @@
-# How to Translate an Alexa Interaction Model to a Dialogflow Agent
+# Turn an Alexa Interaction Model into a Dialogflow Agent
 
 ![Turn an Alexa Interaction Model into a Dialogflow Agent](./img/alexa-to-dialogflow.jpg "Translate an Alexa Language Model into a Dialogflow Model for Google Assistant")
 
