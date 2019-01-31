@@ -201,7 +201,7 @@ const { Webhook, ExpressJS } = require('jovo-framework');
 with this:
 
 ```javascript
-const { WebhookVerified as Webhook, ExpressJS } = require('jovo-framework');
+const { WebhookVerified: Webhook, ExpressJS } = require('jovo-framework');
 ```
 
 Also, install the verifier like so:
