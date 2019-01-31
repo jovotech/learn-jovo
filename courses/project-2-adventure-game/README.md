@@ -1,6 +1,6 @@
 # Project 2: Adventure Game
 
-Welcome to our second project-based course about voice app development. After completing [Project 1: Hello World](https://www.jovo.tech/blog/project-1-hello-world/), you now have a basic understanding of how voice apps work and how to set Alexa and Google Assistant up for simple responses.
+Welcome to our second project-based course about voice app development. After completing [Project 1: Hello World](https://www.jovo.tech/courses/project-1-hello-world/), you now have a basic understanding of how voice apps work and how to set Alexa and Google Assistant up for simple responses.
 
 Now, let's build something more engaging! In this course, we're going to build a simple choose-your-own-adventure like voice app to learn more about how to route our users through intents and states.
 
@@ -9,7 +9,6 @@ Now, let's build something more engaging! In this course, we're going to build a
 * [Let's Get Started](#lets-get-started)
 
 ## What We're Building
-
 
 ![](./img/letizia-bordoni-283388.jpg)
 

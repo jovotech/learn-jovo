@@ -2,8 +2,6 @@
 
 In this lecture, you will learn how to create an agent on Dialogflow for the language model, and connect it to a Google Action project on the Google developer console.
 
-### Sections
-
 * [Create an Dialogflow Agent](#create-an-dialogflow-agent)
 * [Create an Interaction Model](#create-an-interaction-model)
 * [Connect your Agent to a Google Action](#connect-your-agent-to-a-google-action)

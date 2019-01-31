@@ -2,8 +2,6 @@
 
 In [Step 1: Adventure Game Interaction Design](./step-1-adventure-game-interaction-design.md), we already created two intents for the second interaction of the adventure game: a "Yes" and a "No" answer. In this step, we're going to build out the app logic for this.
 
-### Sections
-
 * [Second Step Interaction Design](#second-step-interaction-design)
 * [Coding the Second Interaction](#coding-the-second-interaction)
 * [Alexa Built-in Intents and Jovo intentMap](#alexa-built-in-intents-and-jovo-intentmap)

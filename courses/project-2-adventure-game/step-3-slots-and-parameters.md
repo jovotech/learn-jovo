@@ -2,8 +2,6 @@
 
 In this step, we're addressing a problem that has come up in the [previous step](./step-2-ask-method.md): _BlueDoorIntent_ and _RedDoorIntent_ are so similar, why do I have to do all the work twice? And what would happen if there were even more doors with more colors? Meet slots and parameters.
 
-### Sections
-
 * [Changing the Interaction Model](#changing-the-interaction-model)
 * [Introduction to Slots and Parameters](#introduction-to-slots-and-parameters)
 * [Creating an EnterDoorIntent](#creating-an-enterdoorintent)

@@ -2,8 +2,6 @@
 
 In the previous step, we noticed that there is the possibility for certain intents to be needed several times with different meanings. In this post, we're introducing states to accomplish this.
 
-### Sections
-
 * [Why We Need States](#why-we-need-states)
 * [How States Work](#how-states-work)
 * [Adding States with followUpState](#adding-states-with-followupstate)
