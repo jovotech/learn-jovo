@@ -38,7 +38,7 @@ In the next step we're going to use states for the first time.
 
 ## Adding States with followUpState
 
-We're doing this by adding a [followUpState](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/routing/states.md#followupstate 'docs/basic-concepts/routing/states#followupstate') to the app before an _ask_ call.
+We're doing this by adding a [followUpState](https://www.jovo.tech/docs/data#session-data) to the app before an _ask_ call.
 
 Remember the _EnterDoorIntent_:
 
