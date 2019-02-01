@@ -1,34 +1,42 @@
 # Step 1: Streaming an Audio File
 
+As a first step towards building our own podcast player Alexa Skill and Google Action, we will create a new Jovo project and make it stream a single audio file for both Alexa and Google Assistant.
+
 * [Create the Project](#create-the-project)
-* [Play an audio file](#play-an-audio-file)
-    * [Amazon Alexa](#amazon-alexa)
-    * [Google Action](#google-action)
+* [Play an Audio File](#play-an-audio-file)
+   * [On Amazon Alexa](#on-amazon-alexa)
+   * [On Google Assistant](#on-google-assistant)
 * [Next Step](#next-step)
 
 ## Create the Project
 
-To start off we have to create a Jovo project. Therefore if you haven't already, install the [Jovo CLI](https://github.com/jovotech/jovo-cli):
+To start off we have to create a new Jovo project. Therefore if you haven't already, install the [Jovo CLI](https://www.jovo.tech/docs/cli):
 
 ```sh
-$ npm i -g jovo-cli
+$ npm install -g jovo-cli
 ```
 
 Create a new project:
 
 ```text
-$ jovo new <projectName>
+$ jovo new PodcastPlayer
 ```
 
-## Play an audio file
+This will create a new Jovo project into the folder `PodcastPlayer`. You can go into the folder like this:
 
-The heart of our project is located in the `app.js` file inside the app folder. That's the place where we configure our project and define our handler.
+```text
+$ cd PodcastPlayer
+```
+
+## Play an Audio File
+
+The heart of our project is located in the `app.js` file inside the `src` folder. That's the place where we configure our project and define our handler.
 
 Open up the file and we will see that there are already three intents defined in the `setHandler()` function. We delete everything besides the `LAUNCH` intent since we won't need them at this point.
 
 Streaming an audio file works differently on both platforms, so we will go over the Alexa part first and add the Google Action implementation after that.
 
-### Amazon Alexa
+### On Amazon Alexa
 
 ```javascript
 const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
@@ -78,7 +86,7 @@ That was easy, wasn’t it?
 
 Let’s do the same for our Google Action.
 
-### Google Action
+### On Google Assistant
 
 We simply add `this.$googleAction.$audioPlayer.play(song, 'song one');`, where the first parameter is the audio files url and the second one the title, to our LAUNCH intent.
 
