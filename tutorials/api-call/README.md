@@ -2,7 +2,7 @@
 
 ![Make an async API call with Jovo](./img/api-call-jovo.jpg "Using async await for Alexa Skills and Google Actions with Jovo")
 
-Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.
+Most Alexa Skills and Google Actions rely on some sort of external data. Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.
 
 * [Introduction](#introduction)
 * [Making an API Call that Returns a Random Quote](#making-an-api-call-that-returns-a-random-quote)
