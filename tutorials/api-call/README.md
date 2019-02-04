@@ -6,7 +6,7 @@ Learn how to build a voice app that calls an external API and leverages the mode
 
 * [Introduction](#introduction)
 * [Making an API Call that Returns a Random Quote](#making-an-api-call-that-returns-a-random-quote)
-   * [Why asnyc/await?](#why-async-await)
+   * [Why asnyc/await](#why-asyncawait)
    * [Option 1: Using Request Promise](#option-1:-using-request-promise)
    * [Option 2: Using Traditional Request](#option-2:-using-traditional-request)
 * [Next Steps](#next-steps)
@@ -67,7 +67,7 @@ function getRandomQuote() {
 
 
 
-### Why async/await?
+### Why async/await
 
 The problem with API calls is that they are asynchronous, which could lead to a problem when executing the response. For example, if we log the request, response, and the quote. It can look like this:
 
