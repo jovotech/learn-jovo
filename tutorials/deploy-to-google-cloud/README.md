@@ -184,7 +184,7 @@ module.exports = {
 
     db: {
         Firestore: {
-            uri: require('<path-to-json-file>'),
+            credential: require('<path-to-json-file>'),
             databaseURL: '<databaseURL>'
         }
     },
