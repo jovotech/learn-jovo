@@ -46,7 +46,7 @@ Here's how the interaction will look like at the end:
 
 
 
-## Building the Language Model
+### Building the Language Model
 
 > [Learn more about the Jovo Language Model here](https://www.jovo.tech/docs/model).
 
@@ -162,7 +162,7 @@ $ jovo deploy
 
 
 
-## Building the Logic
+### Building the Logic
 
 > [Learn more about Routing here](https://www.jovo.tech/docs/routing).
 
