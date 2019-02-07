@@ -5,10 +5,12 @@ In this tutorial, you will learn how to sell digital goods with your Alexa Skill
 > You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
 
 * [Introduction to Alexa In-Skill Purchasing](#introduction-to-alexa-in-skill-purchasing)
-* [Implementing Alexa ISP](#implementing-alexa-isp)
-    * [Add Products with ASK CLI](#add-products-with-ask-cli)
-    * [Update your Language Model](#update-your-language-model)
-    * [Implement ISP in your Code](#implement-isp-in-your-code)
+* [Adding Products with Alexa ISP](#adding-products-with-alexa-isp)
+   * [Using the Alexa Developer Console](#using-the-alexa-developer-console)
+   * [Using ASK CLI](#using-ask-cli)
+* [Implementing Alexa ISP with Jovo](#implementing-alexa-isp-with-jovo)
+    * [Updating your Language Model](#updating-your-language-model)
+    * [Adding ISP to the Logic](#adding-isp-to-the-logic)
         * [Upsell](#upsell)
         * [Purchase Request](#purchase-request)
         * [Refund](#refund)
@@ -22,23 +24,13 @@ In May 2018, Amazon [introduced](https://developer.amazon.com/blogs/alexa/post/5
 
 The Alexa ISP API works independently from your own skill. You do not handle the transactions yourself, but you send a directive just like with the Dialog Interface. Alexa will use predefined values from your products `json` file, which we will create in a minute, to fulfill the transaction. The moment you send out one of these directives the current session ends. Once the transaction is finished, your Skill will get a request with data about the transaction at which point you can resume where the user left off.   
 
-## Implementing Alexa ISP
 
-The Alexa in-skill purchases API offers three kinds of interactions with our user:
+## Adding Products with Alexa ISP
 
-* **Upsell**: we proactively offer the user our products
-* **Purchase request**: the user asks to buy something
-* **Refund**: the user wants to return a product.
+### Using the Alexa Developer Console
 
-Before we can implement the interactions in our code base, we have to first create the items we want to sell and implement the respective intents in our language model.
 
-![Alexa In-Skill-Purchasing](./img/workflow-in-skill-purchases.png)
-
-* [Add Products with the ASK CLI](#add-products-with-the-ask-cli)
-* [Update the Language Model](#update-the-language-model)
-* [Implement ISP in your Code](#implement-isp-in-your-code)
-
-### Add Products with ASK CLI
+### Using ASK CLI
 
 To add items, we need the ASK CLI (version `1.4.3` or later). If you did not install or initialize the ASK CLI yet, check out this [quickstart guide](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html#step-2-install-and-initialize-ask-cli).
 
@@ -210,9 +202,24 @@ Save the files and deploy everything with the ASK CLI:
 $ ask deploy
 ```
 
-In the next step, we have to update the language model.
 
-### Update your Language Model
+## Implementing Alexa ISP with Jovo
+
+The Alexa in-skill purchases API offers three kinds of interactions with our user:
+
+* **Upsell**: we proactively offer the user our products
+* **Purchase request**: the user asks to buy something
+* **Refund**: the user wants to return a product.
+
+Before we can implement the interactions in our code base, we have to first create the items we want to sell and implement the respective intents in our language model.
+
+![Alexa In-Skill-Purchasing](./img/workflow-in-skill-purchases.png)
+
+* [Updating your Language Model](#updating-your-language-model)
+* [Adding ISP to the Logic](#adding-isp-to-the-logic)
+
+
+### Updating your Language Model
 
 As I described earlier, there are three kinds of interactions we have to implement in our Skill, but only two of these need to be added to the language model because the buy and refund request are the only ones initiated by the user.
 
@@ -326,7 +333,7 @@ Next up the intents. Amazon provides sample intents for both buy and refund requ
 
 That's everything we need for our language model. We just have to run the `jovo build --deploy` command to upload our changes to the Amazon Developer Console and after that, we can begin to implement our code.
 
-### Implement ISP in your Code
+### Adding ISP to the Logic
 
 As we discussed earlier, our only task is to **start** the transaction, since Alexa will handle the transaction herself. After the transaction finished, we will receive a request notifying us about the outcome, i.e. the purchase was successful or not. Inside that request, there will also be a `token`, which we can define while starting the transaction, to help us resume the Skill at the place the user left off.
 
@@ -335,11 +342,7 @@ To access the Alexa ISP API in Jovo we use `this.$alexaSkill.$inSkillPurchase`.
 Before we start any kind of transaction or refund process, we always retrieve the product first:
 
 ```javascript
-this.$alexaSkill
-    .$inSkillPurchase
-    .getProductByReferenceName(productReferenceName, (error, product) => {
-
-    });
+const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
 ```
 
 The data we get looks like this:
@@ -360,18 +363,13 @@ The data we get looks like this:
 Using that data we can check if the user already owns the product:
 
 ```javascript
-this.$alexaSkill
-    .$inSkillPurchase
-    .getProductByReferenceName(productReferenceName, (error, product) => {
-        if (error) {
-            console.log(error);
-        }
-        if (product.entitled === 'ENTITLED') {
-            // user already owns it
-        } else {
-            // user does not own it
-        }
-    });
+const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
+
+if (product.entitled === 'ENTITLED') {
+    // user already owns it
+} else {
+    // user does not own it
+}
 ```
 
 #### Upsell
@@ -397,23 +395,19 @@ In general, you should also avoid suggesting multiple products in a row or sugge
 Alright, now that we discussed all that, we can start the transaction using the  `upsell()` method, which takes the `productId`, `prompt` and `token` as parameters, after we've checked if the user already owns the product:
 
 ```javascript
-UpsellIntent() {
+async UpsellIntent() {
     let productReferenceName = 'frozen_sword';
-    this.$alexaSkill
-    .$inSkillPurchase
-    .getProductByReferenceName(productReferenceName, (error, product) => {
-        if (error) {
-            console.log(error);
-        }
-        if (product.entitled === 'ENTITLED') {
-            this.tell('You have already bought this item.');
-            return;
-        } else {
-            let prompt = 'The frozen sword will help you on your journey. Are you interested?';
-            let token = 'testToken';
-            this.$alexaSkill.$inSkillPurchase.upsell(product.productId, prompt, token);
-        }
-    });
+
+    const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
+    console.log(product);
+
+    if (product.entitled === 'ENTITLED') {
+        return this.tell('You have already bought this item.');
+    } else {
+        let prompt = 'The frozen sword will help you on your journey. Are you interested?';
+        let token = 'testToken';
+        this.$alexaSkill.$inSkillPurchase.upsell(product.productId, prompt, token);
+    }
 },
 ```
 
@@ -434,24 +428,22 @@ BuySkillItemIntent() {
 In the other scenario the user specifies the product and we use the input's id as our product's `reference_name` to check whether they already own it. If that's not the case, we start the transaction:
 
 ```javascript
-BuySkillItemIntent() {
-    if (!this.$inputs.productName) {
-        this.ask('You can choose either the premium pass. or frozen sword. Which are you interested in?');
+async BuySkillItemIntent() {
+    let productName = this.$inputs.ProductName;
+    if (!productName) {
+        return this.ask('You can choose either the "premium pass", or "frozen sword". Which are you interested in?');
     }
     let productReferenceName = productName.id;
-    this.$alexaSkill
-        .$inSkillPurchase
-        .getProductByReferenceName(productReferenceName, (error, product) => {
-            if (error) {
-                console.log(error);
-            }
-            if (product.entitled === 'ENTITLED') {
-                this.tell('You have already bought this item.');
-                return;
-            }
-            let token = 'testToken';
-            this.$alexaSkill.$inSkillPurchase.buy(product.productId, token);
-        });
+    let token = 'testToken';
+    
+    const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
+    console.log(product);
+
+    if (product.entitled === 'ENTITLED') {
+        return this.tell('You have already bought this item.');
+    } else {
+        this.$alexaSkill.$inSkillPurchase.buy(product.productId, token);
+    }
 },
 ```
 
@@ -460,21 +452,19 @@ BuySkillItemIntent() {
 Next, the `RefundSkillItemIntent`. Same procedure, get the input's id, use it to get the product, check if the user even owns the product and start the refund process:
 
 ```javascript
-RefundSkillItemIntent() {
-    let productReferenceName = this.$inputs.productName.id;
-    this.$alexaSkill
-        .$inSkillPurchase
-        .getProductByReferenceName(productReferenceName, (error, product) => {
-            if (error) {
-                console.log(error);
-                // Continue, where you left off
-            }
-            if (product.entitled !== 'ENTITLED') {
-                this.tell('You have not bought this item yet.');
-            }
-            let token = 'testToken';
-            this.$alexaSkill.$inSkillPurchase.cancel(product.productId, token);
-        });
+async RefundSkillItemIntent() {
+    let productName = this.$inputs.ProductName;
+    let productReferenceName = productName.id;
+    let token = 'testToken';
+
+    const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName)
+    console.log(product);
+
+    if (product.entitled !== 'ENTITLED') {
+        return this.tell('You have not bought this item yet.');
+    } else {
+        this.$alexaSkill.$inSkillPurchase.cancel(product.productId, token);
+    }
 },
 ```
 
@@ -539,4 +529,4 @@ That's the basic implementation of Alexa in-skill-purchasing (ISP) with Jovo.
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to make money with Alexa Skills by implementing the Alexa In-Skill-Purchasing (ISP) feature with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa"}-->
+<!--[metadata]: { "description": "Learn how to make money with Alexa Skills by implementing the Alexa In-Skill-Purchasing (ISP) feature with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa, Purchasing"}-->
