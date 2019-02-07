@@ -5,7 +5,7 @@ In this tutorial, you will learn how to sell digital goods with your Alexa Skill
 > You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
 
 * [Introduction to Alexa In-Skill Purchasing](#introduction-to-alexa-in-skill-purchasing)
-* [Adding Products with Alexa ISP](#adding-products-with-alexa-isp)
+* [Adding Products for Alexa ISP](#adding-products-for-alexa-isp)
    * [Using the Alexa Developer Console](#using-the-alexa-developer-console)
    * [Using ASK CLI](#using-ask-cli)
 * [Implementing Alexa ISP with Jovo](#implementing-alexa-isp-with-jovo)
@@ -24,8 +24,11 @@ In May 2018, Amazon [introduced](https://developer.amazon.com/blogs/alexa/post/5
 
 The Alexa ISP API works independently from your own skill. You do not handle the transactions yourself, but you send a directive just like with the Dialog Interface. Alexa will use predefined values from your products `json` file, which we will create in a minute, to fulfill the transaction. The moment you send out one of these directives the current session ends. Once the transaction is finished, your Skill will get a request with data about the transaction at which point you can resume where the user left off.   
 
+* [Adding Products for Alexa ISP](#adding-products-for-alexa-isp)
+* [Implementing Alexa ISP with Jovo](#implementing-alexa-isp-with-jovo)
 
-## Adding Products with Alexa ISP
+
+## Adding Products for Alexa ISP
 
 ### Using the Alexa Developer Console
 
