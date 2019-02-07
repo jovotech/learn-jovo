@@ -2,7 +2,7 @@
  
 ![Make money with Alexa with In Skill Purchases](./img/alexa-in-skill-purchase.jpg "Learn how to implement Alexa ISPs with the Jovo Framework")
 
-In this tutorial, you will learn how to sell digital goods with your Alexa Skill by using [Alexa's in-skill purchasing (ISP)](https://developer.amazon.com/alexa-skills-kit/make-money/in-skill-purchasing) with Jovo.
+Learn how to make money with your Alexa Skills by selling digital goods with Alexa's In-Skill Purchasing (ISP) feature and the Jovo Framework. In this tutorial, we will build a simple Alexa Skill that allows users to buy and refund items.
 
 > You can find the full code example of this tutorial here: [jovo-templates/alexa/isp](https://github.com/jovotech/jovo-templates/tree/master/alexa/isp).
 
@@ -17,14 +17,22 @@ In this tutorial, you will learn how to sell digital goods with your Alexa Skill
         * [Purchase Request](#purchase-request)
         * [Refund](#refund)
         * [ON_PURCHASE](#onpurchase)
-    * [Inventory Management](#inventory-management)
+    * [Inventory Management for Consumables](#inventory-management-for-consumables)
+
+Watch the video here:
+
+[![Tutorial: Implement Alexa In-Skill Purchases (ISP) with Jovo](./img/alexa-isp-video.jpg 'youtube-video')](https://www.youtube.com/watch?v=lpKpwfOjZ0M)
 
 
 ## Introduction to Alexa In-Skill Purchasing
 
-In May 2018, Amazon [introduced](https://developer.amazon.com/blogs/alexa/post/5d852c9c-8cdf-45c1-9b68-e2f02af26c89/make-money-with-alexa-skills) the ability for Skill developers to make money through in-skill purchasing. It allows you to sell premium content either through one-time purchases, consumables or subscriptions. 
+> Jovo Docs: [In-Skill Purchases](https://www.jovo.tech/docs/amazon-alexa/in-skill-purchases).
 
-The Alexa ISP API works independently from your own skill. You do not handle the transactions yourself, but you send a directive just like with the Dialog Interface. Alexa will use predefined values from your products `json` file, which we will create in a minute, to fulfill the transaction. The moment you send out one of these directives the current session ends. Once the transaction is finished, your Skill will get a request with data about the transaction at which point you can resume where the user left off.   
+In May 2018, Amazon [introduced](https://developer.amazon.com/blogs/alexa/post/5d852c9c-8cdf-45c1-9b68-e2f02af26c89/make-money-with-alexa-skills) the ability for Alexa Skill developers to make money through in-skill purchasing. It allows you to sell premium content either through one-time purchases, consumables, or subscriptions.
+
+The Alexa ISP API works independently from your own skill. You do not handle the transactions yourself, but you send a directive just like with the [Dialog Interface](https://www.jovo.tech/docs/amazon-alexa/dialog-interface). Alexa will use predefined values from products that you either [define in the Alexa Developer Console](#using-the-alexa-developer-console), or [with the ASK CLI](#using-ask-cli), to fulfill the transaction. The moment you send out one of these directives, the current session ends. Once the transaction is finished, your Skill will get a request with data about the transaction at which point you can resume where the user left off.  
+
+There are two main steps that need to be done to add In-Skill Purchases to your Alexa Skill:
 
 * [Adding Products for Alexa ISP](#adding-products-for-alexa-isp)
 * [Implementing Alexa ISP with Jovo](#implementing-alexa-isp-with-jovo)
@@ -32,12 +40,47 @@ The Alexa ISP API works independently from your own skill. You do not handle the
 
 ## Adding Products for Alexa ISP
 
+Before we can implement the interactions in our code base, we have to first create the items we want to sell. 
+
+There are two different ways how products can be added to an Alexa Skill:
+
+* [Using the Alexa Developer Console](#using-the-alexa-developer-console)
+* [Using ASK CLI](#using-ask-cli)
+
+
 ### Using the Alexa Developer Console
 
+Recently, Amazon introduced the ability to add products with a graphical user interface directly in the [Amazon Developer Console](https://developer.amazon.com).
+
+To do this, go to the "In-Skill products" tab:
+
+![Add In-Skill Products to your Alexa Skill](./img/in-skill-products-empty.jpg "Use the Alexa Developer Console to add In-Skill Products")
+
+Create a new product and call it `frozen_sword`. For this product, we select the "One-Time Purchase" option:
+
+![Create One-Time Purchase In-Skill Product](./img/create-one-time-purchase.jpg "Create an Alexa In-Skill Product")
+
+Add all the necessary information:
+
+![Add information for your In-Skill Product](./img/add-new-product.jpg "Add information to an Alexa In-Skill Product")
+
+In the next step, we have to select pricing and use a tax category. For the purposes of this tutorial, it doesn't really matter, so we stay at 99 cents and will choose the "Software" category:
+
+![Add Pricing and Tax Information to your In-Skill Product](./img/pricing-and-tax.jpg "Add Pricing and Tax")
+
+The final step is to add testing instructions. If you then save the product, you need to confirm to link it to your Alexa Skill:
+
+![Link In-Skill Product to Alexa Skill](./img/product-link-prompt.jpg "Add Product to Skill")
+
+That's it! Your product is now linked to your Alexa Skill:
+
+![In-Skill Product has been added to the Alexa Skill](./img/product-linked-success.jpg "Successfully added to product to the Skill")
+
+You can now move on to [Implementing Alexa ISP with Jovo](#implementing-alexa-isp-with-jovo), or take a look at how you can also add products by using the ASK CLI.
 
 ### Using ASK CLI
 
-To add items, we need the ASK CLI (version `1.4.3` or later). If you did not install or initialize the ASK CLI yet, check out this [quickstart guide](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html#step-2-install-and-initialize-ask-cli).
+To add items without using a graphical interface, we will use the ASK CLI (version `1.4.3` or later). If you did not install or initialize the ASK CLI yet, check out this [quickstart guide by Amazon](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html#step-2-install-and-initialize-ask-cli).
 
 To run the ASK CLI's commands we have to move from the project's root folder to the `alexaSkill` folder:
 
@@ -62,7 +105,7 @@ $ ask add isp
 In-skill product frozen_sword.json is saved to ./isps/entitlement/frozen_sword.json
 ```
 
-After that, there should be a `frozen_sword.json` file in your `alexaSkill/isps` folder. The content of that `json` file is used to define the price, release date, description as well as the prompts Alexa will use when she handles the transaction and much much more. You can find examples and a small description for each field [here](https://developer.amazon.com/docs/smapi/isp-schemas.html).
+After that, there should be a `frozen_sword.json` file in your `alexaSkill/isps` folder. The content of that `json` file is used to define the price, release date, description as well as the prompts Alexa will use when she handles the transaction and much much more. You can find examples and a small description for each field [in the official Amazon reference](https://developer.amazon.com/docs/smapi/isp-schemas.html).
 
 Here's how our product's file looks like:
 
@@ -121,7 +164,7 @@ Here's how our product's file looks like:
 }
 ```
 
-Additionally, we will add a subscription, so run the `ask add isp` command again and add the `premium_pass`:
+Additionally, we could add a subscription by running the `ask add isp` command again and adding the `premium_pass`:
 
 ```text
 $ ask add isp
@@ -210,25 +253,25 @@ $ ask deploy
 
 ## Implementing Alexa ISP with Jovo
 
-The Alexa in-skill purchases API offers three kinds of interactions with our user:
+Now that we've added at least one product to our Alexa Skill, we can start implementing it into our app. The Alexa In-Skill Purchases API offers three kinds of interactions with our user:
 
-* **Upsell**: we proactively offer the user our products
-* **Purchase request**: the user asks to buy something
-* **Refund**: the user wants to return a product.
+* **Upsell**: We proactively offer the user our products ("The Product X could help you with that..").
+* **Purchase request**: The user asks to buy something ("I want to buy X").
+* **Refund**: The user wants to return a product ("I want a refund for X").
 
-Before we can implement the interactions in our code base, we have to first create the items we want to sell and implement the respective intents in our language model.
+For the Alexa Skill to understand those requests mentioned above, you need to do two things:
 
-![Alexa In-Skill-Purchasing](./img/workflow-in-skill-purchases.png)
-
-* [Updating your Language Model](#updating-your-language-model)
-* [Adding ISP to the Logic](#adding-isp-to-the-logic)
+* [Update your Language Model](#updating-your-language-model)
+* [Add ISP to the Logic](#adding-isp-to-the-logic)
 
 
 ### Updating your Language Model
 
+> Docs: [Jovo Language Model](https://www.jovo.tech/docs/model).
+
 As I described earlier, there are three kinds of interactions we have to implement in our Skill, but only two of these need to be added to the language model because the buy and refund request are the only ones initiated by the user.
 
-All of the elements, that we're going to add now, should be placed inside in the `alexa` object of our Jovo Language Model (`models/en-US.json`) to keep everything as clean as possible. 
+All of the elements that we're going to add now should be placed inside in the `alexa` object of our Jovo Language Model (`models/en-US.json`) to keep everything as clean as possible. 
 
 First of all, we will add a custom slot type for our product names. The important thing here is that the `id` of each value is the `reference_name` of our product, because we need it later on to initiate the transaction.
 
@@ -268,7 +311,7 @@ First of all, we will add a custom slot type for our product names. The importan
 ```
 
 
-Next up the intents. Amazon provides sample intents for both buy and refund requests.:
+Next up the intents. Amazon provides sample intents for both buy and refund requests:
 
 ```javascript
 // Rest of the language model
@@ -336,18 +379,33 @@ Next up the intents. Amazon provides sample intents for both buy and refund requ
 }
 ```
 
-That's everything we need for our language model. We just have to run the `jovo build --deploy` command to upload our changes to the Amazon Developer Console and after that, we can begin to implement our code.
+That's everything we need for our Language Model. To upload it to the Alexa platform, use the following commands:
+
+```sh
+# Build platforms folder (in this case platforms/alexaSkill)
+$ jovo build
+
+# Deploy contents of platforms folder
+$ jovo deploy
+```
+
 
 ### Adding ISP to the Logic
 
-As we discussed earlier, our only task is to **start** the transaction, since Alexa will handle the transaction herself. After the transaction finished, we will receive a request notifying us about the outcome, i.e. the purchase was successful or not. Inside that request, there will also be a `token`, which we can define while starting the transaction, to help us resume the Skill at the place the user left off.
+As we discussed earlier, our only task is to **start** the transaction, since Alexa will handle the transaction autonomously. After the transaction finished, we will receive a request notifying us about the outcome, i.e. the purchase was successful or not. Inside that request, there will also be a `token`, which we can define while starting the transaction, to help us resume the Skill at the place the user left off.
 
-To access the Alexa ISP API in Jovo we use `this.$alexaSkill.$inSkillPurchase`.
+To access the Alexa ISP API in Jovo we use the Alexa In-Skill Purchase object of the Jovo framework:
+
+```js
+this.$alexaSkill.$inSkillPurchase
+```
 
 Before we start any kind of transaction or refund process, we always retrieve the product first:
 
 ```javascript
 const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
+
+console.log(product);
 ```
 
 The data we get looks like this:
@@ -371,9 +429,9 @@ Using that data we can check if the user already owns the product:
 const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
 
 if (product.entitled === 'ENTITLED') {
-    // user already owns it
+    // User already owns it
 } else {
-    // user does not own it
+    // User does not own it
 }
 ```
 
@@ -387,11 +445,11 @@ The upsell method is used to proactively offer the user our products. To send ou
 
 For simplicity reasons and because these things are different for every individual skill, we will just hard-code the reference name and use a placeholder token.
 
-For your own skill, you should try to build a system, which offers each product at the right time, e.g. offer the user extra lives after they have died, so you don't annoy your user.
+For your own skill, you should try to build a system which offers each product at the right time, e.g. offer the user extra lives after they have died, so you don't annoy your user.
 
 For the message/prompt, Amazon offers the following guidelines:
 
-* Don't include the price. The products price, subscription term or free trial length are obtained from the product's `json` file during the transaction.
+* Don't include the price. The price, subscription term, or free trial length are obtained from the product's `json` file during the transaction.
 * End the message with a question to determine if the user is interested, but don't specifically ask if they want to buy it. That will be handled in the transaction by Alexa.
 * Explain the benefit the user would have from that product at the current situation.
 
@@ -522,7 +580,7 @@ ON_PURCHASE() {
 },
 ```
 
-### Inventory Management
+### Inventory Management for Consumables
 
 With consumables, you have to maintain one more thing, the user's inventory. While Alexa keeps track of the number of purchases per item, `activeEntitlementCount`, which gets incremented with every purchase and decremented with every refund, you have to track how many times the user has used the consumable. Simply storing the data inside a database would be enough in this case.
 
