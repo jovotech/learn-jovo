@@ -2,8 +2,6 @@
 
 In this lecture, you will learn how to create an Alexa Skill project and interaction model on the Amazon Developer Portal. This project will be used to configure how your Skill is reached by your users and how the Alexa API is communicating with your code.
 
-### Sections
-
 * [Sign in to Amazon Developer Portal](#sign-in-to-amazon-developer-portal)
 * [New Skill Project and Configuration](#new-skill-project-and-configuration)
 * [Create an Interaction Model](#create-an-interaction-model)

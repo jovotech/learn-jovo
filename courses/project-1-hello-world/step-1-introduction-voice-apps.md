@@ -2,8 +2,6 @@
 
 In this lecture, you will learn the basics of voice applications for both Amazon Alexa (Alexa Skills) and Google Home (Actions on Google).
 
-### Sections
-
 * [What is a Voice App?](#what-is-a-voice-app)
 * [How Voice Apps Work](#how-voice-apps-work)
     * [Input](#input)

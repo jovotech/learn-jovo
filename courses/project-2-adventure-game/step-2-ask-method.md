@@ -4,8 +4,6 @@ In this step, we're learning more about the flow of voice apps. How does a perso
 
 We're first creating a new Jovo project, then building the app logic for the first interaction (_BlueDoorIntent_ and _RedDoorIntent_). Afterward, we're testing the voice app online.
 
-### Sections
-
 * [Create a Jovo Project](#create-a-jovo-project)
 * [Building the Voice App Logic](#building-the-voice-app-logic)
 * [Preparing for Local Testing](#preparing-for-local-testing)

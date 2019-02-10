@@ -21,7 +21,9 @@ In a few simple steps, you will be introduced to Jovo voice app development.
 
 ## Next Steps
 
-Ready? Now let's go with [Step 1: Introduction to Voice Apps](./step-1-introduction-voice-apps.md).
+Let's start with an introduction of terms and key concepts of voice app development.
+
+> [Step 1: Introduction to Voice Apps](./step-1-introduction-voice-apps.md).
 
 Prefer to go from start to finish in one tutorial instead? Then go ahead with the resources below:
 

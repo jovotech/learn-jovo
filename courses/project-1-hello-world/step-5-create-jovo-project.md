@@ -2,8 +2,6 @@
 
 In this lecture, you will learn how to create a new voice app project with Jovo, an open source development framework for Alexa Skills and Google Actions.
 
-### Sections
-
 * [Introduction to Jovo](#introduction-to-jovo)
 * [Installation](#installation)
 * [Creating a New Project](#creating-a-new-project)

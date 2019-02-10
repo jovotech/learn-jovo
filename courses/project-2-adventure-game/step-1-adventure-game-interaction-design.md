@@ -2,8 +2,6 @@
 
 In this step, we are going to take a look at the interaction design and the language model of a simple choose-your-own-adventure game. The game will consist of two interactions, both having two options.
 
-### Sections
-
 * [Initial Interaction: Blue Door or Red Door?](#initial-interaction-blue-door-or-red-door)
 * [Second Interaction: Yes or No?](#second-interaction-yes-or-no)
 * [Create the Interaction Model on Amazon Alexa](#create-the-interaction-model-on-amazon-alexa)

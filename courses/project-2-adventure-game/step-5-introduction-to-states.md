@@ -2,8 +2,6 @@
 
 In the previous step, we noticed that there is the possibility for certain intents to be needed several times with different meanings. In this post, we're introducing states to accomplish this.
 
-### Sections
-
 * [Why We Need States](#why-we-need-states)
 * [How States Work](#how-states-work)
 * [Adding States with followUpState](#adding-states-with-followupstate)
@@ -38,7 +36,7 @@ In the next step we're going to use states for the first time.
 
 ## Adding States with followUpState
 
-We're doing this by adding a [followUpState](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/routing/states.md#followupstate 'docs/basic-concepts/routing/states#followupstate') to the app before an _ask_ call.
+We're doing this by adding a [followUpState](https://www.jovo.tech/docs/data#session-data) to the app before an _ask_ call.
 
 Remember the _EnterDoorIntent_:
 

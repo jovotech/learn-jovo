@@ -2,10 +2,11 @@
 
 ![Make an async API call with Jovo](./img/api-call-jovo.jpg "Using async await for Alexa Skills and Google Actions with Jovo")
 
-Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.
+Most Alexa Skills and Google Actions rely on some sort of external data. Learn how to build a voice app that calls an external API and leverages the modern JavaScript concept async/await.
 
 * [Introduction](#introduction)
 * [Making an API Call that Returns a Random Quote](#making-an-api-call-that-returns-a-random-quote)
+   * [Why asnyc/await](#why-asyncawait)
    * [Option 1: Using Request Promise](#option-1:-using-request-promise)
    * [Option 2: Using Traditional Request](#option-2:-using-traditional-request)
 * [Next Steps](#next-steps)
@@ -37,7 +38,78 @@ As an example, let's build a voice app that returns a random quote. There is a f
 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuoteFromFaction/4'
 ```
 
+This is how the interaction would be like:
+
+![Star Wars Quote Voice App](./img/star-wars-quote-debugger.jpg "Building a Star Wars Quote Alexa Skill and Google Action")
+
 Ideally, we would want a quote intent and that calls a `getRandomQuote` method:
+
+```javascript
+// app.js
+
+app.setHandler({
+    LAUNCH() {
+        return this.toIntent('QuoteIntent');
+    },
+
+    QuoteIntent() {
+        const quote = getRandomQuote();
+        console.log(quote);
+
+        this.tell(quote);
+    },
+});
+
+function getRandomQuote() {
+    // Do API call and return data
+}
+```
+
+
+
+### Why async/await
+
+The problem with API calls is that they are asynchronous, which could lead to a problem when executing the response. For example, if we log the request, response, and the quote. It can look like this:
+
+```sh
+# Request (shortened)
+{
+  "version": "1.0",
+  "session": {
+    "new": true,
+    "sessionId": "amzn1.echo-api.session.0000000-0000-0000-0000-00000000000",
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.000000-d0ed-0000-ad00-000000d00ebe"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "jovo-debugger-user"
+    }
+  },
+  "request": {
+    "type": "LaunchRequest",
+    "requestId": "amzn1.echo-api.request.0000000-0000-0000-0000-00000000000",
+    "timestamp": "2019-02-04T09:54:22.997Z",
+    "locale": "en-US"
+  }
+}
+
+# Response
+{
+	"version": "1.0",
+	"response": {
+		"shouldEndSession": true
+	},
+	"sessionAttributes": {}
+}
+
+# Quote
+In time, the suffering of your people will persuade you to see our point of view. — Nute Gunray
+```
+
+As you can see, the voice app sends out an empty response without waiting for the API call to be finished. This is because the handler promise gets resolved (all handlers have been executed from start to finish) without waiting for the asynchronous API call.
+
+With async/await, you can make the handler `await` asynchronous calls. You also have to add `asnyc` to all functions that use `await`:
 
 ```javascript
 // app.js
@@ -51,11 +123,11 @@ app.setHandler({
         const quote = await getRandomQuote();
         console.log(quote);
 
-        this.tell(quote.starWarsQuote);
+        this.tell(quote);
     },
 });
 
-function getRandomQuote() {
+async function getRandomQuote() {
     // Do API call and return data
 }
 ```
@@ -96,12 +168,13 @@ And then use it in the `getRandomQuote` method:
 ```javascript
 // app.js
 
-function getRandomQuote() {
+async function getRandomQuote() {
     const options = {
         uri: 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuoteFromFaction/4',
         json: true // Automatically parses the JSON string in the response
     };
-    const quote = await requestPromise(options);
+    const data = await requestPromise(options);
+    const quote = data.starWarsQuote;
 
     return quote;
 }
@@ -128,7 +201,7 @@ This won't return a promise, so we need to create a promise from the API respons
 ```javascript
 // app.js
 
-function getRandomQuote() {
+async function getRandomQuote() {
     return new Promise((resolve, reject) => {
         const options = {
             uri: 'http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuoteFromFaction/4',
@@ -138,7 +211,7 @@ function getRandomQuote() {
             if (error) {
                 return reject(error);
             }
-            resolve(body);
+            resolve(body.starWarsQuote);
         });
     });
 }

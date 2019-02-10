@@ -2,8 +2,6 @@
 
 In this lecture, you will learn the basics of how voice platforms like Alexa and Google Assistant use natural language understanding (NLU) for your voice app, and how you can build interaction and language models for them.
 
-### Sections
-
 * [What is a Language Model?](#what-is-a-language-model)
 * [The 3 Basic Elements of Voice Interactions](#the-3-basic-elements-of-voice-interactions)
     * [Amazon Alexa](#amazon-alexa)

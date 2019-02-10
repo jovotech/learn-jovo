@@ -2,8 +2,6 @@
 
 In this lecture, you will learn how to connect your Jovo code to the Amazon Alexa and Google Actions APIs, and test your first "Hello World" voice application.
 
-### Sections
-
 * [Where to Run Your Code](#where-to-run-your-code)
     * [Run Local Server](#run-local-server)
 * [Connecting Your Platform Project to an Endpoint](#connecting-your-platform-project-to-an-endpoint)
