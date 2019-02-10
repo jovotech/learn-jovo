@@ -185,7 +185,7 @@ app.setAlexaHandler({
     'AMAZON.StartOverIntent'() {
         // ...
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             // ...
         },
@@ -205,7 +205,7 @@ app.setAlexaHandler({
 });
 
 app.setGoogleAssistantHandler({
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'GoogleAction.Finished'() {
             // ...
         }
@@ -250,7 +250,7 @@ module.exports = {
     'AMAZON.StartOverIntent'() {
         // ...
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             // ...
         },
@@ -278,7 +278,7 @@ We do the same for our `GoogleHandler`. Again, we create a `google` folder insid
 const Player = require('../player.js');
 
 module.exports = {
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'GoogleAction.Finished'() {
             // ...
         }

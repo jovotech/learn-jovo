@@ -172,7 +172,7 @@ LAUNCH() {
 'AMAZON.PauseIntent'() {
 
 },
-AUDIOPLAYER': {
+AUDIOPLAYER: {
 	// ...
 }
 ```
@@ -431,7 +431,7 @@ app.setHandler({
 	'AMAZON.StartOverIntent'() {
 		this.tell('Not implemented');
 	},
-	AUDIOPLAYER': {
+	AUDIOPLAYER: {
 	   	'AlexaSkill.PlaybackStarted'() {
 			
 	   	},

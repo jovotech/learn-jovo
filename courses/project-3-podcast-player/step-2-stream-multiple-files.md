@@ -131,9 +131,9 @@ Inside that state, Google takes over and handles stuff like pausing, resuming, s
 
 ```javascript
 // src/app.js
-AUDIOPLAYER': {
+AUDIOPLAYER: {
     // Other Alexa intents
-    'GoogleAction.Finished': function() {
+    'GoogleAction.Finished'() {
   
     }
 }
@@ -143,7 +143,7 @@ Inside that state, we simply play the next file using the same command introduce
 
 ```javascript
 // src/app.js
-AUDIOPLAYER': {
+AUDIOPLAYER: {
     // Other Alexa intents
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
@@ -173,7 +173,7 @@ LAUNCH() {
     }
     this.ask('Enjoy');
 },
-AUDIOPLAYER': {
+AUDIOPLAYER: {
     // Other Alexa intents
     'GoogleAction.Finished'() {
         const song = 'PLACEHOLDER';
@@ -217,7 +217,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             
         },
@@ -234,7 +234,7 @@ app.setHandler({
         'AlexaSkill.PlaybackFailed'() {
             
         },
-        'GoogleAction.Finished': function() {
+        'GoogleAction.Finished'() {
             const secondSong = 'PLACEHOLDER';
             this.$googleAction.$audioPlayer.play(secondSong, 'song one');
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
