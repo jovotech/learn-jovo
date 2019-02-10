@@ -387,7 +387,7 @@ module.exports = {
     intentMap: {
         'AMAZON.StopIntent': 'END',
 		'AMAZON.NextIntent': 'NextIntent',
-		'AMAZON.PreviousIntent': 'PreviousIntent
+		'AMAZON.PreviousIntent': 'PreviousIntent'
     }
 };
 ```
