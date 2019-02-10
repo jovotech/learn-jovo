@@ -305,7 +305,7 @@ To do that we have to additionally save the current episode in the `GoogleAction
 
 ```javascript
 // src/app.js
-'GoogleAction.Finished': function() {
+'GoogleAction.Finished'() {
     const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
     this.$user.$data.currentEpisode = secondSong;
     this.$googleAction.$audioPlayer.play(secondSong, 'song one');
@@ -449,7 +449,7 @@ app.setHandler({
 	   	'AlexaSkill.PlaybackFailed'() {
 			
 	   	},
-	    'GoogleAction.Finished': function() {
+	    'GoogleAction.Finished'() {
 			const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
 			this.$user.$data.currentEpisode = secondSong;
 			this.$googleAction.$audioPlayer.play(secondSong, 'song one');

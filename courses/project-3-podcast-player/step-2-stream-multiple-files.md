@@ -100,7 +100,7 @@ app.setHandler({
         }
         this.tell('Enjoy');
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
 
         },
@@ -175,7 +175,7 @@ LAUNCH() {
 },
 AUDIOPLAYER': {
     // Other Alexa intents
-    'GoogleAction.Finished': function() {
+    'GoogleAction.Finished'() {
         const song = 'PLACEHOLDER';
         this.$googleAction.$audioPlayer.play(song, 'song one');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);

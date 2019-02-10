@@ -134,7 +134,7 @@ app.setHandler({
     ListIntent() {
         // ...
     },
-    ChooseFromListIntent(ordinal) {
+    ChooseFromListIntent() {
         // ...
     },
     LatestEpisodeIntent() {
@@ -204,9 +204,9 @@ app.setAlexaHandler({
     }
 });
 
-app.setGoogleActionHandler({
+app.setGoogleAssistantHandler({
     AUDIOPLAYER': {
-        'GoogleAction.Finished': function() {
+        'GoogleAction.Finished'() {
             // ...
         }
     }
@@ -279,7 +279,7 @@ const Player = require('../player.js');
 
 module.exports = {
     AUDIOPLAYER': {
-        'GoogleAction.Finished': function() {
+        'GoogleAction.Finished'() {
             // ...
         }
     }
@@ -329,7 +329,7 @@ app.setHandler({
 });
 
 app.setAlexaHandler(AlexaHandler);
-app.setGoogleHandler(GoogleHandler);
+app.setGoogleAssistantHandler(GoogleHandler);
 
 // Rest of the app.js file
 ```
