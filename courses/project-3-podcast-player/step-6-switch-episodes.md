@@ -440,8 +440,7 @@ NextIntent() {
 	let currentIndex = this.$user.$data.currentIndex;
 	let nextEpisode = Player.getNextEpisode(currentIndex);
 	if (!nextEpisode) {
-		this.tell('That was the most recent episode. You have to wait until a new episode gets released.');
-		return;
+		return this.tell('That was the most recent episode. You have to wait until a new episode gets released.');
 	}
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
 	this.$user.$data.currentIndex = currentIndex;
@@ -458,8 +457,7 @@ PreviousIntent() {
 	let currentIndex = this.$user.$data.currentIndex;
 	let previousEpisode = Player.getPreviousEpisode(currentIndex);
 	if (!previousEpisode) {
-		this.tell('You are already at the oldest episode.');
-		return;
+		return this.tell('You are already at the oldest episode.');
 	}
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
 	this.$user.$data.currentIndex = currentIndex;
