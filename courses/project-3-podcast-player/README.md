@@ -44,6 +44,6 @@ We start by playing a single audio file for both Alexa and Google Assistant with
 
 > [Step 1: Streaming an Audio File](./step-1-stream-audio-file.md).
 
-_Photo by [Matt Botsford](https://unsplash.com/photos/OKLqGsCT8qs) on [Unsplash](https://unsplash.com/)_
+*Photo by [Matt Botsford](https://unsplash.com/photos/OKLqGsCT8qs) on [Unsplash](https://unsplash.com/)*
 
 <!--[metadata]: { "description": "Build a Podcast Player App for Amazon Alexa and Google Assistant with this free course.", "author": "kaan-kilic" }-->
