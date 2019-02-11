@@ -4,10 +4,8 @@ In this step, we will build a system to store and retrieve the episodes of our p
 
 * [Storing the Episodes](#storing-the-episodes)
 * [Retrieving the Episodes](#retrieving-the-episodes)
-* [Update our app.js](#update-our-appjs)
+* [Updating our app.js](#updating-our-appjs)
     * [Enqueue](#enqueue)
-        * [Alexa](#alexa)
-        * [Google](#google)
     * [Resume](#resume)
 * [Next Step](#next-step)
 
@@ -49,6 +47,7 @@ An array containing multiple objects, where the very last object, i.e. `array.le
 Each object will contain the title and URL of the episode.
 
 Each episode's index can also be used as the unique value needed for the `token` we send out with every Alexa *play directive*. So from now on we will replace every `token` with the index as well as use the episode's title with every Google Action *play directive*.
+
 
 ## Retrieving the Episodes
 
@@ -120,12 +119,15 @@ module.exports = {
     getLatestEpisode: function() {
         return episodesJSON[0];
     },
+
     getFirstEpisode: function() {
         return episodesJSON[episodesJSON.length - 1];
     },
+
     getNextEpisode: function(index) {
         return episodesJSON[index - 1];
     },
+
     getPreviousEpisode: function(index) {
         return episodesJSON[index + 1];
     }
@@ -134,7 +136,7 @@ module.exports = {
 
 Now we can use our interface to replace the hard-coded episode URLs.
 
-## Update our app.js
+## Updating our app.js
 
 First of all, import the `player.js` file:
 
@@ -154,7 +156,9 @@ The `getEpisodeIndex` function will return us the correct index at which the epi
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
-    // other functions
+
+    // Other functions
+
     getEpisodeIndex: function(episode) {
         return episodesJSON.indexOf(episode);
     }
@@ -187,7 +191,9 @@ We have to add a function to the `player.js` interface, that takes the index as 
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
-    // other functions
+
+    // Other functions
+
     getEpisode: function(index) {
         return episodesJSON[index];
     }
@@ -198,6 +204,7 @@ Now we use the function to play the episode the user last listened to:
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     let episode;
     let currentIndex;
@@ -217,6 +224,7 @@ There is one more thing to fix before we can test it out. Since the episode vari
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     // ...
     if (this.isAlexaSkill()) {
@@ -309,4 +317,4 @@ In the next step we will use the new system to allow our user to manually switch
 
 > [Step 6: Manually Switch between Episodes](./step-6-switch-episodes.md)
 
-<!--[metadata]: { "description": "In this lecture, we update the way we store and retrieve each episode", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to store and retrieve podcast episodes in your Podcast Player voice app for Amazon Alexa and Google Assistant.", "author": "kaan-kilic" }-->

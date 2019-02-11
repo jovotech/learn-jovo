@@ -32,7 +32,17 @@ $ cd PodcastPlayer
 
 The heart of our project is located in the `app.js` file inside the `src` folder. That's the place where we configure our project and define our handler.
 
-Open up the file and we will see that there are already three intents defined in the `setHandler()` function. We delete everything besides the `LAUNCH` intent since we won't need them at this point.
+Open up the file and we will see that there are already three intents defined in the `setHandler()` function. We delete everything besides the `LAUNCH` intent since we won't need them at this point:
+
+```javascript
+// src/app.js
+
+app.setHandler({
+    LAUNCH() {
+
+    }
+});
+```
 
 Streaming an audio file works differently on both platforms, so we will go over the Alexa part first and add the Google Action implementation after that.
 
@@ -52,6 +62,7 @@ We place that snippet inside your `LAUNCH` intent, so it gets triggered every ti
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
@@ -92,6 +103,7 @@ We simply add `this.$googleAction.$audioPlayer.play(song, 'song one');`, where t
 
 ```javascript
 // src/app.js
+
 const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
 this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(song, 'token');
 this.$googleAction.$audioPlayer.play(song, 'song one');
@@ -144,4 +156,4 @@ In the next step, we will learn how to keep streaming audio files, after the fir
 
 > [Step 2: Stream Multiple Files in a Row](./step-2-stream-multiple-files.md)
 
-<!--[metadata]: { "description": "In this lecture, you learn how to stream an audio file on Amazon Alexa and Google Action", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to stream an audio file on both Amazon Alexa and Google Assistant with the Jovo Framework.", "author": "kaan-kilic" }-->

@@ -1,12 +1,14 @@
 # Step 3: Preparing our Development Environment
 
-From this point on we will start testing the application on actual devices. To do that we have to get some boring work done, which we skipped in the earlier steps thanks to the Jovo Debugger.
+From this point on we will start testing the application on actual devices. To do that we have to get some work done, which we were able to skip in the previous steps thanks to the Jovo Debugger.
 
-* [Amazon Alexa](#amazon-alexa)
-* [Google Action](#google-action)
+* [For Amazon Alexa](#for-amazon-alexa)
+   [AudioPlayer Interface](#audioplayer-interface)
+* [For Google Assistant](#for-google-assistant)
+   [Google Cloud SDK](#google-cloud-sdk)
 * [Next Step](#next-step)
   
-## Amazon Alexa
+## For Amazon Alexa
 
 To test our application on an Amazon Echo as an Alexa Skill, we have to create and customize a project on the Amazon Developer Portal. Instead of doing that on the website we will use the command line. For that, we first need to install and set up the [`ASK CLI`](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html).
 
@@ -72,7 +74,7 @@ module.exports = {
 };
 ```
 
-## Google Action
+## For Google Assistant
 
 We're going to do the same for the Google Action, but this time we will have to use the developer portal for some of the stuff.
 
@@ -169,4 +171,4 @@ In the next step, we will flesh out our podcast player and allow the user to pau
 
 > [Step 4: Pause and Resume the Audio Stream](./step-4-pause-resume-stream.md)
 
-<!--[metadata]: { "description": "In this lecture, we prepare our development environment to start testing on Amazon Alexa or Google Assistant devices", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to prepare your development environment to start testing your Podcast Player voice app on Amazon Alexa and Google Assistant devices.", "author": "kaan-kilic" }-->

@@ -9,8 +9,6 @@ In this step, we will improve the user interaction at the launch.
 	* [LatestEpisodeIntent](#latestepisodeintent)
 	* [ListIntent](#listintent)
 	* [ChooseFromListIntent](#choosefromlistintent)
-		* [Custom Input Type](#custom-input-type)
-		* [Handler](#handler)
 * [Update Launch Intent](#update-launch-intent)
 * [Update Resume Intent](#update-resume-intent)
 * [Next Step](#next-step)
@@ -711,4 +709,4 @@ In the next and final step, we will refactor the project's structure, add small 
 
 > [Step 8: The Final Steps](./step-8-final-steps.md)
 
-<!--[metadata]: { "description": "In this lecture, we rework the user interaction at our app's launch.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to improve the user interaction of a Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic" }-->

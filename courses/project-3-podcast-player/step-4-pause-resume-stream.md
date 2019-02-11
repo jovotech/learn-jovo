@@ -5,7 +5,7 @@ In this step, we will flesh out our podcast player and allow the user to pause a
 * [Amazon Alexa](#amazon-alexa)
 	* [Jovo Language Model](#jovo-language-model)
 	* [Handler](#handler)
-* [Google Action](#google-action)
+* [Google Assistant](#google-assistant)
 * [Remaining Alexa built-in Intents](#remaining-alexa-built-in-intents)
 * [Next Step](#next-step)
 
@@ -41,6 +41,7 @@ Here's its default state:
 
 ```javascript
 // model/en-US.json
+
 {
 	"invocation": "my test app",
 	"intents": [
@@ -118,6 +119,7 @@ Right next to the other Alexa built-in intents inside the `alexa` object, which 
 
 ```javascript
 // model/en-US.json
+
 "alexa": {
     "interactionModel": {
         "languageModel": {
@@ -166,13 +168,16 @@ Now open up the `app.js` file inside your `src/` folder and add the `AMAZON.Paus
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
 	// ...
 },
+
 'AMAZON.PauseIntent'() {
 
 },
-AUDIOPLAYER': {
+
+AUDIOPLAYER: {
 	// ...
 }
 ```
@@ -199,10 +204,10 @@ As we learned at the beginning of the course we can specify the point at which t
 The Jovo Persistence Layer allows us to store data across sessions. For local development and prototyping, Jovo will save the data inside a `JSON` file, which we can find in our projects root folder under `db/db.json`. To save and load data we use Jovo Framework's user class:
 
 ```javascript
-// save data:
+// Save data
 this.$user.$data.key = value;
 
-// load data:
+// Load data
 let data = this.$user.$data.key;
 ```
 
@@ -238,6 +243,7 @@ We save the offset to our database using one of `audioPlayer` classes built-in m
 
 ```javascript
 // src/app.js
+
 'AlexaSkill.PlaybackStopped'() {
     this.$user.$data.offset = this.$alexaSkill.$audioPlayer.getOffsetInMilliseconds();
 },
@@ -247,6 +253,7 @@ Now we add the `AMAZON.ResumeIntent` to our handler and retrieve the `offset` fr
 
 ```javascript
 // src/app.js
+
 'AMAZON.ResumeIntent'() {
     let offset = this.$user.$data.offset;
 },
@@ -260,6 +267,7 @@ The first step is to save the current episode before we send out the first *play
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     this.$user.$data.currentEpisode = song;
@@ -271,6 +279,7 @@ Besides that, we have to remember that we enqueue the next song, which we have t
 
 ```javascript
 // src/app.js
+
 'AlexaSkill.PlaybackNearlyFinished'() {
     const secondSong = 'PLACEHOLDER';
     this.$user.$data.nextEpisode = secondSong;
@@ -285,6 +294,7 @@ Now we can finish implementing the `AMAZON.ResumeIntent`. Simply retrieve the cu
 
 ```javascript
 // src/app.js
+
 'AMAZON.ResumeIntent'() {
     let offset = this.$user.$data.offset;
     let episode = this.$user.$data.currentEpisode;
@@ -295,7 +305,7 @@ Now we can finish implementing the `AMAZON.ResumeIntent`. Simply retrieve the cu
 
 To test it out, simply pause the audio stream at some point and restart it with *Alexa, resume*.
 
-## Google Action
+## Google Assistant
 
 Here's the deal: Implementing a resume and pause intent the same way won't work here. First of all, pausing an audio stream is handled by Google, so that's off the charts. Resuming an audio stream at a certain point won't work either, because we can't specify the offset as we did with Alexa.
 
@@ -305,6 +315,7 @@ To do that we have to additionally save the current episode in the `GoogleAction
 
 ```javascript
 // src/app.js
+
 'GoogleAction.Finished': function() {
     const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
     this.$user.$data.currentEpisode = secondSong;
@@ -319,6 +330,7 @@ Now we can check at our `LAUNCH` intent if the request is from a new user, if th
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     let song;
     if (this.$user.isNewUser()) {
@@ -344,6 +356,7 @@ There are still quite many built-in intents remaining. For now we will simply te
 
 ```javascript
 // src/app.js
+
 'AMAZON.LoopOffIntent'() {
     this.tell('Not implemented');
 },
@@ -377,6 +390,7 @@ At the end our handler should look like this:
 
 ```javascript
 // src/app.js
+
 app.setHandler({
 	LAUNCH() {
 		let song;
@@ -395,60 +409,77 @@ app.setHandler({
 			this.ask('Enjoy');
 		}
 	},
+
 	'AMAZON.PauseIntent'() {
 		this.$alexaSkill.$audioPlayer.stop();
 	},
+
 	'AMAZON.ResumeIntent'() {
 		let offset = this.$user.$data.offset;
 		let episode = this.$user.$data.currentEpisode;
 
 		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode, 'token');
 	},
+
 	'AMAZON.LoopOffIntent'() {
     	this.tell('Not implemented');
 	},
+
 	'AMAZON.LoopOnIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.LoopOffIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.RepeatIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.ShuffleOffIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.ShuffleOnIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.NextIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.PreviousIntent'() {
 		this.tell('Not implemented');
 	},
+
 	'AMAZON.StartOverIntent'() {
 		this.tell('Not implemented');
 	},
-	AUDIOPLAYER': {
+
+	AUDIOPLAYER: {
 	   	'AlexaSkill.PlaybackStarted'() {
 			
 	   	},
+
 	   	'AlexaSkill.PlaybackNearlyFinished'() {
 			const secondSong = 'PLACEHOLDER';
 			this.$user.$data.nextEpisode = secondSong;
 			this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
 	   	},
+
 	   	'AlexaSkill.PlaybackFinished'() {
 			this.$user.$data.currentEpisode = this.$user.$data.nextEpisode;	
 	   	},
+
 	   	'AlexaSkill.PlaybackStopped'() {
 			this.$user.$data.offset = this.$alexaSkill.$audioPlayer.getOffsetInMilliseconds();
 	   	},
+
 	   	'AlexaSkill.PlaybackFailed'() {
 			
 	   	},
+
 	    'GoogleAction.Finished': function() {
 			const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
 			this.$user.$data.currentEpisode = secondSong;
@@ -466,4 +497,4 @@ In the next step we will build a system to store and retrieve the episodes of ou
 
 > [Step 5: Store and Retrieve Multiple Episodes](./step-5-episode-list.md)
 
-<!--[metadata]: { "description": "In this lecture, we flesh out our podcast player and allow the user to pause and resume the audio file.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "In this lecture, we flesh out our Podcast Player Alexa Skill and Google Action and allow the user to pause and resume the audio file.", "author": "kaan-kilic" }-->

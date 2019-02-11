@@ -1,6 +1,6 @@
 ﻿# Step 2: Streaming Multiple Files in a Row
 
-Alright, it's time for the more interesting part. Before we can stream multiple files in a row we need at least some understanding how the respective audio players work.
+In the previous [Step 1: Streaming an Audio File](./step-1-stream-audio-file.md), we played a single audio file on both Amazon Alexa and Google Assistant. Let's dive deeper. Before we can stream multiple files in a row we need at least some understanding how the respective audio players work.
 
 * [The Alexa AudioPlayer](#the-alexa-audioplayer)
     * [AudioPlayer Requests](#audioplayer-requests)
@@ -31,6 +31,7 @@ To make handling these requests easier for us, Jovo maps them to built-in intent
 
 ```javascript  
 // src/app.js
+
 AUDIOPLAYER: {
    'AlexaSkill.PlaybackStarted'() {
 
@@ -80,6 +81,7 @@ Since our goal in this step is to play another file after the first one finished
 
 ```javascript
 // src/app.js
+
 'AlexaSkill.PlaybackNearlyFinished'() {
     const secondSong = 'PLACEHOLDER';
     this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
@@ -90,6 +92,7 @@ Your handler should currently look like this:
 
 ```javascript
 // src/app.js
+
 app.setHandler({
     LAUNCH() {
         const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
@@ -100,7 +103,7 @@ app.setHandler({
         }
         this.tell('Enjoy');
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
 
         },
@@ -131,7 +134,8 @@ Inside that state, Google takes over and handles stuff like pausing, resuming, s
 
 ```javascript
 // src/app.js
-AUDIOPLAYER': {
+
+AUDIOPLAYER: {
     // Other Alexa intents
     'GoogleAction.Finished': function() {
   
@@ -143,8 +147,11 @@ Inside that state, we simply play the next file using the same command introduce
 
 ```javascript
 // src/app.js
-AUDIOPLAYER': {
+
+AUDIOPLAYER: {
+
     // Other Alexa intents
+
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
         this.$googleAction.$audioPlayer.play(song, 'song one');
@@ -163,6 +170,7 @@ We will make these changes both to the `LAUNCH` as well as the `GoogleAction.Fin
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
@@ -173,8 +181,10 @@ LAUNCH() {
     }
     this.ask('Enjoy');
 },
-AUDIOPLAYER': {
+AUDIOPLAYER: {
+
     // Other Alexa intents
+
     'GoogleAction.Finished': function() {
         const song = 'PLACEHOLDER';
         this.$googleAction.$audioPlayer.play(song, 'song one');
@@ -188,6 +198,7 @@ In this case, it is important to not use the `ask()` method if the incoming requ
 
 ```javascript
 // src/app.js
+
 LAUNCH() {
     const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
     if (this.isAlexaSkill()) {
@@ -206,6 +217,7 @@ Before we move on to the next step, here's our handlers current state:
 
 ```javascript
 // src/app.js
+
 app.setHandler({
     LAUNCH() {
         const song = 'https://s3.amazonaws.com/jovo-songs/song1.mp3';
@@ -217,23 +229,29 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
-    AUDIOPLAYER': {
+
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             
         },
+
         'AlexaSkill.PlaybackNearlyFinished'() {
             const secondSong = 'PLACEHOLDER';
             this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
         },
+
         'AlexaSkill.PlaybackFinished'() {
             
         },
+
         'AlexaSkill.PlaybackStopped'() {
             
         },
+
         'AlexaSkill.PlaybackFailed'() {
             
         },
+
         'GoogleAction.Finished': function() {
             const secondSong = 'PLACEHOLDER';
             this.$googleAction.$audioPlayer.play(secondSong, 'song one');
@@ -250,4 +268,4 @@ In the next step, we will prepare our development environment to test our app on
 
 > [Step 3: Preparing the Development Environment](./step-3-development-environment.md)
 
-<!--[metadata]: { "description": "In this lecture, you learn more about the Alexa AudioPlayer and the Google Media Response interface to play multiple audio files in a row", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn more about the Alexa AudioPlayer and the Google Media Response interface to play multiple audio files in a row.", "author": "kaan-kilic" }-->

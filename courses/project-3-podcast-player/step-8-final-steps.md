@@ -124,34 +124,43 @@ Google | `AUDIOPLAYER` | `GoogleAction.Finished`
 
 ```javascript
 // src/app.js
+
 app.setHandler({
     LAUNCH() {
         // ...
     },
+
     NEW_USER() {
         // ...
     },
+
     ListIntent() {
         // ...
     },
-    ChooseFromListIntent(ordinal) {
+    ChooseFromListIntent() {
         // ...
     },
+
     LatestEpisodeIntent() {
         // ...
     },
+
     FirstEpisodeIntent() {
         // ...
     },
+
     NextIntent() {
         // ...
     },
+
     PreviousIntent() {
         // ...
     },
+
     ResumeIntent() {
         // ...
     },
+
     HelpIntent() {
         // ...
     }
@@ -161,43 +170,56 @@ app.setAlexaHandler({
     'AMAZON.CancelIntent'() {
         // ...
     },
+
     'AMAZON.PauseIntent'() {
         // ...
     },
+
     'AMAZON.LoopOffIntent'() {
         // ...
     },
+
     'AMAZON.LoopOnIntent'() {
         // ...
     },
+
     'AMAZON.LoopOffIntent'() {
         // ...
     },
+
     'AMAZON.RepeatIntent'() {
         // ...
     },
+
     'AMAZON.ShuffleOffIntent'() {
         // ...
     },
+
     'AMAZON.ShuffleOnIntent'() {
         // ...
     },
+
     'AMAZON.StartOverIntent'() {
         // ...
     },
-    AUDIOPLAYER': {
+
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             // ...
         },
+
         'AlexaSkill.PlaybackNearlyFinished'() {
             // ...
         },
+
         'AlexaSkill.PlaybackFinished'() {
             // ...
         },
+
         'AlexaSkill.PlaybackStopped'() {
             // ...
         },
+
         'AlexaSkill.PlaybackFailed'() {
             // ...
         }
@@ -205,7 +227,7 @@ app.setAlexaHandler({
 });
 
 app.setGoogleActionHandler({
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'GoogleAction.Finished': function() {
             // ...
         }
@@ -226,43 +248,56 @@ module.exports = {
     'AMAZON.CancelIntent'() {
         // ...
     },
+
     'AMAZON.PauseIntent'() {
         // ...
     },
+
     'AMAZON.LoopOffIntent'() {
         // ...
     },
+
     'AMAZON.LoopOnIntent'() {
         // ...
     },
+
     'AMAZON.LoopOffIntent'() {
         // ...
     },
+
     'AMAZON.RepeatIntent'() {
         // ...
     },
+
     'AMAZON.ShuffleOffIntent'() {
         // ...
     },
+
     'AMAZON.ShuffleOnIntent'() {
         // ...
     },
+
     'AMAZON.StartOverIntent'() {
         // ...
     },
-    AUDIOPLAYER': {
+
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             // ...
         },
+
         'AlexaSkill.PlaybackNearlyFinished'() {
             // ...
         },
+
         'AlexaSkill.PlaybackFinished'() {
             // ...
         },
+
         'AlexaSkill.PlaybackStopped'() {
             // ...
         },
+
         'AlexaSkill.PlaybackFailed'() {
             // ...
         }
@@ -291,7 +326,8 @@ Now we can import both files in our `app.js` file and place them inside the `Ale
 ```javascript
 // src/app.js
 
-// Rest of the app.js file
+// Rest of the app.js file above
+
 const AlexaHandler = require('./alexa/handler.js');
 const GoogleHandler = require('./google/handler.js');
 
@@ -299,30 +335,39 @@ app.setHandler({
     LAUNCH() {
         // ...
     },
+
     NEW_USER() {
         // ...
     },
+
     ListIntent() {
         // ...
     },
-    ChooseFromListIntent(ordinal) {
+
+    ChooseFromListIntent() {
         // ...
     },
+
     LatestEpisodeIntent() {
         // ...
     },
+
     FirstEpisodeIntent() {
         // ...
     },
+
     NextIntent() {
         // ...
     },
+
     PreviousIntent() {
         // ...
     },
+
     ResumeIntent() {
         // ...
     },
+
     HelpIntent() {
         // ...
     }
@@ -331,7 +376,8 @@ app.setHandler({
 app.setAlexaHandler(AlexaHandler);
 app.setGoogleHandler(GoogleHandler);
 
-// Rest of the app.js file
+// Rest of the app.js file below
+
 ```
 
 ## Next Steps
@@ -350,7 +396,7 @@ Feel free to modify the podcast player as you wish. We would love to see what yo
 
 **If you have any questions or suggestions, you can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "In this step, we make the final changes to our podcast player", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "In this step, we make the final changes to our Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic" }-->
 
 
 
