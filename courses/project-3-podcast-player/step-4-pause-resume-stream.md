@@ -186,6 +186,7 @@ Every time the intent is called we want to pause the audio stream by sending out
 
 ```javascript
 // src/app.js
+
 'AMAZON.PauseIntent'() {
     this.$alexaSkill.$audioPlayer.stop();
 },
@@ -285,6 +286,7 @@ Besides that, we have to remember that we enqueue the next song, which we have t
     this.$user.$data.nextEpisode = secondSong;
     this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
 },
+
 'AlexaSkill.PlaybackFinished'() {
     this.$user.$data.currentEpisode = this.$user.$data.nextEpisode;
 },
@@ -316,7 +318,7 @@ To do that we have to additionally save the current episode in the `GoogleAction
 ```javascript
 // src/app.js
 
-'GoogleAction.Finished': function() {
+'GoogleAction.Finished'() {
     const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
     this.$user.$data.currentEpisode = secondSong;
     this.$googleAction.$audioPlayer.play(secondSong, 'song one');
@@ -360,27 +362,35 @@ There are still quite many built-in intents remaining. For now we will simply te
 'AMAZON.LoopOffIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.LoopOnIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.LoopOffIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.RepeatIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.ShuffleOffIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.ShuffleOnIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.NextIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.PreviousIntent'() {
     this.tell('Not implemented');
 },
+
 'AMAZON.StartOverIntent'() {
     this.tell('Not implemented');
 },
@@ -480,7 +490,7 @@ app.setHandler({
 			
 	   	},
 
-	    'GoogleAction.Finished': function() {
+	    'GoogleAction.Finished'() {
 			const secondSong = 'https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3';
 			this.$user.$data.currentEpisode = secondSong;
 			this.$googleAction.$audioPlayer.play(secondSong, 'song one');

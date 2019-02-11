@@ -53,7 +53,6 @@ FirstEpisodeIntent() {
     this.$user.$data.currentIndex = currentIndex
 	if (this.isAlexaSkill()) {
 		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
-		
 	} else if (this.isGoogleAction()) {
 		this.$googleAction.$audioPlayer.play(episode.url, episode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
@@ -97,7 +96,6 @@ LatestEpisodeIntent() {
     this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
 		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
-		
 	} else if (this.isGoogleAction()) {
 		this.$googleAction.$audioPlayer.play(episode.url, episode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
@@ -173,7 +171,7 @@ The intent will first get the random indices and save them in our session attrib
 
 ListIntent() {
     const indices = Player.getRandomIndices(4);
-    this.setSessionAttribute('episodeIndices', indices);
+    this.$session.$data.episodeIndices = indices;
 },
 ```
 
@@ -184,34 +182,34 @@ Besides that, we have to somehow communicate the list to our user in a simple fo
 Here's an example:
 
 ```javascript
-let speech = this.speechBuilder()
-                .addText('Hey, you are the ')
-                .addSayAsCardinal('1')
-                .addText('visitor today.')
-                .addBreak('200ms')
-                .addText('How are you?');
+this.$speech
+	.addText('Hey, you are the ')
+	.addSayAsCardinal('1')
+	.addText('visitor today.')
+	.addBreak('200ms')
+	.addText('How are you?');
 
-this.tell(speech);
+this.tell(this.$speech);
 ```
 
 ```text
 Hey, you are the first visitor today. *small break* How are you?
 ```
 
-You can find the full list of features [here](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/output/speechbuilder.md 'docs/basic-concepts/output/speechbuilder').
+You can find the full list of features [here](https://www.jovo.tech/docs/output/speechbuilder 'docs/basic-concepts/output/speechbuilder').
 
 In our case, it will look like this:
 
 ```javascript
 // src/app.js
 
-let speech = this.speechBuilder().addText('Here\'s a list of episodes: ');
+this.$speech.addText('Here\'s a list of episodes: ');
 for (let i = 0; i < indices.length; i++) {
     let episode = Player.getEpisode(indices[i]);
-    speech.addSayAsOrdinal(`${i + 1}`).addText(episode.title).addBreak("100ms");
+    this.$speech.addSayAsOrdinal(`${i + 1}`).addText(episode.title).addBreak("100ms");
 }
-speech.addText('Which one would you like to listen to?');
-this.ask(speech);
+this.$speech.addText('Which one would you like to listen to?');
+this.ask(this.$speech);
 ```
 
 We add the pretext, use a for loop to get each episode using its index and add its title to our response and add the question at the end.
@@ -223,15 +221,15 @@ The complete intent looks like this:
 
 ListIntent() {
     const indices = Player.getRandomIndices(4);
-    this.setSessionAttribute('episodeIndices', indices);
+    this.$session.$data.episodeIndices = indices;
 
-    let speech = this.speechBuilder().addText('Here\'s a list of episodes: ');
-    for (let i = 0; i < indices.length; i++) {
-        let episode = Player.getEpisode(indices[i]);
-        speech.addSayAsOrdinal(`${i + 1}`).addText(episode.title).addBreak("100ms");
-    }
-    speech.addText('Which one would you like to listen to?');
-    this.ask(speech);
+	this.$speech.addText('Here\'s a list of episodes: ');
+	for (let i = 0; i < indices.length; i++) {
+		let episode = Player.getEpisode(indices[i]);
+		this.$speech.addSayAsOrdinal(`${i + 1}`).addText(episode.title).addBreak("100ms");
+	}
+	this.$speech.addText('Which one would you like to listen to?');
+	this.ask(this.$speech);
 },
 ```
 
@@ -598,8 +596,9 @@ We're done with the trickier part, as this one will be fairly easy again. We fir
 // src/app.js
 
 ChooseFromListIntent() {
-    let episodeIndices = this.getSessionAttribute('episodeIndices');
-    let episodeIndex = episodeIndices[parseInt(this.$inputs.ordinal.key) - 1];
+	const ordinal = this.$inputs.ordinal;
+    let episodeIndices = this.$session.$data.episodeIndices;
+    let episodeIndex = episodeIndices[parseInt(ordinal.key) - 1];
     this.$user.$data.currentIndex = episodeIndex;
     let episode = Player.getEpisode(episodeIndex);
 
@@ -624,7 +623,7 @@ So we use the `NEW_USER` intent to ask new users, if they want to choose an epis
 // src/app.js
 
 NEW_USER() {
-    this.ask('Would you like to begin listening from episode one or rather choose from a list?');
+    return this.ask('Would you like to begin listening from episode one or rather choose from a list?');
 },
 ```
 
@@ -636,7 +635,7 @@ At the `LAUNCH` intent we will handle the interaction with returning users. The 
 // src/app.js
 
 LAUNCH() {
-    this.ask('Would you like to resume where you left off or listen to the latest episode?');
+    return this.ask('Would you like to resume where you left off or listen to the latest episode?');
 },
 ```
 

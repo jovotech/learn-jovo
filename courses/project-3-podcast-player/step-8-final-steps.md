@@ -226,9 +226,9 @@ app.setAlexaHandler({
     }
 });
 
-app.setGoogleActionHandler({
+app.setGoogleAssistantHandler({
     AUDIOPLAYER: {
-        'GoogleAction.Finished': function() {
+        'GoogleAction.Finished'() {
             // ...
         }
     }
@@ -313,8 +313,8 @@ We do the same for our `GoogleHandler`. Again, we create a `google` folder insid
 const Player = require('../player.js');
 
 module.exports = {
-    AUDIOPLAYER': {
-        'GoogleAction.Finished': function() {
+    AUDIOPLAYER: {
+        'GoogleAction.Finished'() {
             // ...
         }
     }
@@ -374,7 +374,7 @@ app.setHandler({
 });
 
 app.setAlexaHandler(AlexaHandler);
-app.setGoogleHandler(GoogleHandler);
+app.setGoogleAssistantHandler(GoogleHandler);
 
 // Rest of the app.js file below
 

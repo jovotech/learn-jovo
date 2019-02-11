@@ -36,15 +36,19 @@ AUDIOPLAYER: {
    'AlexaSkill.PlaybackStarted'() {
 
    },
+
    'AlexaSkill.PlaybackNearlyFinished'() {
 
    },
+
    'AlexaSkill.PlaybackFinished'() {
 
    },
+
    'AlexaSkill.PlaybackStopped'() {
 
    },
+
    'AlexaSkill.PlaybackFailed'() {
 
    }
@@ -103,20 +107,25 @@ app.setHandler({
         }
         this.tell('Enjoy');
     },
+
     AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
 
         },
+
         'AlexaSkill.PlaybackNearlyFinished'() {
             const secondSong = 'PLACEHOLDER';
             this.$alexaSkill.$audioPlayer.setExpectedPreviousToken('token').enqueue(secondSong, 'token');
         },
+
         'AlexaSkill.PlaybackFinished'() {
 
         },
+
         'AlexaSkill.PlaybackStopped'() {
 
         },
+
         'AlexaSkill.PlaybackFailed'() {
 
         }
@@ -136,8 +145,10 @@ Inside that state, Google takes over and handles stuff like pausing, resuming, s
 // src/app.js
 
 AUDIOPLAYER: {
+
     // Other Alexa intents
-    'GoogleAction.Finished': function() {
+
+    'GoogleAction.Finished'() {
   
     }
 }
@@ -185,7 +196,7 @@ AUDIOPLAYER: {
 
     // Other Alexa intents
 
-    'GoogleAction.Finished': function() {
+    'GoogleAction.Finished'() {
         const song = 'PLACEHOLDER';
         this.$googleAction.$audioPlayer.play(song, 'song one');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
@@ -252,7 +263,7 @@ app.setHandler({
             
         },
 
-        'GoogleAction.Finished': function() {
+        'GoogleAction.Finished'() {
             const secondSong = 'PLACEHOLDER';
             this.$googleAction.$audioPlayer.play(secondSong, 'song one');
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
