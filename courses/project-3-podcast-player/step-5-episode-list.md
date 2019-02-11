@@ -275,7 +275,7 @@ For Google we do the same with the small difference that it will be all done ins
 ```javascript
 // src/app.js
 
-'GoogleAction.Finished': function() {
+'GoogleAction.Finished'() {
     let index = this.$user.$data.currentIndex;
     let episode = Player.getNextEpisode(index);
     if (episode) {

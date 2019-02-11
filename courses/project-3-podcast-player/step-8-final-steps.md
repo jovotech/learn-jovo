@@ -134,7 +134,7 @@ app.setHandler({
     ListIntent() {
         // ...
     },
-    ChooseFromListIntent(ordinal) {
+    ChooseFromListIntent() {
         // ...
     },
     LatestEpisodeIntent() {
@@ -185,7 +185,7 @@ app.setAlexaHandler({
     'AMAZON.StartOverIntent'() {
         // ...
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             // ...
         },
@@ -204,9 +204,9 @@ app.setAlexaHandler({
     }
 });
 
-app.setGoogleActionHandler({
-    AUDIOPLAYER': {
-        'GoogleAction.Finished': function() {
+app.setGoogleAssistantHandler({
+    AUDIOPLAYER: {
+        'GoogleAction.Finished'() {
             // ...
         }
     }
@@ -250,7 +250,7 @@ module.exports = {
     'AMAZON.StartOverIntent'() {
         // ...
     },
-    AUDIOPLAYER': {
+    AUDIOPLAYER: {
         'AlexaSkill.PlaybackStarted'() {
             // ...
         },
@@ -278,8 +278,8 @@ We do the same for our `GoogleHandler`. Again, we create a `google` folder insid
 const Player = require('../player.js');
 
 module.exports = {
-    AUDIOPLAYER': {
-        'GoogleAction.Finished': function() {
+    AUDIOPLAYER: {
+        'GoogleAction.Finished'() {
             // ...
         }
     }
@@ -329,7 +329,7 @@ app.setHandler({
 });
 
 app.setAlexaHandler(AlexaHandler);
-app.setGoogleHandler(GoogleHandler);
+app.setGoogleAssistantHandler(GoogleHandler);
 
 // Rest of the app.js file
 ```
