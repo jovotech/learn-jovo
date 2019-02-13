@@ -1,4 +1,4 @@
-﻿# Step 2: Streaming Multiple Files in a Row
+# Step 2: Streaming Multiple Files in a Row
 
 In the previous [Step 1: Streaming an Audio File](./step-1-stream-audio-file.md), we played a single audio file on both Amazon Alexa and Google Assistant. Let's dive deeper. Before we can stream multiple files in a row we need at least some understanding how the respective audio players work.
 
