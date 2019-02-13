@@ -189,7 +189,7 @@ If you're used to the traditional `request` package, you can use this as well:
 $ npm install request --save
 ```
 
-And initialize it like thos:
+And initialize it like this:
 
 ```javascript
 // app.js
