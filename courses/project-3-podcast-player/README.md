@@ -4,6 +4,8 @@ Welcome to our third project-based course about voice app development. In previo
 
 For project 3, we'll look into one of the most popular use cases for voice apps and smart speakers: streaming audio. Let's build a podcast player voice app that works on both Amazon Alexa and Google Assistant.
 
+> [You can find the full code example of the Podcast Player Voice App on GitHub](https://github.com/jovotech/jovo-sample-podcast-player).
+
 * [What We're Building](#what-were-building)
 * [Course Outline](#course-outline)
 * [Let's Get Started](#lets-get-started)
@@ -12,7 +14,7 @@ For project 3, we'll look into one of the most popular use cases for voice apps 
 
 ![](./img/podcast-player-voice-app.jpg)
 
-In this course we're going to build a easily modifiable podcast player Alexa Skill and Google Action.
+In this course we're going to build an easily modifiable podcast player Alexa Skill and Google Action.
 
 It will automatically play multiple episodes in a row, let the user pause and resume whenever they want, and let them switch between episodes freely.
 
@@ -27,10 +29,10 @@ and much more. See all the steps below.
 
 ## Course Outline
 
-> [You can find the full code example of the Podcast Player Voice App here](https://github.com/jovotech/jovo-sample-podcast-player).
+> [You can find the full code example of the Podcast Player Voice App on GitHub](https://github.com/jovotech/jovo-sample-podcast-player).
 
 * [Step 1: Streaming an Audio File](./step-1-stream-audio-file.md)
-* [Step 2: Stream Multiple Files in a Row](./step-2-stream-multiple-files.md)
+* [Step 2: Streaming Multiple Files in a Row](./step-2-stream-multiple-files.md)
 * [Step 3: Preparing our Development Environment](./step-3-development-environment.md)
 * [Step 4: Pause and Resume the Audio Stream](./step-4-pause-resume-stream.md)
 * [Step 5: Store and Retrieve Multiple Episodes](./step-5-episode-list.md)

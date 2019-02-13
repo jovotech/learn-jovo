@@ -1,19 +1,19 @@
 # Step 7: Reworking the User Interaction at Launch
 
-We're almost done. Our podcast player can play multiple episodes in a row, allows our user to pause, resume an episode as well as skip ahead or back to another episode. All that on both platforms with a minimal amount of code.
+We're almost done. Our podcast player can play multiple episodes in a row, allows our users to pause, resume an episode as well as skip ahead or back to another episode. All that on both platforms with a minimal amount of code.
 
 In this step, we will improve the user interaction at the launch.
 
-* [User Interaction](#user-interaction)
-	* [FirstEpisodeIntent](#firstepisodeintent)
-	* [LatestEpisodeIntent](#latestepisodeintent)
-	* [ListIntent](#listintent)
-	* [ChooseFromListIntent](#choosefromlistintent)
-* [Update Launch Intent](#update-launch-intent)
-* [Update Resume Intent](#update-resume-intent)
+* [Updating the User Interaction](#user-interaction)
+	* [Adding a FirstEpisodeIntent](#adding-a-firstepisodeintent)
+	* [Adding a LatestEpisodeIntent](#adding-a-latestepisodeintent)
+	* [Adding a ListIntent](#adding-a-listintent)
+	* [Adding a ChooseFromListIntent](#adding-a-choosefromlistintent)
+* [Updating the Launch Intent](#updating-the-launch-intent)
+* [Updating the Resume Intent](#updating-the-resume-intent)
 * [Next Step](#next-step)
 
-## User Interaction
+## Updating the User Interaction
 
 The idea for the user interaction is the following:
 
@@ -23,7 +23,14 @@ What do we need for that?
 
 First of all, we have to add an `FirstEpisodeIntent`. In addition to that, we need an intent, which lists the four random episodes, `ListIntent`, as well as one that gets triggered with by user's answer, `ChooseFromListIntent`. Last but not least, we need a `LatestEpisodeIntent` as well. That's it.
 
-### FirstEpisodeIntent
+Let's do this step by step:
+
+* [Adding a FirstEpisodeIntent](#adding-a-firstepisodeintent)
+* [Adding a LatestEpisodeIntent](#adding-a-latestepisodeintent)
+* [Adding a ListIntent](#adding-a-listintent)
+* [Adding a ChooseFromListIntent](#adding-a-choosefromlistintent)
+
+### Adding a FirstEpisodeIntent
 
 Probably the easiest one. We first add the intent to our language model just like we did before:
 
@@ -50,18 +57,19 @@ The intent itself will use the `player.js` file's `getFirstEpisode()` method, sa
 FirstEpisodeIntent() {
     let episode = Player.getFirstEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
-    this.$user.$data.currentIndex = currentIndex
+    this.$user.$data.currentIndex = currentIndex;
+
 	if (this.isAlexaSkill()) {
 		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+		this.$googleAction.$mediaResponse.play(episode.url, episode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
 ```
 
-### LatestEpisodeIntent
+### Adding a LatestEpisodeIntent
 
 Works almost completely the same way as `FirstEpisodeIntent`:
 
@@ -94,17 +102,18 @@ LatestEpisodeIntent() {
     let episode = Player.getLatestEpisode();
     let currentIndex = Player.getEpisodeIndex(episode);
     this.$user.$data.currentIndex = currentIndex;
+
 	if (this.isAlexaSkill()) {
 		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+		this.$googleAction.$mediaResponse.play(episode.url, episode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
 ```
 
-### ListIntent
+### Adding a ListIntent
 
 This is one will be a little trickier, but before we add the intent to our handler, let's add it to the language model first:
 
@@ -148,7 +157,9 @@ We first need to add a method to our `player.js` file, which returns us `n` rand
 const episodesJSON = require('./episodes.json');
 
 module.exports = {
-    // other functions
+
+    // Other functions
+
     getRandomIndices: function(number) {
         let arr = []
         while (arr.length < number){
@@ -233,13 +244,16 @@ ListIntent() {
 },
 ```
 
-### ChooseFromListIntent
+### Adding a ChooseFromListIntent
 
-This one is a little bit more tricky than the previous one. The idea is to let the user answer with *first*, *second one*, etc., because it would be a little to demanding to expect them to use the episode's title.
+This one is a little bit trickier than the previous one. The idea is to let the user answer with *first*, *second one*, etc., because it would be a little to demanding to expect them to use the episode's title.
 
 For that, our intent will need an input type that recognizes ordinal numbers. With the Jovo Language Model we can specify separate input types for each platform. Since Google does provide a built-in one ordinal numbers, `@sys.ordinal`, we can use that, but for Alexa, we have to create a custom one. 
 
-#### Custom Input Type
+* [Defining a Custom Input Type](#defining-a-custom-input-type)
+* [ChooseFromListIntent Logic](#choosefromlistintent-logic)
+
+#### Defining a Custom Input Type
 
 Every input type needs a `name`, which is used to reference it later on. Besides that it needs possible values and optional synonyms for each value:
 
@@ -334,7 +348,7 @@ We place the `inputTypes` array at the same level as the rest of the stuff in ou
 // model/en-US.json
 
 {
-	"invocation": "my test app",
+	"invocation": "my podcast player",
 	"intents": [
 		// ...
 	],
@@ -391,7 +405,7 @@ Before we move on to add the intent to our handler, let's delete the `HelloWorld
 // model/en-US.json
 
 {
-	"invocation": "my test app",
+	"invocation": "my podcast player",
 	"intents": [
 		{
 			"name": "NextIntent",
@@ -588,7 +602,7 @@ Before we move on to add the intent to our handler, let's delete the `HelloWorld
 }
 ```
 
-#### Handler
+#### ChooseFromListIntent Logic
 
 We're done with the trickier part, as this one will be fairly easy again. We first get the indices array from our session attributes, use the input to get the correct index from it, save the index to our database, use it to get the episode data and last but not least send out a *play directive*.
 
@@ -606,14 +620,14 @@ ChooseFromListIntent() {
         this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${episodeIndex}`);
         
     } else if (this.isGoogleAction()) {
-        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+        this.$googleAction.$mediaResponse.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
 },
 ```
 
-## Update Launch Intent
+## Updating the Launch Intent
 
 Now we can use all of the intents to update the user interaction at app's launch. We want to have two different outputs depending if it is a new user or returning one. The easiest way to do that with Jovo is by using one of it's built-in intents called `NEW_USER`, which, as the name says, every new user gets routed to at launch.
 
@@ -639,7 +653,7 @@ LAUNCH() {
 },
 ```
 
-## Update Resume Intent
+## Updating the Resume Intent
 
 With the updated `LAUNCH` intent, we need to add a `ResumeIntent` for our Google Action as well. Since we can't specify the offset, we will simply start playing the correct episode.
 
@@ -693,7 +707,7 @@ ResumeIntent() {
         this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
         
     } else if (this.isGoogleAction()) {
-        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+        this.$googleAction.$mediaResponse.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }

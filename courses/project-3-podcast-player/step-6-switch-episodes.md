@@ -1,19 +1,14 @@
 # Step 6: Switching between Episodes
 
-It's time to add the last bit of controls to our podcast player that the user needs. They can already pause and resume the audio stream and now we will allow them to manually switch to the next or previous episode.
+It's time to add the last bit of controls to our Alexa Skill and Google Action podcast player that the user needs. They can already pause and resume the audio stream and now we will allow them to manually switch to the next or previous episode.
 
-* [Switching between Episodes](#switching-between-episodes)
-	* [Jovo Language Model](#jovo-language-model)
-	* [Adding the Intents to our Handler](#adding-the-intents-to-our-handler)
+* [Updating the Jovo Language Model](#updating-the-jovo-language-model)
+   * [Adding Custom Intents](#adding-custom-intents)
+* [Updating the Logic](#updating-the-logic)
 * [Next Step](#next-step)
 
-## Switching between Episodes
 
-In the previous step we already implemented the methods we would need for that in our `player.js` file.
-
-But before add the two intents to our handler, we will first add them to the language model.
-
-### Jovo Language Model
+## Updating the Jovo Language Model
 
 We mentioned earlier, the Jovo Language Model allows us to maintain only a single file, which can be used to create the platform language models with the help of the Jovo CLI.
 
@@ -23,7 +18,7 @@ Currently our model looks like this:
 // model/en-US.json
 
 {
-	"invocation": "my test app",
+	"invocation": "my podcast player",
 	"intents": [
 		{
 			"name": "HelloWorldIntent",
@@ -104,9 +99,11 @@ Currently our model looks like this:
 ```
 
 
-#### Adding our own Intent
+### Adding Custom Intents
 
-Every custom intent in the Jovo language model has to have two properties, a name as well as sample phrases:
+> Docs: [Jovo Language Model - Intents](https://www.jovo.tech/docs/model#intents).
+
+Every custom intent in the Jovo language Model has to have two properties, a name as well as sample phrases:
 
 ```javascript
 {
@@ -171,6 +168,8 @@ For these cases, we can specify inside our Jovo Language Model, that the intent 
 },
 ```
 
+> Tutorial: [Turn an Alexa Interaction Model into a Dialogflow Agent](https://www.jovo.tech/tutorials/alexa-model-to-dialogflow).
+
 Some of these built-in intents are also [expendable](https://developer.amazon.com/docs/custom-skills/implement-the-built-in-intents.html#extending), which is why Jovo will use the phrases we specified to extend the built-in intent by default. But, that only works with some of the intents. In our case is does not, so we specify that we don't want to extend the intent by adding an empty `samples` array:
 
 ```javascript
@@ -229,7 +228,7 @@ Our language model should look like this now:
 // model/en-US.json
 
 {
-	"invocation": "my test app",
+	"invocation": "my podcast player",
 	"intents": [
 		{
 			"name": "HelloWorldIntent",
@@ -354,11 +353,22 @@ Our language model should look like this now:
 }
 ```
 
-That's all we need for now. Now we run the `$ jovo build --deploy` command to use the Jovo Language Model to create and deploy the respective platform's files, so we can continue with adding the intents to our handler.
+That's all we need for now. Now we run the following commands o create and deploy the respective platform's files:
 
-### Adding the Intents to our Handler
+```sh
+# Build platform files
+$ jovo build
 
-Before we add the Next- and PreviousIntent to our handler, we have to first make some adjustments to the configuration of our project. Technically, our Jovo Language Model contains four different intents: `NextIntent`, `PreviousIntent`, `AMAZON.NextIntent` and `AMAZON.PreviousIntent`.
+# Deploy to platforms
+$ jovo deploy
+
+# Shortcut
+$ jovo build --deploy
+```
+
+## Updating the Logic
+
+Before we add the NextIntent and PreviousIntent to our handler, we have to first make some adjustments to the configuration of our project. Technically, our Jovo Language Model contains four different intents: `NextIntent`, `PreviousIntent`, `AMAZON.NextIntent` and `AMAZON.PreviousIntent`.
 
 If one of our Alexa users says *Alexa, next* or *Alexa, previous one* it will invoke the `AMAZON.NextIntent` or `AMAZON.PreviousIntent`, while Google Assistant users trigger the `NextIntent` or `PreviousIntent`, which means our handler has to have all four intents:
 
@@ -366,24 +376,29 @@ If one of our Alexa users says *Alexa, next* or *Alexa, previous one* it will in
 'AMAZON.NextIntent'() {
 
 },
+
 'AMAZON.PreviousIntent'() {
 
 },
+
 NextIntent() {
 
 },
+
 PreviousIntent() {
 
 },
 ```
 
-That's bad code. It's redundant. To help with that Jovo offers a simple mapping function for intents. We can specify which intents should be mapped, or routed, to another intent automatically, using the `intentMap` inside the `config.js` file:
+That's redundant code. To help with that Jovo offers a simple mapping function for intents. We can specify which intents should be mapped, or routed, to another intent automatically, using the `intentMap` inside the `config.js` file:
 
 ```javascript
 // src/config.js
 
 module.exports = {
-	// other configurations
+
+	// Other configurations
+
     intentMap: {
         'AMAZON.StopIntent': 'END',
 		'AMAZON.NextIntent': 'NextIntent',
@@ -391,6 +406,8 @@ module.exports = {
     }
 };
 ```
+
+> Docs: [Jovo intentMap](https://www.jovo.tech/docs/routing/intents#intentmap).
 
 This way we have to only have a single `NextIntent` and `PreviousIntent` inside our handler.
 
@@ -405,24 +422,29 @@ NextIntent() {
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
 	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.$audioPlayer
+			.setOffsetInMilliseconds(0)
+			.play(nextEpisode.url, `${currentIndex}`);
 		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.$audioPlayer.play(nextEpisode.url, nextEpisode.title);
+		this.$googleAction.$mediaResponse.play(nextEpisode.url, nextEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
+
 PreviousIntent() {
 	let currentIndex = this.$user.$data.currentIndex;
 	let previousEpisode = Player.getPreviousEpisode(currentIndex);
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
 	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.$audioPlayer
+			.setOffsetInMilliseconds(0)
+			.play(previousEpisode.url, `${currentIndex}`);
 		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.$audioPlayer.play(previousEpisode.url, previousEpisode.title);
+		this.$googleAction.$mediaResponse.play(previousEpisode.url, previousEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
@@ -445,10 +467,12 @@ NextIntent() {
 	currentIndex = Player.getEpisodeIndex(nextEpisode);
 	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.$audioPlayer
+			.setOffsetInMilliseconds(0)
+			.play(nextEpisode.url, `${currentIndex}`);
 		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.$audioPlayer.play(nextEpisode.url, nextEpisode.title);
+		this.$googleAction.$mediaResponse.play(nextEpisode.url, nextEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
@@ -462,17 +486,19 @@ PreviousIntent() {
 	currentIndex = Player.getEpisodeIndex(previousEpisode);
 	this.$user.$data.currentIndex = currentIndex;
 	if (this.isAlexaSkill()) {
-		this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
+		this.$alexaSkill.$audioPlayer
+			.setOffsetInMilliseconds(0)
+			.play(previousEpisode.url, `${currentIndex}`);
 		
 	} else if (this.isGoogleAction()) {
-		this.$googleAction.$audioPlayer.play(previousEpisode.url, previousEpisode.title);
+		this.$googleAction.$mediaResponse.play(previousEpisode.url, previousEpisode.title);
 		this.$googleAction.showSuggestionChips(['pause', 'start over']);
 		this.ask('Enjoy');
 	}
 },
 ```
 
-In this case `return` statement is used to stop the execution of the remaining code.
+In this case a `return` statement is used to stop the execution of the remaining code.
 
 Before you can test everything out, don't forget to remove the `AMAZON.NextIntent` and `AMAZON.PreviousIntent`, which we added in step four.
 
@@ -480,6 +506,6 @@ Before you can test everything out, don't forget to remove the `AMAZON.NextInten
 
 In the next step, we will rework the user interaction at the app's launch!
 
-> [Step 7: Rework the User Interaction at Launch](./step-7-launch-user-interaction.md)
+> [Step 7: Reworking the User Interaction at Launch](./step-7-launch-user-interaction.md)
 
 <!--[metadata]: { "description": "Learn how to use a NextIntent and a PreviousIntent to let our user switch between episodes in a Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic" }-->

@@ -1,6 +1,6 @@
 # Step 5: Storing and Retrieving Multiple Episodes
 
-In this step, we will build a system to store and retrieve the episodes of our podcast.
+In this step, we will build a system to store and retrieve the episodes of our podcast on Amazon Alexa and Google Assistant.
 
 * [Storing the Episodes](#storing-the-episodes)
 * [Retrieving the Episodes](#retrieving-the-episodes)
@@ -11,38 +11,38 @@ In this step, we will build a system to store and retrieve the episodes of our p
 
 ## Storing the Episodes
 
-Until now we've simply hard coded the episodes URLs. Obviously, that's wrong, but it saved us some time, while we were figuring out both audio player interfaces.
+Until now we've simply hard coded the episodes URLs. Obviously, that's wrong, but it saved us some time while we were figuring out both audio interfaces for Alexa and Google Assistant.
 
-Instead, we will now store everything inside a `JSON` file, called `episodes.json` inside our `app` folder, with the following structure:
+Instead, we will now store everything inside a `JSON` file, called `episodes.json` inside our `src` folder, with the following structure (thanks again to [Bret Kinsella](https://twitter.com/bretkinsella) for providing us with the [Voicebot Podcast](https://voicebot.ai/voicebot-podcasts/) episodes):
 
 ```javascript
 // src/episodes.json
 
 [
     {
-        "title": "Episode Five",
-        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "title": "Jan König Discusses the Jovo Open Source Framework for Voice App Development",
+        "url": "https://traffic.libsyn.com/voicebot/Jan_Konig_on_the_Jovo_Open_Source_Framework_for_Voice_App_Development_-_Voicebot_Podcast_Ep_56.mp3"
     },
     {
-        "title": "Episode Four",
-        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "title": "John Kelvie CEO of Bespoken Discusses How Voice App Testing is Different",
+        "url": "https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55"
     },
     {
-        "title": "Episode Three",
-        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "title": "Shane Mac CEO of Assist Says The Talking Internet is Here",
+        "url": "https://traffic.libsyn.com/voicebot/Shane_Mac_CEO_of_Assist_The_Talking_Internet_is_Here_-_Voicebot_Podcast_54.mp3"
     },
     {
-        "title": "Episode Two",
-        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "title": "Tom Hebner Global Innovation Head for Nuance Talks 20 Years in Voice",
+        "url": "https://traffic.libsyn.com/voicebot/Tom_Hebner_Global_Innovation_Lead_for_Nuance_Talks_20_Years_in_Voice_-_Voicebot_Podcast_Ep_53.mp3"
     },
     {
-        "title": "Episode One",
-        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "title": "Pulse Labs Founders Talk Voice App Testing and Alexa Accelerator",
+        "url": "https://traffic.libsyn.com/voicebot/Pulse_Labs_Co-founders_Talk_Voice_App_Testing_-_Voicebot_Podcast_Ep_52.mp3"
     }
 ]
 ```
 
-An array containing multiple objects, where the very last object, i.e. `array.length - 1` will contain the very first episode and the very first object, i.e index `0`, will store the most recent episode.
+This file is an array containing multiple objects, where the very last object, i.e. the index `array.length - 1` (in this case index `4` for five episodes) will contain the very first episode and the very first object, i.e index `0`, will store the most recent episode.
 
 Each object will contain the title and URL of the episode.
 
@@ -76,7 +76,7 @@ module.exports = {
 }
 ```
 
-The first two are easy. We simply import the `episodes.json` file and return the content at the correct index:
+For the first two, we simply import the `episodes.json` file and return the content at the correct index:
 
 ```javascript
 // src/player.js
@@ -93,7 +93,7 @@ module.exports = {
 }
 ```
 
-The other two will simply take in an index as a parameter and return the episode at the next/previous index.
+The other two will take in an index as a parameter and return the episode at the next/previous index.
 
 ```javascript
 // src/player.js
@@ -172,7 +172,7 @@ If it's a new user, let's just play the first episode for now. We will improve t
 
 LAUNCH() {
     let episode;
-    if (this.$user.isNewUser()) {
+    if (this.$user.isNew()) {
         episode = Player.getFirstEpisode();
         let currentIndex = Player.getEpisodeIndex(episode);
         this.$user.$data.currentIndex = currentIndex;
@@ -228,10 +228,12 @@ There is one more thing to fix before we can test it out. Since the episode vari
 LAUNCH() {
     // ...
     if (this.isAlexaSkill()) {
-        this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
+        this.$alexaSkill.$audioPlayer
+            .setOffsetInMilliseconds(0)
+            .play(episode.url, `${currentIndex}`);
         
     } else if (this.isGoogleAction()) {
-        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+        this.$googleAction.$mediaResponse.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -246,7 +248,11 @@ Alright, now we can test it out. The audio file should start playing without any
 
 There's still more to update besides the `LAUNCH` intent. It's time to fix the enqueue logic as well.
 
-#### Alexa
+* [Enqueue on Alexa](#enqueue-on-alexa)
+* [Enqueue on Google Assistant](#enqueue-on-google-assistant)
+
+
+#### Enqueue on Alexa
 
 Let's start with the Alexa part. In the `AlexaSkill.PlaybackNearlyFinished` intent we simply get the current index from the database and use the `getNextEpisode()` method from our `player.js` file. We also check if `episode` has a value since the player will reach the last episode at some point:
 
@@ -258,7 +264,9 @@ Let's start with the Alexa part. In the `AlexaSkill.PlaybackNearlyFinished` inte
     let episode = Player.getNextEpisode(currentIndex);
     let nextIndex = Player.getEpisodeIndex(episode);
     if (episode) {
-        this.$alexaSkill.$audioPlayer.setExpectedPreviousToken(`${currentIndex}`).enqueue(episode.url, `${nextIndex}`);
+        this.$alexaSkill.$audioPlayer
+            .setExpectedPreviousToken(`${currentIndex}`)
+            .enqueue(episode.url, `${nextIndex}`);
     }
 },
 ```
@@ -276,7 +284,7 @@ The `AlexaSkill.PlaybackFinished` intent will be used to decrease the index as l
 },
 ```
 
-#### Google
+#### Enqueue on Google Assistant
 
 For Google we do the same with the small difference that it will be all done inside a single intent:
 
@@ -288,7 +296,7 @@ For Google we do the same with the small difference that it will be all done ins
     let episode = Player.getNextEpisode(index);
     if (episode) {
         this.$user.$data.currentIndex -= 1;
-        this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+        this.$googleAction.$mediaResponse.play(episode.url, episode.title);
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
         this.ask('Enjoy');
     }
@@ -307,7 +315,9 @@ We also have to fix the `AMAZON.ResumeIntent`:
     let currentIndex = this.$user.$data.currentIndex;
     let episode = Player.getEpisode(currentIndex);
 
-    this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
+    this.$alexaSkill.$audioPlayer
+        .setOffsetInMilliseconds(offset)
+        .play(episode.url, `${currentIndex}`);
 },
 ```
 

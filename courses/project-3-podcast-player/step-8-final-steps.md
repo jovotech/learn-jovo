@@ -2,20 +2,28 @@
 
 We're at the final step where before we improve the project's structure, add small required intents and look ahead at what else could be added to the project.
 
-* [Required Intents](#required-intents)
+* [Adding Required Intents](#adding-required-intents)
     * [Help Intent](#help-intent)
-    * [CancelIntent](#cancelintent)
-    * [StopIntent](#stopintent)
-* [Multiple Handlers](#multiple-handlers)
+    * [Cancel Intent](#cancel-intent)
+    * [Stop Intent](#stop-intent)
+* [Separating the Logic into Multiple Handlers](#separating-the-logic-into-multiple-handlers)
 * [Next Steps](#next-steps)
 
 ## Required Intents
+
+There are a few intents that are required by the platforms to pass the certification. Those for Amazon Alexa are typically sitting in the [`alexa` object of the Jovo Language Model](https://www.jovo.tech/docs/model#alexa).
+
+In this section, we will build out the following required intents and will also make them work for Google Assistant by updating the language model:
+
+* [Help Intent](#help-intent)
+* [Cancel Intent](#cancel-intent)
+* [Stop Intent](#stop-intent)
 
 ### Help Intent
 
 In and outside the playback state our user should have the possibility to ask for help.
 
-First we add it to our language model and delete the `AMAZON.HelpIntent` inside the `alexa` object:
+To make the intent work across platforms, we first add it to our language model and delete the `AMAZON.HelpIntent` inside the `alexa` object:
 
 ```javascript
 // model/en-US.json
@@ -36,20 +44,23 @@ First we add it to our language model and delete the `AMAZON.HelpIntent` inside 
 },
 ```
 
-We add the intent to our intent map:
+As this will still use the `AMAZON.HelpIntent` for Alexa, we have to map it to the `HelpIntent` in our [intent map](https://www.jovo.tech/docs/routing/intents#intentmap):
 
 ```javascript
 // src/config.js
 
 module.exports = {
-    // other configurations
-    myIntentMap = {
-        // other intents
+
+    // Other configurations
+
+    intentMap = {
+        // Other intents
+
         'AMAZON.HelpIntent': 'HelpIntent'
     };
 };
 ```
-After that we add it to our handler:
+After that, we add it to our logic:
 
 ```javascript
 // src/app.js
@@ -59,11 +70,11 @@ HelpIntent() {
 },
 ```
 
-### CancelIntent
+### Cancel Intent
 
 The user also has to be able to exit the app. For that we use the `AMAZON.CancelIntent`, which is already in our language model. On Google Action, the utterances *cancel* and *stop* will automatically close the app.
 
-Inside our handler we simply tell the user *goodbye*.
+Inside our handler, we simply tell the user *goodbye*.
 
 ```javascript
 // src/app.js
@@ -73,20 +84,30 @@ Inside our handler we simply tell the user *goodbye*.
 },
 ```
 
-### StopIntent
+### Stop Intent
 
-Amazon also wants us to have the `AMAZON.StopIntent` implemented. Since it technically has the same task as the `AMAZON.CancelIntent`, we will simply map the `AMAZON.StopIntent` to the `AMAZON.CancelIntent` in our intent map:
+Amazon also wants us to have the `AMAZON.StopIntent` implemented. Since it technically has the same task as the `CancelIntent`, we will map the `AMAZON.StopIntent` to the `CancelIntent` in our intent map:
+
 
 ```javascript
-// src/app.js
+// src/config.js
 
-let myIntentMap = {
-    // other intents
-    'AMAZON.StopIntent': 'CancelIntent' 
+module.exports = {
+
+    // Other configurations
+
+    intentMap = {
+        // Other intents
+
+        'AMAZON.StopIntent': 'CancelIntent' 
+    };
 };
 ```
 
-## Multiple Handlers
+Note: If people say "Alexa, stop" while the audio file is playing, this will still trigger the `AMAZON.PauseIntent`, not the `AMAZON.StopIntent`.
+
+
+## Separating the Logic into Multiple Handlers
 
 Currently our handler inside the `app.js` file contains both platform-independent intents as well as platform-dependent intents, e.g. AudioPlayer requests, Amazon built-in intents, etc. Technically that works, but it's not really organized.
 
@@ -382,7 +403,7 @@ app.setGoogleAssistantHandler(GoogleHandler);
 
 ## Next Steps
 
-You've reached the end of the course. We're done. 
+You've reached the end of the course. We're done!
 
 The last thing you have to do is switching out the audio files. These have to hosted on a HTTPS endpoint. We used [AWS S3](https://aws.amazon.com/s3/), but there are a number of other possible services for that.
 
@@ -390,7 +411,7 @@ Besides that, if you want to publish your app on [AWS Lambda](https://aws.amazon
 
 Obviously, there are also a lot more features we can add to the app, but that would make the course even longer than it already is.
 
-One of those things, we cut because of time constraint, is visual output. Both Alexa and the Google Assistant support smart displays, where you could, for example, also list the random episodes we suggest our user.
+One of those things we cut because of time constraint is visual output. Both Alexa and the Google Assistant support smart displays, where you could, for example, also list the random episodes we suggest our user.
 
 Feel free to modify the podcast player as you wish. We would love to see what you come up with!
 
