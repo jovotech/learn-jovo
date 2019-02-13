@@ -14,8 +14,6 @@ For project 3, we'll look into one of the most popular use cases for voice apps 
 
 ## What We're Building
 
-![](./img/podcast-player-voice-app.jpg)
-
 In this course we're going to build an easily modifiable podcast player Alexa Skill and Google Action.
 
 It will automatically play multiple episodes in a row, let the user pause and resume whenever they want, and let them switch between episodes freely.
