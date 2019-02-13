@@ -508,4 +508,4 @@ In the next step, we will rework the user interaction at the app's launch!
 
 > [Step 7: Reworking the User Interaction at Launch](./step-7-launch-user-interaction.md)
 
-<!--[metadata]: { "description": "Learn how to use a NextIntent and a PreviousIntent to let our user switch between episodes in a Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to use a NextIntent and a PreviousIntent to let our user switch between episodes in a Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

@@ -417,7 +417,7 @@ Feel free to modify the podcast player as you wish. We would love to see what yo
 
 **If you have any questions or suggestions, you can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "In this step, we make the final changes to our Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "In this step, we make the final changes to our Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->
 
 
 

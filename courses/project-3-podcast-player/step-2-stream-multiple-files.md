@@ -308,4 +308,4 @@ In the next step, we will prepare our development environment to test our app on
 
 > [Step 3: Preparing the Development Environment](./step-3-development-environment.md)
 
-<!--[metadata]: { "description": "Learn more about the Alexa AudioPlayer and the Google Media Response interface to play multiple audio files in a row.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn more about the Alexa AudioPlayer and the Google Media Response interface to play multiple audio files in a row.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

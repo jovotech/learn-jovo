@@ -722,4 +722,4 @@ In the next and final step, we will refactor the project's structure, add small 
 
 > [Step 8: The Final Steps](./step-8-final-steps.md)
 
-<!--[metadata]: { "description": "Learn how to improve the user interaction of a Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to improve the user interaction of a Podcast Player Alexa Skill and Google Action.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

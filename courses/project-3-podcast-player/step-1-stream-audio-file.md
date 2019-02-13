@@ -188,4 +188,4 @@ In the next step, we will learn how to keep streaming additional audio files aft
 
 > [Step 2: Streaming Multiple Files in a Row](./step-2-stream-multiple-files.md)
 
-<!--[metadata]: { "description": "Learn how to stream an audio file on both Amazon Alexa and Google Assistant with the Jovo Framework.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to stream an audio file on both Amazon Alexa and Google Assistant with the Jovo Framework.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

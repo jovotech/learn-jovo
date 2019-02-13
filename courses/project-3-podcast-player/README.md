@@ -48,4 +48,4 @@ We start by playing a single audio file for both Alexa and Google Assistant with
 
 *Photo by [Matt Botsford](https://unsplash.com/photos/OKLqGsCT8qs) on [Unsplash](https://unsplash.com/)*
 
-<!--[metadata]: { "description": "Build a Podcast Player App for Amazon Alexa and Google Assistant with this free course.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Build a Podcast Player App for Amazon Alexa and Google Assistant with this free course.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

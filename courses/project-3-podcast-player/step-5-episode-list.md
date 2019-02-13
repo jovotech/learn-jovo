@@ -327,4 +327,4 @@ In the next step we will use the new system to allow our user to manually switch
 
 > [Step 6: Manually Switch between Episodes](./step-6-switch-episodes.md)
 
-<!--[metadata]: { "description": "Learn how to store and retrieve podcast episodes in your Podcast Player voice app for Amazon Alexa and Google Assistant.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to store and retrieve podcast episodes in your Podcast Player voice app for Amazon Alexa and Google Assistant.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

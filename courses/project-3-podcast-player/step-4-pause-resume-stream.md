@@ -566,4 +566,4 @@ In the next step, we will build a system to store and retrieve the episodes of o
 
 > [Step 5: Store and Retrieve Multiple Episodes](./step-5-episode-list.md)
 
-<!--[metadata]: { "description": "In this lecture, we flesh out our Podcast Player Alexa Skill and Google Action and allow the user to pause and resume the audio file.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "In this lecture, we flesh out our Podcast Player Alexa Skill and Google Action and allow the user to pause and resume the audio file.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->

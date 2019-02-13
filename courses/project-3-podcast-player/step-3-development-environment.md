@@ -117,4 +117,4 @@ In the next step, we will flesh out our podcast player and allow the user to pau
 
 > [Step 4: Pause and Resume the Audio Stream](./step-4-pause-resume-stream.md)
 
-<!--[metadata]: { "description": "Learn how to prepare your development environment to start testing your Podcast Player voice app on Amazon Alexa and Google Assistant devices.", "author": "kaan-kilic" }-->
+<!--[metadata]: { "description": "Learn how to prepare your development environment to start testing your Podcast Player voice app on Amazon Alexa and Google Assistant devices.", "author": "kaan-kilic", "og-image": "https://www.jovo.tech/img/courses/project-3-podcast-player/podcast-player-course.jpg" }-->
