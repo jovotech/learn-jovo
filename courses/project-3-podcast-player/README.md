@@ -1,5 +1,7 @@
 # Project 3: Build a Podcast Player
 
+![Build a Podcast Player Alexa Skill and Google Action](./img/podcast-player-course.jpg "Learn how to build a Podcast Player App for Amazon Alexa and Google Assistant")
+
 Welcome to our third project-based course about voice app development. In previous courses, we already learned some of the basics of building Alexa Skills and Google Actions. After an initial setup in [Project 1: Hello World](https://www.jovo.tech/courses/project-1-hello-world/), we looked at some more advanced routing in [Project 2: Adventure Game](https://www.jovo.tech/courses/project-2-adventure-game).
 
 For project 3, we'll look into one of the most popular use cases for voice apps and smart speakers: streaming audio. Let's build a podcast player voice app that works on both Amazon Alexa and Google Assistant.
