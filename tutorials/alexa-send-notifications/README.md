@@ -1,6 +1,6 @@
 # Send Notification Using the Proactive Events API
 
-In this tutorial I want to to show you how to send proactive events with Jovo as well as how to send them outside of a live session.
+In this tutorial, I want to show you how to send proactive events with Jovo as well as how to send them outside of a live session.
 
 * [Introduction](#introduction)
 * [Alexa Skill Permissions and Publications](#alexa-skill-permissions-and-publications)
@@ -11,7 +11,7 @@ In this tutorial I want to to show you how to send proactive events with Jovo as
 
 ## Introduction
 
-The feature to send out notifications, was one of the most requested ones in the early days of Alexa Skill development. In 2017 it was announced that the feature would be tested by a limited amount of handpicked developers. Although it was never released to the public fully, it got redesigned to the **Proactive Events API**, which was released in December of 2018.
+The feature to send out notifications was one of the most requested ones in the early days of Alexa Skill development. In 2017 it was announced that the feature would be tested by a limited amount of handpicked developers. Although it was never released to the public fully, it got redesigned to the **Proactive Events API**, which was released in December of 2018.
 
 The Proactive Events API's only use case, as of yet, is to send out notifications, but Amazon plans to expand the API in the future.
 
@@ -60,9 +60,9 @@ module.exports = {
 };
 ```
 
-The `publications` array should only include the event schemas you're actually implementing. For this tutorial we only need the `WeatherAlert.Activated` event.
+The `publications` array should only include the event schemas you're actually implementing. For this tutorial, we only need the `WeatherAlert.Activated` event.
 
-For these changes to take effect, you have to build and deploy your project. In this case we don't need to redeploy anything besides the `info` files (`skill.json`), which we can do the following way:
+For these changes to take effect, you have to build and deploy your project. In this case, we don't need to redeploy anything besides the `info` files (`skill.json`), which we can do the following way:
 
 ```sh
 $ jovo build -p alexaSkill --deploy --target info
@@ -180,13 +180,13 @@ async WeatherAlertIntent() {
 }
 ```
 
-That's all you need to send out a event using the Proactive Events API.
+That's all you need to send out an event using the Proactive Events API.
 
 But, there is one issue. How are you going to trigger the intent to send out the event? You might find a creative solution, where you somehow route through the `WeatherAlertIntent` in the middle of a session, but even then you are bound to there actually being a session in the first place, which pretty much nullifies to actual benefits of the Proactive Events API, namely messaging your user while they're **not** using your Skill. 
 
-There are certain event schemas, where it will perfectly fine to run the Proactive Events API inside your Alexa Skill. These are schemas that depend on two users, i.e. one user's action is the trigger to send out the notification to the other. For example, the `SocialGameInvite.Available` scheme, where you will send out a notification to user 2, if user 1 invited them.
+There are certain event schemas, where it will perfectly fine to run the Proactive Events API inside your Alexa Skill. These are schemas that depend on two users, i.e. one user's action is the trigger to send out the notification to the other. For example, the `SocialGameInvite.Available` scheme, where you will send out a notification to user 2 if user 1 invited them.
 
-Other event schemas work a little different. Their trigger comes from an external source, e.g. the `WeatherAlert.Activated`, `MediaContent.Available`, and `SportsEvent.Updated` event schemas. In the next section we will go over a basic idea on how you might trigger the intent externally.
+Other event schemas work a little different. Their trigger comes from an external source, e.g. the `WeatherAlert.Activated`, `MediaContent.Available`, and `SportsEvent.Updated` event schemas. In the next section, we will go over a basic idea on how you might trigger the intent externally.
 
 ## Triggering the Proactive Event API
 
@@ -194,7 +194,7 @@ This section won't help you create the whole trigger but rather show you the par
 
 To trigger the intent with the code to send out events, in our case the `WeatherAlertIntent`, we simply have to send a request to our endpoint with the intent set to one executing the Proactive Event.
 
-That intent should not be included in your language model to prevent your user maybe randomly triggering it.
+That intent should not be included in your language model to prevent your user may be randomly triggering it.
 
 Here's a sample request, which you can use:
 
@@ -248,7 +248,7 @@ Here's a sample request, which you can use:
 }
 ```
 
-As you can see the `request` object simply has the `intent` set to `WeatherAlertIntent`, besides that, everything is unimportant. The timestamp, the applicationId, etc. don't matter.
+As you can see the `request` object simply has the `intent` set to `WeatherAlertIntent`, besides that, everything is unimportant. The `timestamp`, the `applicationId`, etc. don't matter.
 
 To trigger the intent, you simply use this request as the body of a https request sent to your endpoint:
 
@@ -408,7 +408,7 @@ sendRequest(postData).then((result) => {
 });
 ```
 
-For testing purposes we use the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook#jovo-webhook) as it is the most convenient one. If later on host your project on [AWS Lambda](https://aws.amazon.com/lambda/) you might use an [AWS API Gateway](https://aws.amazon.com/api-gateway/), which you point to the Lambda function and send the request to the API endpoint. Technically it works the same for every other cloud service provider. You simply want to send the https request to the endpoint, where your project is hosted on.
+For testing purposes, we use the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook#jovo-webhook) as it is the most convenient one. If later on host your project on [AWS Lambda](https://aws.amazon.com/lambda/) you might use an [AWS API Gateway](https://aws.amazon.com/api-gateway/), which you point to the Lambda function and send the request to the API endpoint. Technically it works the same for every other cloud service provider. You simply want to send the https request to the endpoint, where your project is hosted on.
 
 To test everything, simply create a new javascript file and add the code above. Run the code and you should receive a notification on your Alexa device.
 
