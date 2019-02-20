@@ -1,30 +1,33 @@
-# Send Notification Using the Proactive Events API
+# Send Notifications Using the Alexa Proactive Events API
 
-In this tutorial, I want to show you how to send proactive events with Jovo as well as how to send them outside of a live session.
+In this tutorial, I want to show you how to send [proactive events](https://www.jovo.tech/docs/amazon-alexa/proactive-events) with your Alexa Skills built with Jovo. This will enable you to send notifications to your users both from inside your Alexa Skill as well as outside of a session.
 
 * [Introduction](#introduction)
 * [Alexa Skill Permissions and Publications](#alexa-skill-permissions-and-publications)
 * [Proactive Event Object](#proactive-event-object)
 * [Get the Access Token](#get-the-access-token)
 * [Send the Proactive Event](#send-the-proactive-event)
-* [Triggering the Proactive Event API](#triggering-the-proactive-event-api)
+* [Triggering the Proactive Event API from Outside](#triggering-the-proactive-event-api-from-outside)
 
 ## Introduction
+
+> Docs: [Alexa Proactive Events API](https://www.jovo.tech/docs/amazon-alexa/proactive-events).
 
 The feature to send out notifications was one of the most requested ones in the early days of Alexa Skill development. In 2017 it was announced that the feature would be tested by a limited amount of handpicked developers. Although it was never released to the public fully, it got redesigned to the **Proactive Events API**, which was released in December of 2018.
 
 The Proactive Events API's only use case, as of yet, is to send out notifications, but Amazon plans to expand the API in the future.
 
-These notifications sadly come with restrictions with the biggest one being, that you have to implement one of Amazon's [event schemas](https://www.jovo.tech/docs/amazon-alexa/proactive-events#), which themselves come with certain restrictions to the values you're allowed to use.
+These notifications come with restrictions, the biggest one being that you have to implement one of Amazon's [event schemas](https://www.jovo.tech/docs/amazon-alexa/proactive-events#event), which themselves come with certain restrictions to the values you're allowed to use.
 
 Just like with the Proactive Events API itself, it seems to be planned to expand the available schemas, so you should keep an eye on the list, even if you don't find anything of use as of yet.
 
 To use the Proactive Events API you have to follow these steps:
 
-1. You have to add the Proactive Events API and other necessary settings to your Alexa Skill.
-2. You have to prepare the event object containing the data, that will be sent.
-3. You have to request an access token from Amazon, which you get after authorizing to be able to send out the events.
-4. You have to send out the event object.
+* [Alexa Skill Permissions and Publications](#alexa-skill-permissions-and-publications): Add the Proactive Events API and other necessary settings to your Alexa Skill.
+* [Proactive Event Object](#proactive-event-object): Prepare the event object containing the data that will be sent.
+* [Get the Access Token](#get-the-access-token): Request an access token from Amazon, which you get after authorizing to be able to send out the events.
+* [Send the Proactive Event](#send-the-proactive-event)
+
 
 ## Alexa Skill Permissions and Publications
 
@@ -56,7 +59,7 @@ module.exports = {
             }
         }
     },
-    // other settings
+    // Other settings
 };
 ```
 
@@ -65,12 +68,22 @@ The `publications` array should only include the event schemas you're actually i
 For these changes to take effect, you have to build and deploy your project. In this case, we don't need to redeploy anything besides the `info` files (`skill.json`), which we can do the following way:
 
 ```sh
+# Build platform specific files for Alexa
+$ jovo build --platform alexaSkill
+
+# Deploy only the Skill information for Alexa
+$ jovo deploy --platform alexaSkill --target info
+
+# Alternative: Shortcut for both commands
 $ jovo build -p alexaSkill --deploy --target info
 ```
 
 After the deployment finished, you can find the `clientId` and `clientSecret` on the `PERMISSIONS` tab of your Skill on the Alexa Developer Console, which you will need later on:
 
 ![Proactive Events API Client ID and Client Secret](img/proactive_events_clientid_clientsecret.png)
+
+Note: Sometimes, it can take a bit for them to appear. If they don't show up right away, try to refresh your browser window.
+
 
 ## Proactive Event Object
 
@@ -80,10 +93,11 @@ We will create a new intent called `WeatherAlertIntent`, where we will prepare a
 
 ```javascript
 async WeatherAlertIntent() {
-    // sets timestamp to current date and time
+    // Sets timestamp to current date and time
     let timestamp = new Date();
     timestamp = timestamp.toISOString();
-    // sets expiryTime 23 hours ahead of the current date and time
+
+    // Sets expiryTime 23 hours ahead of the current date and time
     let expiryTime = new Date();
     expiryTime.setHours(expiryTime.getHours() + 23);
     expiryTime = expiryTime.toISOString();
@@ -117,6 +131,7 @@ async WeatherAlertIntent() {
 
 > You can find out more about the Proactive Event object and its attributes [here](https://www.jovo.tech/docs/amazon-alexa/proactive-events#proactive-event-object)
 
+
 ## Get the Access Token
 
 Now that we have Proactive Event object prepared, we have to request the access token, that's needed to send the Proactive Event. The access token will be granted after we've authorized ourselves with Amazon using the `clientId` and `clientSecret` we got earlier:
@@ -125,7 +140,7 @@ Now that we have Proactive Event object prepared, we have to request the access 
 async WeatherAlertIntent() {
     // ...
 
-    const accessToken = this.$alexaSkill.$proactiveEvent.getAccessToken(
+    const accessToken = await this.$alexaSkill.$proactiveEvent.getAccessToken(
         '<your-clientId>',
         '<your-clientSecret>'
     );
@@ -136,12 +151,24 @@ async WeatherAlertIntent() {
 
 With the Proactive Event object and the access token prepared, we can now send the Proactive Event:
 
+
 ```javascript
 async WeatherAlertIntent() {
-        // sets timestamp to current date and time
+    // ...
+
+    const result = await this.$alexaSkill.$proactiveEvent.sendProactiveEvent(proactiveEventObject, accessToken);
+}
+```
+
+The complete `WeatherAlertIntent` looks like this:
+
+```javascript
+async WeatherAlertIntent() {
+    // Sets timestamp to current date and time
     let timestamp = new Date();
     timestamp = timestamp.toISOString();
-    // sets expiryTime 23 hours ahead of the current date and time
+
+    // Sets expiryTime 23 hours ahead of the current date and time
     let expiryTime = new Date();
     expiryTime.setHours(expiryTime.getHours() + 23);
     expiryTime = expiryTime.toISOString();
@@ -182,17 +209,17 @@ async WeatherAlertIntent() {
 
 That's all you need to send out an event using the Proactive Events API.
 
-But, there is one issue. How are you going to trigger the intent to send out the event? You might find a creative solution, where you somehow route through the `WeatherAlertIntent` in the middle of a session, but even then you are bound to there actually being a session in the first place, which pretty much nullifies to actual benefits of the Proactive Events API, namely messaging your user while they're **not** using your Skill. 
+But, there is one issue. How are you going to trigger the intent to send out the event? You might find a creative solution where you somehow route through the `WeatherAlertIntent` in the middle of a session, but even then you are bound to there actually being a session in the first place, which pretty much nullifies to actual benefits of the Proactive Events API, namely messaging your user while they're **not** using your Skill. 
 
-There are certain event schemas, where it will perfectly fine to run the Proactive Events API inside your Alexa Skill. These are schemas that depend on two users, i.e. one user's action is the trigger to send out the notification to the other. For example, the `SocialGameInvite.Available` scheme, where you will send out a notification to user 2 if user 1 invited them.
+There are certain event schemas, where it will be perfectly fine to run the Proactive Events API inside your Alexa Skill. These are schemas that depend on two users, i.e. one user's action is the trigger to send out the notification to the other. For example, the `SocialGameInvite.Available` scheme, where you will send out a notification to user 2 if user 1 invited them.
 
 Other event schemas work a little different. Their trigger comes from an external source, e.g. the `WeatherAlert.Activated`, `MediaContent.Available`, and `SportsEvent.Updated` event schemas. In the next section, we will go over a basic idea on how you might trigger the intent externally.
 
-## Triggering the Proactive Event API
+## Triggering the Proactive Event API from Outside
 
-This section won't help you create the whole trigger but rather show you the part, where you trigger your Jovo project, e.g. we won't go over the steps explaining how you might set up a lambda function, which gets executed as soon as there is a weather alert, but rather the part where we send out a request to our Jovo project to send out the Proactive Event, i.e. trigger the `WeatherAlertIntent`.
+This section won't help you create the whole trigger but rather show you the part where you trigger your Jovo project, e.g. we won't go over the steps explaining how you might set up an AWS Lambda function, which gets executed as soon as there is a weather alert, but rather the part where we send out a request to our Jovo project to send out the Proactive Event, i.e. trigger the `WeatherAlertIntent`.
 
-To trigger the intent with the code to send out events, in our case the `WeatherAlertIntent`, we simply have to send a request to our endpoint with the intent set to one executing the Proactive Event.
+To trigger the intent with the code to send out events, in our case the `WeatherAlertIntent`, we have to send a request to our endpoint with the intent set to one executing the Proactive Event.
 
 That intent should not be included in your language model to prevent your user may be randomly triggering it.
 
@@ -408,7 +435,7 @@ sendRequest(postData).then((result) => {
 });
 ```
 
-For testing purposes, we use the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook#jovo-webhook) as it is the most convenient one. If later on host your project on [AWS Lambda](https://aws.amazon.com/lambda/) you might use an [AWS API Gateway](https://aws.amazon.com/api-gateway/), which you point to the Lambda function and send the request to the API endpoint. Technically it works the same for every other cloud service provider. You simply want to send the https request to the endpoint, where your project is hosted on.
+For testing purposes, we use the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook#jovo-webhook) as it is the most convenient one for local testing. If you later on host your project on [AWS Lambda](https://aws.amazon.com/lambda/), you might use an [AWS API Gateway](https://aws.amazon.com/api-gateway/) which you point to the Lambda function and send the request to the API endpoint. Technically it works the same for every other cloud service provider. You simply want to send the https request to the endpoint, where your project is hosted on.
 
 To test everything, simply create a new javascript file and add the code above. Run the code and you should receive a notification on your Alexa device.
 
