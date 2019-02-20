@@ -1,5 +1,7 @@
 # Send Notifications Using the Alexa Proactive Events API
 
+![Use the Alexa Proactive Events API with Jovo](./img/alexa-proactive-events-notifications.jpg "Learn how to implement Alexa Notifications with the Jovo Framework")
+
 In this tutorial, I want to show you how to send [proactive events](https://www.jovo.tech/docs/amazon-alexa/proactive-events) with your Alexa Skills built with Jovo. This will enable you to send notifications to your users both from inside your Alexa Skill as well as outside of a session.
 
 * [Introduction](#introduction)
@@ -447,4 +449,4 @@ That's it, you made it to the end!
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how use Alexa's Proactive Events API with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa", "og-image": "TODO" }-->
+<!--[metadata]: { "description": "Learn how use Alexa's Proactive Events API with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa", "og-image": "https://www.jovo.tech/img/tutorials/alexa-notifications-proactive-events/alexa-proactive-events-notifications.jpg"  }-->
