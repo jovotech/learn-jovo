@@ -445,6 +445,10 @@ To test everything, simply create a new javascript file and add the code above. 
 $ node <yourJsFile>
 ```
 
+> If the notification didn't show up on your Echo device connected to the dev account, please check if the necessary permission was given for the skill to send notifications. You can find the option under `Skills` > `Dev Skills` > `{Your Skill}` > `Settings`
+
+![Alexa User Permission Settings](img/alexa-skill-user-permission-settings.png)
+
 That's it, you made it to the end!
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
