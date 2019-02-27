@@ -1,8 +1,10 @@
 # Send Push Notifications With Your Google Action
 
+![Send Google Assistant Push Notifications with Jovo](./img/google-action-push-notifications.jpg "Learn how to implement Google Action Push Notifications with the Jovo Framework")
+
 In this tutorial, we will go through the necessary steps to send Google Action Push Notifications as well as how to send them outside of a live session.
 
-> Learn how to send notifications with your Alexa Skill [here](https://www.jovo.tech/tutorials/alexa-notifications-proactive-events)
+> [Learn how to send notifications with your Alexa Skill here](https://www.jovo.tech/tutorials/alexa-notifications-proactive-events).
 
 * [Introduction](#introduction)
 * [Configuration](#configuration)
@@ -12,7 +14,7 @@ In this tutorial, we will go through the necessary steps to send Google Action P
 
 ## Introduction
 
-> Find the documentation [here](https://www.jovo.tech/docs/google-assistant/notifications)
+> Docs: [Google Action Push Notifications](https://www.jovo.tech/docs/google-assistant/notifications)
 
 The Google Action push notifications feature allows you to send notifications, which if tapped, trigger a predefined intent of your Action.
 
@@ -543,4 +545,4 @@ That's it, you made it to the end!
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to send Google Action Push Notifications with Jovo", "author": "kaan-kilic", "tags": "Google Assistant, Notifications, Google Action", "og-image": "TODO"  }-->
+<!--[metadata]: { "description": "Learn how to send Google Action Push Notifications with Jovo", "author": "kaan-kilic", "tags": "Google Assistant, Notifications, Google Action", "og-image": "https://www.jovo.tech/img/tutorials/google-action-notifications/google-action-push-notifications.jpg"  }-->
