@@ -4,22 +4,24 @@
 
 Almost 2 months ago, [we released Jovo `v2`](https://medium.com/@einkoenig/introducing-jovo-framework-v2-c98326ac4aca), an all-new Jovo that came with a new architecture and many integrations.
 
-Since then, with help from our great community, we've worked on a lot of new additions, including new features for Amazon Alexa, Google Assistant, cross-platform improvements, and even some new platforms. You can now find everything bundled togeher in Jovo `v2.1`.
-
-Thanks a lot for all your help to the contributors of this release, including [Renato Alencar](https://github.com/renatoalencar), [Matthew Lieder](https://github.com/IGx89), [scouzinier](https://github.com/kouz75), [Dominik Meissner](https://github.com/dominik-meissner), [Kaan Kilic](https://github.com/KaanKC), [Alex Swetlow](https://github.com/aswetlow), and everyone else who helped with ideas and feature requests in the [Jovo Slack community](https://www.jovo.tech/slack) 👏👏👏.
+Since then, [with help from our great community](#a-big-thank-you), we've worked on a lot of new additions, including new features for Amazon Alexa, Google Assistant, cross-platform improvements, and even some new platforms. You can now find everything bundled togeher in Jovo `v2.1`.
 
 You can find all new features and improvements below:
 
-* [Alexa Skill Features: Amazon Pay, Proactive Events, and more](#alexa-skill-features-amazon-pay-proactive-events-and-more)
-* [Google Action Features: Transactions, Push Notifications, and more](#google-action-features-transactions-push-notifications-and-more)
-* [Alpha: Build Bots for Platforms like Facebook Messenger and Slack](alpha-build-bots-for-platforms-like-facebook-messenger-and-slack)
-* [Extend the Jovo Framework with Hooks](#extend-the-jovo-framework-with-hooks)
-* [New Integrations](#new-integrations)
-* [And more, including Unit Testing Improvements and Logging](#and-more-including-unit-testing-improvements-and-logging)
+* [New Features](#new-features)
+   * [Alexa Skill Features: Amazon Pay, Proactive Events, and more](#alexa-skill-features-amazon-pay-proactive-events-and-more)
+   * [Google Action Features: Transactions, Push Notifications, and more](#google-action-features-transactions-push-notifications-and-more)
+   * [Alpha: Build Bots for Platforms like Facebook Messenger and Slack](alpha-build-bots-for-platforms-like-facebook-messenger-and-slack)
+   * [Extend the Jovo Framework with Hooks](#extend-the-jovo-framework-with-hooks)
+   * [New Integrations](#new-integrations)
+   * [And more, including Unit Testing Improvements and Logging](#and-more-including-unit-testing-improvements-and-logging)
+* [A Big Thank You](#a-big-thank-you)
 
 * Like what we're doing? [Support us with a star on GitHub](https://github.com/jovotech/jovo-framework/) * 
 
-## Alexa Skill Features: Amazon Pay, Proactive Events, and more
+## New Features
+
+### Alexa Skill Features: Amazon Pay, Proactive Events, and more
 
 As of today, you can build any publicly available Alexa Skill feature with the Jovo Framework (for quickly integrating private features, [take a look at our new Hooks](extend-the-jovo-framework-with-hooks)).
 
@@ -31,7 +33,7 @@ Newest additions to the Alexa platform integration in Jovo include:
 * Added a `getSkillId()` helper method
 
 
-## Google Action Features: Transactions, Push Notifications, and more
+### Google Action Features: Transactions, Push Notifications, and more
 
 Every publicly available Google Actions feature to date is available in the Jovo Framework.
 
@@ -44,7 +46,7 @@ Recent additions to the Google Assistant platform integration include:
 * [Get the current location with `askForPlace()`](https://www.jovo.tech/docs/google-assistant/data#place-and-location)
 
 
-## Alpha: Build Bots for Platforms like Facebook Messenger and Slack
+### Alpha: Build Bots for Platforms like Facebook Messenger and Slack
 
 > Jovo Docs: [Dialogflow Integrations](https://www.jovo.tech/docs/dialogflow-integrations/)
 
@@ -92,7 +94,7 @@ app.setHandler({
 ```
 
 
-## Extend the Jovo Framework with Hooks
+### Extend the Jovo Framework with Hooks
 
 > Docs: [Hooks](https://www.jovo.tech/docs/hooks)
 
@@ -103,7 +105,7 @@ app.setHandler({
 This can be helpful if you wan to do quick modifications during certain parts of the request lifecycle. For example, you could add additional JSON output necessary for an Alexa Skill private beta feature before the response is sent put by hooking into `before.response`.
 
 
-## New Integrations
+### New Integrations
 
 Besides the larger updates above, we also added and updated some [integrations](https://www.jovo.tech/docs/integrations):
 
@@ -113,7 +115,7 @@ Besides the larger updates above, we also added and updated some [integrations](
 
 
 
-## And more, including Unit Testing Improvements and Logging
+### And more, including Unit Testing Improvements and Logging
 
 There were tons of smaller updates, but the following ones were among the most anticipated updates:
 
@@ -121,6 +123,10 @@ There were tons of smaller updates, but the following ones were among the most a
 * [A `Jovo Logger`class](https://www.jovo.tech/docs/data/logging#jovo-logger) that allows for verbose logging and improved debugging
 
 Interested in *all the updates*? See the [Jovo Framework Changelog](https://github.com/jovotech/jovo-framework/blob/master/CHANGELOG.md) for a more detailed overview.
+
+## A Big Thank You
+
+Thanks a lot for all your help to the contributors of this release, including [Renato Alencar](https://github.com/renatoalencar), [Matthew Lieder](https://github.com/IGx89), [scouzinier](https://github.com/kouz75), [Dominik Meissner](https://github.com/dominik-meissner), [Kaan Kilic](https://github.com/KaanKC), [Alex Swetlow](https://github.com/aswetlow), and everyone else who helped with ideas and feature requests in the [Jovo Slack community](https://www.jovo.tech/slack) 👏👏👏.
 
 **Any thoughts? Wishes for Jovo v2.2? Let us know in the comments below.**
 
