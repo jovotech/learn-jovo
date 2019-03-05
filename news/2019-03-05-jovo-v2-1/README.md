@@ -21,6 +21,14 @@ You can find all new features and improvements below:
 
 ## New Features
 
+Find all the new features in the sections below.
+
+To update to Jovo v2.1, use the following command:
+
+```sh
+$ jovo update
+```
+
 ### Alexa Skill Features: Amazon Pay, Proactive Events, and more
 
 As of today, you can build any publicly available Alexa Skill feature with the Jovo Framework (for quickly integrating private features, [take a look at our new Hooks](#extend-the-jovo-framework-with-hooks)).
