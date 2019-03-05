@@ -9,9 +9,9 @@ Since then, [with help from our great community](#a-big-thank-you), we've worked
 You can find all new features and improvements below:
 
 * [New Features](#new-features)
-   * [Alexa Skill Features: Amazon Pay, Proactive Events, and more](#alexa-skill-features-amazon-pay-proactive-events-and-more)
-   * [Google Action Features: Transactions, Push Notifications, and more](#google-action-features-transactions-push-notifications-and-more)
-   * [Alpha: Build Bots for Platforms like Facebook Messenger and Slack](alpha-build-bots-for-platforms-like-facebook-messenger-and-slack)
+   * [Alexa Skill Features: Amazon Pay, Proactive Events, and more](#alexa:-skill-features-amazon-pay-proactive-events-and-more)
+   * [Google Action Features: Transactions, Push Notifications, and more](#google-action-features:-transactions-push-notifications-and-more)
+   * [Alpha: Build Bots for Platforms like Facebook Messenger and Slack](#alpha:-build-bots-for-platforms-like-facebook-messenger-and-slack)
    * [Extend the Jovo Framework with Hooks](#extend-the-jovo-framework-with-hooks)
    * [New Integrations](#new-integrations)
    * [And more, including Unit Testing Improvements and Logging](#and-more-including-unit-testing-improvements-and-logging)
