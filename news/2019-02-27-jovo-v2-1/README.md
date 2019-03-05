@@ -48,6 +48,8 @@ Recent additions to the Google Assistant platform integration include:
 
 > Jovo Docs: [Dialogflow Integrations](https://www.jovo.tech/docs/dialogflow-integrations/)
 
+![Build a Slack Bot with Jovo](./img/slack-bot.gif "Build a Slack Bot with the Jovo Framework")
+
 New experimental feature: By using [Dialogflow Integrations](https://www.jovo.tech/docs/dialogflow-integrations/), you can now bring your Jovo apps to bot platforms like Facebook Messenger and Slack!
 
 Right now, this is an alpha release, so you will only be able to create text responses. Please note that, although they are similar, text based conversational experiences can differ from voice applications. Currently, there is no real difference between `tell` and `ask`, for example. We will work towards a clearer designed abstraction in upcoming releases.
