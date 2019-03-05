@@ -131,4 +131,4 @@ Thanks a lot for all your help to the contributors of this release, including [R
 **Any thoughts? Wishes for Jovo v2.2? Let us know in the comments below.**
 
 
-<!--[metadata]: { "description": "Learn more about Jovo Framework version 2.1, which was released in March 2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "TODO" }-->
+<!--[metadata]: { "description": "Learn more about Jovo Framework version 2.1, which was released in March 2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2019-02-27-jovo-v2-1/v2-1.jpg" }-->
