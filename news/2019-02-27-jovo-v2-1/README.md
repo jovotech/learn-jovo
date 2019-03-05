@@ -17,7 +17,7 @@ You can find all new features and improvements below:
    * [And more, including Unit Testing Improvements and Logging](#and-more-including-unit-testing-improvements-and-logging)
 * [A Big Thank You](#a-big-thank-you)
 
-* Like what we're doing? [Support us with a star on GitHub](https://github.com/jovotech/jovo-framework/) * 
+*Like what we're doing? [Support us with a star on GitHub](https://github.com/jovotech/jovo-framework/)* 
 
 ## New Features
 
