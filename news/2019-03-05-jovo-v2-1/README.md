@@ -23,7 +23,7 @@ You can find all new features and improvements below:
 
 ### Alexa Skill Features: Amazon Pay, Proactive Events, and more
 
-As of today, you can build any publicly available Alexa Skill feature with the Jovo Framework (for quickly integrating private features, [take a look at our new Hooks](extend-the-jovo-framework-with-hooks)).
+As of today, you can build any publicly available Alexa Skill feature with the Jovo Framework (for quickly integrating private features, [take a look at our new Hooks](#extend-the-jovo-framework-with-hooks)).
 
 Newest additions to the Alexa platform integration in Jovo include:
 
