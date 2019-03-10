@@ -29,7 +29,7 @@ With the [Jovo CMS Integrations](https://www.jovo.tech/docs/cms), we want to rem
 ### Why Airtable?
 
 Here are some reasons for using Airtable for content:
-* It's a familiar interface (spreadsheets, Excel)
+* it's a combination of a spreadsheet and a database giving you the best of both worlds
 * Airtable has all the collaboration and permission features already built in
 * You can create several tables (displayed as tabs) in one base, allowing you to manage several content types (we offer different [Table Types](https://www.jovo.tech/docs/v2/cms/google-sheets#default-sheet-types) for this)
 
@@ -39,7 +39,7 @@ Let's get started with Google Sheets and Jovo.
 
 First, we need to prepare a Airtable Base and add some content. We will just use a `responses` table that includes a `key` and a locale (in our case `en` for English).
 
-[![Airtable as CMS for Amazon Alexa and Google Assistant](img/airtable_base.png)](https://airtable.com/universe/expxmfYnpMcqcGUx9/jovo-airtable-cms-integration-tutorial)
+[![Airtable as CMS for Amazon Skill and Google Action](img/airtable_base.png)](https://airtable.com/universe/expxmfYnpMcqcGUx9/jovo-airtable-cms-integration-tutorial)
 
 To use it for yourself, click `Copy base` at the top to save it to your workspace.
 
@@ -107,6 +107,8 @@ cms: {
     }
 },
 ```
+
+> Don't forget to add your own `apiKey` and `baseId`
 
 The Airtable integration allows you to add several different tables of various table types. For this example, we're just going to use the `Responses` table type.
 
