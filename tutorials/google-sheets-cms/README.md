@@ -149,7 +149,7 @@ If you want to pass additional parameters, you can add them as an object:
 
 ```javascript
 // Instead of this
-'MyNameIsIntent': function() {
+MyNameIsIntent() {
         this.tell('Hey ' + this.$inputs.name.value + ', nice to meet you!');
     },
 
