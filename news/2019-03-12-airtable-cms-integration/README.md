@@ -34,4 +34,4 @@ To get started with the Jovo Airtable CMS integration, take a look at the follow
 **Any thoughts? Wishes for Jovo v2.2? Let us know in the comments below.**
 
 
-<!--[metadata]: { "description": "Learn more about Jovo Framework CMS integration for Airtable, which was released in March 2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2019-03-12-airtable-cms-integratio/jovo-airtable-integration.jpg" }-->
+<!--[metadata]: { "description": "Learn more about Jovo Framework CMS integration for Airtable, which was released in March 2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2019-03-12-airtable-cms-integration/jovo-airtable-integration.jpg" }-->
