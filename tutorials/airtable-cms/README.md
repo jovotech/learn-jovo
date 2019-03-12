@@ -1,10 +1,10 @@
 # Use Airtable as CMS for your Voice App
 
-![Tutorial: Using Airtable for your Alexa Skills and Google Actions](TODO)
+![Tutorial: Using Airtable for your Alexa Skills and Google Actions](./img/airtable-cms.jpg)
 
 Learn how to use Airtable as a content management system (CMS) for your Alexa Skills and Google Actions with the Jovo CMS integrations.
 
-> [You can find the full example code on GitHub]([TODO](https://github.com/jovotech/jovo-templates/tree/master/tutorials/airtable-helloworld))
+> [You can find the full example code on GitHub](https://github.com/jovotech/jovo-templates/tree/master/tutorials/airtable-helloworld)
 
 * [Introduction](#introduction)
   * [Why a CMS?](#why-a-cms)
@@ -20,7 +20,7 @@ Learn how to use Airtable as a content management system (CMS) for your Alexa Sk
 
 ### Why a CMS?
 
-Right now, most people manage the content of their Alexa Skills and Google Actions in the code. This lets you start building out the functionality quickly without having to care about integrating external systems. Plus, Jovo offers an [i18next integration that allows you to localize content right from a JSON file](https://www.jovo.tech/docs/output/i18n).
+Right now, most people manage the content of their Alexa Skills and Google Actions in the code. This lets you start building out the functionality quickly without having to care about integrating external systems. Plus, Jovo offers an [i18next integration](https://www.jovo.tech/docs/output/i18n) that allows you to localize content right from a JSON file.
 
 However, with growing teams working on voice apps for Alexa and Google Assistant, changes are becoming higher that content is managed from a variety of people that don't necessarily have access to the code. Also, for adding fresh new content, or even doing minor changes, redeploying the complete code base can seem like a tedious task.
 
@@ -33,13 +33,15 @@ Here are some reasons for using Airtable for content:
 * Airtable has all the collaboration and permission features already built-in
 * You can create several tables (displayed as tabs) in one base, allowing you to manage several content types (we offer different [Table Types](https://www.jovo.tech/docs/v2/cms/google-sheets#default-sheet-types) for this)
 
-Let's get started with Google Sheets and Jovo.
+Let's get started with Airtable and Jovo.
 
 ## Preparing the Airtable Base
 
-First, we need to prepare an Airtable Base and add some content. We will just use a `responses` table that includes a `key` and a locale (in our case `en` for English).
+First, we need to prepare an Airtable Base and add some content. For this example, we will just use a `responses` table that includes a `key` and a locale (in our case `en` for English).
 
 [![Airtable as CMS for Amazon Skill and Google Action](img/airtable_base.png)](https://airtable.com/universe/expxmfYnpMcqcGUx9/jovo-airtable-cms-integration-tutorial)
+
+[You can find the Base here](https://airtable.com/universe/expxmfYnpMcqcGUx9/jovo-airtable-cms-integration-tutorial).
 
 To use it for yourself, click `Copy base` at the top to save it to your workspace.
 
@@ -82,13 +84,13 @@ app.use(new AirtableCMS());
 
 ### Configuration
 
-To use the Airtable integration you need to provide both your api key and the id of the base you want to use.
+To use the Airtable integration, you need to provide both your api key and the ID of the base you want to use.
 
 You can find both of them by going over to [airtable.com/api](https://airtable.com/api), selecting the base you copied earlier and scrolling down to `Authentication`:
 
 ![Airtable api key and base id](img/airtable_apikey_baseid.png)
 
-You can simply add the following to your `config.js` file in the `src` folder:
+You can add the following to your `config.js` file in the `src` folder:
 
 ```javascript
 // config.js
@@ -158,10 +160,9 @@ $ jovo run
 
 There are lots of additional things you can do with this integration, which we are going to focus on in upcoming tutorials.
 
-For example:
+For example, you can use additional Table Types ([find the docs here](https://www.jovo.tech/docs/cms/airtable#default-table-types)).
 
-* You can use additional Sheet Types ([find the docs here](https://www.jovo.tech/docs/cms/airtable#default-table-types))
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to use Airtable as a content management system (CMS) for your Alexa Skills and Google Actions with Jovo.", "author": "kaan-kilic", "tags": "Airtable, CMS", "og-image": "TODO" }-->
+<!--[metadata]: { "description": "Learn how to use Airtable as a content management system (CMS) for your Alexa Skills and Google Actions with Jovo.", "author": "kaan-kilic", "tags": "Airtable, CMS", "og-image": "https://www.jovo.tech/img/tutorials/airtable-cms/airtable-cms.jpg" }-->
