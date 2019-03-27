@@ -76,4 +76,4 @@ $ jovo update
 **Any thoughts? Let us know in the comments below.**
 
 
-<!--[metadata]: { "description": "Learn more about Jovo Framework CMS integration for Airtable, which was released in March 2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2019-03-12-airtable-cms-integration/jovo-airtable-integration.jpg" }-->
+<!--[metadata]: { "description": "New Features for Jovo CMS Integrations: Platform-specific responses and CMS Caching with Instant Updates. Released in March 2019.", "author": "jan-koenig", "tags": "Releases" }-->
