@@ -465,4 +465,4 @@ this.$alexaSkill.showDisplayTemplate(listTemplate1);
 In the next step (coming soon), we will learn how to structure our app's content into i18n language resource files.
 
 
-<!--[metadata]: { "description": "Learn about the differences of an Alexa Skill project built with the Jovo Framework compared to the Alexa Skills Kit (ASK) SDK.", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "Learn about the differences of an Alexa Skill project built with the Jovo Framework compared to the Alexa Skills Kit (ASK) SDK.", "author": "jan-koenig", "short-title": "Step 4: Migrating the App Logic" }-->

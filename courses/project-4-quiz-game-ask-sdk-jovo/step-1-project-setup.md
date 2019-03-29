@@ -145,6 +145,6 @@ The [`deploy` command](https://www.jovo.tech/docs/cli/deploy) then uses these fi
 
 This is it. We took a look at a Hello World Jovo project and then created our first Alexa Skill with the Jovo CLI. In [the next step](./step-2-interaction-model.md)), we will update the language model to be able to quickly test the Skill.
 
-> [Step 2: Migrating the Alexa Interaction Model](./step-2-interaction-model.md))
+> [Step 2: Migrating the Alexa Interaction Model](./step-2-interaction-model.md)
 
 <!--[metadata]: { "description": "Learn about the differences of an Alexa Skill project built with the Jovo Framework compared to the Alexa Skills Kit (ASK) SDK.", "author": "jan-koenig" }-->

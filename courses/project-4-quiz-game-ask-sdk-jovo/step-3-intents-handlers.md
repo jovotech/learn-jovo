@@ -791,4 +791,4 @@ In the [next step](./step-4-app-logic.md), we're going to add some life to the a
 
 > [Step 4: Migrating the App Logic](./step-4-app-logic.md)
 
-<!--[metadata]: { "description": "In this step, we will convert the canHandle intent and state structure of an ASK SDK v2 Alexa Skill project into the Jovo Framework intent and state routing format.", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "In this step, we will convert the canHandle intent and state structure of an ASK SDK v2 Alexa Skill project into the Jovo Framework intent and state routing format.", "author": "jan-koenig", "short-title": "Step 3: Migrating Intents and Handlers" }-->

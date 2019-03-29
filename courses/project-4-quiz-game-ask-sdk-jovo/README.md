@@ -58,4 +58,4 @@ In the [next step]((./step-1-project-setup.md)), we will dive into the basics fi
 
 
 
-<!--[metadata]: { "description": "Learn how to migrate an Alexa Skill built with the Alexa Skills Kit (ASK) SDK to the Jovo Framework.", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "Learn how to migrate an Alexa Skill built with the Alexa Skills Kit (ASK) SDK to the Jovo Framework.", "author": "jan-koenig", "short-title": "Project 4: Migrate from ASK SDK to Jovo" }-->
