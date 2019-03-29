@@ -1,6 +1,6 @@
-# Step 3: Migrating the App Logic from ASK SDK to Jovo
+# Step 4: Migrating the App Logic from ASK SDK to Jovo
 
-After creating the intent and state structure [in the previous step](./step-2-intents-handlers.md), we're now adding logic to the intents of our Quiz Game Alexa Skill.
+After creating the intent and state structure [in the previous step](./step-3-intents-handlers.md), we're now adding logic to the intents of our Quiz Game Alexa Skill.
 
 * [Introduction to App Logic in Jovo](#introduction-to-app-logic-in-jovo)
    * [Creating Speech Output](#creating-speech-output)
@@ -61,7 +61,7 @@ app.setHandler({
 });
 ```
 
-Let's add some life to it. The application logic in Jovo voice apps usually involves two core concepts, data and output. We will take a look at these concepts in this section:
+Let's add some life to the intents. The application logic in Jovo voice apps usually involves two core concepts, data and output. We will take a look at these concepts in this section:
 
 * [Creating Speech Output](#creating-speech-output)
 * [Working with Data and Session Attributes](#working-with-data-and-session-attributes)
@@ -88,7 +88,7 @@ app.setHandler({
 });
 ```
 
-In the next few sections, we will convert the typical ASK SDK output to this format. [We already did this in step 2](./step-2-intents-handlers.md) when we turned the `LaunchRequestHandler` into a Jovo `LAUNCH` intent:
+In the next few sections, we will convert the typical ASK SDK output to this format. [We already did this in step 3](./step-3-intents-handlers.md) when we turned the `LaunchRequestHandler` into a Jovo `LAUNCH` intent:
 
 ```js
 // ASK SDK v2 project
@@ -380,10 +380,84 @@ This is the result in the Jovo Debugger:
 
 ### Adding Visual Output
 
-// TODO
+> [Learn more about Alexa Visual Output here](https://www.jovo.tech/docs/amazon-alexa/visual-output).
 
+The Quiz Game uses visual output in some parts of the app logic. For example, the `QuizHandler` ([find the code here](https://github.com/jovotech/skill-sample-nodejs-quiz-game/blob/bd3be5cd5d46586a74f6bcb09ef671b1337cb8ce/lambda/custom/index.js#L24)) has the following snippet:
 
+```js
+if (supportsDisplay(handlerInput)) {
+    const title = `Question #${attributes.counter}`;
+    const primaryText = new Alexa.RichTextContentHelper().withPrimaryText(getQuestionWithoutOrdinal(property, item)).getTextContent();
+    const backgroundImage = new Alexa.ImageHelper().addImageInstance(getBackgroundImage(attributes.quizItem.Abbreviation)).getImage();
+    const itemList = [];
+    getAndShuffleMultipleChoiceAnswers(attributes.selectedItemIndex, item, property).forEach((x, i) => {
+    itemList.push(
+        {
+        "token" : x,
+        "textContent" : new Alexa.PlainTextContentHelper().withPrimaryText(x).getTextContent(),
+        }
+    );
+    });
+    response.addRenderTemplateDirective({
+    type : 'ListTemplate1',
+    token : 'Question',
+    backButton : 'hidden',
+    backgroundImage,
+    title,
+    listItems : itemList,
+    });
+}
+```
 
+Let's go through thi step by step.
+
+The ASK SDK template has a helper function that is called to make sure the user's device supports display interfaces:
+
+```js
+if (supportsDisplay(handlerInput)) {
+
+}
+```
+
+In Jovo, this is a supported feature, which you can access like this:
+
+```js
+if(this.$alexaSkill.hasDisplayInterface()) {
+
+}
+```
+
+If you use this feature, you can get rid of the `supportsDisplay` helper function of the template.
+
+You can initialize display templates ([see Jovo Docs for more information](https://www.jovo.tech/docs/amazon-alexa/visual-output)) with the `templateBuilder`. In the code example, `ListTemplate1` is used, which we can create like this with Jovo:
+
+```js
+const title = `Question #${attributes.counter}`;
+const primaryText = getQuestionWithoutOrdinal(property, item);
+const backgroundImage = getBackgroundImage(attributes.quizItem.Abbreviation);
+
+const itemList = [];
+getAndShuffleMultipleChoiceAnswers(attributes.selectedItemIndex, item, property).forEach((x, i) => {
+    itemList.push(
+        {
+            token: x,
+            textContent: {
+                primaryText: x,
+            }
+        }
+    );
+}
+
+let listTemplate1 = this.$alexaSkill.templateBuilder('ListTemplate1');
+
+listTemplate1.setTitle(title)
+    .setToken('Question')
+    .setBackgroundImage(backgroundImage)
+    .setBackButton('hidden')
+    .setItems(itemList);
+
+this.$alexaSkill.showDisplayTemplate(listTemplate1);    
+```
 
 
 ## Next Step

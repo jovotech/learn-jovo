@@ -4,9 +4,21 @@ Learn how to migrate an Alexa Skill built with the Alexa Skills Kit (ASK) SDK to
 
 > [You can find the full code example of the Quiz Game Alexa Skill on GitHub](https://github.com/jovotech/skill-sample-nodejs-quiz-game/).
 
+* [Why Jovo](#why-jovo)
 * [What We're Building](#what-were-building)
 * [Course Outline](#course-outline)
 * [Let's Get Started](#lets-get-started)
+
+## Why Jovo
+
+[Jovo](https://www.jovo.tech) is an open-source framework that enables developers and teams to build great voice apps, faster.
+
+Here are a few reasons why people use Jovo:
+* **cross-platform**: build apps for both Alexa and Google Assistant
+* **fast**: with [local development](https://www.jovo.tech/docs/jovo-webhook) and [debugging](https://www.jovo.tech/docs/debugger)
+* **flexible**: with [plugin](https://www.jovo.tech/docs/plugins) and [hook](https://www.jovo.tech/docs/hooks) functionalities
+* **powerful**: with many integrations for [hosting](https://www.jovo.tech/docs/hosting), [database](https://www.jovo.tech/docs/databases), [analytics](https://www.jovo.tech/docs/analytics), and [CMS](https://www.jovo.tech/docs/cms) services
+* **for teams**: with [staging](https://www.jovo.tech/docs/project-js#stages), [unit testing](https://www.jovo.tech/docs/unit-testing), and more
 
 ## What We're Building
 
