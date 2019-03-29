@@ -567,10 +567,10 @@ The incoming request will be mapped to the Jovo built-in `ON_PURCHASE` intent, w
 
 ```javascript
 ON_PURCHASE() {
-    const name = this.$request.name;
+    const name = this.$request.request.name;
     const productId = this.$alexaSkill.$inSkillPurchase.getProductId();
     const purchaseResult = this.$alexaSkill.$inSkillPurchase.getPurchaseResult();
-    const token = this.$request.token;
+    const token = this.$request.request.token;
 
     if (purchaseResult === 'ACCEPTED') {
         this.tell('Great! Let\'s use your new item');
