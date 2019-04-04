@@ -12,7 +12,7 @@ Here are all the updates and features of Jovo `2.2`:
 * [Improved Database Integrations](#improved-database-integrations)
    * [Save updatedAt Timestamps](#save-updatedat-timestamps)
    * [Caching](#caching) 
-* [More Features](#more-features)
+* [Additional Features](#additional-features)
 * [How to Update](#how-to-update)
    * [Breaking Changes](#breaking-changes)
 
