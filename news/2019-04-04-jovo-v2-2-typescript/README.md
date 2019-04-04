@@ -213,4 +213,4 @@ this.ask(speech: string | string[], reprompt1: string | string[], reprompt2: str
 **Any thoughts? Let us know in the comments below.**
 
 
-<!--[metadata]: { "description": Learn more about Jovo Framework version 2.2, which was released in April    2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2019-04-04-jovo-v2-2/jovo-v2-2.jpg" }-->
+<!--[metadata]: { "description": "Learn more about Jovo Framework version 2.2, which was released in April 2019.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2019-04-04-jovo-v2-2/jovo-v2-2.jpg" }-->
