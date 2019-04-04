@@ -202,10 +202,10 @@ Due to improved TypeScript compatibility, there is a tweak that needs to be done
 
 ```js
 // Before Jovo v2.2: Add array of reprompts
-this.ask(speech: string, reprompts: string | string[])
+this.ask(speech: string, reprompts: string | string[]);
 
 // With Jovo v2.2: Add additional parameters
-this.ask(speech: string | string[], reprompt1: string | string[], reprompt2: string | string[], ...)
+this.ask(speech: string | string[], reprompt1: string | string[], reprompt2: string | string[], ...);
 ```
 
 
