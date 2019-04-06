@@ -22,7 +22,7 @@ Here are all the updates and features of Jovo `2.2`:
 
 ## Better Support for TypeScript
 
-The [Jovo Framework code](https://github.com/jovotech/jovo-framework) is already written in TypeScript, which made it possible to build Alexa Skills and Google Actions with TypeScript in Jovo.
+The [Jovo Framework code](https://github.com/jovotech/jovo-framework) has been written in TypeScript since version 2, which already made it possible to build Alexa Skills and Google Actions with TypeScript in Jovo.
 
 We've listened to the many questions of the growing TypeScript users in the Jovo community, and decided to make the development process easier by adding lots of improvements and offering deeper integrations into the Jovo services, like templates and docs.
 
