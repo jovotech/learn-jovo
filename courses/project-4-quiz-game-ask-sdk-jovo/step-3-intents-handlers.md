@@ -15,6 +15,7 @@ In this step, we will convert the `canHandle` intent and state structure of an A
 * [Summary](#summary)
 * [Next Step](#next-step)
 
+[![Video: Migrating Intents and Handlers from ASK SDK to Jovo](./img/video-jovo-ask-migration-handlers.jpg "youtube-video")](https://www.youtube.com/watch?v=fRhjay2CeVo)
 
 ## Introduction to Intent and State Handling in Jovo
 

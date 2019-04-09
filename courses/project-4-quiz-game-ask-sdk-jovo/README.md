@@ -1,5 +1,7 @@
 # Project 4: Migrate a Quiz Game Alexa Skill from ASK SDK to the Jovo Framework
 
+![Migrate an Alexa Skill from ASK SDK to Jovo](./img/ask-sdk-migration-course.jpg "Learn how to migrate an Alexa Skill built with the Alexa Skills Kit (ASK) SDK to the Jovo Framework")
+
 Learn how to migrate an Alexa Skill built with the Alexa Skills Kit (ASK) SDK to the Jovo Framework. In this step-by-step course, we are converting a sample  Quiz Game Alexa Skill into a Jovo voice app.
 
 > [You can find the full code example of the Quiz Game Alexa Skill on GitHub](https://github.com/jovotech/skill-sample-nodejs-quiz-game/).
@@ -8,6 +10,8 @@ Learn how to migrate an Alexa Skill built with the Alexa Skills Kit (ASK) SDK to
 * [What We're Building](#what-were-building)
 * [Course Outline](#course-outline)
 * [Let's Get Started](#lets-get-started)
+
+[![Video: Migrate a Quiz Game Alexa Skill from ASK SDK to the Jovo Framework](./img/video-jovo-ask-migration-welcome.jpg "youtube-video")](https://www.youtube.com/watch?v=LFTA5vEKFGY)
 
 ## Why Jovo
 

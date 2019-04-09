@@ -11,6 +11,8 @@ Learn about the differences of an Alexa Skill project built with the Jovo Framew
 * [Optional: Deploy to the Alexa Developer Console](#optional:-deploy-to-the-alexa-developer-console)
 * [Next Step](#next-step)
 
+[![Video: Initial Setup and Project Structure (from ASK SDK to Jovo)](./img/video-jovo-ask-migration-project.jpg "youtube-video")](https://www.youtube.com/watch?v=hpc5Tiri0AU)
+
 ## Creating a Jovo Project
 
 > [You can find the full code example on GitHub](https://github.com/jovotech/skill-sample-nodejs-quiz-game/).

@@ -9,6 +9,8 @@ In this step, we will turn an Alexa Skill Interaction Model into a Jovo Language
 * [jovo build reverse](#jovo-build-reverse)
 * [Next Step](#next-step)
 
+[![Video: Migrating the Alexa Interaction Model from ASK SDK to Jovo](./img/video-jovo-ask-migration-model.jpg "youtube-video")](https://www.youtube.com/watch?v=9dz4gEgdYbU)
+
 
 ## Introduction to the Jovo Language Model
 

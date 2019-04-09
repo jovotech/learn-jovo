@@ -14,6 +14,7 @@ After creating the intent and state structure [in the previous step](./step-3-in
    * [Adding Visual Output](#adding-visual-output)
 * [Next Step](#next-step)
 
+[![Video: Migrating the Alexa Skill App Logic from ASK SDK to Jovo](./img/video-jovo-ask-migration-logic.jpg "youtube-video")](hhttps://www.youtube.com/watch?v=JrN9xCTNI7w)
 
 ## Introduction to App Logic in Jovo
 
