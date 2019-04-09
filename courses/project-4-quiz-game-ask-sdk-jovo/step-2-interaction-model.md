@@ -1,5 +1,7 @@
 # Step 2: Migrating the Alexa Interaction Model
 
+![Migrating the Alexa Interaction Model from ASK SDK to Jovo](./img/ask-sdk-migration-course-model.jpg "In this step, we will turn an Alexa Skill Interaction Model into a Jovo Language Model")
+
 In this step, we will turn an Alexa Skill Interaction Model into a Jovo Language Model. This step isn't necessary to get your app running at this step of the course, but it is especially helpful for fast testing in the Jovo Debugger (the buttons there access the Jovo Language Model, in the previous step it was `LAUNCH` and `MyNameIsIntent`, for example). 
 
 * [Introduction to the Jovo Language Model](#introduction-to-the-jovo-language-model)

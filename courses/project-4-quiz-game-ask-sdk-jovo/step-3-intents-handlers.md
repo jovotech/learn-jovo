@@ -1,5 +1,7 @@
 # Step 3: Migrating Intents and Handlers from ASK to Jovo
 
+![Migrating Alexa Intents and Handlers from ASK SDK to Jovo](./img/ask-sdk-migration-course-handlers.jpg "In this step, we will convert the canHandle intent and state structure of an ASK SDK v2 Alexa Skill project into the Jovo Framework intent and state routing format.")
+
 In this step, we will convert the `canHandle` intent and state structure of an ASK SDK v2 Alexa Skill project into the Jovo Framework intent and state routing format.
 
 * [Introduction to Intent and State Handling in Jovo](#introduction-to-intent-and-state-handling-in-jovo)

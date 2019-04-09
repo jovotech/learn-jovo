@@ -1,5 +1,7 @@
 # Step 4: Migrating the App Logic from ASK SDK to Jovo
 
+![Migrating the Alexa Skill App Logic from ASK SDK to Jovo](./img/ask-sdk-migration-course-logic.jpg "After creating the intent and state structure in the previous step], we're now adding logic to the intents of our Quiz Game Alexa Skill.")
+
 After creating the intent and state structure [in the previous step](./step-3-intents-handlers.md), we're now adding logic to the intents of our Quiz Game Alexa Skill.
 
 * [Introduction to App Logic in Jovo](#introduction-to-app-logic-in-jovo)

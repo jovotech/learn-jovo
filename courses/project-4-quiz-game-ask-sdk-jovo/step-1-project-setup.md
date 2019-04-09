@@ -1,5 +1,7 @@
 # Step 1: Initial Setup and Project Structure
 
+![Migrate an Alexa Skill from ASK SDK to Jovo: Initial Setup and Project Structure](./img/ask-sdk-migration-course-project.jpg "Learn about the differences of an Alexa Skill project built with the Jovo Framework compared to the Alexa Skills Kit (ASK) SDK")
+
 Learn about the differences of an Alexa Skill project built with the Jovo Framework compared to the Alexa Skills Kit (ASK) SDK. In this step, we will install the Jovo CLI, create a new Jovo Framework project, and test out a first "Hello World" with the Jovo Debugger.
 
 * [Creating a Jovo Project](#creating-a-jovo-project)
