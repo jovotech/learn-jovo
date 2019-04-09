@@ -189,4 +189,4 @@ We have everything prepared for fast testing now. Let's dive deeper into the Ski
 
 > [Step 3: Migrating Intents and Handlers](./step-3-intents-handlers.md)
 
-<!--[metadata]: { "description": "Learn how to migrate an Alexa Interaction Model into a Jovo Language Model.", "author": "jan-koenig" }-->
+<!--[metadata]: { "description": "Learn how to migrate an Alexa Interaction Model into a Jovo Language Model.", "author": "jan-koenig", "og-image": "https://www.jovo.tech/img/courses/project-4-quiz-game-ask-sdk-jovo/ask-sdk-migration-course-model.jpg" }-->
