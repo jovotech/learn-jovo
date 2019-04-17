@@ -24,6 +24,8 @@ Here are a few reasons why people use Jovo:
 * **powerful**: with many integrations for [hosting](https://www.jovo.tech/docs/hosting), [database](https://www.jovo.tech/docs/databases), [analytics](https://www.jovo.tech/docs/analytics), and [CMS](https://www.jovo.tech/docs/cms) services
 * **for teams**: with [staging](https://www.jovo.tech/docs/project-js#stages), [unit testing](https://www.jovo.tech/docs/unit-testing), and more
 
+> No time? [Learn more about our Professional Migration Services](https://www.jovo.tech/services/migration).
+
 ## What We're Building
 
 For this course, we will use a Quiz Game Alexa Skill template provided by the Amazon team. It's a quiz about US states that asks you questions about abbreviation, capital, statehood year, and statehood order of a state.
