@@ -58,7 +58,7 @@ We will dive deeper into elements of the app logic and interaction model in the 
 
 ## Let's Get Started
 
-In the [next step]((./step-1-project-setup.md)), we will dive into the basics first: How to create a new Jovo project and how it differs from an ASK SDK and ASK CLI project: 
+In the [next step](./step-1-project-setup.md), we will dive into the basics first: How to create a new Jovo project and how it differs from an ASK SDK and ASK CLI project: 
 
 > [Step 1: Initial Setup and Project Structure](./step-1-project-setup.md)
 
