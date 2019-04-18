@@ -407,7 +407,7 @@ let postData = {
                     "AudioPlayer": {}
                 }
             },
-            "apiEndpoint": "https://api.eu.amazonalexa.com"
+            "apiEndpoint": "https://api.amazonalexa.com"
         },
         "AudioPlayer": {
             "offsetInMilliseconds": 0,
@@ -436,6 +436,12 @@ sendRequest(postData).then((result) => {
     console.log(reason);
 });
 ```
+
+Depending on the region you are in, you have to change the `apiEndpoint` property of the request:
+
+* North America: `https://api.amazonalexa.com`
+* Europe: `https://api.eu.amazonalexa.com`
+* Far East: `https://api.fe.amazonalexa.com`
 
 For testing purposes, we use the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook#jovo-webhook) as it is the most convenient one for local testing. If you later on host your project on [AWS Lambda](https://aws.amazon.com/lambda/), you might use an [AWS API Gateway](https://aws.amazon.com/api-gateway/) which you point to the Lambda function and send the request to the API endpoint. Technically it works the same for every other cloud service provider. You simply want to send the https request to the endpoint, where your project is hosted on.
 
