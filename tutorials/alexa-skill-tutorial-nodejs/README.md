@@ -16,7 +16,7 @@ In this Alexa Skill tutorial for beginners, you will learn how to build a projec
 
 To get you started as quickly as possible, we're going to create a simple Skill that responds with "Hello World!"
 
-Please note: This is a tutorial for beginners and explains the essential steps of Alexa Skill development in detail. If you already have experience with Alexa and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/docs).
+Please note: This is a tutorial for beginners and explains the essential steps of Alexa Skill development in detail. If you already have experience with Alexa and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#build-your-skills-code), or take a look at the [Jovo Documentation](https://www.jovo.tech/docs).
 
 ## How Alexa Skills Work
 
