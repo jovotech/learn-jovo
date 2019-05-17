@@ -19,7 +19,7 @@ In this Google Action tutorial for beginners, you will learn how to build an Act
 
 To get you started as quickly as possible, we're going to create a simple Action that responds with "Hello World!"
 
-Please note: This is a tutorial for beginners and explains the essential steps of Google Action development in detail. If you already have experience with Google Home or Google Assistant and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Skill](#code-the-skill), or take a look at the [Jovo Documentation](https://www.jovo.tech/docs).
+Please note: This is a tutorial for beginners and explains the essential steps of Google Action development in detail. If you already have experience with Google Home or Google Assistant and just want to learn more about how to use Jovo, either skip the first few sections and go right to [Code the Action](#build-your-actions-code), or take a look at the [Jovo Documentation](https://www.jovo.tech/docs).
 
 
 ## How Google Actions Work
