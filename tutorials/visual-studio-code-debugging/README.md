@@ -38,7 +38,7 @@ After that have to configure VSCode's debugger using the `Open Configurations` b
 }
 ```
 
-Change the `program` attribute to `${workspaceFolder}/node_modules/jovo-cli/index` and add the `"args": ["run", "--inspect"]` attribute to pass arguments to the program. You also need the `autoAttachChildProcesses` to be set to `true`. At the end it should look like this:
+Change the `program` attribute to `${workspaceFolder}\\node_modules\\jovo-cli\\dist\\index.js` and add the `"args": ["run", "--inspect"]` attribute to pass arguments to the program. You also need the `autoAttachChildProcesses` to be set to `true`. At the end it should look like this:
 
 ```javascript
 {
@@ -51,10 +51,10 @@ Change the `program` attribute to `${workspaceFolder}/node_modules/jovo-cli/inde
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/node_modules/jovo-cli/index",
+            "program": "${workspaceFolder}\\node_modules\\jovo-cli\\dist\\index.js",
             "args": ["run", "--inspect"],
             "autoAttachChildProcesses": true
-          }
+        }
     ]
 }
 ```
