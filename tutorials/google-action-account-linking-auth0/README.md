@@ -171,7 +171,7 @@ Last but not least, we have to add the redirect url to our Auth0 client's settin
 
 ![](./img/auth0Google_06.png)
 
-Now go back to your Auth0 client's settings settings and add the following url to the _Allowed Callback URLs_ field:
+Now go back to your Auth0 client's settings and add the following url to the _Allowed Callback URLs_ field:
 
 https://oauth-redirect.googleusercontent.com/r/[yourProjectID]
 
