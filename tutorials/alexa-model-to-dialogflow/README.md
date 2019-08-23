@@ -282,7 +282,7 @@ This step needs to be done for all intents that reference Amazon built-in slots.
 
 As mentioned above, there are many situations where we can't use built-in inputs that are offered by the platforms. For this, you can create a [custom input type](https://www.jovo.tech/docs/model#input-types), which translates into a custom slot type for Alexa, and a custom entity for Dialogflow.
 
-If you look at the existing language model, you can find that the `US_STATE_ABBR` was already create from the custom slot type on Alexa:
+If you look at the existing language model, you can find that the `US_STATE_ABBR` was already created from the custom slot type on Alexa:
 
 ```js
 "inputTypes": [
