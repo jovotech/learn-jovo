@@ -533,7 +533,7 @@ async RefundSkillItemIntent() {
 
 #### ON_PURCHASE
 
-As we discussed earlier, the initial session ends after we start a transaction (`upsell`, `buy` or `refund`). After it's finished your Skill will get another request, which will looks like this for example:
+As we discussed earlier, the initial session ends after we start a transaction (`upsell`, `buy` or `cancel`). After it's finished your Skill will get another request, which will looks like this for example:
 
 ```javascript
 {
@@ -558,7 +558,7 @@ The important parts of that request are:
 
 Name | Description
 :--- | :---
-`name` | Either `Upsell`, `Buy` or `Refund`. Used to determine which kind of transaction took place
+`name` | Either `Upsell`, `Buy` or `Cancel`. Used to determine which kind of transaction took place
 `payload.purchaseResult` | Either `ACCEPTED`, `DECLINED`, `ALREADY_PURCHASED` or `ERROR`. Used to determine the outcome of the transaction
 `payload.productId` | The product in question
 `token` | The token used to resume the skill where it left off
@@ -567,10 +567,10 @@ The incoming request will be mapped to the Jovo built-in `ON_PURCHASE` intent, w
 
 ```javascript
 ON_PURCHASE() {
-    const name = this.$request.name;
+    const name = this.$request.request.name;
     const productId = this.$alexaSkill.$inSkillPurchase.getProductId();
     const purchaseResult = this.$alexaSkill.$inSkillPurchase.getPurchaseResult();
-    const token = this.$request.token;
+    const token = this.$request.request.token;
 
     if (purchaseResult === 'ACCEPTED') {
         this.tell('Great! Let\'s use your new item');
