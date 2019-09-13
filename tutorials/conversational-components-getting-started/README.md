@@ -230,9 +230,41 @@ Now test the app once again and the response should pop up in the console:
 
 ![Component Version 2 Test](img/component-version-2-test.png)
 
+Since the component ran through without problems, our response's status is set to `SUCCESSFUL` and it also contains the `data` object, which is map containing the question number and the user's response, e.g. the user gave the first question a rating of 3.
+
+To not run into any errors, you should always check the status of the response and handle each of them accordingly. For example:
+
+```js
+app.setHandler({
+    LAUNCH() {
+        this.delegate('ConductSurvey', {
+            onCompletedIntent: 'CompletedIntent'
+        });
+    },
+
+    CompletedIntent() {
+        const response = this.$components.ConductSurvey.$response;
+        
+        if (response.status === 'REJECTED') {
+            return this.toIntent('END');
+        }
+        else if (response.status === 'ERROR') {
+            console.log(response.error);
+            
+            return this.toIntent('HandleErrorIntent');
+        }
+        else {
+            console.log(response.data);
+        }
+
+        this.tell('We\'re done!');
+    }
+});
+```
+
 ## Conclusion
 
-That's all you need to get started with Conversational Components. 
+That's all you need to know to get started with Conversational Components. 
 
 [*We've only scratched the surface in this small tutorial, so if you want to find out more, go over to the documentation, where the concept is explained in more detail.](https://www.jovo.tech/docs/components)
 
