@@ -218,7 +218,7 @@ $ jovo new HelloWorld
 
 Let's take a look at the code provided by the sample application. This is what the folder structure looks like: 
 
-![](./img/folder-structure-simple.png)
+![](./img/folder-structure-models.png)
 
 For now, you only have to touch the `app.js` file in the `src` folder. This is where all the configurations and app logic will happen. Learn more about the [Jovo Project Structure here](https://www.jovo.tech/docs/project-structure).
 
@@ -397,8 +397,6 @@ Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice 
 
 ## Next Steps
 
-Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the Jovo Documentation to see what else you can do with our Framework: 
-
-[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/docs/)
+Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the [Jovo Documentation](https://www.jovo.tech/docs/) to see what else you can do with our Framework.
 
 <!--[metadata]: { "description": "Learn how to build Alexa Skills with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Amazon Alexa", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/07/alexa-skill-tutorial-og-image.jpg" }-->
