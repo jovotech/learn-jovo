@@ -14,7 +14,7 @@ In this lecture, you will learn how to create a new voice app project with Jovo,
 
 Jovo is a simple and open source framework to build cross-platform voice applications. Instead of having to build distinct apps for your Alexa Skill and Google Action, you can now have one platform-agnostic source of code that works with both voice APIs. Throughout this course, you will learn how to use the Jovo Framework step by step. If you're interested in learning more about Jovo now, here are some resources:
 
-* [Jovo Framework Repository on GitHub](https://github.com/jovotech/jovo-framework-nodejs/) ⭐️
+* [Jovo Framework Repository on GitHub](https://github.com/jovotech/jovo-framework/) ⭐️
 * [Jovo Framework Documentation](https://www.jovo.tech/docs/)
 * [Join our Newsletter](https://www.jovo.tech/newsletter)
 
@@ -80,7 +80,7 @@ Success!
 
 ## Understanding the Jovo App Logic
 
-Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://www.jovo.tech/docs/app-js 'docs/app-js') file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/project-structure 'docs/project-structure')) looks like this:
+Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://www.jovo.tech/docs/app-js) file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/project-structure)) looks like this:
 
 ![](./img/folder-structure-models.png)
 
@@ -104,7 +104,7 @@ app.setHandler({
 
 What's happening here?
 
-When your app is opened, it triggers the [LAUNCH](https://github.com/jovotech/jovo-framework-nodejs/blob/master/docs/basic-concepts/routing/intents.md#launch-intent 'docs/basic-concepts/routing/intents#launch-intent) intent, which contains a [toIntent](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/routing#tointent 'docs/basic-concepts/routing#tointent') call to switch to the HelloWorldIntent. Here, the ask method is called to ask for the user's name. After they answer, the MyNameIsIntent gets triggered, which greets them with their name.
+When your app is opened, it triggers the [LAUNCH](https://www.jovo.tech/docs/routing/intents#launch) intent, which contains a [toIntent](https://www.jovo.tech/docs/routing#tointent) call to switch to the HelloWorldIntent. Here, the ask method is called to ask for the user's name. After they answer, the MyNameIsIntent gets triggered, which greets them with their name.
 
 ## Next Steps
 
