@@ -393,11 +393,7 @@ Once the Skill is enabled to test, you can use a device like Amazon Echo or Echo
 
 ### Test Your Skill on Your Phone
 
-Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice while testing your Skill? You can use [Reverb](https://reverb.ai) for that. 
-
-[![Test Alexa Skill on your phone with Reverb.ai](https://www.jovo.tech/blog/wp-content/uploads/2017/07/reverb.jpg)](https://reverb.ai)
-
-With Reverb, you can bring Alexa functionality to either your Mac or your mobile phones (iOS and Android). Go to their website by clicking the screenshot above and download it to get started.
+Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice while testing your Skill? You can use the Alexa App on [iOS](https://apps.apple.com/us/app/amazon-alexa/id944011620) and [Android](https://play.google.com/store/apps/details?id=com.amazon.dee.app).
 
 ## Next Steps
 
