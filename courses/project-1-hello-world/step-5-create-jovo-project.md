@@ -82,7 +82,7 @@ Success!
 
 Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/configuration/project-structure 'docs/configuration/project-structure')) looks like this:
 
-![](./img/folder-structure-simple.png)
+![](./img/folder-structure-models.png)
 
 Let's take a look at the lower part first: The handler is where you will spend most of your time when you're building the logic behind your voice app. It already has a "HelloWorldIntent," as you can see below:
 
