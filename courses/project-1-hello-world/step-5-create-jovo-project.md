@@ -80,7 +80,7 @@ Success!
 
 ## Understanding the Jovo App Logic
 
-Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/project-structure 'docs/project-structure')) looks like this:
+Let's take a look at the code provided by the sample application. For now, you only have to touch the [app.js](https://www.jovo.tech/docs/app-js 'docs/app-js') file. This is where the logic will happen. The folder structure ([see the docs](https://www.jovo.tech/docs/project-structure 'docs/project-structure')) looks like this:
 
 ![](./img/folder-structure-models.png)
 
