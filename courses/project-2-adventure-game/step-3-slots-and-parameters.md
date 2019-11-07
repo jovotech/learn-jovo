@@ -197,9 +197,7 @@ That's it!  
 
 On Dialogflow, you can see compare different responses in the testing panel to the right:
 
-![](./img/dialogflow_enterDoorIntent_test.png)
-
-No need to go to the Actions on Google console for this case.
+![](./img/google_simulator_enterDoorIntent_test.png)
 
 ## Next Steps
 
