@@ -14,11 +14,22 @@ Learn how to integrate a basic Conversational Component in a Jovo project.
 
 Conversational Components are small pre-packaged Jovo project snippets, which solve one particular problem and can be seamlessly integrated into your existing project, using the Jovo CLI.
 
-They include the needed **language model** parts, the **handler** (logic) and the **i18n** (cms) files neatly bundled in a npm package.
+They include the following parts, neatly bundled into an npm package:
 
-The main benefit of Conversational Components is the saved time. With even seemingly easy tasks, such as retrieving the users phone number, turning into large time consuming problems, where most people try to find their own solution, Conversational Components try to provide customizable solution.
+* a **language model** with all the needed intents and entities/slots,
+* the **handler** (logic) for the code fulfilment, and
+* the **i18n** (cms) files that store all the responses/content.
 
-In the future, with the help of our community, these components could be used as best-practices for the growing field of voice app development. 
+The main benefit of Conversational Components is the saved time. With even seemingly easy tasks, such as retrieving the user's phone number, turning into large time consuming problems, where most people try to find their own solution, Conversational Components try to provide a customizable solution.
+
+In the future, with the help of our community, these components could be used as best-practices for the growing field of voice app development.
+
+Here are a few sample components that are already available:
+* get the user's phone number
+* get the user's email address
+* allow the user to book a calendar meeting with you
+* ask the user for their opinion in a survey
+
 
 In this short tutorial we will go over the process of integrating the `ConductSurvey` component into a Hello World example project.
 
