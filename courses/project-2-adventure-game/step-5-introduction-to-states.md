@@ -18,6 +18,7 @@ As mentioned in previous steps, we want our app logic to look like a binary tree
 However, with the current structure there is no real hierarchy. There's no way to figure out which room in the game the person is currently in.
 
 It looks more like this:
+
 ![](./img/intents-without-hierarchy.jpg)
 
 So how can we create some hierarchy?
