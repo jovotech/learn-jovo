@@ -136,15 +136,7 @@ If you have your Amazon Developer Portal account also connected to an Alexa enab
 
 ### Google Assistant
 
-For quick testing of your language model and to see if your webhook works, you can use the internal testing tool of Dialogflow.
-
-You can find it to the right of the Dialogflow console. Just type in the expression you want to test (in our case "my name is yourName" to trigger the MyNameIsIntent) and it returns your application's response and some other information (like the intent):
-
-![](./img/dialogflow_intent_test.png)
-
-Testing with Dialogflow will often be enough (and especially useful, as other tools can sometimes be a bit buggy). However, it doesn't test the integration between Dialogflow and Google Assistant. For this, you need to use the Actions on Google Simulator.
-
-Go to the "Integrations" tab and select Google Assistant:
+To test your Google Action you have to use the Actions on Google Simulator. For that go to the "Integrations" tab and select Google Assistant:
 
 ![](./img/dialogflow_integration.png)
 
