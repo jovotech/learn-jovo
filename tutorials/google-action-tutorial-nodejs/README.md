@@ -583,8 +583,6 @@ Then, use the invocation that was provided by the Simulator:
 
 ## Next Steps
 
-Great job! You've gone through all the necessary steps to prototype your own Google Action. The next challenge is to build a real Action. For this, take a look at the Jovo Documentation to see what else you can do with our Framework:
-
-[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/docs/)
+Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the [Jovo Documentation](https://www.jovo.tech/docs/) to see what else you can do with our Framework.
 
 <!--[metadata]: { "description": "Learn how to build Google Actions with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Google Assistant", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/08/google-action-tutorial-og-image.jpg" }-->
