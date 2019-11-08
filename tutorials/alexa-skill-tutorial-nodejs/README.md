@@ -32,7 +32,7 @@ There are a few steps that happen before a user's speech input is reaching your 
 
 The third stage is where your magic is happening. The voice output process (from right to left) goes back and passes the stages again: 
 
-![](./img/alexa-api-response.png
+![](./img/alexa-api-response.png)
 
 1.  Your **Skill code** now turns the input into a desired output and returns a response to...
 2.  the **Alexa API**, which turns this response into speech via text-to-speech, sending sound output to...
