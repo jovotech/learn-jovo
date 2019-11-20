@@ -65,7 +65,7 @@ const episode = 'https://traffic.libsyn.com/voicebot/Jan_Konig_on_the_Jovo_Open_
 ```
 
 Next, we use the `this.$alexaSkill.$audioPlayer` object to do 3 things:
-* Set the `offset`, which defines the timestamp at which Alexa will start playing the file (in milliseconds). For example, an offset of `1000` will start your audio file at `0:10`.
+* Set the `offset`, which defines the timestamp at which Alexa will start playing the file (in milliseconds). For example, an offset of `1000` will start your audio file at `0:01`.
 * Call the `play` function and pass in the URL as well as a token which will discuss later on.
 * Use `tell` to attach a speech output that will be said by Alexa *before* playing the audio file.
 
