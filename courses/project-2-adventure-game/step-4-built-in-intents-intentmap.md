@@ -85,7 +85,7 @@ If you click into them on the Skill Builder, they are explained like this:
 
 ![](./img/amazon-yesintent-built-in.jpg)
 
-This means we don't need to create a any phrases for these intents. Great, right? However, those built-in intents do come with one problem: If we're developing for cross-platform, we probably don't want to call our intents on Dialogflow (for Google Assistant) _AMAZON.x_.
+This means we don't need to create any phrases for these intents. Great, right? However, those built-in intents do come with one problem: If we're developing for cross-platform, we probably don't want to call our intents on Dialogflow (for Google Assistant) _AMAZON.x_.
 
 For this, Jovo offers the ability to match different names to one with an [intentMap](https://www.jovo.tech/docs/routing/intents#intentmap). In it, you can define new names for certain intents, so that they have the same key across platforms.
 
