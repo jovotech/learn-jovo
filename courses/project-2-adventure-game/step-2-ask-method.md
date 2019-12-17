@@ -33,7 +33,7 @@ This will create a new folder and clone the [Jovo Sample Voice App](https://gith
   Installation completed.
 ```
 
-In the next steps we're going to modify the [app.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/app.js) of our app and create a logic that reflects how the flow of our adventure game should be. The app file generally consists of two parts: the **App Initialization** and the **App Logic**.
+In the next steps we're going to modify the [app.js](https://www.jovo.tech/docs/app-js) of our app and create a logic that reflects how the flow of our adventure game should be. The app file generally consists of two parts: the **App Initialization** and the **App Logic**.
 
 ```javascript
 'use strict';
@@ -134,8 +134,8 @@ So, how do we now set up the code so we can ask users for additional input? As t
 
 For speech output, you can use two common methods with the Jovo Framework:
 
-* [tell](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/output#tell 'docs/basic-concepts/output#tell'): Returns speech output and ends the session
-* [ask](https://github.com/jovotech/jovo-framework-nodejs/tree/v2/docs/basic-concepts/output#ask 'docs/basic-concepts/output#ask'): Returns a speech prompt and waits for user input, reprompts if user stays quiet
+* [tell](https://www.jovo.tech/docs/output#tell): Returns speech output and ends the session
+* [ask](https://www.jovo.tech/docs/output#ask): Returns a speech prompt and waits for user input, reprompts if user stays quiet
 
 So, for a basic interaction, we would use _ask_ in our _LAUNCH_ intent to prompt users to either say "blue door" or "red door". If this happens, we will first just return a simple statement like "You chose to go through the blue door" for testing the model.
 
@@ -168,7 +168,7 @@ Let's test this on either the Alexa or Dialogflow platform.
 
 ## Preparing for Local Testing
 
-We will use a local webhook and the tunneling service ngrok for the testing of our code. You can find a more detailed introduction in [Project 1 Step 6: Hello World!](../project-1-hello-world/step-6-hello-world.md)
+We will use a local webhook and the tunneling service ngrok for the testing of our code. You can find a more detailed introduction in [Project 1 Step 6: Hello World!](https://www.jovo.tech/courses/project-1-hello-world/step-6-hello-world)
 
 ### Run the Local Server
 
@@ -205,7 +205,7 @@ If you want to test the interaction with Google Assistant, you need to do the fo
 * Add webhook fulfillment to Dialogflow intents
 * Add Google Assistant integration to Dialogflow agent
 
-We've done these steps in more detail in [Project 1 Step 6: Hello World! > Testing Your Voice App > Google Assistant](../project-1-hello-world/step-6-hello-world.md#google-assistant).
+We've done these steps in more detail in [Project 1 Step 6: Hello World! > Testing Your Voice App > Google Assistant](https://www.jovo.tech/courses/project-1-hello-world/step-6-hello-world#google-assistant).
 
 Open your agent in the [Dialogflow Console](https://console.dialogflow.com), go to the **Fulfillment** section and paste the webhook you created above into the URL field:
 

@@ -32,7 +32,7 @@ There are a few steps that happen before a user's speech input is reaching your 
 
 The third stage is where your magic is happening. The voice output process (from right to left) goes back and passes the stages again: 
 
-![](./img/alexa-api-response.png
+![](./img/alexa-api-response.png)
 
 1.  Your **Skill code** now turns the input into a desired output and returns a response to...
 2.  the **Alexa API**, which turns this response into speech via text-to-speech, sending sound output to...
@@ -218,7 +218,7 @@ $ jovo new HelloWorld
 
 Let's take a look at the code provided by the sample application. This is what the folder structure looks like: 
 
-![](./img/folder-structure-simple.png)
+![](./img/folder-structure-models.png)
 
 For now, you only have to touch the `app.js` file in the `src` folder. This is where all the configurations and app logic will happen. Learn more about the [Jovo Project Structure here](https://www.jovo.tech/docs/project-structure).
 
@@ -393,16 +393,10 @@ Once the Skill is enabled to test, you can use a device like Amazon Echo or Echo
 
 ### Test Your Skill on Your Phone
 
-Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice while testing your Skill? You can use [Reverb](https://reverb.ai) for that. 
-
-[![Test Alexa Skill on your phone with Reverb.ai](https://www.jovo.tech/blog/wp-content/uploads/2017/07/reverb.jpg)](https://reverb.ai)
-
-With Reverb, you can bring Alexa functionality to either your Mac or your mobile phones (iOS and Android). Go to their website by clicking the screenshot above and download it to get started.
+Don't have an Echo or Echo Dot handy, but still want to listen to Alexa's voice while testing your Skill? You can use the Alexa App on [iOS](https://apps.apple.com/us/app/amazon-alexa/id944011620) and [Android](https://play.google.com/store/apps/details?id=com.amazon.dee.app).
 
 ## Next Steps
 
-Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the Jovo Documentation to see what else you can do with our Framework: 
-
-[![Jovo Documentation for Alexa Skills and Google Actions](https://www.jovo.tech/blog/wp-content/uploads/2017/07/jovo-docs.jpg)](https://www.jovo.tech/docs/)
+Great job! You've gone through all the necessary steps to prototype your own Alexa Skill. The next challenge is to build a real Skill. For this, take a look at the [Jovo Documentation](https://www.jovo.tech/docs/) to see what else you can do with our Framework.
 
 <!--[metadata]: { "description": "Learn how to build Alexa Skills with the Jovo Framework from scratch", "author": "jan-koenig", "tags": "Beginner, Amazon Alexa", "og-image": "https://www.jovo.tech/blog/wp-content/uploads/2017/07/alexa-skill-tutorial-og-image.jpg" }-->

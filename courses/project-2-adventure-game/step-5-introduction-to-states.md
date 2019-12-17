@@ -18,11 +18,12 @@ As mentioned in previous steps, we want our app logic to look like a binary tree
 However, with the current structure there is no real hierarchy. There's no way to figure out which room in the game the person is currently in.
 
 It looks more like this:
+
 ![](./img/intents-without-hierarchy.jpg)
 
 So how can we create some hierarchy?
 
-We need to find some (frictionless) way to save where a user is coming from when going to the next intent. We could do this manually by saving it in a database, or use [session attributes](https://github.com/jovotech/jovo-framework-nodejs/tree/master/docs/basic-concepts/data#session-data 'docs/basic-concepts/data#session-data'). This is basically what we're doing, but without worrying about saving the data ourselves: with Jovo State Handling.
+We need to find some (frictionless) way to save where a user is coming from when going to the next intent. We could do this manually by saving it in a database, or use [session attributes](https://www.jovo.tech/docs/data#session-data). This is basically what we're doing, but without worrying about saving the data ourselves: with Jovo State Handling.
 
 ## How States Work
 
@@ -36,7 +37,7 @@ In the next step we're going to use states for the first time.
 
 ## Adding States with followUpState
 
-We're doing this by adding a [followUpState](https://www.jovo.tech/docs/data#session-data) to the app before an _ask_ call.
+We're doing this by adding a [followUpState](https://www.jovo.tech/docs/routing/states#followupstate) to the app before an _ask_ call.
 
 Remember the _EnterDoorIntent_:
 

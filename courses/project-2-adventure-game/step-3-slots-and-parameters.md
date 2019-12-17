@@ -30,7 +30,7 @@ This is what parameters (slots on Alexa and entities on Dialogflow) are about:
 
 ## Introduction to Slots and Parameters
 
-Slots are one of the [3 Elements of Voice Interactions](../project-1-hello-world/step-2-introduction-language-models.md#the-3-basic-elements-of-voice-interactions) (Project 1 Step 2: Introduction to Language Models). Depending on the platform, they are also often referred to as parameters or entities. For this course, we are going to call them slots most of the time.
+Slots are one of the [3 Elements of Voice Interactions](https://www.jovo.tech/courses/project-1-hello-world/step-2-introduction-language-models#the-3-basic-elements-of-voice-interactions) (Project 1 Step 2: Introduction to Language Models). Depending on the platform, they are also often referred to as parameters or entities. For this course, we are going to call them slots most of the time.
 
 These slots are additional elements of input within an intent that a user provides. In this example, the differences are only in the color, so we're going to add a slot called **Color** to our interaction model.
 
@@ -197,9 +197,7 @@ That's it!  
 
 On Dialogflow, you can see compare different responses in the testing panel to the right:
 
-![](./img/dialogflow_enterDoorIntent_test.png)
-
-No need to go to the Actions on Google console for this case.
+![](./img/google_simulator_enterDoorIntent_test.png)
 
 ## Next Steps
 

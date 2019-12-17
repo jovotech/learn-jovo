@@ -37,7 +37,7 @@ These intents are part of the agent's language model. We're going to create a ne
 
 ## Create an Interaction Model
 
-After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/docs/routing#launch-intent) intent.
+After creating the agent, you can see that there are two standard intents already in place. We're going to keep them. The "Default Welcome Intent" will later be mapped to the Jovo ["LAUNCH"](https://www.jovo.tech/docs/routing/intents#launch) intent.
 
 Let's create another intent and name it "HelloWorldIntent":
 

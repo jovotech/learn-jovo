@@ -53,9 +53,9 @@ Take a look at the sample spreadsheet we created:
 
 To use it for yourself, click `File > Make a copy...` and save it to your own Google Drive.
 
-You can then edit the content as much as you want. After editing, make sure that you publish it to the web by going to `File > Publish to the web...`. Your spreadsheet needs to be accessible to anyone with the link. You can make sure it is by clicking on the blue `SHARE` button to the top right. It should look like this:
+You can then edit the content as much as you want. After editing, make sure that you publish it to the web by going to `File > Publish to the web...`.
 
-![Google Spreadsheet Sharing Settings](./img/share-with-others.jpg)
+![Google Spreadsheet Publish to Web](./img/publish-to-web.png)
 
 After it's available for anyone, you can get the spreadsheet ID by copying the relevant part from the URL.
 

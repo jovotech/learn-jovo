@@ -12,9 +12,9 @@ In this step, we are going to take a look at the interaction design and the lang
 
 ## Initial Interaction: Blue Door or Red Door?
 
-We already talked about the player's situation in the [project description](https://www.jovo.tech/blog/project-2-adventure-game/): The user opens the adventure game and is introduced to the story. _You don't know where you are and you have two options: blue door or red door._ This is the first interaction we're creating in this section.
+We already talked about the player's situation in the [project description](https://www.jovo.tech/courses/project-2-adventure-game/): The user opens the adventure game and is introduced to the story. _You don't know where you are and you have two options: blue door or red door._ This is the first interaction we're creating in this section.
 
-As we learned in [Project 1: Hello World](https://www.jovo.tech/blog/project-1-hello-world/), intents can be used to map what a user says to the meaning behind the phrase or sentence. See [Project 1 Step 2: Introduction to Language Models](https://www.jovo.tech/blog/p1s2-introduction-language-models/) for a refresher on intents.
+As we learned in [Project 1: Hello World](https://www.jovo.tech/courses/project-1-hello-world), intents can be used to map what a user says to the meaning behind the phrase or sentence. See [Project 1 Step 2: Introduction to Language Models](https://www.jovo.tech/courses/project-1-hello-world/step-2-introduction-language-models) for a refresher on intents.
 
 For this game's first step, you can map out the interaction with two intents (we will consider other solutions in a later step): A '_BlueDoorIntent_' and a '_RedDoorIntent_'.
 
@@ -48,7 +48,7 @@ Let's go ahead and create the interaction model. For the sake of fast prototypin
 
 ## Create the Interaction Model on Amazon Alexa
 
-By now, we already know how the creation of a Skill project on the [Amazon Developer Portal](https://developer.amazon.com/) works. You can learn about it in more detail in [Project 1 Step 3: Create a Project on the Amazon Developer Portal](../project-1-hello-world/step-3-amazon-developer-portal.md).
+By now, we already know how the creation of a Skill project on the [Amazon Developer Portal](https://developer.amazon.com/) works. You can learn about it in more detail in [Project 1 Step 3: Create a Project on the Amazon Developer Portal](https://www.jovo.tech/courses/project-1-hello-world/step-3-amazon-developer-portal).
 
 Let's create a Skill called "Adventure Game" with the same invocation name:
 
@@ -108,7 +108,7 @@ You can now either go to the [next step](#next-steps) or take a look how a langu
 
 ## Create the Language Model on Dialogflow
 
-Creating a language model for Google Assistant is a little different compared to Alexa, where it's done all on one platform, the Amazon Developer Portal. As we learned in [Project 1 Step 4: Create a Project on Dialogflow and Google Assistant](../project-1-hello-world/step-4-dialogflow-google-assistant.md), it is common to use Dialogflow to do the natural language understanding for Google Assistant, and use the built-in integration to connect both.
+Creating a language model for Google Assistant is a little different compared to Alexa, where it's done all on one platform, the Amazon Developer Portal. As we learned in [Project 1 Step 4: Create a Project on Dialogflow and Google Assistant](https://www.jovo.tech/courses/project-1-hello-world/step-4-dialogflow-google-assistant), it is common to use Dialogflow to do the natural language understanding for Google Assistant, and use the built-in integration to connect both.
 
 Let's go to the [Dialogflow Console](https://console.dialogflow.com) and create a new agent called AdventureGame. This is what the screen of the agent including default intents looks like:
 

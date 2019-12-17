@@ -65,7 +65,7 @@ In the next section, we are going to create a simple language model for our "Hel
 
 Before we're proceeding to the next steps of this course and create a language model on both platforms Alexa and Dialogflow, let's map out the functionality of our Hello World voice app.
 
-It's very simple. When a user opens the app, we will use the [LAUNCH intent](https://www.jovo.tech/docs/routing#launch-intent) to redirect the user to the "HelloWorldIntent", which asks the user for their name. After the user answered, the "MyNameIsIntent" will be triggered, which greets the user with their name.
+It's very simple. When a user opens the app, we will use the [LAUNCH intent](https://www.jovo.tech/docs/routing/intents#launch) to redirect the user to the "HelloWorldIntent", which asks the user for their name. After the user answered, the "MyNameIsIntent" will be triggered, which greets the user with their name.
 
 ![](./img/hello-world-launch-logic.jpg)
 

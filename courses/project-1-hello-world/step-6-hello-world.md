@@ -18,7 +18,7 @@ To connect our voice app's code to the Alexa and Dialogflow platforms, we need t
 
 For this project, the focus is on **local prototyping** to get started quickly and to be able to test and debug your voice app locally. We're going to use a local Express server for this, and look into hosting solutions at a later course. If you prefer to run your code on Lambda while prototyping, you can take a look at these tutorials for [Amazon Alexa](https://www.jovo.tech/tutorials/alexa-skill-tutorial-nodejs#host-your-code-on-aws-lambda) and [Google Assistant](https://www.jovo.tech/tutorials/host-google-action-on-lambda).
 
-The [index.js](https://github.com/jovotech/jovo-sample-voice-app-nodejs/blob/master/src/index.js) comes with off-the-shelf server support so that you can start developing locally as easy as possible:
+The [index.js](https://www.jovo.tech/docs/project-structure#indexjs---host-configuration) comes with off-the-shelf server support so that you can start developing locally as easy as possible:
 
 ```javascript
 'use strict';
@@ -61,7 +61,7 @@ This will start the express server. We now need to create a connection to the vo
 
 ## Connecting Your Platform Project to an Endpoint
 
-Your code is currently running locally, so it's not accessible for outside APIs. We need to find a way to create an endpoint that we can post to the Amazon Developer Portal and the Dialogflow Agent Console.Fortunately, since [Jovo Framework v1](https://www.jovo.tech/blog/jovo-v1/) we have a feature called the [Jovo Webhook](https://github.com/jovotech/jovo-framework-nodejs/blob/v2/docs/configuration/hosting/express-js.md 'docs/configuration/hosting/express-js'), which will do exactly this for you.
+Your code is currently running locally, so it's not accessible for outside APIs. We need to find a way to create an endpoint that we can post to the Amazon Developer Portal and the Dialogflow Agent Console. Fortunately, since [Jovo Framework v1](https://www.jovo.tech/blog/jovo-v1/) we have a feature called the [Jovo Webhook](https://www.jovo.tech/docs/jovo-webhook#jovo-webhook), which will do exactly this for you.
 
 ```sh
 $ jovo run
@@ -136,15 +136,7 @@ If you have your Amazon Developer Portal account also connected to an Alexa enab
 
 ### Google Assistant
 
-For quick testing of your language model and to see if your webhook works, you can use the internal testing tool of Dialogflow.
-
-You can find it to the right of the Dialogflow console. Just type in the expression you want to test (in our case "my name is yourName" to trigger the MyNameIsIntent) and it returns your application's response and some other information (like the intent):
-
-![](./img/dialogflow_intent_test.png)
-
-Testing with Dialogflow will often be enough (and especially useful, as other tools can sometimes be a bit buggy). However, it doesn't test the integration between Dialogflow and Google Assistant. For this, you need to use the Actions on Google Simulator.
-
-Go to the "Integrations" tab and select Google Assistant:
+To test your Google Action you have to use the Actions on Google Simulator. For that go to the "Integrations" tab and select Google Assistant:
 
 ![](./img/dialogflow_integration.png)
 
