@@ -20,11 +20,11 @@ You can download Bixby Developer Studio [here](https://bixbydevelopers.com/).
 
 Now that you have all the required files downloaded onto your workspace, let's go into detail of what is located in the `bixby/` platforms folder. Start Bixby Studio and open the capsule by going to `Files` -> `Open Capsule...` -> `./platforms/bixby/`.
 
-In the left panel, you should see your capsule `playground.jovo_test` with the following file structure: 
+In the left panel, you should see your capsule `playground.jovo_test` with the following file structure:
 
 ```
 assets
-│   jovo-logo-16x16.png   
+│   jovo-logo-16x16.png
 |
 models
 |
@@ -42,11 +42,11 @@ models
 |   |   |   JovoLayout.model.bxb
 |   |   |   JovoResponse.model.bxb
 |   |   |   JovoSessionData.model.bxb
-│   
+│
 └───actions
 |   │   LaunchAction.model.bxb
 |   │   MyNameIsAction.model.bxb
-│   
+│
 └───primitives
 |   │   NameInput.model.bxb
 |
@@ -92,15 +92,15 @@ Learn more about primitives [here]().
 
 In `models/primitives/`, you can find a primitive `NameInput`.
 
-![Primitive Example](./img/primitive-name.png "This is an example for a primitive.")
+![Primitive Example](./img/primitive-name.png 'This is an example for a primitive.')
 
 `NameInput` is a primitive of type `text`, meaning it can hold a range of text based values, in this case names. An alternate type for this could be `name`. As mentioned, we don't write any actual code logic here, we rather tell Bixby what type to expect, when we speak of names. The actual values will be entered later in the [training](#training) section.
 
 #### Actions
 
-In `models/actions/`, you can find all models files for actions. These help Bixby understand how to act upon a specific user prompt and what to expect as inputs and output. In this project, you will see two already defined actions, `LaunchAction` and `MyNameIsAction`. As you can probably tell, these are intent-oriented, meaning that for every intent in your Jovo app, you have to define an action with corresponding inputs and output. 
+In `models/actions/`, you can find all models files for actions. These help Bixby understand how to act upon a specific user prompt and what to expect as inputs and output. In this project, you will see two already defined actions, `LaunchAction` and `MyNameIsAction`. As you can probably tell, these are intent-oriented, meaning that for every intent in your Jovo app, you have to define an action with corresponding inputs and output.
 
-![Primitive Example](./img/action-launch.png "This is an example for a primitive.")
+![Primitive Example](./img/action-launch.png 'This is an example for a primitive.')
 
 `LaunchAction` is very simple. It is the entry point to your voice application, so it won't expect any inputs. As for its output, in most cases it will be sufficient to use [JovoResponse]() here. `JovoResponse` is a predefined Jovo model located in `models/Jovo/structures/` and describes an interface for the communication between your Jovo app and your Bixby capsule. It contains important information like speech output and session data and is the most basic output object you can use.
 
@@ -108,13 +108,13 @@ If you want to return a more specific response, you can create a new structure a
 
 Learn more about extending structures [here]().
 
-![Primitive Example](./img/action-mynameis.png "This is an example for a primitive.")
+![Primitive Example](./img/action-mynameis.png 'This is an example for a primitive.')
 
 `MyNameIsAction` is a bit more complicated, as it expects specific inputs to function correctly. Similar to `LaunchAction`, it has a description, an [action type](https://bixbydevelopers.com/dev/docs/reference/type/action.type) and an output field of type `JovoResponse`. However, it features a new property `collect`. This field specifies any number of inputs to be collected and evaluated, before executing the action. Here we have two input properties: `_JOVO_INPUT_name` and `_JOVO_PREV_RESPONSE_`.
 
 `_JOVO_INPUT_name` defines the name input, which will be used to return a welcome message to your user. Every input features a set of properties, describing meta data for the input itself, so Bixby knows how to handle it correctly. The most common properties include `type`, `min` and `max`. While `type` describes the inputs type, which can be any concept, be it a primitive or a structure (in this case the primitive `NameInput`), `min` and `max` specify the inputs cardinality, in this case that exactly one name is required.
 
-All capsule-dependent inputs have to be prefixed with `_JOVO_INPUT_`, followed by your input identifier, which will be available in your Jovo app by accessing `this.$inputs[INPUT_IDENTIFIER]`. 
+All capsule-dependent inputs have to be prefixed with `_JOVO_INPUT_`, followed by your input identifier, which will be available in your Jovo app by accessing `this.$inputs[INPUT_IDENTIFIER]`.
 
 Although `MyNameIsAction` only collects one user input, it requires one more input property: `_JOVO_PREV_RESPONSE_` of type `JovoResponse`. This one is a bit tricky.
 
@@ -124,17 +124,17 @@ To keep session data request-persistent, we need to include it in the conversati
 
 The `resources/` folder mainly contains your capsule configuration and locale-oriented dialog and views.
 
-`base/` features only your capsule's main configurations. For our example project, there are only two files present, `capsule.properties` and `endpoints.bxb`. 
+`base/` features only your capsule's main configurations. For our example project, there are only two files present, `capsule.properties` and `endpoints.bxb`.
 
 You can use `capsule.properties` to store your capsules configurations, such as endpoints, permission scopes or environment modes. Here you will paste your webhook url, that will later act as your capsules remote url. This will become important in a few steps.
 
 `endpoints.bxb` defines your action endpoints. As mentioned, Bixby uses your models to outline your capsule and to get an idea of what data to expect and how to handle it. For the actual code logic, Bixby provides two ways for you to implement your actions: local endpoints in the form of javascript files and remote endpoints. Remote endpoints allow you to outsource your code logic to a remote server and provide it's endpoint to Bixby, which, upon a user prompt, will send a post request to your server, where you can handle the action and return a valid response. The platform integration uses that feature to allow communication between the Jovo voice app and your capsule.
 
-![Primitive Example](./img/endpoints.png "This is an example for a primitive.")
+![Primitive Example](./img/endpoints.png 'This is an example for a primitive.')
 
-For every action, you have to provide a remote endpoint, which takes your remote url from `capsule.properties` and sends a post request to the provided url. For your `LaunchAction`, its sufficient to just use the remote url, however, for an intent-based action, such as `MyNameIsAction`, you have to specify which intent to trigger by providing a parameter `intent` in the endpoint's url.
+For every action, you have to provide a remote endpoint, which takes your remote url from `capsule.properties` and sends a post request to the provided url. For your `LaunchAction`, its sufficient to just use the remote url, however, for an intent-based action, such as `MyNameIsAction`, you have to specify which intent to trigger by providing a query parameter `intent` in the endpoint's url.
 
-Aside from your capsule configuration, `resources/` also contains locale-specific files, such as [training](#training), dialog and locale-specific information about your capsule. In this example project, we only match one locale, `en`. 
+Aside from your capsule configuration, `resources/` also contains locale-specific files, such as [training](#training), dialog and locale-specific information about your capsule. In this example project, we only match one locale, `en`.
 
 The `training` file contains all of your capsule's natural language models, which are being used by Bixby to understand your user prompts and how to differentiate between inputs. For every training sample, a goal must be specified, telling Bixby what action to execute on that sample. Furthermore, you can specify inputs with associated nodes or even routes for Bixby to collect additional information.
 
@@ -152,9 +152,9 @@ The last thing to cover in `en/` is the `layouts/` folder, which will be used fo
 
 You can learn more about dialog and views [here]().
 
-For our example project, we only need one view of type `result-view`, which is located inside `resources/layout/`. 
+For our example project, we only need one view of type `result-view`, which is located inside `resources/layout/`.
 
-![Primitive Example](./img/layout-result.png "This is an example for a primitive.")
+![Primitive Example](./img/layout-result.png 'This is an example for a primitive.')
 
 This view matches a result of type `JovoResponse`, meaning that Bixby will try to return this view, whenever a `JovoResponse` is returned by our voice app. In that case, Bixby looks into the views property and tries to match the required data to the response object. One of those properties is our dialog, or the `message` property, which will fetch the speech output from our response by accessing `response._JOVO_SPEECH_`.
 
@@ -164,18 +164,17 @@ Last, but not least, `capsule.bxb` acts as a place for metadata about your capsu
 
 Learn more about `capsule.bxb` [here](https://bixbydevelopers.com/dev/docs/reference/type/capsule).
 
-
 ## Usage
 
 Now that your files are all set and you have a basic overview of what the individual concepts mean, let's go ahead and start using the example capsule. Start by running the Jovo instance by executing the [run](https://www.jovo.tech/docs/cli/run) command in your terminal with `jovo run [-w]`. This will start your Jovo voice application and give you a webhook url. Go ahead and copy this url, you will need it in a second.
 
-![Actions Example](./img/terminal-jovo-run.png "This is an example for a primitive.")
+![Actions Example](./img/terminal-jovo-run.png 'This is an example for a primitive.')
 
 Now, open Bixby Studio and open the capsule, located in `platforms/bixby/` by going to `File` -> `Open Capsule...`. Paste your webhook url into `resources/base/capsule.properties` to define a remote endpoint for the capsule.
 
 Almost done! The last thing to do is to compile the capsule's NL model and finally run your first prompt. For this, go to `resources/en/training` and hit the big `Compile NL Model` button. Open the Bixby simulator (`View`>`Open Simulator`), type something along the lines of "Open Jovo Test Capsule" in the text box and click on `Run NL`.
 
-![Actions Example](./img/simulator.png "This is an example for a primitive.")
+![Actions Example](./img/simulator.png 'This is an example for a primitive.')
 
 ## Next Steps
 
@@ -185,55 +184,29 @@ Training your capsule is similar to the interaction model for Alexa. For every a
 
 For that, go ahead, select the `training` file and add the training sample "my name is {your-name}".
 
-![Primitive Example](./img/training-new-sample.png "This is an example for a primitive.")
+![Primitive Example](./img/training-new-sample.png 'This is an example for a primitive.')
 
-![Primitive Example](./img/training-draft.png "This is an example for a primitive.")
+![Primitive Example](./img/training-draft.png 'This is an example for a primitive.')
 
 Now, we have to specify what goal we want to achieve with this phrase by entering "MyNameIsAction" into the `Goal` input field. Lastly, we want Bixby to recognize our name. For that, click on your name inside the `NL` text field. A small window should appear, where you can enter the node you want to associate with the selected value.
 
-![Primitive Example](./img/training-input.png "This is an example for a primitive.")
+![Primitive Example](./img/training-input.png 'This is an example for a primitive.')
 
 Since our `MyNameIsAction` requires a property of type `NameInput`, our node should also be of type `NameInput`.
 
-![Primitive Example](./img/training-nameinput.png "This is an example for a primitive.")
+![Primitive Example](./img/training-nameinput.png 'This is an example for a primitive.')
 
 Now, compile your modified training model by clicking on "Done" -> "Save" -> "Compile NL Model".
 
 If you go into the simulator again and launch the capsule with "open jovo test capsule", you can now enter the follow-up phrase "my name is {your name}" and the capsule should greet you with a neat little welcome message.
 
-![Primitive Example](./img/simulator-success.png "This is an example for a primitive.")
+![Primitive Example](./img/simulator-success.png 'This is an example for a primitive.')
 
 And that's it, you made it to the end.
 
-Want to know more? 
+Want to know more?
 
-- [Jovo Bixby Docs]()
-- [Official Bixby Documentation](https://bixbydevelopers.com/)
+-   [Jovo Bixby Docs]()
+-   [Official Bixby Documentation](https://bixbydevelopers.com/)
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
