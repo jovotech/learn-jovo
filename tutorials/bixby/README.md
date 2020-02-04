@@ -6,11 +6,11 @@ Learn how to use Samsung Bixby with the Jovo Framework.
 -   [Setup](#setup)
 -   [Integration Basics](#integration-basics)
     -   [Models](#models)
-    -   []
--   [Configuration](#configuration)
--   [Delegating to the Component](#delegating-to-the-component)
--   [The Response](#the-response)
--   [Conclusion](#conclusion)
+        -   [Primitives](#primitives)
+        -   [Actions](#actions)
+    -   [Resources](#resources)
+-   [Usage](#usage)
+-   [Next Steps](#next-steps)
 
 ## Introduction
 
