@@ -5,7 +5,7 @@ With the launch of `v3.0.0` of the Jovo Framework, we introduced a new platform 
 In this tutorial, you will start with an example project, showcasing the integration between Bixby and Jovo, and learn about the basic concepts of Samsung Bixby. In the end, you will have a working Bixby capsule, that, upon retrieving a name, will greet the user with a welcome message.
 
 -   [Introduction](#introduction)
--   [Setup](#setup)
+-   [Getting Started](#getting-started)
 -   [Integration Basics](#integration-basics)
     -   [Models](#models)
         -   [Primitives](#primitives)
@@ -18,9 +18,15 @@ In this tutorial, you will start with an example project, showcasing the integra
 
 ### About Bixby
 
+Bixby is the voice-driven virtual assistant developed by Samsung. Voice Applications for Bixby are called Capsules. If you're familiar with developing voice apps for platforms such as Alexa or Google Assistant, you might come across some similarities between the platforms, such as training the assistant with a natural language model to understand and train on user utterances. However, Bixby follows some majorly different development paradigms. While development for other platforms may be imperative driven, Bixby implements a declarative driven development process by allowing you to describe your intents with models, rather than pure code. You can think of these models as an interface for your app logic, so Bixby knows when to expect what data.
+
 ### About Jovo
 
+Jovo is an open-source framework, allowing developers to build powerful conversational apps for multiple platforms with one codebase. It also allows you to use platform-specific features, as well as a number of Jovo integrations for your application, such as databases, analytic tools and CMS.
+
 ### About the platform integration
+
+With the Bixby platform integration for the Jovo Framework, you can outsource your code logic to your Jovo application, while maintaining your Bixby models inside your capsule. This allows you to develop precise capsule functionality, while still being able to develop for other platforms with the same code logic. This is possible by providing Bixby with remote endpoints, sending a request on every user utterance, if it matches an intent provided by your capsule. In that case, the Jovo instance acts as a server, receiving those requests and mapping them inside the Jovo Handler.
 
 ## Getting Started
 
