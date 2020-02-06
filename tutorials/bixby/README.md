@@ -1,6 +1,8 @@
 # How to use Samsung Bixby with the Jovo Framework
 
-Learn how to use Samsung Bixby with the Jovo Framework.
+With the launch of `v3.0.0` of the Jovo Framework, we introduced a new platform integration for Samsung Bixby. It enables you to program highly scalable cross-platform voice applications for Bixby and use the countless integrations for the Jovo Framework, such as persistent user storage and Content-Management-Systems.
+
+In this tutorial, you will start with an example project, showcasing the integration between Bixby and Jovo, and learn about the basic concepts of Samsung Bixby. In the end, you will have a working Bixby capsule, that, upon retrieving a name, will greet the user with a welcome message.
 
 -   [Introduction](#introduction)
 -   [Setup](#setup)
@@ -14,23 +16,84 @@ Learn how to use Samsung Bixby with the Jovo Framework.
 
 ## Introduction
 
-With the launch of `v3.0.0` of the Jovo Framework, we introduced a new platform integration for Samsung Bixby. It enables you to program highly scalable cross-platform voice applications for Bixby and use the countless integrations for the Jovo Framework, such as persistent user storage and Content-Management-Systems.
+### About Bixby
 
-In this tutorial, you will start with an example project, showcasing the integration between Bixby and Jovo, and learn about the basic concepts of Samsung Bixby. In the end, you will have a working Bixby capsule, that, upon retrieving a name, will greet the user with a welcome message.
+### About Jovo
 
-## Setup
+### About the platform integration
 
-The first thing you'll need is our Jovo Bixby Capsule Example. Not only does it come with our [Hello World Template](https://www.jovo.tech/templates/helloworld), it also includes all Jovo models required for the integration to work properly.
+## Getting Started
 
-You can find the Github repository [here](https://github.com/jovotech/jovo-bixby-capsule-example).
+### Setting up your Jovo app
+
+To get started, the first thing you'll need is our Jovo Bixby Capsule Example. Not only does it come with our [Hello World Template](https://www.jovo.tech/templates/helloworld), it also includes all Jovo models required for the integration to work properly. You can clone the repository onto your workspace by entering the following command into your terminal:
+
+```sh
+# Clone with HTTPS
+git clone https://github.com/jovotech/jovo-bixby-capsule-example.git
+
+# Clone with SSH
+git clone git@github.com:jovotech/jovo-bixby-capsule-example.git
+```
+
+> You can also find the Github repository [here](https://github.com/jovotech/jovo-bixby-capsule-example).
+
+Change your terminal's working directory to your cloned repository and start your Jovo instance. If you don't have the Jovo CLI yet, you need to download it before using `npm`.
+
+```sh
+# Install Jovo CLI globally
+npm install jovo-cli -g
+
+# Change working directory to example project
+cd jovo-bixby-capsule-example
+
+# Run Jovo voice app, optionally with --watch parameter
+jovo run [-w]
+```
+
+This will start the development server of your voice app and give you a webhook url as an endpoint. Copy this url, you will need it in a second.
+
+![Terminal](./img/terminal-jovo-run.png 'Copy your webhook url.')
+
+### Installing Bixby Studio
 
 Next up, you need to download the Bixby Developer Studio. It functions as an IDE and allows you to develop, test and publish your capsules. Although you can edit your capsule files in your own environment, we strongly recommend using Bixby Studio for all your work inside the capsule, as external changes can easily break it or lead to undesired behavior.
 
-You can download Bixby Developer Studio [here](https://bixbydevelopers.com/).
+> You can download the Bixby Developer Studio [here](https://bixbydevelopers.com/).
 
-## Integration Basics
+After the installation has finished, start Bixby Studio and open the capsule by going to `File` -> `Open Capsule...` -> `./platforms/bixby/`.
 
-Now that you have all the required files downloaded onto your workspace, let's go into detail of what is located in the `bixby/` platforms folder. Start Bixby Studio and open the capsule by going to `Files` -> `Open Capsule...` -> `./platforms/bixby/`.
+![Terminal](./img/open-capsule.png 'Copy your webhook url.')
+
+![Terminal](./img/open-capsule-folder.png 'Copy your webhook url.')
+
+### Configuring your capsule
+
+In the left panel, you should now see your capsule `playground.jovo_test` with a bunch of folders and files. Don't worry, we'll go through each of them in a minute. For now, open the training tool by selecting the file `./resources/en/training` and compile your training model by clicking on `Compile NL Model`.
+
+![Terminal](./img/training-temp.png 'Copy your webhook url.')
+
+Now you need to provide Bixby with a remote url, so it knows where to send requests to upon a user prompt. To do this, open the file `./resources/base/capsule.properties` and paste your copied webhook url into the respective property field.
+
+```
+# capsule.properties
+
+config.default.remote.url=https://webhook.jovo.cloud/xxxxxxxx-xxxx-xxx-xxxx-xxxxxxxxxxxx
+```
+
+### Running your first query
+
+To finally test your capsule, open the Bixby Simulator, which allows you to test your capsule in a variety of simulated scenarios and analyze the execution graph of your last tested utterance. You can launch it by going to `View` -> `Open Simulator` or by clicking on the Bixby Simulator button:
+
+![Terminal](./img/simulator-icon.png 'Copy your webhook url.')
+
+Enter "open jovo test capsule" as your first utterance and select `Run NL` to run it.
+
+![Terminal](./img/simulator-first-utterance.png 'Copy your webhook url.')
+
+Congrats, you just ran your first query in your capsule. Now, let's go into detail of what the individual files of your capsule mean.
+
+## Understanding the Underlying Principles
 
 In the left panel, you should see your capsule `playground.jovo_test` with the following file structure:
 
@@ -88,7 +151,7 @@ Next up, the `models/` folder contains all the models necessary for the capsule 
 
 Models can be split up into concepts and actions. A concept can be explained as an entity representing a "thing", such as a name, an animal, or something more complex like a restaurant order. There are two kinds of concepts: primitives and structures. Actions on the other hand act as an interface for an operation that Bixby can execute. With the help of concepts, they define a ruleset of inputs and outputs to achieve a desired result upon a user prompt.
 
-> Learn more about models [here]().
+> Learn more about models [here](https://jovo.tech/docs/samsung-bixby#models).
 
 #### Primitives
 
@@ -96,25 +159,55 @@ Located in `models/primitives/`, primitives are the simplest building blocks of 
 
 In `models/primitives/`, you can find a primitive `NameInput`.
 
-![Primitive Example](./img/primitive-name.png 'This is an example for a primitive.')
+```bxb
+text (NameInput) {
+  description (A name to display in a welcome message.)
+}
+```
 
 `NameInput` is a primitive of type `text`, meaning it can hold a range of text based values, in this case names. As mentioned, we don't write any actual code logic here, we rather tell Bixby what type to expect, when we speak of names. The actual values will be entered later in the [training](#training) section.
 
-> Learn more about primitives [here]().
+> Learn more about primitives [here](https://jovo.tech/docs/samsung-bixby#primitives).
 
 #### Actions
 
 In `models/actions/`, you can find all model files for actions. These help Bixby understand how to act upon a specific user prompt and what to expect as inputs and outputs. In this project, you will see two already defined actions, `LaunchAction` and `MyNameIsAction`. As you can probably tell, these are intent-oriented, meaning that for every intent in your Jovo app, you have to define an action with corresponding inputs and output.
 
-![Action Example](./img/action-launch.png 'This is an example for an action.')
+```bxb
+action (LaunchAction) {
+  description (Opens the voice application for the first time.)
+  type (Search)
+  output (JovoResponse)
+}
+```
 
 `LaunchAction` is very simple. It is the entry point to your voice application, so it won't expect any inputs. As for its output, in most cases it will be sufficient to use `JovoResponse` here. `JovoResponse` is a predefined Jovo model located in `models/Jovo/structures/` and describes an interface for the communication between your Jovo app and your Bixby capsule. It contains important information like speech output and session data and is the most basic output object you can use.
 
 If you want to return a more specific response, you can create a new structure and extend `JovoResponse` by adding your own structure properties. If your own response does not add any attributes to the JovoResponse, use the role-of feature.
 
-> Learn more about structure inheritance [here]().
+> Learn more about structure inheritance [here](https://jovo.tech/docs/samsung-bixby#structures).
 
-![Primitive Example](./img/action-mynameis.png 'This is an example for a primitive.')
+```bxb
+action (MyNameIsAction) {
+  description (Collects a name from the user and returns a welcome message.)
+  type (Search)
+
+  collect {
+    input (_JOVO_INPUT_name) {
+      type (NameInput)
+      min (Required)
+      max (One)
+    }
+
+    input (_JOVO_PREV_RESPONSE_) {
+      type(JovoResponse)
+      min (Required)
+      max (One)
+    }
+  }
+  output (JovoResponse)
+}
+```
 
 `MyNameIsAction` is a bit more complicated, as it expects specific inputs to function correctly. Similar to `LaunchAction`, it has a description, an [action type](https://bixbydevelopers.com/dev/docs/reference/type/action.type) and an output field of type `JovoResponse`. However, it features a new property `collect`. This field specifies any number of inputs to be collected and evaluated, before executing the action. Here we have two input properties: `_JOVO_INPUT_name` and `_JOVO_PREV_RESPONSE_`.
 
@@ -130,21 +223,40 @@ To keep session data request-persistent, we need to include it in the conversati
 
 The `resources/` folder mainly contains your capsule configuration and locale-oriented dialog and views.
 
+#### Base Configuration
+
 `base/` features only your capsule's main configurations. For our example project, there are only two files present, `capsule.properties` and `endpoints.bxb`.
 
 You can use `capsule.properties` to store your capsules configurations, such as endpoints, permission scopes or environment modes. Here you will paste your webhook url, that will later act as your capsules remote url. This will become important in a few steps.
 
 `endpoints.bxb` defines your action endpoints. As mentioned, Bixby uses your models to outline your capsule and to get an idea of what data to expect and how to handle it. For the actual code logic, Bixby provides two ways for you to implement your actions: local endpoints in the form of javascript files and remote endpoints. Remote endpoints allow you to outsource your code logic to a remote server and provide it's endpoint to Bixby, which, upon a user prompt, will send a post request to your server, where you can handle the action and return a valid response. The platform integration uses that feature to allow communication between the Jovo voice app and your capsule.
 
-![Primitive Example](./img/endpoints.png 'This is an example for a primitive.')
+```bxb
+endpoints {
+  action-endpoints {
+    action-endpoint (LaunchAction) {
+      remote-endpoint ("{remote.url}") {
+        method (POST)
+      }
+    }
+    action-endpoint (MyNameIsAction) {
+      remote-endpoint ("{remote.url}?intent=MyNameIsIntent") {
+        method (POST)
+      }
+    }
+  }
+}
+```
 
 For every action, you have to provide a remote endpoint, which takes your remote url from `capsule.properties` and sends a post request to the provided url. For your `LaunchAction`, its sufficient to just use the remote url, however, for an intent-based action, such as `MyNameIsAction`, you have to specify which intent to trigger by providing a query parameter `intent` in the endpoint's url.
+
+#### Locale-specific Configuration
 
 Aside from your capsule configuration, `resources/` also contains locale-specific files, such as [training](#training), dialog and locale-specific information about your capsule. In this example project, we only match one locale, `en`.
 
 The `training` file contains all of your capsule's natural language models, which are being used by Bixby to understand your user prompts and how to differentiate between inputs. For every training sample, a goal must be specified, telling Bixby what action to execute on that sample. Furthermore, you can specify inputs with associated nodes or even routes for Bixby to collect additional information.
 
-> Learn more about training [here]().
+> Learn more about training [here](https://jovo.tech/docs/samsung-bixby#training).
 
 `capsule-info.bxb` holds all of your capsule's locale-specific information, such as it's display name, a description and certain search keywords.
 
@@ -154,37 +266,41 @@ To be marketplace compliant, your capsule needs to provide hints in a `.hints.bx
 
 > Learn more about hints [here](https://bixbydevelopers.com/dev/docs/reference/type/hints).
 
+#### Layouts
+
 The last thing to cover in `en/` is the `layouts/` folder, which will be used for views and dialog. Bixby uses dialog to communicate back to the user, to inform them about certain results or to request additional information. Views on the other hand form your capsule's visual user interface, capable of providing text, buttons, input fields and lists, for example.
 
 For our example project, we only need one view of type `result-view`, which is located inside `resources/layout/`.
 
-![Primitive Example](./img/layout-result.png 'This is an example for a primitive.')
+```bxb
+result-view {
+  match {
+    JovoResponse (response)
+  }
+
+  message {
+    template("#{value (response._JOVO_SPEECH_)}")
+  }
+}
+```
 
 This view matches a result of type `JovoResponse`, meaning that Bixby will try to return this view, whenever a `JovoResponse` is returned by our voice app. In that case, Bixby looks into the views property and tries to match the required data to the response object. One of those properties is our dialog, or the `message` property, which will fetch the speech output from our response by accessing `response._JOVO_SPEECH_`.
 
-The example project doesn't come with any rendered elements, however, you can learn more about adding layouts to your capsule [here]().
+The example project doesn't come with any rendered elements, however, you can learn more about adding layouts to your capsule [here](https://jovo.tech/docs/samsung-bixby#layouts).
 
-> You can learn more about dialog and views [here]().
+> You can learn more about dialog and views [here](https://jovo.tech/docs/samsung-bixby#layouts).
+
+#### Deployment Configuration
 
 Last, but not least, `capsule.bxb` acts as a place for metadata about your capsule. It specifies important information about your capsule, such as it's version, library imports, runtime flags and deployment targets.
 
 > Learn more about `capsule.bxb` [here](https://bixbydevelopers.com/dev/docs/reference/type/capsule).
 
-## Usage
-
-Now that your files are all set and you have a basic overview of what the individual concepts mean, let's go ahead and start using the example capsule. Start by running the Jovo instance by executing the [run](https://www.jovo.tech/docs/cli/run) command in your terminal with `jovo run [-w]`. This will start your Jovo voice application and give you a webhook url. Go ahead and copy this url, you will need it in a second.
-
-![Terminal](./img/terminal-jovo-run.png 'Copy your webhook url.')
-
-Now, open Bixby Studio and open the capsule, located in `platforms/bixby/` by going to `File` -> `Open Capsule...`. Paste your webhook url into `resources/base/capsule.properties` to define a remote endpoint for the capsule.
-
-Almost done! The last thing to do is to compile the capsule's NL model and finally run your first prompt. For this, go to `resources/en/training` and hit the big `Compile NL Model` button. Open the Bixby simulator (`View`>`Open Simulator`), type something along the lines of "Open Jovo Test Capsule" in the text box and click on `Run NL`.
-
-![Actions Example](./img/simulator.png 'This is an example for a primitive.')
-
 ## Next Steps
 
-Congrats, you successfully used the Jovo Bixby Integration for the first time! Now, we want Bixby to recognize our name, when we answer the just returned question. It is possible that Bixby understands your name out of the box, however, to make sure it does, we have to modify it's training model.
+Now that you have a basic understanding of how Bixby and the platform integration work, we want Bixby to recognize our name, when we launch the capsule and answer the then returned question. It is possible that Bixby understands your name out of the box, however, to make sure it does, we have to modify it's training model.
+
+### Training a new utterance
 
 Training your capsule is similar to the interaction model for Alexa. For every action, you have to provide a number of sample utterances, so Bixby can train on them to understand your user prompts and how to differentiate between inputs. Let's go ahead and create a new training phrase for your name.
 
@@ -202,7 +318,9 @@ Since our `MyNameIsAction` requires a property of type `NameInput`, our node sho
 
 ![Primitive Example](./img/training-nameinput.png 'This is an example for a primitive.')
 
-Now, compile your modified training model by clicking on "Done" -> "Save" -> "Compile NL Model".
+Now, compile your modified training model again by clicking on "Done" -> "Save" -> "Compile NL Model".
+
+### Testing the new Training Model
 
 If you go into the simulator again and launch the capsule with "open jovo test capsule", you can now enter the follow-up phrase "my name is {your name}" and the capsule should greet you with a neat little welcome message.
 
