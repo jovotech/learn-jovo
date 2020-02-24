@@ -1,4 +1,4 @@
-# How to use Samsung Bixby with the Jovo Framework
+# Build your first Samsung Bixby Capsule with Jovo
 
 With the launch of `v3.0.0` of the Jovo Framework, we introduced a new platform integration for Samsung Bixby. It enables you to program highly scalable cross-platform voice applications for Bixby and use the countless integrations for the Jovo Framework, such as persistent user storage and Content-Management-Systems.
 
@@ -353,3 +353,5 @@ Want to know more?
 -   [Official Bixby Documentation](https://bixbydevelopers.com/)
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
+
+<!--[metadata]: { "description": "Learn how to develop Samsung Bixby Capsules with the platform integration for the Jovo Framework.", "author": "ruben-aegerter", "tags": "Samsung, Bixby, Platform, Integration" }-->
