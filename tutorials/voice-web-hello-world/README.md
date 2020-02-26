@@ -2,6 +2,9 @@
 
 In this tutorial, we will go over the complete process of setting up a voice-enabled web app with the Jovo Framework.
 
+![Web App Result Preview](img/webapp-result.png)
+
+
 > This tutorial expects basic knowledge about the Jovo Framework. If you're completely new to it, check out the [Getting Started](https://www.jovo.tech/docs/quickstart) page first
 
 ## Introduction
@@ -78,6 +81,10 @@ Now, we have to wait again until the status is 'Done' again and then we can add 
 
 ![Wit.ai Add MyNameIsIntent Utterances](img/witai-add-mynameisintent-utterances.gif)
 
+After we have added the missing sample utterances, we are going to name the slot, so that the input is available via the property 'name':
+
+![Wit.ai Add MyNameIsIntent Slots](img/witai-add-mynameisintent-slots.gif)
+
 The last thing we will have to do here is to copy the API-token. For that we have to click on 'Settings' and copy the 'Server Access Token':
 
 ![Wit.ai Settings API Token](img/witai-settings-api-token.gif)
@@ -149,6 +156,10 @@ $ npm install
 
 When this is done, we can start the web-app by executing `npm run serve`. 
 A link will be posted to the console that you can click to open the web-app.
+
+If you open the link, the website should like this:
+
+![Web App on Startup](img/webapp-startup.png)
 
 But we are not quite there yet, we will have to do one last thing. We have to make the web-app communicate with the Jovo app. \
 To do so, we have to open `src/main.ts` and change the `WEBHOOK_URL` to the url we copied after executing `jovo run`.
