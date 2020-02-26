@@ -2,10 +2,18 @@
 
 In this tutorial, we will go over the complete process of setting up a voice-enabled web app with the Jovo Framework.
 
-
-
 > This tutorial expects basic knowledge about the Jovo Framework. If you're completely new to it, check out the [Getting Started](https://www.jovo.tech/docs/quickstart) page first
 
+* [Introduction](#introduction)
+* [Create a Jovo Project](#create-a-jovo-project)
+* [Add a SLU Integration](#add-a-slu-integration)
+    - [Create a Wit.ai Bot](#create-a-witai-bot)
+    - [Integrate Wit.ai](#integrate-witai)
+* [Setup the Web App](#setup-the-web-app)
+* [Next Steps](#next-steps)
+    - [Web App](#web-app)
+    - [Jovo App](#jovo-app)
+    
 ## Introduction
 First we will create a new Jovo app, then make it compatible with the web-app and the last step will be setting up the web-app.
 
@@ -13,7 +21,7 @@ This is what the result will look like:
 ![Web App Result Preview](img/webapp-result.png)
 
 
-## Create A Jovo Project
+## Create a Jovo Project
 We will first have to create a new Jovo project and add the `jovo-platform-core` package as a dependency:
 ```sh
 $ jovo new core-platform-web-hello-world
@@ -51,10 +59,10 @@ app.use(
 );
 ```
 
-## Add a SLU integration
+## Add a SLU Integration
 We will need a SLU integration to carry out the ASR- & NLU-processing. For this tutorial, we will be using Wit.ai because it is free and easy to setup.
 
-### Create a Wit.ai bot
+### Create a Wit.ai Bot
 
 First of all, we will have to create an account and a bot on Wit.ai. \
 For that, we have to go to [https://wit.ai/](https://wit.ai/) and click on 'Log in with GitHub' or 'Log in with Facebook'. \
