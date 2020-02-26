@@ -48,7 +48,7 @@ app.use(
 ## Add a SLU integration
 We will need a SLU integration to carry out the ASR- & NLU-processing. For this tutorial, we will be using Wit.ai because it is free and easy to setup.
 
-## Create a Wit.ai bot
+### Create a Wit.ai bot
 
 First of all, we will have to create an account and a bot on Wit.ai. \
 For that, we have to go to [https://wit.ai/](https://wit.ai/) and click on 'Log in with GitHub' or 'Log in with Facebook'. \
@@ -84,7 +84,7 @@ The last thing we will have to do here is to copy the API-token. For that we hav
 
 We will need this token in a couple of seconds.
 
-## Integrate Wit.ai
+### Integrate Wit.ai
 
 Our Wit.ai bot is ready to be used. We only have to make our app use Wit.ai for ASR and NLU now.
 To do that, we have to add the `jovo-slu-witai` package:
