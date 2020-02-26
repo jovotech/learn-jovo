@@ -169,4 +169,18 @@ To do so, we have to open `src/main.ts` and change the `WEBHOOK_URL` to the url 
 
 Now, everything should be setup!
 
-## Going Further
+## Next Steps
+
+So now that everything is setup, we are ready to customize the web-app and the bot.
+
+### Web App
+Let's start with customizing the web-app. The web-app is made with [Vue](https://vuejs.org/v2/guide/index.html) and the [TypeScript class-component syntax](https://vuejs.org/v2/guide/typescript.html#Class-Style-Vue-Components).
+If we wanted to change something related to the chat-bubbles, we would most likely need to check out `src/components/conversation/ConversationDisplay.vue` and `src/components/conversation/ConversationPartDisplay.vue`.
+In `ConversationPartDisplay.vue` for example, we could change the appearance of the chat-bubbles by overriding some values in the `style`-block.
+
+The web-app also uses the `jovo-client-web-vue` package, which is a Vue plugin that uses the `jovo-client-web` package which has all basic features a Jovo web-client should have. \
+Some of those features are sending texts, sending speech, playing audio files and displaying quick-replies to name a few examples.
+
+### Jovo App
+We can customize the logic of the Jovo app like we would for any other Jovo app. The only difference is that we can use Core platform specific features. \
+For more information about the Core platform, take a look [here]().
