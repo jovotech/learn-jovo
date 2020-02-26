@@ -127,7 +127,7 @@ After you have successfully installed the CLI run the following command to uploa
 $ az functionapp deployment source config-zip  -g <resource_group_name> -n <app_name> --src <zip_file_path>
 ```
 
-This make take a while.
+This may take a while.
 
 After the zip was uploaded, go back to the Azure dashboard, open up your new function and press `Get function URL` to get your endpoint URL:
 
