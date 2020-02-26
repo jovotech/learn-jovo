@@ -2,13 +2,16 @@
 
 In this tutorial, we will go over the complete process of setting up a voice-enabled web app with the Jovo Framework.
 
-![Web App Result Preview](img/webapp-result.png)
 
 
 > This tutorial expects basic knowledge about the Jovo Framework. If you're completely new to it, check out the [Getting Started](https://www.jovo.tech/docs/quickstart) page first
 
 ## Introduction
 First we will create a new Jovo app, then make it compatible with the web-app and the last step will be setting up the web-app.
+
+This is what the result will look like:
+![Web App Result Preview](img/webapp-result.png)
+
 
 ## Create A Jovo Project
 We will first have to create a new Jovo project and add the `jovo-platform-core` package as a dependency:
@@ -165,3 +168,5 @@ But we are not quite there yet, we will have to do one last thing. We have to ma
 To do so, we have to open `src/main.ts` and change the `WEBHOOK_URL` to the url we copied after executing `jovo run`.
 
 Now, everything should be setup!
+
+## Going Further
