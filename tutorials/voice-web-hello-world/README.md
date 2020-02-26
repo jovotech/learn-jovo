@@ -1,11 +1,11 @@
-# Voice enabled web app
+# Build a Voice-Enabled Web App with Jovo
 
-In this tutorial, we will go over the complete process of setting up a voice enabled web app with the Jovo Framework.
+In this tutorial, we will go over the complete process of setting up a voice-enabled web app with the Jovo Framework.
 
 > This tutorial expects basic knowledge about the Jovo Framework. If you're completely new to it, check out the [Getting Started](https://www.jovo.tech/docs/quickstart) page first
 
 ## Introduction
-TBD
+First we will create a new Jovo app, then make it compatible with the web-app and the last step will be setting up the web-app.
 
 ## Create A Jovo Project
 We will first have to create a new Jovo project and add the `jovo-platform-core` package as a dependency:
