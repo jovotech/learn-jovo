@@ -64,8 +64,8 @@ We will need a SLU integration to carry out the ASR- & NLU-processing. For this 
 
 ### Create a Wit.ai Bot
 
-First of all, we will have to create an account and a bot on Wit.ai. \
-For that, we have to go to [https://wit.ai/](https://wit.ai/) and click on 'Log in with GitHub' or 'Log in with Facebook'. \
+First of all, we will have to create an account and a bot on Wit.ai. 
+For that, we have to go to [https://wit.ai/](https://wit.ai/) and click on 'Log in with GitHub' or 'Log in with Facebook'. 
 If we do not have a Wit.ai account, we will be asked to create one:
 
 ![Wit.ai Sign Up Form](img/witai-register.png)
@@ -79,7 +79,7 @@ The first thing we are going to do is to add the HelloWorldIntent:
 
 ![Wit.ai Add HelloWorldIntent](img/witai-add-helloworldintent.gif)
 
-After adding the HelloWorldIntent, we have to wait until the status on the top left, next to the bot name changes to 'Done' again. \
+After adding the HelloWorldIntent, we have to wait until the status on the top left, next to the bot name changes to 'Done' again. 
 Now, we can add more sample utterances to the HelloWorldIntent:
 
 ![Wit.ai Add HelloWorldIntent Utterances](img/witai-add-helloworldintent-utterances.gif)
@@ -172,7 +172,7 @@ If you open the link, the website should like this:
 
 ![Web App on Startup](img/webapp-startup.png)
 
-But we are not quite there yet, we will have to do one last thing. We have to make the web-app communicate with the Jovo app. \
+But we are not quite there yet, we will have to do one last thing. We have to make the web-app communicate with the Jovo app. 
 To do so, we have to open `src/main.ts` and change the `WEBHOOK_URL` to the url we copied after executing `jovo run`.
 
 Now, everything should be setup!
@@ -186,9 +186,9 @@ Let's start with customizing the web-app. The web-app is made with [Vue](https:/
 If we wanted to change something related to the chat-bubbles, we would most likely need to check out `src/components/conversation/ConversationDisplay.vue` and `src/components/conversation/ConversationPartDisplay.vue`.
 In `ConversationPartDisplay.vue` for example, we could change the appearance of the chat-bubbles by overriding some values in the `style`-block.
 
-The web-app also uses the `jovo-client-web-vue` package, which is a Vue plugin that uses the `jovo-client-web` package which has all basic features a Jovo web-client should have. \
+The web-app also uses the `jovo-client-web-vue` package, which is a Vue plugin that uses the `jovo-client-web` package which has all basic features a Jovo web-client should have. 
 Some of those features are sending texts, sending speech, playing audio files and displaying quick-replies to name a few examples.
 
 ### Jovo App
-We can customize the logic of the Jovo app like we would for any other Jovo app. The only difference is that we can use Core platform specific features. \
+We can customize the logic of the Jovo app like we would for any other Jovo app. The only difference is that we can use Core platform specific features. 
 For more information about the Core platform, take a look [here]().
