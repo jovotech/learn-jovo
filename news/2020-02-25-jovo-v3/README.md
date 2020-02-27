@@ -1,5 +1,7 @@
 # Jovo v3: Samsung Bixby, Web Apps, Conversational Components, and more
 
+[You can find the official announcement on Medium: Introducing Jovo v3, the Voice Layer](https://context-first.com/introducing-jovo-v3-the-voice-layer-bf369db4808e).
+
 This is one of our biggest releases ever. Today, we published version `3.0` of the Jovo Framework, the most popular developer tool for building voice experiences that work on Amazon Alexa, Google Assistant, and way more other platforms.
 
 This new release not only comes with many new integrations like Samsung Bixby and web apps, it also includes lots of improvements and something we call Conversational Components (which we're super excited about). Learn more about all the features below.
@@ -108,7 +110,7 @@ This core platform can use different [ASR, NLU, and TTS Integrations](#asr--nlu-
 
 > Learn more in the Jovo Docs: [Twilio Autopilot Platform](https://www.jovo.tech/docs/twilio-autopilot).
 
-Jovo now supports Twilio Autopilot, a powerful service by Google that lets you deploy assistants to various platforms, including the phone.
+Jovo now supports Twilio Autopilot, a powerful service by Twilio that lets you deploy assistants to various platforms, including the phone.
 
 ```js
 // @language=javascript
