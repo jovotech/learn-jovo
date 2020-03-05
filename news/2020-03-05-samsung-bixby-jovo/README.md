@@ -2,7 +2,9 @@
 
 ![Samsung Bixby Support for Jovo](./img/jovo-bixby-support.jpg "Jovo News: Introducing Support for Samsung Bixby")
 
-Last week, we officially launched `v3` of the Jovo Framework. [You can find the announcement here](https://context-first.com/introducing-jovo-v3-the-voice-layer-bf369db4808e). Today, we want to take a deeper look into one of the most celebrated features additions: Support for Samsung Bixby. You can also take a look at the tutorial here: [Build your first Samsung Bixby Capsule with Jovo](https://www.jovo.tech/tutorials/samsung-bixby-hello-world).
+Last week, we officially launched `v3` of the Jovo Framework. [You can find the announcement here](https://context-first.com/introducing-jovo-v3-the-voice-layer-bf369db4808e). Today, we want to take a deeper look into one of the most celebrated features additions: Support for Samsung Bixby. 
+
+> You can also take a look at the tutorial here: [Build your first Samsung Bixby Capsule with Jovo](https://www.jovo.tech/tutorials/samsung-bixby-hello-world).
 
 * [Introduction to Bixby Development with Jovo](#introduction-to-bixby-development-with-jovo)
 * [Get Started with Bixby and Jovo](#get-started-with-bixby-and-jovo)
