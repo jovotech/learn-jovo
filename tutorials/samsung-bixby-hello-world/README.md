@@ -75,10 +75,10 @@ Then, start the development server of your voice app and give you a webhook url 
 // @language=javascript
 
 # Change working directory to project
-c$ d bixby-hello-world
+$ cd bixby-hello-world
 
 # Run Jovo voice app, optionally with --watch parameter
-jovo run [-w]
+$ jovo run [-w]
 
 // @language=typescript
 
