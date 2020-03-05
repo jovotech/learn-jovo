@@ -44,6 +44,8 @@ There are several ways how you can build your first Bixby Capsule with Jovo:
 
 To get to your first "Hello World" with Bixby and Jovo, we recommend you take a look at our tutorial: [Build your first Samsung Bixby Capsule with Jovo](https://www.jovo.tech/tutorials/samsung-bixby-hello-world).
 
+[![Tutorial: Build your first Samsung Bixby Capsule with Jovo](https://www.jovo.tech/img/tutorials/samsung-bixby-hello-world/jovo-bixby-hello-world.jpg "Bixby Hello World Tutorial by Ruben Aegerter")](https://www.jovo.tech/tutorials/samsung-bixby-hello-world)
+
 
 ### 2 Jovo Templates for Bixby
 
