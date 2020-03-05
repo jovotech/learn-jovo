@@ -9,7 +9,7 @@ Last week, we officially launched `v3` of the Jovo Framework. [You can find the 
    * [Hello World Tutorial](#hello-world-tutorial)
    * [2 Jovo Templates for Bixby](#2-jovo-templates-for-bixby)
    * [Bixby Platform Docs](#bixby-platform-docs)
-* [Need Help?](#need-help)
+* [Need Help?](#need-help?)
 
 
 *Like what we're doing? [Support us with a star on GitHub](https://github.com/jovotech/jovo-framework/)* 
@@ -99,8 +99,6 @@ For specific details of the integration, take a look at the Jovo Docs: [Samsung 
 
 Want to get involved with Samsung Bixby, but don't know where to get started. [Contact us for professional support from the Jovo core team](https://www.jovo.tech/services/support-training).
 
-
-**Any thoughts? Let us know in the comments below.**
 
 
 <!--[metadata]: { "description": "Learn more about the Samsung Bixby integration for the Jovo Framework.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2020-03-05-samsung-bixby-jovo/jovo-bixby-support.jpg" }-->
