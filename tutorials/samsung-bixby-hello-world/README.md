@@ -45,34 +45,55 @@ With the Bixby platform integration for the Jovo Framework, you can outsource yo
 
 ### Setting up your Jovo app
 
-To get started, the first thing you'll need is our Jovo Bixby Capsule Example. Not only does it come with our [Hello World Template](https://www.jovo.tech/templates/helloworld), it also includes all Bixby models required for the integration to work properly. You can clone the repository onto your workspace by entering the following command into your terminal:
+To get started, the first thing you'll need is our Bixby Hello World Template. Not only does it come with our [Hello World Example](https://www.jovo.tech/templates/helloworld), it also includes all Bixby models required for the integration to work properly. You can download it using the following command:
 
 ```sh
-# Clone with HTTPS
-git clone https://github.com/jovotech/jovo-bixby-capsule-example.git
+// @language=javascript
 
-# Clone with SSH
-git clone git@github.com:jovotech/jovo-bixby-capsule-example.git
+# Update to the latest version of the Jovo CLI
+$ npm install jovo-cli -g
+
+# Create new Jovo project from Bixby template
+$ jovo new bixby-hello-world --template bixby
+
+
+// @language=typescript
+
+# Update to the latest version of the Jovo CLI
+$ npm install jovo-cli -g
+
+# Create new Jovo project from Bixby template
+$ jovo new bixby-hello-world --template bixby --language typescript
 ```
 
 > You can also find the Github repository [here](https://github.com/jovotech/jovo-bixby-capsule-example).
 
-Change your terminal's working directory to your cloned repository and start your Jovo instance. If you don't have the Jovo CLI yet, you need to download it before using `npm`.
+
+Then, start the development server of your voice app and give you a webhook url as an endpoint. Copy this url, you will need it in a second.
 
 ```sh
-# Install Jovo CLI globally
-npm install jovo-cli -g
+// @language=javascript
 
-# Change working directory to example project
-cd jovo-bixby-capsule-example
+# Change working directory to project
+c$ d bixby-hello-world
 
 # Run Jovo voice app, optionally with --watch parameter
 jovo run [-w]
+
+// @language=typescript
+
+# Change working directory to project
+$ cd bixby-hello-world
+
+# Run TypeScript compiler
+$ npm run tsc
+
+# Run Jovo voice app, optionally with --watch parameter
+$ jovo run [-w]
 ```
 
-This will start the development server of your voice app and give you a webhook url as an endpoint. Copy this url, you will need it in a second.
-
 ![Terminal](./img/terminal-jovo-run.png 'Copy your webhook url.')
+
 
 ### Installing Bixby Studio
 
