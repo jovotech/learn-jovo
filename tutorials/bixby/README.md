@@ -45,26 +45,20 @@ With the Bixby platform integration for the Jovo Framework, you can outsource yo
 
 ### Setting up your Jovo app
 
-To get started, the first thing you'll need is our Jovo Bixby Capsule Example. Not only does it come with our [Hello World Template](https://www.jovo.tech/templates/helloworld), it also includes all Bixby models required for the integration to work properly. You can clone the repository onto your workspace by entering the following command into your terminal:
+To get started, the first thing you'll need is our Bixby Hello World Template. Not only does it come with our [Hello World Example](https://www.jovo.tech/templates/helloworld), it also includes all Bixby models required for the integration to work properly. You can download it using the following command:
 
 ```sh
-# Clone with HTTPS
-git clone https://github.com/jovotech/jovo-bixby-capsule-example.git
-
-# Clone with SSH
-git clone git@github.com:jovotech/jovo-bixby-capsule-example.git
+jovo new bixby-hello-world --template bixby
 ```
 
-> You can also find the Github repository [here](https://github.com/jovotech/jovo-bixby-capsule-example).
-
-Change your terminal's working directory to your cloned repository and start your Jovo instance. If you don't have the Jovo CLI yet, you need to download it before using `npm`.
+Change your terminal's working directory to your new project folder and start your Jovo instance. If you don't have the Jovo CLI yet, you need to download it before using `npm`.
 
 ```sh
 # Install Jovo CLI globally
 npm install jovo-cli -g
 
 # Change working directory to example project
-cd jovo-bixby-capsule-example
+cd bixby-hello-world
 
 # Run Jovo voice app, optionally with --watch parameter
 jovo run [-w]
