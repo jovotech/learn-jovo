@@ -48,7 +48,7 @@ With the Bixby platform integration for the Jovo Framework, you can outsource yo
 To get started, the first thing you'll need is our Bixby Hello World Template. Not only does it come with our [Hello World Example](https://www.jovo.tech/templates/helloworld), it also includes all Bixby models required for the integration to work properly. You can download it using the following command:
 
 ```sh
-jovo new bixby-hello-world --template bixby
+$ jovo new bixby-hello-world --template bixby
 ```
 
 Change your terminal's working directory to your new project folder and start your Jovo instance. If you don't have the Jovo CLI yet, you need to download it before using `npm`.
