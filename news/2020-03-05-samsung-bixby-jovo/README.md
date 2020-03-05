@@ -28,6 +28,7 @@ By using Jovo, you can now build Bixby Capsules and enjoy our framework's benefi
 * Open source and highly flexible, e.g. [host your voice app anywhere](https://www.jovo.tech/docs/hosting)
 * Many integrations, e.g. [CMS](https://www.jovo.tech/docs/cms), [databases](https://www.jovo.tech/docs/databases), [analytics](https://www.jovo.tech/docs/analytics)
 
+Thanks a lot to [Ruben Aegerter](https://twitter.com/ruben_aeg) who put a lot of work and passion into building this integration!
 
 
 ## Get Started with Bixby and Jovo
