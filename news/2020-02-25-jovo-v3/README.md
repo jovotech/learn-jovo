@@ -226,7 +226,7 @@ Building your own custom voice experience or want to have a consistent voice bra
 
 ## More Features
 
-That's not all yet. Over the last months, we made many changes to the Jovo code base before we decided to package everything into a `v3`. [You can find the CHANGELOG here](https://github.com/jovotech/jovo-framework/blob/master/CHANGELOG.md).
+That's not all yet. Over the last months, we made many changes to the Jovo code base before we decided to package everything into a `v3`. You can find the CHANGELOG for [v2](https://github.com/jovotech/jovo-framework/blob/v2/CHANGELOG.md) and [v3](https://github.com/jovotech/jovo-framework/blob/master/CHANGELOG.md) on GitHub.
 
 Some of the features we're most excited about are:
 * [Conversational Components](#conversational-components)
