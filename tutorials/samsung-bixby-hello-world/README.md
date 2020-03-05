@@ -1,5 +1,7 @@
 # Build your first Samsung Bixby Capsule with Jovo
 
+![Tutorial: Build your first Samsung Bixby Capsule with Jovo](./img/jovo-bixby-hello-world.jpg "Bixby Hello World Tutorial by Ruben Aegerter")
+
 With the launch of `v3.0` of the Jovo Framework, we introduced a new platform integration for Samsung Bixby. It enables you to program highly scalable cross-platform voice applications for Bixby and use the countless integrations for the Jovo Framework, such as persistent user storage and content management systems.
 
 In this tutorial, you will learn how to build your first "Hello World" Bixby Capsule, showcasing the integration between Bixby and Jovo, and get introduced to the basic concepts of Samsung Bixby.
@@ -375,4 +377,4 @@ Want to know more?
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to develop Samsung Bixby Capsules with the Jovo Framework and build your first hello world Bixby app.", "author": "ruben-aegerter", "tags": "Samsung, Bixby, Platform, Integration" }-->
+<!--[metadata]: { "description": "Learn how to develop Samsung Bixby Capsules with the Jovo Framework and build your first hello world Bixby app.", "author": "ruben-aegerter", "tags": "Samsung, Bixby, Platform, Integration", "og-image": "https://www.jovo.tech/img/tutorials/samsung-bixby-hello-world/jovo-bixby-hello-world.jpg" }-->
