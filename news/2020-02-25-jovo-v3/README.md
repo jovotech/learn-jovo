@@ -16,7 +16,7 @@ This new release not only comes with many new integrations like Samsung Bixby an
    * [Clients](#clients)
    * [ASR, NLU, and SLU Integrations](#asr--nlu--and-slu-integrations)
    * [TTS Integrations](#tts-integrations)
-* [More Features](#more-feautre)
+* [More Features](#more-feautures)
    * [Conversational Components](#conversational-components)
    * [Input Validation](#input-validation)
 * [How to Update](#how-to-update)
