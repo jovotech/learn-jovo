@@ -1,32 +1,48 @@
-# Getting Started with Twilio Autopilot Using the Jovo Framework
+# Build your first Twilio Autopilot IVR with Jovo
 
-In this tutorial, we will go over the complete process of setting up a basic bot on Twilio Autopilot using the Jovo Framework.
+![Tutorial: Build your first Twilio Autopilot IVR with Jovo](./img/jovo-bixby-hello-world.jpg "Twilio Autopilot Hello World Tutorial by Kaan Kilic")
 
-> This tutorial expects basic knowledge about the Jovo Framework. If you're completely new to it, check out the [Getting Started](https://www.jovo.tech/docs/quickstart) page first
+In this tutorial, we will go over the complete process of setting up a basic bot on Twilio Autopilot using the Jovo Framework. This can then be deployed to various platforms and deviced, for example we can create a phone number and deploy the bot as IVR.
+
 
 * [Introduction](#introduction)
-* [Create a Jovo Project](#create-a-jovo-project)
+* [Creating a Jovo Project](#creating-a-jovo-project)
 * [Creating your Twilio Autopilot Bot](#creating-your-twilio-autopilot-bot)
 * [Testing your Twilio Autopilot Bot](#testing-your-twilio-autopilot-bot)
 * [Next Up](#next-up)
 
 ## Introduction
 
-The [Twilio Autopilot platform](https://www.twilio.com/autopilot) allows you to build, train, and deploy bots that work across web and mobile chat, SMS, WhatsApp, and your contact center. Its biggest strength is the wide variety of channels it provides for your users to access your bot. These range from phone numbers (calls & SMS) to chat apps like Facebook Messenger, WhatsApp, or even Slack. Besides that, the platform is deeply integrated with the other products of Twilio.
+The [Twilio Autopilot platform](https://www.twilio.com/autopilot) allows you to build, train, and deploy bots that work across web and mobile chat, SMS, WhatsApp, and your contact center. Its biggest strength is the wide variety of channels it provides for your users to access your bot, especially ones that involve phone numbers (calls & SMS). Besides that, the platform is deeply integrated with the other products of Twilio.
 
 In this tutorial, we will first create an Autopilot bot, modify its language model, and create a Jovo project to handle the requests.
 
-## Create a Jovo Project
+## Creating a Jovo Project
 
-Before everything else, create a new Jovo project and the `jovo-platform-twilioautopilot` package as a dependency:
+> New to Jovo? You can also learn more in our [Getting Started](https://www.jovo.tech/docs/quickstart) guide.
+
+Before everything else, create a new Jovo project and install the `jovo-platform-twilioautopilot` package as a dependency. Jovo provides a [Twilio Autopilot "Hello World" template](https://github.com/jovotech/jovo-templates/tree/master/autopilot/01_helloworld) that can get you started quickly:
 
 ```sh
-$ jovo new twilio-autopilot-hello-world
+// @language=javascript
 
-$ npm install --save jovo-platform-twilioautopilot
+# Update to the latest version of the Jovo CLI
+$ npm install jovo-cli -g
+
+# Create new Jovo project from Twilio Autopilot Hello World template
+$ jovo new twilio-autopilot-hello-world --template autopilot
+
+
+// @language=typescript
+
+# Update to the latest version of the Jovo CLI
+$ npm install jovo-cli -g
+
+# Create new Jovo project from Twilio Autopilot Hello World template
+$ jovo new twilio-autopilot-hello-world --template autopilot --language typescript
 ```
 
-Now open the `src/app.js` file in your project and add the platform to the other plugins:
+If you take a look at the `src/app.js` file in your project, you can see that the platform is added as plugin:
 
 ```js
 'use strict';
@@ -35,23 +51,17 @@ Now open the `src/app.js` file in your project and add the platform to the other
 // APP INITIALIZATION
 // ------------------------------------------------------------------
 
-const { App } = require('jovo-framework');
-const { Alexa } = require('jovo-platform-alexa');
-const { GoogleAssistant } = require('jovo-platform-googleassistant');
-const { JovoDebugger } = require('jovo-plugin-debugger');
-const { FileDb } = require('jovo-db-filedb');
-
-const { Autopilot } = require('jovo-platform-twilioautopilot');
+const {App} = require('jovo-framework');
+const {Autopilot} = require('jovo-platform-twilioautopilot');
+const {JovoDebugger} = require('jovo-plugin-debugger');
+const {FileDb} = require('jovo-db-filedb');
 
 const app = new App();
 
 app.use(
-    new Alexa(),
-    new GoogleAssistant(),
+    new Autopilot(),
     new JovoDebugger(),
     new FileDb(),
-
-    new Autopilot()
 );
 
 // ...
@@ -111,7 +121,7 @@ After you're done with that, press the *Build model* button right next to the *S
 
 ## Testing your Twilio Autopilot Bot
 
-First, run your Jovo Webhook using the `jovo run` command:
+If you haven't done so already, run your Jovo Webhook using the `jovo run` command:
 
 ```sh
 $ jovo run
