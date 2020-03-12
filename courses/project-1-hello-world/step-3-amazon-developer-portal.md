@@ -95,7 +95,7 @@ it's {name}
 
 ![](./img/amazon_developer_alexa_myNameIsIntent.png)
 
-After you did that, you will see that the console automatically added an intent slot called "name", but we still have to assign a slot type, so our Skill knows what kind of input it should except. In our case it's "AMAZON.US_NAME":
+After you did that, you will see that the console automatically added an intent slot called "name", but we still have to assign a slot type, so our Skill knows what kind of input it should except. In our case it's "AMAZON.US_FIRST_NAME":
 
 ![](./img/amazon_developer_alexa_slotType.png)
 
