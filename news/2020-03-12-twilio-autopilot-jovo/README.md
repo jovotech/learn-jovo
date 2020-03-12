@@ -43,7 +43,7 @@ There are several ways how you can build your first Twilio Autopilot bot with Jo
 
 To get to your first "Hello World" with Twilio and Jovo, we recommend you take a look at our tutorial: [Build your first Twilio Autopilot IVR with Jovo](https://www.jovo.tech/tutorials/twilio-autopilot-hello-world).
 
-[![Tutorial: Build your first Twilio Autopilot IVR with Jovo](https://www.jovo.tech/img/tutorials/twilio-autopilot-hello-world/twilio-autopilot-hello-world.jpg "Twilio Autopilot Hello World Tutorial by Kaan Kilic")](https://www.jovo.tech/tutorials/samsung-bixby-hello-world)
+[![Tutorial: Build your first Twilio Autopilot IVR with Jovo](https://www.jovo.tech/img/tutorials/twilio-autopilot-hello-world/twilio-autopilot-hello-world.jpg "Twilio Autopilot Hello World Tutorial by Kaan Kilic")](https://www.jovo.tech/tutorials/twilio-autopilot-hello-world)
 
 
 ### 3 Jovo Templates for Twilio Autopilot
