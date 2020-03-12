@@ -133,7 +133,7 @@ After that, open the platform's simulator:
 
 In the simulator, you can test your bot. Currently, only two tasks (intents) are working, namely `LAUNCH` and `MyNameIsIntent`. The others are not included in your project's handler yet. Here's how a possible interaction will look like:
 
-![Twilio Autopilot Simulator Interaction](img/twilio-autopilot-hello-world.gif)
+![Twilio Autopilot Simulator Interaction](img/twilio-autopilot-hello-world-testing.gif)
 
 ## Next Up
 
