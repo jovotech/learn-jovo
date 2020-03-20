@@ -65,6 +65,6 @@ To test the debugger add sample breakpoints to your project and simply press `F5
 
 ## Community Articles
 
-You can also check out the blogpost from [Ben Force](https://medium.com/@benforce/debugging-jovo-skills-in-vs-code-d117f908fbc2) about debugging Jovo applicatioins in VSCode.
+You can also check out the blogpost from [Ben Force](https://medium.com/@benforce/debugging-jovo-skills-in-vs-code-d117f908fbc2) about debugging Jovo applications in VSCode.
 
 <!--[metadata]: { "description": "Learn how to use VS Code to debug your Alexa Skills and Google Actions built with Jovo.", "author": "kaan-kilic", "tags": "Debugging" }-->
