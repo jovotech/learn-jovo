@@ -38,7 +38,7 @@ After that have to configure VSCode's debugger using the `Open Configurations` b
 }
 ```
 
-Change the `program` attribute to `${workspaceFolder}/node_modules/jovo-cli/index` and add the `"args": ["run", "--inspect"]` attribute to pass arguments to the program. You also need the `autoAttachChildProcesses` to be set to `true`. At the end it should look like this:
+Change the `program` attribute to `${workspaceFolder}/node_modules/jovo-cli/index` and add the `"args": ["run", "--inspect=9229"]` attribute to pass arguments to the program. You also need the `autoAttachChildProcesses` to be set to `true`. At the end it should look like this:
 
 ```javascript
 {
@@ -52,7 +52,7 @@ Change the `program` attribute to `${workspaceFolder}/node_modules/jovo-cli/inde
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/node_modules/jovo-cli/index",
-            "args": ["run", "--inspect"],
+            "args": ["run", "--inspect=9229"],
             "autoAttachChildProcesses": true
           }
     ]
@@ -65,6 +65,6 @@ To test the debugger add sample breakpoints to your project and simply press `F5
 
 ## Community Articles
 
-You can also check out the blogpost from [Ben Force](https://medium.com/@benforce/debugging-jovo-skills-in-vs-code-d117f908fbc2) about debugging Jovo applicatioins in VSCode.
+You can also check out the blogpost from [Ben Force](https://medium.com/@benforce/debugging-jovo-skills-in-vs-code-d117f908fbc2) about debugging Jovo applications in VSCode.
 
 <!--[metadata]: { "description": "Learn how to use VS Code to debug your Alexa Skills and Google Actions built with Jovo.", "author": "kaan-kilic", "tags": "Debugging" }-->
