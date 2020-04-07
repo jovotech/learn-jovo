@@ -5,11 +5,16 @@ Learn how to make money with your Alexa Skills by selling physical goods with Am
 > If you are more interested in selling digital goods, check out our tutorial on [In-Skill-Purchasing (ISP)](https://www.jovo.tech/tutorials/alexa-in-skill-purchasing)
 
 * [Introduction](#introduction)
-* [Setup your Amazon Pay Account](#setup-your-amazon-pay-account)
-* [Implement Amazon Pay in your Jovo Project](#implement-amazon-pay-in-your-jovo-project)
+* [Setting up your Amazon Pay Account](#setting-up-your-amazon-pay-account)
+* [Implementing Amazon Pay in Jovo](#implementing-amazon-pay-in-jovo)
   * [General Outline of the Skill](#general-outline-of-the-skill)
   * [Setup Directive](#setup-directive)
   * [Charge Directive](#charge-directive)
+  * [Saving Transaction Data](#saving-transaction-data)
+  * [Cancel and Refund](#cancel-and-refund)
+  * [Buyer ID](#buyer-id)
+  * [Shipping Address](#shipping-address)
+* [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -21,7 +26,7 @@ The tutorial is divided into two parts. In the first one you will setup our Amaz
 
 > You can find the template containing the code in both Javascript and Typescript [here](https://github.com/jovotech/jovo-templates/tree/master/alexa/pay).
 
-## Setup your Amazon Pay Account
+## Setting your Amazon Pay Account
 
 First of all, you have to register as an Amazon Pay merchant. Simply follow the link for your respective region:
 
@@ -64,7 +69,7 @@ Last but not least, you have to setup a test account. Simply follow the quick tu
 
 Now that you're done with that, we can switch over to the actual code part.
 
-## Implement Amazon Pay in your Jovo Project
+## Implementing Amazon Pay in Jovo
 
 First, add Amazon Pay to your skill's list of necessary permissions. You can do that in your [project.js](https://www.jovo.tech/docs/project-js) file:
 
