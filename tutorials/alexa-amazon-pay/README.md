@@ -18,17 +18,42 @@ Learn how to make money with your Alexa Skills by selling physical goods with Am
 
 ## Introduction
 
-If you want to sell physical products, everything from t-shirts to concert tickets, with your Alexa Skill, Amazon Pay is your best bet. It allows your user to make purchases using their payment and shipping information on their Amazon account, providing the most seamless user experience.
+If you want to sell physical products, everything from t-shirts to concert tickets, with your Alexa Skill, [Amazon Pay](https://pay.amazon.com/) is your best bet. It allows your user to make purchases using their payment and shipping information on their Amazon account, providing the most seamless user experience.
 
-The tutorial is divided into two parts. In the first one you will setup our Amazon Pay account. The second one will focus on actual implementation of the skill logic.
+The Jovo Framwork offers helper methods and a template that make it easier for you to integrate with Amazon Pay. Learn more here: [Jovo Docs: Amazon Pay](https://www.jovo.tech/docs/amazon-alexa/amazon-pay).
 
-> Through out the tutorial, I will not include any of the basic steps like creating a new Jovo project or deploying it. If you need a small refresher, check out the documentation on [Project Lifecycle](https://www.jovo.tech/docs/project-lifecycle)
+The tutorial is divided into two parts, setting up our Amazon Pay and then implementing the Alexa Skill logic with Jovo:
 
-> You can find the template containing the code in both Javascript and Typescript [here](https://github.com/jovotech/jovo-templates/tree/master/alexa/pay).
+* [Setting up your Amazon Pay Account](#setting-up-your-amazon-pay-account)
+* [Implementing Amazon Pay in Jovo](#implementing-amazon-pay-in-jovo)
+
+You can also find the Jovo Amazon Pay template containing the code in both JavaScript and TypeScript [here](https://github.com/jovotech/jovo-templates/tree/master/alexa/pay) or download it using:
+
+```sh
+// @language=javascript
+
+# Update to the latest version of the Jovo CLI
+$ npm install jovo-cli -g
+
+# Create new Jovo project from Alexa Amazon Pay Hello World template
+$ jovo new <directory> --template alexa/pay
+
+
+// @language=typescript
+
+# Update to the latest version of the Jovo CLI
+$ npm install jovo-cli -g
+
+# Create new Jovo project from Alexa Amazon Pay Hello World template
+$ jovo new <directory> --template alexa/pay --language typescript
+```
+
+> New to Jovo? You can learn more about steps like project creation and deployment in our docs: [Project Lifecycle](https://www.jovo.tech/docs/project-lifecycle)
+
 
 ## Setting your Amazon Pay Account
 
-First of all, you have to register as an Amazon Pay merchant. Simply follow the link for your respective region:
+Before you start selling physical goods, you have to register as an Amazon Pay merchant. Simply follow the link for your respective region:
 
 * In Austria: https://pay.amazon.com/at/merchant
 * In France: https://pay.amazon.fr/merchant
@@ -65,7 +90,7 @@ You also need to get your Seller ID (also called Merchant ID). You can find it u
 
 ![Amazon Seller Central Merchant ID](img/seller-central-mws-access.png)
 
-Last but not least, you have to setup a test account. Simply follow the quick tutorial here: [Link](https://developer.amazon.com/docs/amazon-pay-onetime/setting-up-test-account.html)
+Last but not least, you have to set up a test account. Amazon offers a helpful tutorial for this: [Setting up an Amazon Pay Sandbox test account](https://developer.amazon.com/docs/amazon-pay-onetime/setting-up-test-account.html).
 
 Now that you're done with that, we can switch over to the actual code part.
 
@@ -159,6 +184,25 @@ app.setHandler({
   },
 });
 ```
+
+To map `AMAZON.YesIntent` to `YesIntent` (same with `AMAZON.NoIntent` and `NoIntent`), add the following to your [intentMap](https://www.jovo.tech/docs/routing/intents#intentmap):
+
+```js
+// src/config.js
+
+module.exports = {
+
+    intentMap: {
+        // Other mappings
+        'AMAZON.YesIntent': 'YesIntent',
+        'AMAZON.NoIntent': 'NoIntent',
+    },
+
+    // ...
+
+};
+```
+
 
 Before we can start the transaction in the `YesIntent`, we have to first check whether the user enabled the Amazon Pay permission. If they did not, we send them a permission card:
 
