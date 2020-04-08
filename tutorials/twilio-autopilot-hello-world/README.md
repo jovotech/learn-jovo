@@ -208,4 +208,4 @@ That's all you need to build your Autopilot bot. You can find a more detailed ex
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how get started with the Twilio Autopilot platform using the Jovo Framework", "author": "kaan-kilic", "tags": "Twilio Autopilot, Getting Started", "og-image": "" }-->
+<!--[metadata]: { "description": "Learn how get started with the Twilio Autopilot platform using the Jovo Framework", "author": "kaan-kilic", "tags": "Twilio Autopilot, Getting Started", "og-image": "https://www.jovo.tech/img/tutorials/twilio-autopilot-hello-world/twilio-autopilot-hello-world.jpg" }-->

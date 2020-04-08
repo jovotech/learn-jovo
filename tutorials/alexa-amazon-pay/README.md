@@ -1,4 +1,6 @@
-# Use Amazon Pay with Jovo
+# Use Amazon Pay with Alexa and Jovo
+
+![Tutorial: Use Amazon Pay with Jovo](./img/alexa-amazon-pay.jpg "Alexa Amazon Pay Tutorial by Kaan Kilic")
 
 Learn how to make money with your Alexa Skills by selling physical goods with Amazon Pay and the Jovo Framework.
 
@@ -955,4 +957,4 @@ But that should be it for now.
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to make money with Alexa Skills by implementing the Amazon Pay feature with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa, Amazon Pay", "og-image": "" }-->
+<!--[metadata]: { "description": "Learn how to make money with Alexa Skills by implementing the Amazon Pay feature with Jovo", "author": "kaan-kilic", "tags": "Amazon Alexa, Amazon Pay", "og-image": "https://www.jovo.tech/img/tutorials/alexa-amazon-pay/alexa-amazon-pay.jpg" }-->
