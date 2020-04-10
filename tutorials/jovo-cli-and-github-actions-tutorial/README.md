@@ -4,9 +4,9 @@
 
 Let's take a look how to set up GitHub Actions to do continuous integration/continuous deployment (CI/CD) with Jovo.
 
-* [Configure the nodejs.yml file](#configure-the-nodejs.yml-file)
-* [Configure the deploy-production.yml file](#configure-the-deploy-production.yml-file)
-* [GitHub Secrets](#gitHub-secrets)
+* [Configure the nodejs.yml file](#configure-the-nodejsyml-file)
+* [Configure the deploy-production.yml file](#configure-the-deploy-productionyml-file)
+* [GitHub Secrets](#github-secrets)
 * [Send a Pull Request for CI](#send-a-pull-request-for-ci)
 * [Merge Pull Request for CD](#merge-pull-request-for-cd)
 
