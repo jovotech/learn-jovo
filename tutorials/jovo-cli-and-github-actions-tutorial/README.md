@@ -1,7 +1,6 @@
 # Jovo CLI With GitHub Actions CI/CD
 
 ![Set up your GitHub repository with GitHub Actions](./img/intro.jpg "Set up your GitHub repository to deploy your Jovo voice app")
-<div align="center">Photo by <a href="https://unsplash.com/@augie_ph">August Phlieger</a> on <a href="https://unsplash.com/photos/xmJ1sOzftdI">Unsplash</a></div><br/><br/>
 
 Let's take a look how to set up GitHub Actions to do continuous integration/continuous deployment (CI/CD) with Jovo.
 
@@ -222,6 +221,8 @@ When you open a pull request, the workflow will execute the **pull_request** por
 When you merge this pull request into the master branch, a merge commit will be pushed to the branch, and the deployment process will be triggered.
 
 ![Continuos Deployment flow](./img/cd.jpg "Continuos Deployment flow")
+
+Header photo by [August Phlieger](https://unsplash.com/@augie_ph) on [Unsplash](https://unsplash.com/photos/xmJ1sOzftdI).
 
 
 <!--[metadata]: { "description": "Learn how to set up a GitHub repository with GitHub Actions to deploy a Jovo voice app.", "author": "octavio-menocal", "tags": "Jovo, CLI, GitHub, Actions, CI, CD, CI/CD", "og-image": "https://www.jovo.tech/img/tutorials/jovo-cli-and-github-actions-tutorial/intro.jpg"  }-->
