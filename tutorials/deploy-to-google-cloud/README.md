@@ -90,7 +90,15 @@ The filled form should look like this:
 
 Press `Create` and lean back, as this will take a minute or two.
 
-After your function was created, you will be redirected to the landing page of `Google Cloud Functions`, where you can select your new function:
+After your function was created, you will be redirected to the landing page of `Google Cloud Functions`. Now select the toogle on the left of your function, and select `ADD MEMBER`:
+
+![Google Cloud Functions Select Function](img/google_cloud_select_function.png)
+
+After that, add the `allUsers` member with the `Cloud Functions Invoker` role:
+
+![Google Cloud Functions allUsers Permission](img/google_cloud_allUsers_permission.png)
+
+Now, click on your function's name to get to its details page:
 
 ![Google Cloud Functions Landing Page](img/google_cloud_functions_landing_page.png)
 
