@@ -7,7 +7,7 @@
 
 ## Introduction
 
-The `Unhandled` intent is used to catch incoming intens, which can't be found inside your `handler`. If you've created a Dialogflow agent before you might have seen the `Default Fallback Intent` which is automatically mapped to the `Unhandled` intent as well.
+The `Unhandled` intent is used to catch incoming intents, which can't be found inside your `handler`. If you've created a Dialogflow agent before you might have seen the `Default Fallback Intent` which is automatically mapped to the `Unhandled` intent as well.
 
 ## Unhandled Intent Inside a State
 
