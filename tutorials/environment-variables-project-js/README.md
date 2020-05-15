@@ -8,14 +8,6 @@ Learn how to use environment variables in your [`project.js`](https://www.jovo.t
    * [Setting env values](#setting-env-values)
 * [Use Cases](#use-cases)
 
-
-Watch the video here:
-
-[![Video: Reference environment variables in your app.json with Jovo](./img/video-env-variables.jpg "youtube-video")](https://www.youtube.com/watch?v=F_xaDXSuDGs)
-
-(Note: this is video still uses `v1` of the Jovo Framework. [Learn more about changes in `v2` here](https://www.jovo.tech/docs/installation/v1-migration))
-
-
 ## Introduction
 
 The [`project.js`](https://www.jovo.tech/docs/project-js) is Jovo project configuration file that stores information like which platforms are used (`alexaSkill`, `googleAction`), including additional information like project IDs, endpoints, etc.

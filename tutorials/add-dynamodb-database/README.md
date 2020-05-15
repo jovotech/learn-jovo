@@ -12,12 +12,6 @@ Learn how to use DynamoDB for certain development environments to store user dat
    * [Add Permissions to Lambda Role](#add-permissions-to-lambda-role)
    * [Test on Lambda](#test-on-lambda)
 
-Watch the video here:
-
-[![Video: Use DynamoDB to Store User Data in your Voice Apps](./img/video-dynamodb-dev.jpg "youtube-video")](https://www.youtube.com/watch?v=AevYJhAVQzg)
-
-(Note: this is video still uses `v1` of the Jovo Framework. [Learn more about changes in `v2` here](https://www.jovo.tech/docs/installation/v1-migration))
-
 ## Introduction
 
 Jovo offers a [database interface](https://www.jovo.tech/docs/databases) that allows you to persist user specific data in a variety of different databases. For additional information on which user specific data is stored, take a look at  the [Jovo User object](https://www.jovo.tech/docs/data/user).

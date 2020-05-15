@@ -8,12 +8,7 @@ This time we will show you how to use Alexa **Login with Amazon** account linkin
   - [Enabling Account Linking in the Alexa Developer Console](#enabling-account-linking-in-the-alexa-developer-console)
   - [The Code](#the-code)
 
-Watch the video: 
-
-[![Video: Use Alexa Login with Amazon Account Linking](./img/video-login-with-amazon.jpg "youtube-video")](https://www.youtube.com/watch?v=jBaM7HqPA7Q)
-
 > Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
-
 
 ## Introduction
 
