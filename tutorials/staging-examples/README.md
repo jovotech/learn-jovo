@@ -1,4 +1,4 @@
-# Staging Examples
+# Staging: Deploy your Jovo Project to Different Environments
 
 This page offers a selection of examples to learn how to deploy your Alexa Skill and Google Action to different environments. To learn more about the essentials of different stages, take a look at [project.js Staging](https://www.jovo.tech/docs/project-js#stages) and [config.js Staging](https://www.jovo.tech/docs/config-js#staging)
 
