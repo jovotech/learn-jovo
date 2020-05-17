@@ -37,7 +37,7 @@ We experienced ourselves that using Google Sheets as a CMS for our own Alexa Ski
 Here are some reasons for using Google Sheets for content:
 * It's a familiar interface (spreadsheets, Excel)
 * Google Sheets has all the collaboration and permission features already built in
-* You can create several sheets (displayed as tabs) in one spreadsheet, allowing you to manage several content types (we offer different [Sheet Types](https://www.jovo.tech/docs/v2/cms/google-sheets#default-sheet-types) for this)
+* You can create several sheets (displayed as tabs) in one spreadsheet, allowing you to manage several content types (we offer different [Sheet Types](https://www.jovo.tech/marketplace/jovo-cms-googlesheets#default-sheet-types) for this)
 
 Let's get started with Google Sheets and Jovo.
 
@@ -76,11 +76,9 @@ In this section, we will integrate the Google Spreadsheet with a Jovo voice app 
 * [Configuration](#configuration)
 * [Accessing the Content](#accessing-the-content)
 
-> You can find the full documentation here: [Jovo Google Sheets CMS Integration](https://www.jovo.tech/docs/cms/google-sheets).
+> You can find the full documentation here: [Jovo Google Sheets CMS Integration](https://www.jovo.tech/marketplace/jovo-cms-googlesheets).
 
 ### Installation
-
-> This integration works with Jovo v2. [Learn how to migrate from a v1 project here](https://www.jovo.tech/docs/v2/installation/v1-migration).
 
 To get started, we need to enable the Google Sheets integration.
 
@@ -127,11 +125,11 @@ cms: {
 
 The Google Sheets integration allows you to add several different sheets of various sheet types. For this example, we're just going to use the `Responses` sheet type.
 
-> [Learn everything about Sheet configuration here](https://www.jovo.tech/docs/v2/cms/google-sheets).
+> [Learn everything about Sheet configuration here](https://www.jovo.tech/marketplace/jovo-cms-googlesheets).
 
 ### Accessing the Content
 
-Now let's take a look at the `app.js` file in the `src` folder. Because we're using the [`Responses` sheet type](https://www.jovo.tech/docs/v2/cms/google-sheets#responses), you can access the content strings with the `this.('key')` method:
+Now let's take a look at the `app.js` file in the `src` folder. Because we're using the [`Responses` sheet type](https://www.jovo.tech/marketplace/jovo-cms-googlesheets#responses), you can access the content strings with the `this.('key')` method:
 
 ```javascript
 // Instead of this
@@ -176,9 +174,9 @@ There are lots of additional things you can do with this integration, which we a
 
 For example:
 
-* You can use private spreadsheets ([find the docs here](https://www.jovo.tech/docs/v2/cms/google-sheets#private-spreadsheets))
-* You can use additional Sheet Types ([find the docs here](https://www.jovo.tech/docs/v2/cms/google-sheets#default-sheet-types))
-* You can define your own Sheet Types ([find the docs here](https://www.jovo.tech/docs/v2/cms/google-sheets#defining-your-own-sheet-type))
+* You can use private spreadsheets ([find the docs here](https://www.jovo.tech/marketplace/jovo-cms-googlesheets#private-spreadsheets))
+* You can use additional Sheet Types ([find the docs here](https://www.jovo.tech/marketplace/jovo-cms-googlesheets#default-sheet-types))
+* You can define your own Sheet Types ([find the docs here](https://www.jovo.tech/marketplace/jovo-cms-googlesheets#defining-your-own-sheet-type))
 
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**

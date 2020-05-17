@@ -122,7 +122,7 @@ In the `platforms/alexaSkill/models` folder you can now find a file called `en-U
 
 Bringing the Interaction Model from above into the right format for the [Jovo Language Model](https://www.jovo.tech/docs/model) by hand can be quite time consuming.
 
-This is why we created a "[reverse build](https://www.jovo.tech/docs/cli/build#reverse-build)" CLI command that saves you some time: 
+This is why we created a "[reverse build](https://www.jovo.tech/marketplace/jovo-cli/build#reverse-build)" CLI command that saves you some time: 
 
 ```sh
 $ jovo build --platform alexaSkill --reverse

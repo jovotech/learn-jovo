@@ -14,7 +14,7 @@ In this tutorial, we will go through the necessary steps to send Google Action P
 
 ## Introduction
 
-> Docs: [Google Action Push Notifications](https://www.jovo.tech/docs/google-assistant/notifications)
+> Docs: [Google Action Push Notifications](https://www.jovo.tech/marketplace/jovo-platform-googleassistant/notificationss)
 
 The Google Action push notifications feature allows you to send notifications, which if tapped, trigger a predefined intent of your Action.
 
@@ -52,6 +52,10 @@ Select `Project Owner` as the role and `JSON` as the key type:
 
 ![Google Create Service Account](img/google-create-service-account.png)
 
+![Google Create Service Account 2](img/google-create-service-account-2.png)
+
+![Google Create Service Account Key](img/google_cloud_platform_IAM_key.png)
+
 Now that you got your service account key as well, the necessary configuration is done.
 
 ## Ask For Permission
@@ -60,7 +64,7 @@ Before we can send our user the notification, we have to first ask them to opt-i
 
 ```javascript
 LAUNCH() {
-    this.toIntent('AskForNotifications');
+    return this.toIntent('AskForNotifications');
 },
 
 AskForNotifications() {

@@ -17,7 +17,7 @@ Learn how to build an Echo Buttons Alexa Skill with Jovo and the Alexa Game Cont
 
 ## Introduction
 
-With Jovo, you can build Alexa Skills that use the *Game Engine* ([Official Amazon Docs](https://developer.amazon.com/docs/custom-skills/game-engine-interface-reference.html), [Jovo Docs](https://www.jovo.tech/docs/amazon-alexa/game-engine)) and the *Gadget Controller Interfaces* ([Official Amazon Docs](https://developer.amazon.com/docs/custom-skills/gadget-controller-interface-reference.html), [Jovo Docs](https://www.jovo.tech/docs/amazon-alexa/gadget-controller)) of the Gadgets Skill API.
+With Jovo, you can build Alexa Skills that use the *Game Engine* ([Official Amazon Docs](https://developer.amazon.com/docs/custom-skills/game-engine-interface-reference.html), [Jovo Docs](https://www.jovo.tech/marketplace/jovo-platform-alexa/interfaces#game-engine-interface)) and the *Gadget Controller Interfaces* ([Official Amazon Docs](https://developer.amazon.com/docs/custom-skills/gadget-controller-interface-reference.html), [Jovo Docs](https://www.jovo.tech/marketplace/jovo-platform-alexa/interfaces#gadgetcontroller-interface)) of the Gadgets Skill API.
 
 In this tutorial, we will use the Jovo `alexa/buttons` template to understand how Echo Buttons Alexa Skills work and how you can implement the interfaces into your own voice apps.
 
@@ -137,7 +137,6 @@ The default invocation name of the template is "button demo". There are two opti
 * If you don't have Echo Buttons, you can test the Skill in the Amazon Developer console's test tab
 
 ![Testing button skills in the Alexa Simulator](./img/test-buttons-in-alexa-simulator.jpg)
-
 
 ## Understand the Code
 
@@ -268,9 +267,7 @@ const inputEvent = this.$request.getEvents()[0];
 const eventName = inputEvent.name;
 console.log(`Event name: ${eventName}`);
 
-if (
-    eventName === 'timeoutEvent'
-) {
+if (eventName === 'timeoutEvent') {
     this.tell(
         'This was it. Thanks!'
         + `<audio src='https://s3.amazonaws.com/ask-soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_outro_01.mp3'/>`

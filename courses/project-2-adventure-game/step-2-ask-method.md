@@ -62,7 +62,7 @@ app.use(
 
 app.setHandler({
     LAUNCH() {
-        this.toIntent('HelloWorldIntent');
+        return this.toIntent('HelloWorldIntent');
     },
 
     HelloWorldIntent() {
@@ -90,7 +90,7 @@ Here is what the off-the-shelf logic for a "Hello World" voice app looks like, w
 ```javascript
 app.setHandler({
     LAUNCH() {
-        this.toIntent('HelloWorldIntent');
+        return this.toIntent('HelloWorldIntent');
     },
 
     HelloWorldIntent() {

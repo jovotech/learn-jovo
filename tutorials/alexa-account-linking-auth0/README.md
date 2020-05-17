@@ -166,40 +166,24 @@ That's how the Auth0 login page looks like:
 
 ![](./img/auth0Setup_10.png)
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
-
-```sh
-$ npm install --save request request-promise
-```
-
-After that import it in your `app.js` file:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. The Jovo Framework uses [axios](https://github.com/axios/axios) internally with a simple interface, which you can also use in your Jovo project. For that, simply import the class:
 
 ```javascript
-const rp = require('request-promise');
+const { App, HttpService } = require('jovo-framework');
 ```
 
 Now let's get to the request:
 
 ```javascript
-let token = this.$request.getAccessToken();
-let options = {
-    method: 'GET',
-    url: 'https://jovotest.auth0.com/userinfo/', // You can find your URL on Client --> Settings --> 
-                                                 // Advanced Settings --> Endpoints --> OAuth User Info URL
-    headers:{
-        authorization: 'Bearer ' + token,
-    }
-};
-
+const token = this.$request.getAccessToken();
 // API request
-await rp(options).then((body) => {
-    let data = JSON.parse(body);
-    /*
-    To see how the user data was stored,
-    go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
-    */
-    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+const { data } = await HttpService.get('https://jovotest.auth0.com/userinfo/', {
+    headers: {
+        authorization: 'Bearer ' + token,
+    },
 });
+
+return this.tell(`${data.name}, ${data.email}`);  // Output: Kaan Kilic, email@jovo.tech
 ```
 
 At the end your code should look like this:
@@ -215,24 +199,15 @@ async LAUNCH() {
         this.$alexaSkill.showAccountLinkingCard();
         this.tell('Please link you Account');
     } else {
-        let token = this.$request.getAccessToken();
-        let options = {
-            method: 'GET',
-            uri: 'https://jovotest.auth0.com/userinfo', // You can find your URL on Client --> Settings --> 
-            // Advanced Settings --> Endpoints --> OAuth User Info URL
+        const token = this.$request.getAccessToken();
+        // API request
+        const { data } = await HttpService.get('https://jovotest.auth0.com/userinfo/', {
             headers: {
                 authorization: 'Bearer ' + token,
-            }
-        };
-
-        await rp(options).then((body) => {
-            let data = JSON.parse(body);
-            /*
-            To see how the user data was stored,
-            go to Auth -> Users -> Click on the user you authenticated earlier -> Raw JSON
-            */
-            this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
+            },
         });
+
+        return this.tell(`${data.name}, ${data.email}`);  // Output: Kaan Kilic, email@jovo.tech
     }
 },
 ```

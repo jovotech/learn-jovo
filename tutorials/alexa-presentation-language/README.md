@@ -22,7 +22,7 @@ $ jovo new --template alexa/apl
 
 As [recently announced by Amazon](https://developer.amazon.com/blogs/alexa/post/0d2ad283-b7c3-48ba-8313-40f2b5fdc19d/alexa-presentation-language-now-available), the public beta of the new Alexa Presentation Language (APL) is now available.
 
-APL allows you to build visual (or, multimodal) experiences for Alexa. Devices like the Echo Show, the Echo Spot, or even TVs can now display visual information that goes beyond the previously known [Display Templates](https://www.jovo.tech/docs/amazon-alexa/visual-output).
+APL allows you to build visual (or, multimodal) experiences for Alexa. Devices like the Echo Show, the Echo Spot, or even TVs can now display visual information that goes beyond the previously known [Display Templates](https://www.jovo.tech/marketplace/jovo-platform-alexa/visual-output#display-templates).
 
 The Alexa Presentation Language is quite complex, so we're using this tutorial just to get started with some simple displays to make it easier for you to dive into this topic. Let us know in the comments if you have specific questions about APL where you would want to see a tutorial.
 

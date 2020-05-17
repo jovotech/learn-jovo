@@ -26,11 +26,11 @@ Watch the video here:
 
 ## Introduction to Alexa In-Skill Purchasing
 
-> Jovo Docs: [In-Skill Purchases](https://www.jovo.tech/docs/amazon-alexa/in-skill-purchases).
+> Jovo Docs: [In-Skill Purchases](https://www.jovo.tech/marketplace/jovo-platform-alexa/in-skill-purchases).
 
 In May 2018, Amazon [introduced](https://developer.amazon.com/blogs/alexa/post/5d852c9c-8cdf-45c1-9b68-e2f02af26c89/make-money-with-alexa-skills) the ability for Alexa Skill developers to make money through in-skill purchasing. It allows you to sell premium content either through one-time purchases, consumables, or subscriptions.
 
-The Alexa ISP API works independently from your own skill. You do not handle the transactions yourself, but you send a directive just like with the [Dialog Interface](https://www.jovo.tech/docs/amazon-alexa/dialog-interface). Alexa will use predefined values from products that you either [define in the Alexa Developer Console](#using-the-alexa-developer-console), or [with the ASK CLI](#using-ask-cli), to fulfill the transaction. The moment you send out one of these directives, the current session ends. Once the transaction is finished, your Skill will get a request with data about the transaction at which point you can resume where the user left off.  
+The Alexa ISP API works independently from your own skill. You do not handle the transactions yourself, but you send a directive just like with the [Dialog Interface](https://www.jovo.tech/marketplace/jovo-platform-alexa#dialog-interface). Alexa will use predefined values from products that you either [define in the Alexa Developer Console](#using-the-alexa-developer-console), or [with the ASK CLI](#using-ask-cli), to fulfill the transaction. The moment you send out one of these directives, the current session ends. Once the transaction is finished, your Skill will get a request with data about the transaction at which point you can resume where the user left off.  
 
 There are two main steps that need to be done to add In-Skill Purchases to your Alexa Skill:
 
@@ -459,7 +459,7 @@ Alright, now that we discussed all that, we can start the transaction using the 
 
 ```javascript
 async UpsellIntent() {
-    let productReferenceName = 'frozen_sword';
+    const productReferenceName = 'frozen_sword';
 
     const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
     console.log(product);
@@ -467,9 +467,9 @@ async UpsellIntent() {
     if (product.entitled === 'ENTITLED') {
         return this.tell('You have already bought this item.');
     } else {
-        let prompt = 'The frozen sword will help you on your journey. Are you interested?';
-        let token = 'testToken';
-        this.$alexaSkill.$inSkillPurchase.upsell(product.productId, prompt, token);
+        const prompt = 'The frozen sword will help you on your journey. Are you interested?';
+        const token = 'testToken';
+        return this.$alexaSkill.$inSkillPurchase.upsell(product.productId, prompt, token);
     }
 },
 ```
@@ -483,7 +483,7 @@ There are two scenarios at which the intent gets invoked. In the first one, the 
 ```javascript
 BuySkillItemIntent() {
     if (!this.$inputs.productName) {
-        this.ask('You can choose either the premium pass. or frozen sword. Which are you interested in?');
+        return this.ask('You can choose either the premium pass. or frozen sword. Which are you interested in?');
     }
 }
 ```
@@ -492,12 +492,12 @@ In the other scenario the user specifies the product and we use the input's id a
 
 ```javascript
 async BuySkillItemIntent() {
-    let productName = this.$inputs.ProductName;
+    const productName = this.$inputs.ProductName;
     if (!productName) {
         return this.ask('You can choose either the "premium pass", or "frozen sword". Which are you interested in?');
     }
-    let productReferenceName = productName.id;
-    let token = 'testToken';
+    const productReferenceName = productName.id;
+    const token = 'testToken';
     
     const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName);
     console.log(product);
@@ -505,7 +505,7 @@ async BuySkillItemIntent() {
     if (product.entitled === 'ENTITLED') {
         return this.tell('You have already bought this item.');
     } else {
-        this.$alexaSkill.$inSkillPurchase.buy(product.productId, token);
+        return this.$alexaSkill.$inSkillPurchase.buy(product.productId, token);
     }
 },
 ```
@@ -516,9 +516,9 @@ Next, the `RefundSkillItemIntent`. Same procedure, get the input's id, use it to
 
 ```javascript
 async RefundSkillItemIntent() {
-    let productName = this.$inputs.ProductName;
-    let productReferenceName = productName.id;
-    let token = 'testToken';
+    const productName = this.$inputs.ProductName;
+    const productReferenceName = productName.id;
+    const token = 'testToken';
 
     const product = await this.$alexaSkill.$inSkillPurchase.getProductByReferenceName(productReferenceName)
     console.log(product);
@@ -526,7 +526,7 @@ async RefundSkillItemIntent() {
     if (product.entitled !== 'ENTITLED') {
         return this.tell('You have not bought this item yet.');
     } else {
-        this.$alexaSkill.$inSkillPurchase.cancel(product.productId, token);
+        return this.$alexaSkill.$inSkillPurchase.cancel(product.productId, token);
     }
 },
 ```
@@ -573,9 +573,9 @@ ON_PURCHASE() {
     const token = this.$request.request.token;
 
     if (purchaseResult === 'ACCEPTED') {
-        this.tell('Great! Let\'s use your new item');
+        return this.tell('Great! Let\'s use your new item');
     } else {
-        this.tell('Okay. Let\'s continue where you left off.');
+        return this.tell('Okay. Let\'s continue where you left off.');
     }
 },
 ```

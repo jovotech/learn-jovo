@@ -31,7 +31,7 @@ With the [Jovo CMS Integrations](https://www.jovo.tech/docs/cms), we want to rem
 Here are some reasons for using Airtable for content:
 * it's a combination of a spreadsheet and a database giving you the best of both worlds
 * Airtable has all the collaboration and permission features already built-in
-* You can create several tables (displayed as tabs) in one base, allowing you to manage several content types (we offer different [Table Types](https://www.jovo.tech/docs/v2/cms/google-sheets#default-sheet-types) for this)
+* You can create several tables (displayed as tabs) in one base, allowing you to manage several content types (we offer different [Table Types](https://www.jovo.tech/marketplace/jovo-cms-airtable#default-table-types) for this)
 
 Let's get started with Airtable and Jovo.
 
@@ -55,11 +55,9 @@ In this section, we will integrate the Airtable Base with a Jovo voice app in th
 * [Configuration](#configuration)
 * [Accessing the Content](#accessing-the-content)
 
-> You can find the full documentation here: [Jovo Airtable CMS Integration](https://www.jovo.tech/docs/cms/airtable).
+> You can find the full documentation here: [Jovo Airtable CMS Integration](https://www.jovo.tech/marketplace/jovo-cms-airtable).
 
 ### Installation
-
-> This integration works with Jovo v2. [Learn how to migrate from a v1 project here](https://www.jovo.tech/docs/v2/installation/v1-migration).
 
 To get started, we need to enable the Airtable integration.
 
@@ -114,11 +112,11 @@ cms: {
 
 The Airtable integration allows you to add several different tables of various table types. For this example, we're just going to use the `Responses` table type.
 
-> [Learn everything about Table configuration here](https://www.jovo.tech/docs/cms/airtable).
+> [Learn everything about Table configuration here](https://www.jovo.tech/marketplace/jovo-cms-airtable#configuration).
 
 ### Accessing the Content
 
-Now let's take a look at the `app.js` file in the `src` folder. Because we're using the [`Responses` table type](https://www.jovo.tech/docs/cms/airtable#responses), you can access the content strings with the `this.('key')` method:
+Now let's take a look at the `app.js` file in the `src` folder. Because we're using the [`Responses` table type](https://www.jovo.tech/marketplace/jovo-cms-airtable#responses), you can access the content strings with the `this.('key')` method:
 
 ```javascript
 // Instead of this
@@ -160,7 +158,7 @@ $ jovo run
 
 There are lots of additional things you can do with this integration, which we are going to focus on in upcoming tutorials.
 
-For example, you can use additional Table Types ([find the docs here](https://www.jovo.tech/docs/cms/airtable#default-table-types)).
+For example, you can use additional Table Types ([find the docs here](https://www.jovo.tech/marketplace/jovo-cms-airtable#default-table-types)).
 
 
 **Any questions? Please let us know in the comments below 👇. You can also reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**

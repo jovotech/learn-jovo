@@ -2,7 +2,7 @@
 
 ![Use the Alexa Proactive Events API with Jovo](./img/alexa-proactive-events-notifications.jpg "Learn how to implement Alexa Notifications with the Jovo Framework")
 
-In this tutorial, I want to show you how to send [proactive events](https://www.jovo.tech/docs/amazon-alexa/proactive-events) with your Alexa Skills built with Jovo. This will enable you to send notifications to your users both from inside your Alexa Skill as well as outside of a session.
+In this tutorial, I want to show you how to send [proactive events](https://www.jovo.tech/marketplace/jovo-platform-alexa#proactive-events) with your Alexa Skills built with Jovo. This will enable you to send notifications to your users both from inside your Alexa Skill as well as outside of a session.
 
 * [Introduction](#introduction)
 * [Alexa Skill Permissions and Publications](#alexa-skill-permissions-and-publications)
@@ -13,13 +13,13 @@ In this tutorial, I want to show you how to send [proactive events](https://www.
 
 ## Introduction
 
-> Docs: [Alexa Proactive Events API](https://www.jovo.tech/docs/amazon-alexa/proactive-events).
+> Docs: [Alexa Proactive Events API](https://www.jovo.tech/marketplace/jovo-platform-alexa#proactive-events).
 
 The feature to send out notifications was one of the most requested ones in the early days of Alexa Skill development. In 2017 it was announced that the feature would be tested by a limited amount of handpicked developers. Although it was never released to the public fully, it got redesigned to the **Proactive Events API**, which was released in December of 2018.
 
 The Proactive Events API's only use case, as of yet, is to send out notifications, but Amazon plans to expand the API in the future.
 
-These notifications come with restrictions, the biggest one being that you have to implement one of Amazon's [event schemas](https://www.jovo.tech/docs/amazon-alexa/proactive-events#event), which themselves come with certain restrictions to the values you're allowed to use.
+These notifications come with restrictions, the biggest one being that you have to implement one of Amazon's [event schemas](https://www.jovo.tech/marketplace/jovo-platform-alexa#event), which themselves come with certain restrictions to the values you're allowed to use.
 
 Just like with the Proactive Events API itself, it seems to be planned to expand the available schemas, so you should keep an eye on the list, even if you don't find anything of use as of yet.
 
@@ -131,7 +131,7 @@ async WeatherAlertIntent() {
 }
 ```
 
-> You can find out more about the Proactive Event object and its attributes [here](https://www.jovo.tech/docs/amazon-alexa/proactive-events#proactive-event-object)
+> You can find out more about the Proactive Event object and its attributes [here](https://www.jovo.tech/marketplace/jovo-platform-alexa#proactive-event-object)
 
 
 ## Get the Access Token

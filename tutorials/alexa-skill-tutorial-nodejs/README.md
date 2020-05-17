@@ -10,7 +10,7 @@ In this Alexa Skill tutorial for beginners, you will learn how to build a projec
 - [Hello World](#hello-world)
 - [Next Steps](#next-steps)
 
-> See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/)
+> See also: [Build a Google Action in Node.js with Jovo](https://www.jovo.tech/tutorials/google-action-tutorial-nodejs)
 
 ### What We're Building
 
@@ -231,7 +231,7 @@ The setHandler method is where you will spend most of your time when you're buil
 ```javascript
 app.setHandler({
  LAUNCH() {
-  this.toIntent('HelloWorldIntent');
+  return this.toIntent('HelloWorldIntent');
  },
 
  HelloWorldIntent() {
@@ -294,10 +294,6 @@ In the next steps, we are going to create a new Lambda function on the AWS Devel
 
 #### Create a Lambda Function
 
-Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or create a new one):
-
-![](./img/aws_landing_page.png)
-
 Go to the [AWS Management Console](https://console.aws.amazon.com): 
 
 ![](./img/aws_console.png)
@@ -314,11 +310,11 @@ You can either choose an existing role (if you have one already), or create a ne
 
 Now it's time to configure your Lambda function. Let's start by adding the Alexa Skills Kit as a trigger:
 
-![](./img/aws_lambda_function_06.png)
+![](./img/aws_lambda_function_fresh_function.png)
+
+![](./img/aws_lambda_function_add_trigger.png)
 
 You can enable skill ID verification, if you want, but it's not neccessary. 
-
-![](./img/aws_lambda_function_07.png)
 
 #### Upload Your Code
 
@@ -337,11 +333,11 @@ This will create an optimizeds `bundle.zip` file into your project directory, wh
 
 Let's go back to the AWS Developer Console and upload the zip:
 
-![](./img/aws_lambda_function_09.png)
+![](./img/aws_lambda_function_upload_marked.png)
 
 Now save your changes with the orange button in the upper right corner:
 
-![](./img/aws_lambda_function_10.png)
+![](./img/aws_lambda_function_save_marked.png)
 
 #### Test Your Lambda Function
 
