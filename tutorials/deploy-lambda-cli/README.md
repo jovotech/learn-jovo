@@ -62,10 +62,10 @@ Each ASK profile can be mapped to an AWS profile. There are several commands you
 
 ```sh
 # Initialize and update profiles
-$ ask init
+$ ask configure
 
 # Just initialize AWS credentials
-$ ask init --aws-setup
+$ ask configure --aws-setup
 ```
 
 You can also directly edit the credentials by taking a look at the `.aws` folder in your home directory. This contains a `credentials` file that stores your AWS credentials and is structured like this (`default` profile as an example):

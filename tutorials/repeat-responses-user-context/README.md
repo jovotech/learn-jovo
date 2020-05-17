@@ -187,7 +187,7 @@ To deploy your Alexa Skill you have to install and initialize the [ASK CLI](http
 $ npm install -g ask-cli
 
 # Initialize ASK CLI
-$ ask init
+$ ask configure
 ```
 
 That's it. You can now deploy your Alexa Skill to the developer portal:

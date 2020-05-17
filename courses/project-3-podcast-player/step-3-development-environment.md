@@ -17,7 +17,7 @@ We can skip the AWS credentials association step, since we don't need it right n
 $ npm install -g ask-cli
 
 # After that:
-$ ask init
+$ ask configure
 ```
 
 ### Enabling the AudioPlayer Interface
