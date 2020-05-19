@@ -71,7 +71,7 @@ $ jovo new bixby-hello-world --template bixby --language typescript
 > You can also find the Github repository [here](https://github.com/jovotech/jovo-bixby-capsule-example).
 
 
-Then, start the development server of your voice app and give you a webhook url as an endpoint. Copy this url, you will need it in a second.
+Then, start the development server of your voice app, which gives you a webhook url as an endpoint. Copy this url, you will need it in a second.
 
 ```sh
 // @language=javascript
