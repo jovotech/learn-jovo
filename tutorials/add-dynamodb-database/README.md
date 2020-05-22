@@ -12,23 +12,17 @@ Learn how to use DynamoDB for certain development environments to store user dat
    * [Add Permissions to Lambda Role](#add-permissions-to-lambda-role)
    * [Test on Lambda](#test-on-lambda)
 
-Watch the video here:
-
-[![Video: Use DynamoDB to Store User Data in your Voice Apps](./img/video-dynamodb-dev.jpg "youtube-video")](https://www.youtube.com/watch?v=AevYJhAVQzg)
-
-(Note: this is video still uses `v1` of the Jovo Framework. [Learn more about changes in `v2` here](https://www.jovo.tech/docs/installation/v1-migration))
-
 ## Introduction
 
 Jovo offers a [database interface](https://www.jovo.tech/docs/databases) that allows you to persist user specific data in a variety of different databases. For additional information on which user specific data is stored, take a look at  the [Jovo User object](https://www.jovo.tech/docs/data/user).
 
-For local development, it is recommended to use the [Jovo File DB](https://www.jovo.tech/docs/databases/file-db) that stores data in a `db/db.json` file for easy debugging. For hosting on AWS Lambda, most people use [DynamoDB](https://www.jovo.tech/docs/databases/dynamodb).
+For local development, it is recommended to use the [Jovo File DB](https://www.jovo.tech/marketplace/jovo-db-filedb) that stores data in a `db/db.json` file for easy debugging. For hosting on AWS Lambda, most people use [DynamoDB](https://www.jovo.tech/marketplace/jovo-db-dynamodb).
 
 Switching between these different database types for local development and deployment to Lambda can be tedious. In this guide, you will learn how to use [individual config files](https://www.jovo.tech/docs/config-js#staging) to use different databases or tables for different stages.
 
 ## Add DynamoDB as Database
 
-> [Find the full docs about our DynamoDB integration here](https://www.jovo.tech/docs/databases/dynamodb).
+> [Find the full docs about our DynamoDB integration here](https://www.jovo.tech/marketplace/jovo-db-dynamodb).
 
 ### Install the Integration
 

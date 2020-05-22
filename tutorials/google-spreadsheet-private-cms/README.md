@@ -17,7 +17,7 @@ Learn how to get the credentials to use a private Google Spreadsheet in your Ale
 
 ## Introduction
 
-In a previous tutorial ([Use Google Sheets as CMS for your Voice App](https://www.jovo.tech/tutorials/google-sheets-cms)), we used the [Jovo Google Sheets Integration](https://www.jovo.tech/docs/cms/google-sheets) to create a public spreadsheet that can be used to store and update content for your Alexa Skills and Google Actions.
+In a previous tutorial ([Use Google Sheets as CMS for your Voice App](https://www.jovo.tech/tutorials/google-sheets-cms)), we used the [Jovo Google Sheets Integration](https://www.jovo.tech/marketplace/jovo-cms-googlesheets) to create a public spreadsheet that can be used to store and update content for your Alexa Skills and Google Actions.
 
 The public spreadsheet looked like this:
 
@@ -27,7 +27,7 @@ The public spreadsheet looked like this:
 
 Very often, public spreadsheets are a great starting point. However, in many cases you might not want to allow anyone to access your spreadsheet (even though public means that people still need to have the full URL to be able to access it).
 
-Luckily, the [Jovo Google Sheets Integration](https://www.jovo.tech/docs/cms/google-sheets) works the same way for both public and private spreadsheets. 
+Luckily, the [Jovo Google Sheets Integration](https://www.jovo.tech/marketplace/jovo-cms-googlesheets) works the same way for both public and private spreadsheets. 
 
 ## Credentials
 

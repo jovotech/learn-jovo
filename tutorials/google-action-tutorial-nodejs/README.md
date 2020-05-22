@@ -228,7 +228,7 @@ The handlers variable is where you will spend most of your time when you're buil
 ```javascript
 app.setHandler({
     LAUNCH() {
-        this.toIntent('HelloWorldIntent');
+        return this.toIntent('HelloWorldIntent');
     },
 
     HelloWorldIntent() {
@@ -290,11 +290,7 @@ In the next steps, we are going to create a new Lambda function on the AWS Devel
 
 #### Create a Lambda Function
 
-Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or create a new one): 
-
-![](./img/aws_landing_page.png)
-
-Go to the [AWS Management Console](https://console.aws.amazon.com):
+Go to the [AWS Management Console](https://console.aws.amazon.com): 
 
 ![](./img/aws_console.png)
 
@@ -302,7 +298,7 @@ Search for "lambda" or go directly to [console.aws.amazon.com/lambda](https://co
 
 ![](./img/aws_lambda_landing.png)
 
-Click "Create a Lambda function", choose "Author from scratch" and fill out the form: 
+Click "Create a Lambda function", choose "Author from scratch" and fill out the form:
 
 ![](./img/aws_lambda_function_04.png)
 
@@ -310,11 +306,11 @@ You can either choose an existing role (if you have one already), or create a ne
 
 Now it's time to configure your Lambda function. Let's start by adding the Alexa Skills Kit as a trigger:
 
-![](./img/aws_lambda_function_06.png)
+![](./img/aws_lambda_function_fresh_function.png)
+
+![](./img/aws_lambda_function_add_trigger.png)
 
 You can enable skill ID verification, if you want, but it's not neccessary. 
-
-![](./img/aws_lambda_function_07.png)
 
 #### Upload Your Code
 
@@ -331,13 +327,13 @@ $ npm run bundle
 
 This will create an optimizeds `bundle.zip` file into your project directory, which includes all necessary dependencies.
 
-Let's go back to the AWS Developer Console and upload the zip: 
+Let's go back to the AWS Developer Console and upload the zip:
 
-![](./img/aws_lambda_function_09.png)
+![](./img/aws_lambda_function_upload_marked.png)
 
-Now save your changes with the orange button in the upper right corner: 
+Now save your changes with the orange button in the upper right corner:
 
-![](./img/aws_lambda_function_10.png)
+![](./img/aws_lambda_function_save_marked.png)
 
 #### Test Your Lambda Function
 
@@ -456,9 +452,11 @@ Go to [console.aws.amazon.com/apigateway](https://console.aws.amazon.com/apigate
 
 ![](./img/aws_api.png)
 
-Let's create a new API called "myGoogleActionAPIGateway" (you can call it whatever, though): 
+Let's create a new REST API called "myGoogleActionAPIGateway":
 
-![](./img/aws_api_03.png)
+![](./img/aws-api-gateway-create-api.png)
+
+![](img/aws-api-create-api-settings.png)
 
 After successful creation, you will see the Resources screen. Click on the "Actions" dropdown and select "New Method":
 

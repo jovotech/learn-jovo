@@ -7,10 +7,6 @@ Learn how to use the Jovo CLI to deploy your Alexa Skill and Google Action to AW
 * [Set up Credentials with ASK CLI](#set-up-credentials-with-ask-cli)
 * [jovo deploy](#jovo-deploy)
 
-Watch the video here:
-
-[![Video: Upload your voice app to AWS Lambda](./img/video-jovo-lambda.jpg "youtube-video")](https://www.youtube.com/watch?v=Q5T2II8XIbg)
-
 ## Introduction
 
 The majority of Alexa Skills is hosted on AWS Lambda, and Jovo allows you to host your Google Actions there as well. Debugging your Lambda functions can be quite tedious and time consuming though, if you're always uploading and saving your code manually. Fortunately, the [Jovo CLI](https://www.jovo.tech/docs/cli) offers integrations to ASK CLI and AWS to deploy your code to Lambda right from the command line.
@@ -66,10 +62,10 @@ Each ASK profile can be mapped to an AWS profile. There are several commands you
 
 ```sh
 # Initialize and update profiles
-$ ask init
+$ ask configure
 
 # Just initialize AWS credentials
-$ ask init --aws-setup
+$ ask configure --aws-setup
 ```
 
 You can also directly edit the credentials by taking a look at the `.aws` folder in your home directory. This contains a `credentials` file that stores your AWS credentials and is structured like this (`default` profile as an example):

@@ -8,12 +8,7 @@ This time we will show you how to use Alexa **Login with Amazon** account linkin
   - [Enabling Account Linking in the Alexa Developer Console](#enabling-account-linking-in-the-alexa-developer-console)
   - [The Code](#the-code)
 
-Watch the video: 
-
-[![Video: Use Alexa Login with Amazon Account Linking](./img/video-login-with-amazon.jpg "youtube-video")](https://www.youtube.com/watch?v=jBaM7HqPA7Q)
-
 > Interested in Alexa Account Linking? [How to set up Account Linking for Alexa with Auth0 and Jovo](https://www.jovo.tech/blog/alexa-account-linking-auth0/).   
-
 
 ## Introduction
 
@@ -99,34 +94,26 @@ this.$alexaSkill.showAccountLinkingCard();
 this.tell("Please link your account");
 ```
 
-To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. Since the API request is asynchronous, we have to await the response, before the framework sends out the response at the end of the intent. I recommend the `request-promise` package for that, since it is the simplest solution. You can install it with npm:
-
-```sh
-$ npm install --save request request-promise
-```
-
-After that import it in your `app.js` file:
+To access the stored user data, you simply make an API request, using the access token your skill gets with every request made after the user linked his account. The Jovo Framework uses [axios](https://github.com/axios/axios) internally with a simple interface, which you can also use in your Jovo project. For that, simply import the class:
 
 ```javascript
-const rp = require('request-promise');
+const { App, HttpService } = require('jovo-framework');
 ```
 
 Here's how the API call might look like:
 
 ```javascript
-let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
+const url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
 
-await rp(url).then((body) => {
-    let data = JSON.parse(body);
-    /*
-    * Depending on your scope you have access to the following data:
-    * data.user_id : "amzn1.account.XXXXYYYYZZZ"
-    * data.email : "email@jovo.tech"
-    * data.name : "Kaan Kilic"
-    * data.postal_code : "12345"
-    */
-    this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
-});
+const { data } = await HttpService.get(url);
+/*
+* Depending on your scope you have access to the following data:
+* data.user_id : "amzn1.account.XXXXYYYYZZZ"
+* data.email : "email@jovo.tech"
+* data.name : "Kaan Kilic"
+* data.postal_code : "12345"
+*/
+return this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
 ```
 
 At the end, your code should look like this:
@@ -135,21 +122,19 @@ At the end, your code should look like this:
 async LAUNCH() {
     if (!this.$request.getAccessToken()) {
         this.$alexaSkill.showAccountLinkingCard();
-        this.tell('Please link you Account');
+        return this.tell('Please link you Account');
     } else {
-        let url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
+        const url = `https://api.amazon.com/user/profile?access_token=${this.$request.getAccessToken()}`;
 
-        await rp(url).then((body) => {
-            let data = JSON.parse(body);
-            /*
-            * Depending on your scope you have access to the following data:
-            * data.user_id : "amzn1.account.XXXXYYYYZZZ"
-            * data.email : "email@jovo.tech"
-            * data.name : "Kaan Kilic"
-            * data.postal_code : "12345"
-            */
-            this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
-        });
+        const { data } = await HttpService.get(url);
+        /*
+        * Depending on your scope you have access to the following data:
+        * data.user_id : "amzn1.account.XXXXYYYYZZZ"
+        * data.email : "email@jovo.tech"
+        * data.name : "Kaan Kilic"
+        * data.postal_code : "12345"
+        */
+        return this.tell(data.name + ', ' + data.email); // Output: Kaan Kilic, email@jovo.tech
     }
 },
 ```

@@ -207,7 +207,7 @@ Suggestion Chips are small pressable buttons, which guide the user to possible r
 
 ![Google Action Suggestion Chips](./img/suggestion-chips-actions-on-google.jpg)
 
-> Tutorial: [Implementing Google Assistant Suggestion Chips with Jovo]](https://www.jovo.tech/tutorials/google-assistant-suggestion-chips).
+> Tutorial: [Implementing Google Assistant Suggestion Chips with Jovo](https://www.jovo.tech/tutorials/google-assistant-suggestion-chips).
 
 We will make these changes both to the `LAUNCH` as well as the `GoogleAction.Finished` intent:
 

@@ -191,7 +191,7 @@ app.setHandler({
     // Other intents and states above
 
     Unhandled() {
-        this.toIntent('LAUNCH');
+        return this.toIntent('LAUNCH');
     },
 });
 ```

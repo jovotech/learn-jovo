@@ -11,11 +11,6 @@ Still updating your Dialogflow agent manually? In this post you're going to lear
   * [Step 2.2: Activating the Account with the Cloud SDK](#step-22:-activating-the-account-with-the-cloud-sdk)
 * [Step 3: Deploying your Agent with the Jovo CLI](#step-3:-deploying-your-agent-with-the-jovo-cli)
 
-
-You can also watch the full process of creating a Jovo project and a Dialogflow agent, and deploying it with the CLI in this video (for the deployment part, feel free to skip to minute 12:20): 
-
-[<img src="./img/youtube_thumbnail.png" width="800" height="450">](https://www.youtube.com/watch?v=6ypo5X6tKHc)
-
 ## Introduction
 
 ![](./img/dialogflow-window2-1.png)

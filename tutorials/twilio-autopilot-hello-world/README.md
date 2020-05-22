@@ -2,7 +2,7 @@
 
 ![Tutorial: Build your first Twilio Autopilot IVR with Jovo](./img/twilio-autopilot-hello-world.jpg "Twilio Autopilot Hello World Tutorial by Kaan Kilic")
 
-In this tutorial, we will go over the complete process of setting up a basic bot on Twilio Autopilot using the Jovo Framework. This can then be deployed to various platforms and deviced, for example we can create a phone number and deploy the bot as IVR.
+In this tutorial, we will go over the complete process of setting up a basic bot on Twilio Autopilot using the Jovo Framework. This can then be deployed to various platforms and devices, for example we can create a phone number and deploy the bot as IVR.
 
 
 * [Introduction](#introduction)
@@ -204,7 +204,7 @@ this.$autopilotBot.setActions([
 ]);
 ```
 
-That's all you need to build your Autopilot bot. You can find a more detailed explanation of the integration in our [docs](https://www.jovo.tech/docs/twilio-autopilot).
+That's all you need to build your Autopilot bot. You can find a more detailed explanation of the integration in our [docs](https://www.jovo.tech/marketplace/jovo-platform-twilioautopilot).
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 

@@ -22,7 +22,7 @@ Learn how to make money with your Alexa Skills by selling physical goods with Am
 
 If you want to sell physical products, everything from t-shirts to concert tickets, with your Alexa Skill, [Amazon Pay](https://pay.amazon.com/) is your best bet. It allows your user to make purchases using their payment and shipping information on their Amazon account, providing the most seamless user experience.
 
-The Jovo Framwork offers helper methods and a template that make it easier for you to integrate with Amazon Pay. Learn more here: [Jovo Docs: Amazon Pay](https://www.jovo.tech/docs/amazon-alexa/amazon-pay).
+The Jovo Framwork offers helper methods and a template that make it easier for you to integrate with Amazon Pay. Learn more here: [Jovo Docs: Amazon Pay](https://www.jovo.tech/marketplace/jovo-platform-alexa/amazon-pay).
 
 The tutorial is divided into two parts, setting up our Amazon Pay and then implementing the Alexa Skill logic with Jovo:
 

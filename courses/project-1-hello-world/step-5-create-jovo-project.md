@@ -89,7 +89,7 @@ Let's take a look at the lower part first: The handler is where you will spend m
 ```javascript
 app.setHandler({
     LAUNCH() {
-        this.toIntent('HelloWorldIntent');
+        return this.toIntent('HelloWorldIntent');
     },
 
     HelloWorldIntent() {

@@ -17,7 +17,7 @@ We can skip the AWS credentials association step, since we don't need it right n
 $ npm install -g ask-cli
 
 # After that:
-$ ask init
+$ ask configure
 ```
 
 ### Enabling the AudioPlayer Interface
@@ -108,7 +108,7 @@ Clicking on **Test** in the modal window brings you to the Actions on Google con
 
 To enable the Media Response API, select the **Surface capabilities** menu and select "*Do your Actions require media playback?*": 
 
-![Actions on Google Media Respojnse API](./img/google-action-media-response.jpg)
+![Actions on Google Media Response API](./img/google-action-surface-capabilities.png)
 
 
 ## Next Step

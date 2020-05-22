@@ -11,35 +11,33 @@
    * [b) Add Webhook to Intents](#b-add-webhook-to-intents)
 
 
-## Create a Lambda Function
+#### Create a Lambda Function
 
-Go to [aws.amazon.com](https://aws.amazon.com) and log into your account (or create a new one): 
+Go to the [AWS Management Console](https://console.aws.amazon.com): 
 
-![AWS Portal](./img/aws_landing_page.png)
+![](./img/aws_console.png)
 
- Go to the [AWS Management Console](https://console.aws.amazon.com): 
+Search for "lambda" or go directly to [console.aws.amazon.com/lambda](https://console.aws.amazon.com/lambda): 
 
-![AWS Services](./img/aws_console.png)
+![](./img/aws_lambda_landing.png)
 
- Search for "lambda" or go directly to [console.aws.amazon.com/lambda](https://console.aws.amazon.com/lambda): 
+Click "Create a Lambda function", choose "Author from scratch" and fill out the form:
 
-![AWS Lambda Functions](./img/aws_lambda_landing.png)
+![](./img/aws_lambda_function_04.png)
 
- Click "Create a Lambda function", choose "Author from scratch" and fill out the form: 
+You can either choose an existing role (if you have one already), or create a new one. We're going to create one from a template and call it "myNewRole" with no special policy templates.
 
-![AWS Lambda Blueprints](./img/aws_lambda_function_04.png)
+Now it's time to configure your Lambda function. Let's start by adding the Alexa Skills Kit as a trigger:
 
- You can either choose an existing role (if you have one already), or create a new one. We're going to create one from a template and call it "myNewRole" with no special policy templates: Now it's time to configure your Lambda function. Let's start by adding the Alexa Skills Kit as a trigger: 
+![](./img/aws_lambda_function_fresh_function.png)
 
-![AWS Lambda: Configure Triggers](./img/aws_lambda_function_06.png)
+![](./img/aws_lambda_function_add_trigger.png)
 
- You can enable skill ID verification, if you want, but it's not neccessary. 
+You can enable skill ID verification, if you want, but it's not neccessary. 
 
-![AWS Lambda: Skill ID verification](./img/aws_lambda_function_07.png)
+#### Upload Your Code
 
-## Upload Your Code
-
-Now let's get to the fun part. You can either enter the code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function. 
+Now let's get to the fun part. You can either enter to code inline, upload a zip, or upload a file from Amazon S3. As we're using other dependencies like the [jovo-framework npm package](https://www.npmjs.com/package/jovo-framework), we can't use the inline editor. We're going to zip our project and upload it to the function.
 
 To create a zip file that is ready to upload, run the following command:
 
@@ -52,27 +50,26 @@ $ npm run bundle
 
 This will create an optimizeds `bundle.zip` file into your project directory, which includes all necessary dependencies.
 
- Let's go back to the AWS Developer Console and upload the zip: 
+Let's go back to the AWS Developer Console and upload the zip:
 
-![Lambda Function: Upload ZIP](./img/aws_lambda_function_09.png)
+![](./img/aws_lambda_function_upload_marked.png)
 
- Now save your changes with the orange button in the upper right corner: 
+Now save your changes with the orange button in the upper right corner:
 
-![Lambda Function: Save](./img/aws_lambda_function_10.png)
+![](./img/aws_lambda_function_save_marked.png)
 
-
-
-## Test Your Lambda Function
+#### Test Your Lambda Function
 
 Great! Your Lambda function is now created. Click "Test" right next to the "Save" button and select "Alexa Start Session" as the event template, since the [Jovo Framework](https://www.jovo.tech) supports both Google Action and Amazon Alexa requests: 
 
-![Lambda Function: Test](./img/aws_lambda_function_11-1.png)
+![](./img/aws_lambda_function_11-1.png)
 
- Click "Test," aaand 🎉 it works! 
+Click "Test," aaand 🎉 it works! 
 
-![Lambda Function: Test Result](./img/aws_lambda_function_12.png)
+![](./img/aws_lambda_function_12.png)
 
- If you want to test it with a "real" Google Assistant request, you can also copy-paste this one:
+If you want to test it with a "real" Google Assistant request, you can also copy-paste this one:
+
 ```javascript
 {
 	"originalRequest": {
@@ -81,26 +78,26 @@ Great! Your Lambda function is now created. Click "Test" right next to the "Save
 		"data": {
 			"isInSandbox": true,
 			"surface": {
-				"capabilities": \[
+				"capabilities": [
 					{
 						"name": "actions.capability.AUDIO_OUTPUT"
 					},
 					{
 						"name": "actions.capability.SCREEN_OUTPUT"
 					}
-				\]
+				]
 			},
-			"inputs": \[
+			"inputs": [
 				{
-					"rawInputs": \[
+					"rawInputs": [
 						{
 							"query": "talk to my test app",
 							"inputType": "KEYBOARD"
 						}
-					\],
+					],
 					"intent": "actions.intent.MAIN"
 				}
-			\],
+			],
 			"user": {
 				"locale": "en-US",
 				"userId": "1501754379730"
@@ -117,33 +114,33 @@ Great! Your Lambda function is now created. Click "Test" right next to the "Save
 	"lang": "en",
 	"result": {
 		"source": "agent",
-		"resolvedQuery": "GOOGLE\_ASSISTANT\_WELCOME",
+		"resolvedQuery": "GOOGLE_ASSISTANT_WELCOME",
 		"speech": "",
 		"action": "input.welcome",
 		"actionIncomplete": false,
 		"parameters": {},
-		"contexts": \[
+		"contexts": [
 			{
-				"name": "google\_assistant\_welcome",
+				"name": "google_assistant_welcome",
 				"parameters": {},
 				"lifespan": 0
 			},
 			{
-				"name": "actions\_capability\_screen_output",
+				"name": "actions_capability_screen_output",
 				"parameters": {},
 				"lifespan": 0
 			},
 			{
-				"name": "actions\_capability\_audio_output",
+				"name": "actions_capability_audio_output",
 				"parameters": {},
 				"lifespan": 0
 			},
 			{
-				"name": "google\_assistant\_input\_type\_keyboard",
+				"name": "google_assistant_input_type_keyboard",
 				"parameters": {},
 				"lifespan": 0
 			}
-		\],
+		],
 		"metadata": {
 			"intentId": "b0b7962c-cae0-4437-bddf-e72f457959d6",
 			"webhookUsed": "true",
@@ -153,12 +150,12 @@ Great! Your Lambda function is now created. Click "Test" right next to the "Save
 		},
 		"fulfillment": {
 			"speech": "Greetings!",
-			"messages": \[
+			"messages": [
 				{
 					"type": 0,
 					"speech": "Hi!"
 				}
-			\]
+			]
 		},
 		"score": 1
 	},
@@ -170,62 +167,72 @@ Great! Your Lambda function is now created. Click "Test" right next to the "Save
 }
 ```
 
-## Create API Gateway
+#### Create API Gateway
 
-For Alexa Skills, you can just use the Lambda function's ARN to proceed, for Dialogflow, we need to create an API Gateway. Go to [console.aws.amazon.com/apigateway](https://console.aws.amazon.com/apigateway) to get started: 
+For Alexa Skills, you can just use the Lambda function's ARN to proceed, for Dialogflow, we need to create an API Gateway.
 
-![Amazon API Gateway Website](./img/aws_api.png)
+Go to [console.aws.amazon.com/apigateway](https://console.aws.amazon.com/apigateway) to get started:
 
- Let's create a new API called "myGoogleActionAPIGateway" (you can call it whatever, though): 
+![](./img/aws_api.png)
 
-![Create myGoogleActionAPIGateway](./img/aws_api_03.png)
+Let's create a new REST API called "myGoogleActionAPIGateway":
 
- After successful creation, you will see the Resources screen. Click on the "Actions" dropdown and select "New Method": 
+![](./img/aws-api-gateway-create-api.png)
 
-![API Gateway: New Method](./img/aws_api_04.png)
+![](img/aws-api-create-api-settings.png)
 
- Dialogflow needs a webhook where it can send POST requests to. So let's create a POST method that is integrated with our existing Lambda function: 
+After successful creation, you will see the Resources screen. Click on the "Actions" dropdown and select "New Method":
 
-![API Gateway: Create POST Method](./img/aws_api_05.png)
+![](./img/aws_api_04.png)
 
- Grant it permission: 
+Dialogflow needs a webhook where it can send POST requests to. So let's create a POST method that is integrated with our existing Lambda function: 
 
-![API Gateway: Lambda Function Permission](./img/aws_api_06.png)
+![](./img/aws_api_05.png)
 
- And that's almost it. You only need to deploy the API like this: 
+Grant it permission: 
 
-![API Gateway: Deploy API](./img/aws_api_07.png)
+![](./img/aws_api_06.png)
 
- And create a new stage: 
+And that's almost it. You only need to deploy the API like this: 
 
-![API Gateway: Deployment stage](./img/deploy-stage.jpg)
+![](./img/aws_api_07.png)
 
- Yes! Finally, you can get the URL for the API Gateway from here: 
+And create a new stage: 
 
-![API Gateway: Invoke URL](./img/api-gateway-invoke-url.jpg)
+![](./img/deploy-stage.jpg)
+
+Yes! Finally, you can get the URL for the API Gateway from here: 
+
+![](./img/api-gateway-invoke-url.jpg)
+
+There's one more step we need to do before testing: we need to use this link and add it to Dialogflow.
 
 ## Add Endpoint to Dialogflow
 
-Now that have our API Gateway to AWS Lambda set up, it's time use the provided URL to connect our application with our agent on Dialogflow.
+Now that have either our local webhook or the API Gateway to AWS Lambda set up, it's time use the provided URL to connect our application with our agent on Dialogflow.
 
-*   [a) Agent Fulfillment Section](#agent-fulfillment)
-*   [b) Add Webhook to Intents](#intents-webhook)
+- [a) Agent Fulfillment Section](#agent-fulfillment-section)
+- [b) Add Webhook to Intents](#add-webhook-to-intents)
 
-### a) Agent Fulfillment Section
+### Agent Fulfillment Section
 
-Go back to the Dialogflow console and choose the **Fulfillment** navigation item. Enable the webhook and paste your API Gateway URL: 
+Go back to the Dialogflow console and choose the **Fulfillment** navigation item. Enable the webhook and paste either your Jovo webhook URL or the API Gateway:
 
-![Dialogflow Webhook Fulfillment with URL](./img/dialogflow_fulfillment-1.png)
+![](./img/dialogflow_fulfillment-1.png)
 
-### b) Add Webhook to Intents
+### Add Webhook to Intents
 
-Dialogflow offers the ability to customize your language model in a way that you can choose for every intent how it's going to be handled. This means we need to enable **webhook fulfillment** for every intent we use in our model. Go to HelloWorldIntent first and check "Use webhook" in at the bottom of the page: 
+Dialogflow offers the ability to customize your language model in a way that you can choose for every intent how it's going to be handled.
 
-![Dialogflow add webhook fulfillment to HelloWorldIntent](./img/dialogflow_intent_webhook.png)
+This means we need to enable **webhook fulfillment** for every intent we use in our model.
 
- Do the same for the "MyNameIsIntent" and also take a look at the "Default Welcome Intent" and don't forget to check the box there as well. The intent comes with default text responses, which would otherwise cause random output instead of your model, when the application is launched. 
+Go to HelloWorldIntent first and check "Use webhook" in at the bottom of the page:
 
-![Dialogflow add webhook fulfillment to Default Welcome Intent](./img/dialogflow_intent_default.png)
+![](./img/dialogflow_intent_webhook.png)
+
+Do the same for the "MyNameIsIntent" and also take a look at the "Default Welcome Intent" and don't forget to check the box there as well. The intent comes with default text responses, which would otherwise cause random output instead of your model, when the application is launched.
+
+![](./img/dialogflow_intent_default.png)
 
 That's it!
 

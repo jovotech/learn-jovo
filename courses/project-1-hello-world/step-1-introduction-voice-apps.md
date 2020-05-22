@@ -57,7 +57,7 @@ The response usually involves information like the desired text to read out to y
 
 ### Platform Differences
 
-The main difference between the Amazon Alexa and Google Assistant platform is the **JSON request** they're sending to your app, and the **JSON response** they're expecting. Fortunately, the [Jovo Framework](https://github.com/jovotech/jovo-framework-nodejs/) is built exactly to help you with that.
+The main difference between the Amazon Alexa and Google Assistant platform is the **JSON request** they're sending to your app, and the **JSON response** they're expecting. Fortunately, the [Jovo Framework](https://github.com/jovotech/jovo-framework) is built exactly to help you with that.
 
 Besides the request and response, there are many other little differences between the platforms. We will uncover them throughout this course.
 
