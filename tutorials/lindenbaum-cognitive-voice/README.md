@@ -18,7 +18,7 @@ In this tutorial, we will go over all steps to get your first Lindenbaum project
 
 ## Introduction to Lindenbaum Cognitive Voice
 
-With Lindenbaum Cognitive Voice, you can build voice bots for the phone. The platform offers the possibility to connect a phone number to a wide stack of automated speech recognition (ASR), natural language understanding (NLU), and text to speech (TTS) engines as well as integrations for multiple European contact center platforms. 
+With Lindenbaum Cognitive Voice, you can build voice bots for the phone. The platform offers the possibility to connect a phone number to a wide stack of automated speech recognition (ASR), natural language understanding (NLU), and text to speech (TTS) engines as well as integrations for multiple European contact center platforms. [Learn more in the official Lindenbaum API documentation](https://app.swaggerhub.com/apis/Lindenbaum-GmbH/).
 
 To create a Lindenbaum account and set up your first phone number, contact the company at the [Cognitive Voice website](https://www.lindenbaum.eu/en/cognitive-voice-voice-bot-integration/).
 
