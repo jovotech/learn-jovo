@@ -87,7 +87,7 @@ Thanks a lot to every single one of you!
 * Braden Ream
 * Sameer Rasa
 * Doug Devitre
-* Jeff Kinssey
+* Jeff Kinsey
 * Stoked Skills
 
 
