@@ -8,7 +8,7 @@ Jovo is the most popular open source framework to build voice experiences that w
 
 ![Jovo Open Collective Overview](./img/jovo-collective-screenshot.jpg "Support and Sponsor Jovo on Open Collective")
 
-And we're happy that were already being supported by well respected companies and individuals in the voice-first industry:
+And we're happy that we're already being supported by well respected companies and individuals in the voice-first industry:
 
 ![Jovo Financial Contributors](./img/jovo-financial-contributors.jpg "Individuals and Companies that contributed to the Jovo Framework Collective")
 
