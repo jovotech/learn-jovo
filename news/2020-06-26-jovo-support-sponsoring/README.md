@@ -1,4 +1,4 @@
-# Support the Jovo Framework with a Monthly Sponsorship
+# Support the Jovo Framework with Monthly Sponsorships on Open Collective
 
 ![Support and Sponsor Jovo on Open Collective](./img/jovo-open-collective.jpg "Jovo News: Introducing the Jovo Open Collective Support Page")
 
