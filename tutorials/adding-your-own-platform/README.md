@@ -16,9 +16,14 @@ In this tutorial, we will go over the whole process of adding a new custom platf
 
 ## Introduction
 
-Adding a new platform to the framework is not a difficult task. But, it takes some time to get it right. Each platform integration consists of a handful of different parts needed for the core functionality. In the tutorial, we will go over the framework's architecture, understand how the framework handles the request & response cycle and which part of it is handled by the platform integration. After that, we will get into more detail and lay out the structure of a platform integration package.
+The Jovo Framework can already be used to build voice experiences that work across platforms like [Alexa](https://www.jovo.tech/marketplace/jovo-platform-alexa), [Google Assistant](https://www.jovo.tech/marketplace/jovo-platform-googleassistant), [Facebook Messenger](https://www.jovo.tech/marketplace/jovo-platform-facebookmessenger), [Samsung Bixby](https://www.jovo.tech/marketplace/jovo-platform-bixby), and more. Additionally, the framework is highly extensible and offers the ability to add more platforms. Reasons for this could be:
 
-While doing all of that, we will take the Twilio Autopilot integration as an example. It fits our purpose perfectly since it is not very complex. We've also only integrated the key features to get the platform working at this point, meaning we won't have to go over to much stuff that is only specific to the Autopilot platform. At some point we *will* talk about stuff that is more advanced and not included with the Autopilot integration, in that case, we will use the Alexa integration as an example.
+* To build your own custom assistant that works with your own [ASR](https://www.jovo.tech/marketplace/tag/asr) and/or [NLU](https://www.jovo.tech/marketplace/tag/nlu)
+* To add a platform that is not supported yet (for example, Slack)
+
+Each Jovo platform integration consists of a handful of different parts needed for the core functionality. In this tutorial, we will go over the framework's architecture, understand how the framework handles the [request & response cycle](https://www.jovo.tech/docs/requests-responses) and which part of it is handled by the platform integration. After that, we will get into more detail and lay out the structure of a platform integration package.
+
+While doing all of that, we will take the Twilio Autopilot integration (find it on the [Jovo Marketplace](https://www.jovo.tech/marketplace/jovo-platform-twilioautopilot) or on [GitHub](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-twilioautopilot)) as an example. It fits our purpose perfectly since it is not very complex. We've also only integrated the key features to get the platform working at this point, meaning we won't have to go over too much stuff that is only specific to the Autopilot platform. At some point we *will* talk about stuff that is more advanced and not included with the Autopilot integration, in that case, we will use the Alexa integration(find it on the [Jovo Marketplace](https://www.jovo.tech/marketplace/jovo-platform-alexa) or on [GitHub](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-alexa)) as an example.
 
 The tutorial will be quite long and you won't be able to remember everything we've gone over here, so it would be best to revisit the tutorial multiple times throughout your endeavor to add a new platform.
 
@@ -27,23 +32,26 @@ Now let's start with the framework's architecture.
 ## Jovo Framework Architecture
 
 The basics: the framework is written in Typescript, uses [Jest](https://github.com/facebook/jest) for its tests and is a monorepo managed using [Lerna](https://github.com/lerna/lerna). It's separated into five parts:
- * `jovo-core`: contains the core functionality of the framework.
- * `jovo-clients`: contains all the client integrations
+ * `jovo-core`: contains the core functionality of the framework
+ * `jovo-clients`: contains all the client integrations (like web)
  * `jovo-platforms`: contains all the platform integrations
  * `jovo-integrations`: contains all the other integrations (e.g. DB, analytics, CMS, etc.)
  * `jovo-framework`: extends the jovo-core package with logging, hosting, and integration capabilities
 
-The framework itself was built around the plugin architecture. There is the core component (jovo-core and jovo-framework)
+Each interaction goes through a [request & response cycle](https://www.jovo.tech/docs/requests-responses), where the Jovo app receives the request from the platform in a JSON format, routes through your logic, and then assembles a response that is sent back to the platform. If you don't have a set structure yet, you can take a look at request and response formats of the [Jovo Core Platform](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-core):
 
-To receive the request and to send out the response takes a handful of steps. First, the request has to be processed. We have to determine from which platform it came, what kind of request it is (LAUNCH, INTENT, END, etc.), and if any inputs were parsed. After that, we load the user's data from the DB and determine the route to the correct handler function. With every piece initialized and processed, the handler function can be executed. There are three pieces each handler function can modify: session data (`$session`), user's DB entry (`$user`), and the response (`$output`). After the handler functions are run, the framework saves the updated user data to the DB, and creates the response using both `$session` and `$output`.
+* [Sample Request JSONs](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-core/sample-request-json/v1)
+* [Sample Response JSONs](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-core/sample-response-json/v1)
 
-Contrary to popular belief, stuff like `ask()`, `showImageCard()`, and all the other calls that modify the response don't do so directly. All of that only modifies the `$output` object, which is then used to by the platform integrations to build the actual response.
+To receive the request and to send out the response takes a handful of steps. First, the request has to be processed. We have to determine from which platform it came, what kind of request it is (LAUNCH, INTENT, END, etc., [learn more about intents here](https://www.jovo.tech/docs/routing/intents)), and if any [inputs](https://www.jovo.tech/docs/routing/input) were parsed. After that, we load the user's data from the DB and determine the route to the correct handler function. With every piece initialized and processed, the handler function can be executed. There are three pieces each handler function can modify: session data (`$session`), user's DB entry (`$user`), and the response (`$output`). After the handler functions are run, the framework saves the updated user data to the DB, and creates the response using both `$session` and `$output`.
+
+Contrary to popular belief, stuff like `ask()`, `showImageCard()`, and all the other calls that modify the response don't do so directly. All of that only modifies the [`$output` object](https://www.jovo.tech/docs/output/object), which is then used to by the platform integrations to build the actual response.
 
 The whole process explained above is handled by a bunch of middlewares that are executed in a particular order. Each middleware provides the possibility for plugins to hook up their own functions which will also be executed.
 
-![Jovo Middleware Execution](img/jovo-middleware-execution.png)
+![Jovo Middleware Execution](./img/jovo-middleware-execution.png)
 
-By using the middleware approach, we allow anybody to easily extend the framework. You can either write packages that hook up into the middlewares or make use of [hooks](https://www.jovo.tech/docs/hooks) to do it directly in your Jovo project. Each middleware has a distinct purpose:
+By using the middleware approach ([learn more here](https://www.jovo.tech/docs/architecture)), we allow anybody to easily extend the framework. You can either write packages that hook up into the middlewares or make use of [hooks](https://www.jovo.tech/docs/hooks) to do it directly in your Jovo project. Each middleware has a distinct purpose:
 
 Middleware | Description
 --- | --- 
@@ -62,7 +70,7 @@ Middleware | Description
 `response` | Response gets sent back to platform.
 `fail` | Errors get handled if applicable.
 
-Depending on the incoming request and the platform, not all of them are necessarily needed. For example, the `asr` middleware is not needed if the request is coming from Alexa.
+Depending on the incoming request and the platform, not all of them are necessarily needed. For example, the `asr` middleware is not needed if the request is coming from Alexa, which already uses built-in speech recognition.
 
 Now that we've covered the architecture of the framework, let's continue with the general architecture of a Jovo package.
 
@@ -82,7 +90,7 @@ tsconfig.json
 tslint.json
 ```
 
-The easiest would be to copy all of the above files (besides the `package-lock.json`)from a different package. After that, we only have to change the `README.md` and `package.json`.
+The easiest would be to copy all of the above files (besides the `package-lock.json`)from a different package. After that, we only have to change the `README.md` and `package.json`. For example, [find the Autopilot package on GitHub](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-twilioautopilot) to see the final result.
 
 ### package.json
 
@@ -103,19 +111,17 @@ First, we have to change the name of the package. We use the following naming pa
   * typedoc
   * typescript
 
-I won't provide a JSON snippet for you to  copy since the versions will be most likely outdated at the time you read this.
+I won't provide a JSON snippet for you to copy since the versions will be most likely outdated at the time you read this. [Take a look at the Twilio Autopilot `package.json` here](https://github.com/jovotech/jovo-framework/blob/master/jovo-platforms/jovo-platform-twilioautopilot/package.json).
 
 Each platform generally uses the following middlewares: `platform.init`, `platform.nlu`, `tts`, `platform.output`, `response`.
 
 ### README
 
-Modifying the README is pretty straight forward. We  change the title and the package name in the code snippet. Later on, we will also add the link to the documentation.
-
-Now that we're done with all of that, it's time to get to business.
+The README will contain all the documentation for the package. [You can find the one for Twilio Autopilot here](https://github.com/jovotech/jovo-framework/blob/master/jovo-platforms/jovo-platform-twilioautopilot/README.md). This README will later be parsed for the [Jovo Marketplace](https://www.jovo.tech/marketplace) if you decide to share your integration with the community.
 
 ## Jovo Platform Package Architecture
 
-Let's start with the `src/` folder where all the logic is stored:
+Let's start with the [`src/` folder](https://github.com/jovotech/jovo-framework/tree/master/jovo-platforms/jovo-platform-twilioautopilot/src) where all the logic is stored:
 
 ```js
 src/
@@ -136,7 +142,7 @@ src/
 ```
 
 
-We will go over each file and its purpose. First, the `Autopilot.ts` file. It's the heart of the integration and implements the class the user later on imports in their Jovo project. It is also the only class that hooks up to the middlewares directly.
+We will go over each file and its purpose. First, the `Autopilot.ts` file. It's the heart of the integration and implements the class the user later on imports into their Jovo project. It is also the only class that hooks up to the middlewares directly.
 
 ```ts
 import {
@@ -723,7 +729,7 @@ export class AutopilotSpeechBuilder extends SpeechBuilder {
 }
 ```
 
-The last two mandatory files in the `core/` folder are `AutopilotRequestBuilder.ts` and `AutopilotResponseBuilder.ts`. Both are needed for the Jovo TestSuite. Let's start with the request builder.
+The last two mandatory files in the `core/` folder are `AutopilotRequestBuilder.ts` and `AutopilotResponseBuilder.ts`. Both are needed for the [Jovo TestSuite](https://www.jovo.tech/docs/unit-testing). Let's start with the request builder.
 
 The `AutopilotRequestBuilder.ts` allows you to create all type of requests in your unit tests:
 
