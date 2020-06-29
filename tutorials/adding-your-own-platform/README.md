@@ -48,14 +48,14 @@ Middleware | Description
 `setup` | First initialization of `app` object with first incoming request. Is executed once as long as `app` is alive
 `request` | Raw JSON request from platform gets processed. Can be used for authentication middlewares.
 `platform.init` | Determines which platform (e.g. `Alexa`, `GoogleAssistant`) sent the request. Initialization of abstracted `jovo` (`this`) object.
-`asr` | TODO
+`asr` | Request gets routed through external ASR. Only used by certain platforms.
 `platform.nlu` | Natural language understanding (NLU) information gets extracted for built-in NLUs (e.g. `Alexa`). Intents and inputs are set.
 `nlu` | Request gets routed through external NLU (e.g. `Dialogflow` standalone). Intents and inputs are set.
 `user.load` | Initialization of user object. User data is retrieved from database.
 `router` | Request and NLU data (intent, input, state) is passed to router. intentMap and inputMap are executed. Handler path is generated. 
 `handler` | Handler logic is executed. Output object is created and finalized.
 `user.save` | User gets finalized, DB operations.
-`tts` | TODO
+`tts` | Output is routed through external TTS. Only used by certain platforms.
 `platform.output` | Platform response JSON gets created from output object.
 `response` | Response gets sent back to platform.
 `fail` | Errors get handled if applicable.
