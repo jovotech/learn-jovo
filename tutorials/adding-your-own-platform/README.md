@@ -1,9 +1,11 @@
-# Add Your Platform to the Jovo Framework
+# Add a Custom Platform to the Jovo Framework
 
-In this tutorial, we will go over the whole process of adding a new platform to the Jovo Framework.
+![Tutorial: Adding your own custom platform to Jovo](./img/jovo-custom-platform.jpg)
+
+In this tutorial, we will go over the whole process of adding a new custom platform integration to the Jovo Framework.
 
 * [Introduction](#introduction)
-* [The Jovo Framework's Architecture](#the-jovo-frameworks-architecture)
+* [Jovo Framework Architecture](#the-jovo-frameworks-architecture)
 * [Jovo Package Architecture](#jovo-package-architecture)
 * [Jovo Platform Package Architecture](#jovo-platform-package-architecture)
   * [Core](#core)
@@ -22,7 +24,7 @@ The tutorial will be quite long and you won't be able to remember everything we'
 
 Now let's start with the framework's architecture.
 
-## The Jovo Framework's Architecture
+## Jovo Framework Architecture
 
 The basics: the framework is written in Typescript, uses [Jest](https://github.com/facebook/jest) for its tests and is a monorepo managed using [Lerna](https://github.com/lerna/lerna). It's separated into five parts:
  * `jovo-core`: contains the core functionality of the framework.
@@ -80,7 +82,7 @@ tsconfig.json
 tslint.json
 ```
 
-The easiest would be to simply to copy all of the above files (besides the `package-lock.json`)from a different package. After that, we only have to change the `README.md` and `package.json`.
+The easiest would be to copy all of the above files (besides the `package-lock.json`)from a different package. After that, we only have to change the `README.md` and `package.json`.
 
 ### package.json
 
@@ -101,13 +103,13 @@ First, we have to change the name of the package. We use the following naming pa
   * typedoc
   * typescript
 
-I won't provide a JSON snippet for you to simply copy since the versions will be most likely outdated at the time you read this.
+I won't provide a JSON snippet for you to  copy since the versions will be most likely outdated at the time you read this.
 
 Each platform generally uses the following middlewares: `platform.init`, `platform.nlu`, `tts`, `platform.output`, `response`.
 
 ### README
 
-Modifying the README is pretty straight forward. We simply change the title and the package name in the code snippet. Later on, we will also add the link to the documentation.
+Modifying the README is pretty straight forward. We  change the title and the package name in the code snippet. Later on, we will also add the link to the documentation.
 
 Now that we're done with all of that, it's time to get to business.
 
@@ -1374,3 +1376,10 @@ Well, we've finally reached the end. As I said at the beginning of the tutorial,
 Technically there is still more to do. We could also add Jovo CLI support to build and deploy platform files but that is a whole post in itself.
 
 If you get stuck along the way, feel free to reach out to us on [Slack](https://www.jovo.tech/slack).
+
+---
+
+Icon by [Eray Zesen](https://www.iconfinder.com/iconsets/eziconic-v1-0) under [Creative Commons (Attribution 3.0 Unported)](http://creativecommons.org/licenses/by/3.0/)
+
+
+<!--[metadata]: { "description": "Learn how to add your own custom voice and chat platform to the Jovo Framework", "author": "kaan-kilic", "tags": "Integrations", "og-image": "https://www.jovo.tech/img/tutorials/adding-your-own-platform/jovo-custom-platform.jpg" }-->
