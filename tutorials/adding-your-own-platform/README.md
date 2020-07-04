@@ -5,18 +5,19 @@
 In this tutorial, we will go over the whole process of adding a new custom platform integration to the Jovo Framework.
 
 * [Introduction](#introduction)
-* [Jovo Framework Architecture](#the-jovo-frameworks-architecture)
+* [Jovo Framework Architecture](#jovo-framework-architecture)
 * [Jovo Package Architecture](#jovo-package-architecture)
 * [Jovo Platform Package Architecture](#jovo-platform-package-architecture)
   * [Core](#core)
   * [Modules](#modules)
   * [index.ts](#indexts)
   * [Tests](#tests)
+* [Development](#development)
 * [Conclusion](#conclusion)
 
 ## Introduction
 
-Adding a new platform to the framework is not a difficult task. But, it takes some time to get it right. Each platform integration consists of a handful of different parts needed for the core functionality. In the tutorial, we will go over the framework's architecture, understand how the framework handles the request & response cycle and which part of it is handled by the platform integration. After that, we will get into more detail and lay out the structure of a platform integration package.
+Adding a new platform to the framework is not a difficult task. But, it takes some time to get it right. Each platform integration consists of a handful of different parts needed for the core functionality. In the tutorial, we will go over the framework's architecture, understand how the framework handles the request & response cycle and which part of it is handled by the platform integration. After that, we will get into more detail and layout the structure of a platform integration package.
 
 While doing all of that, we will take the Twilio Autopilot integration as an example. It fits our purpose perfectly since it is not very complex. We've also only integrated the key features to get the platform working at this point, meaning we won't have to go over to much stuff that is only specific to the Autopilot platform. At some point we *will* talk about stuff that is more advanced and not included with the Autopilot integration, in that case, we will use the Alexa integration as an example.
 
@@ -26,7 +27,7 @@ Now let's start with the framework's architecture.
 
 ## Jovo Framework Architecture
 
-The basics: the framework is written in Typescript, uses [Jest](https://github.com/facebook/jest) for its tests and is a monorepo managed using [Lerna](https://github.com/lerna/lerna). It's separated into five parts:
+The basics: the framework is written in Typescript, uses [Jest](https://github.com/facebook/jest) for its tests, and is a monorepo managed using [Lerna](https://github.com/lerna/lerna). It's separated into five parts:
  * `jovo-core`: contains the core functionality of the framework.
  * `jovo-clients`: contains all the client integrations
  * `jovo-platforms`: contains all the platform integrations
@@ -37,9 +38,9 @@ The framework itself was built around the plugin architecture. There is the core
 
 To receive the request and to send out the response takes a handful of steps. First, the request has to be processed. We have to determine from which platform it came, what kind of request it is (LAUNCH, INTENT, END, etc.), and if any inputs were parsed. After that, we load the user's data from the DB and determine the route to the correct handler function. With every piece initialized and processed, the handler function can be executed. There are three pieces each handler function can modify: session data (`$session`), user's DB entry (`$user`), and the response (`$output`). After the handler functions are run, the framework saves the updated user data to the DB, and creates the response using both `$session` and `$output`.
 
-Contrary to popular belief, stuff like `ask()`, `showImageCard()`, and all the other calls that modify the response don't do so directly. All of that only modifies the `$output` object, which is then used to by the platform integrations to build the actual response.
+Contrary to popular belief, stuff like `ask()`, `showImageCard()`, and all the other calls that modify the response don't do so directly. All of that only modifies the `$output` object, which is then used by the platform integrations to build the actual response.
 
-The whole process explained above is handled by a bunch of middlewares that are executed in a particular order. Each middleware provides the possibility for plugins to hook up their own functions which will also be executed.
+The whole process explained above is handled by a bunch of middlewares that are executed in a particular order. Each middleware provides the possibility for plugins to hook up their functions which will also be executed.
 
 ![Jovo Middleware Execution](img/jovo-middleware-execution.png)
 
@@ -47,13 +48,13 @@ By using the middleware approach, we allow anybody to easily extend the framewor
 
 Middleware | Description
 --- | --- 
-`setup` | First initialization of `app` object with first incoming request. Is executed once as long as `app` is alive
-`request` | Raw JSON request from platform gets processed. Can be used for authentication middlewares.
+`setup` | First initialization of `app` object with the first incoming request. Is executed once as long as `app` is alive
+`request` | Raw JSON request from the platform gets processed. Can be used for authentication middlewares.
 `platform.init` | Determines which platform (e.g. `Alexa`, `GoogleAssistant`) sent the request. Initialization of abstracted `jovo` (`this`) object.
 `asr` | Request gets routed through external ASR. Only used by certain platforms.
 `platform.nlu` | Natural language understanding (NLU) information gets extracted for built-in NLUs (e.g. `Alexa`). Intents and inputs are set.
 `nlu` | Request gets routed through external NLU (e.g. `Dialogflow` standalone). Intents and inputs are set.
-`user.load` | Initialization of user object. User data is retrieved from database.
+`user.load` | Initialization of user object. User data is retrieved from the database.
 `router` | Request and NLU data (intent, input, state) is passed to router. intentMap and inputMap are executed. Handler path is generated. 
 `handler` | Handler logic is executed. Output object is created and finalized.
 `user.save` | User gets finalized, DB operations.
@@ -103,13 +104,42 @@ First, we have to change the name of the package. We use the following naming pa
   * typedoc
   * typescript
 
-I won't provide a JSON snippet for you to  copy since the versions will be most likely outdated at the time you read this.
+I won't provide a JSON snippet for you to copy since the versions will be most likely outdated at the time you read this.
 
-Each platform generally uses the following middlewares: `platform.init`, `platform.nlu`, `tts`, `platform.output`, `response`.
+### tsconfig.json
+
+We use the following tsconfig.json for all of our packages:
+
+```js
+{
+  "compilerOptions": {
+    "lib": [ "es2017" ],
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "strict": true,
+    "declaration": true,
+    "outDir": "./dist/",
+    "target": "es2017",
+    "sourceMap": true
+  },
+  "include": [
+    "**/*.d.ts",
+    "src/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "dist/**/*",
+    "node_modules/**/*",
+    "**/*.spec.ts"
+  ]
+}
+```
 
 ### README
 
-Modifying the README is pretty straight forward. We  change the title and the package name in the code snippet. Later on, we will also add the link to the documentation.
+Modifying the README is pretty straight forward. We change the title and the package name in the code snippet. Later on, we will also add the link to the documentation.
 
 Now that we're done with all of that, it's time to get to business.
 
@@ -299,7 +329,7 @@ export class Autopilot extends Platform<AutopilotRequest, AutopilotResponse> {
 
 ### Core
 
-Next up, the `core/` folder which contains the platform's modules that are user facing, e.g. `$autopilotBot`, `$request`, `$user`, etc.
+Next up, the `core/` folder which contains the platform's modules that are user-facing, e.g. `$autopilotBot`, `$request`, `$user`, etc.
 
 ```js
 core/
@@ -1368,6 +1398,18 @@ describe('test tell', () => {
 > If you're not familiar with the Jovo TestSuite, check out the docs [here](https://www.jovo.tech/docs/unit-testing).
 
 Besides that, it would be best to add additional tests for platform-specific stuff.
+
+## Development
+
+The easiest way to develop your package is to use the jovo-framework repository. To get started, create your package, and add all the necessary configuration files (package.json, tsconfig.json, .npmignore, tslint.json, etc.). After that, run `npm run bootstrap` from the root directory of the repository to bootstrap the packages. After that, you can start developing the integration.
+
+To test your package, first, compile all the packages using `npm run tsc` (again from the root directory). Now, add your integration as a dependency to one of the example projects in the `examples` folder, e.g. the `hello-world` project. 
+
+After that, run `npm run clean` to first delete all the `node_modules` folders and then run `npm run bootstrap` again. This time, the example project will include your local package as well.
+
+You can now go ahead and add the platform to the `hello-world` as you would with any other package and start testing.
+
+Besides that, you have to configure the app on the platform you want to add. Most likely, you will only have to add your webhook URL to receive requests. But, that is specific to the platform.
 
 ## Conclusion
 
