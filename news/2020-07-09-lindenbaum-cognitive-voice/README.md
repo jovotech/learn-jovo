@@ -34,6 +34,7 @@ Thanks a lot to [Kaan Kilic](https://twitter.com/kaankilic45) who put a lot of w
 To make it as easy as possible, we worked on a number of resources to help you build your first phone bot with Lindenbaum Cognitive Voice and Jovo.
 
 Watch the video here:
+
 [![Video: Build Phone Bots and IVRs with Lindenbaum and Jovo](./img/jovo-lindenbaum-video.jpg "youtube-video")](https://www.youtube.com/watch?v=zizPsZWVE8U)
 
 You can also follow the tutorial here: [Build IVRs with Lindenbaum Cognitive Voice and Jovo](https://www.jovo.tech/tutorials/lindenbaum-cognitive-voice).
