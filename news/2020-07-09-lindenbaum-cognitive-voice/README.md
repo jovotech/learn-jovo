@@ -92,4 +92,4 @@ Jovo is the open source voice layer: Build voice experiences for Alexa, Google A
 
 
 
-<!--[metadata]: { "description": "Lindenbaum, leading European provider for smart IVR systems, and Jovo, the most popular open source framework for voice, launch an integration to accelerate phone bot development.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2020-07-09-lindenbaum-cognitive-voice/jovo-lindenbaum.jpg" }-->
+<!--[metadata]: { "description": "Lindenbaum, leading European provider for smart IVR systems, and Jovo, the most popular open source framework for voice, launch an integration to accelerate phone bot development.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2020-07-09-lindenbaum-cognitive-voice/jovo-lindenbaum-cognitive-voice.jpg" }-->
