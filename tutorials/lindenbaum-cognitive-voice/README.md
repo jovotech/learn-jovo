@@ -6,6 +6,10 @@
 
 In this tutorial, we will go over all steps to get your first Lindenbaum project going. We will cover the basics of the platform, add a natural language understanding (NLU) service, prepare the handler, and go over the details on how responses work with the Jovo Lindenbaum integration.
 
+Watch the video here:
+[![Video: Build Phone Bots and IVRs with Lindenbaum and Jovo](./img/jovo-lindenbaum-video.jpg "youtube-video")](https://www.youtube.com/watch?v=zizPsZWVE8U)
+
+
 * [Introduction to Lindenbaum Cognitive Voice](#introduction-to-lindenbaum-cognitive-voice)
 * [How the Jovo Lindenbaum Integration works](#how-the-jovo-lindenbaum-integration-works)
 	* [Requests](#requests)
