@@ -39,7 +39,7 @@ Go into your project directory (or create a new project) and add the following i
 {
     // ...
 
-    spokestackApp: {
+    spokestack: {
         nlu: 'spokestack',
         name: '{{your-assistant-name}}',
         keyId: '{{your-api-key-id}}',
