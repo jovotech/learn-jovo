@@ -15,7 +15,7 @@ When we [launched Jovo v3](https://www.context-first.com/introducing-jovo-v3-the
 Today brings us one step closer to this goal by integrating with Spokestack’s embedded NLU (natural language understanding) solutions for iOS, Android, and React Native. The team at Spokestack has been doing exceptional work with [open source libraries](https://github.com/spokestack) for the major mobile operating systems and we can’t wait to see what our community is building with the integration.
 
 
-Thanks a lot to [Ruben Aegerter](https://twitter.com/kaankilic45) who put a lot of work and passion into building this integration!
+Thanks a lot to [Ruben Aegerter](https://twitter.com/ruben_aeg) who put a lot of work and passion into building this integration!
 
 
 ## Getting Started with Spokestack and Jovo
