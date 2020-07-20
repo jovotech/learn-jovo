@@ -2,9 +2,9 @@
 
 ![Tutorial: Use Amazon Pay with Jovo](./img/alexa-amazon-pay.jpg "Alexa Amazon Pay Tutorial by Kaan Kilic")
 
-Learn how to make money with your Alexa Skills by selling physical goods with Amazon Pay and the Jovo Framework.
+Learn how to make money with your Alexa Skills by selling real-world goods and services with Amazon Pay and the Jovo Framework.
 
-> If you are more interested in selling digital goods, check out our tutorial on [In-Skill-Purchasing (ISP)](https://www.jovo.tech/tutorials/alexa-in-skill-purchasing)
+> If you are more interested in selling premium digital content, check out our tutorial on [In-Skill-Purchasing (ISP)](https://www.jovo.tech/tutorials/alexa-in-skill-purchasing)
 
 * [Introduction](#introduction)
 * [Setting up your Amazon Pay Account](#setting-up-your-amazon-pay-account)
@@ -20,7 +20,7 @@ Learn how to make money with your Alexa Skills by selling physical goods with Am
 
 ## Introduction
 
-If you want to sell physical products, everything from t-shirts to concert tickets, with your Alexa Skill, [Amazon Pay](https://pay.amazon.com/) is your best bet. It allows your user to make purchases using their payment and shipping information on their Amazon account, providing the most seamless user experience.
+If you want to sell real-world goods and services, everything from t-shirts to concert tickets, with your Alexa Skill, [Amazon Pay](https://pay.amazon.com/) is your best bet. It allows your user to make purchases using their payment and shipping information on their Amazon account, providing the most seamless user experience.
 
 The Jovo Framwork offers helper methods and a template that make it easier for you to integrate with Amazon Pay. Learn more here: [Jovo Docs: Amazon Pay](https://www.jovo.tech/marketplace/jovo-platform-alexa/amazon-pay).
 
@@ -55,7 +55,7 @@ $ jovo new <directory> --template alexa/pay --language typescript
 
 ## Setting your Amazon Pay Account
 
-Before you start selling physical goods, you have to register as an Amazon Pay merchant. Simply follow the link for your respective region:
+Before you start selling real-world goods and services, you have to register as an Amazon Pay merchant. Simply follow the link for your respective region:
 
 * In Austria: https://pay.amazon.com/at/merchant
 * In France: https://pay.amazon.fr/merchant
@@ -205,23 +205,11 @@ module.exports = {
 };
 ```
 
-
-Before we can start the transaction in the `YesIntent`, we have to first check whether the user enabled the Amazon Pay permission. If they did not, we send them a permission card:
-
-```js
-YesIntent() {
-  if (this.$alexaSkill.isAmazonPayPermissionDenied()) {
-    this.$alexaSkill.showAskForAmazonPayPermissionCard();
-    return this.tell('Please provide the permission to use Amazon Pay using the card I\'ve send to your Alexa app and restart the skill.');
-  }
-}
-```
-
 Now, lets take a look at the Amazon Pay implementation. The two main components are the **Setup** and **Charge** directive.
 
 ### Setup Directive
 
-The Setup directive is used to get a billing agreement. It's the confirmation that the customer opted in to pay using Amazon Pay.
+The Setup directive is used to get a billing agreement. It's the confirmation that the customer opted in to pay using Amazon Pay. If they haven't given the necessary permissions yet, Alexa will automatically handle it. The user will have the option to either opt in using a voice command or use the permission card sent to their smartphone. 
 
 In our case, the directive will look the following:
 
@@ -266,41 +254,36 @@ That's all we need for both the Setup directive and our `YesIntent`:
 
 ```js
 YesIntent() {
-  if (this.$alexaSkill.isAmazonPayPermissionDenied()) {
-    this.$alexaSkill.showAskForAmazonPayPermissionCard();
-    return this.tell('Please provide the permission to use Amazon Pay using the card I\'ve send to your Alexa app and restart the skill.');
-  } else {
-    const setupDirective = {
-      type: 'Connections.SendRequest',
-      name: 'Setup',
-      payload: {
-        '@type': 'SetupAmazonPayRequest',
+  const setupDirective = {
+    type: 'Connections.SendRequest',
+    name: 'Setup',
+    payload: {
+      '@type': 'SetupAmazonPayRequest',
+      '@version': '2',
+      sellerId: 'ADD YOUR SELLER/MERCHANT ID HERE', // TODO
+      countryOfEstablishment: 'DE', // TODO
+      ledgerCurrency: 'EUR', // TODO
+      checkoutLanguage: 'en_US',
+      billingAgreementAttributes: {
+        '@type': 'BillingAgreementAttributes',
         '@version': '2',
-        sellerId: 'ADD YOUR SELLER/MERCHANT ID HERE', // TODO
-        countryOfEstablishment: 'DE', // TODO
-        ledgerCurrency: 'EUR', // TODO
-        checkoutLanguage: 'en_US',
-        billingAgreementAttributes: {
-          '@type': 'BillingAgreementAttributes',
+        billingAgreementType: 'CustomerInitiatedTransaction', // TODO EU merchants only
+        sellerNote: 'Billing Agreement Seller Note',
+        sellerBillingAgreementAttributes: {
+          '@type': 'SellerBillingAgreementAttributes',
           '@version': '2',
-          billingAgreementType: 'CustomerInitiatedTransaction', // TODO EU merchants only
-          sellerNote: 'Billing Agreement Seller Note',
-          sellerBillingAgreementAttributes: {
-            '@type': 'SellerBillingAgreementAttributes',
-            '@version': '2',
-            storeName: 'Test store name',
-            customInformation: 'Test custom information',
-          }
-        },
-        needAmazonShippingAddress: true,
-        sandboxMode: true,
-        sandboxCustomerEmailId: 'ADD YOUR TEST ACCOUNT\'s EMAIL HERE' // TODO
+          storeName: 'Test store name',
+          customInformation: 'Test custom information',
+        }
       },
-      token: 'token'
-    };
+      needAmazonShippingAddress: true,
+      sandboxMode: true,
+      sandboxCustomerEmailId: 'ADD YOUR TEST ACCOUNT\'s EMAIL HERE' // TODO
+    },
+    token: 'token'
+  };
 
-    return this.$alexaSkill.addDirective(setupDirective);
-  }
+  return this.$alexaSkill.addDirective(setupDirective);
 },
 ```
 
@@ -694,41 +677,36 @@ app.setHandler({
    * User wants to buy a t shirt
    */
   YesIntent() {
-    if (this.$alexaSkill.isAmazonPayPermissionDenied()) {
-      this.$alexaSkill.showAskForAmazonPayPermissionCard();
-      return this.tell('Please provide the permission to use Amazon Pay using the card I\'ve send to your Alexa app and restart the skill.');
-    } else {
-      const setupDirective = {
-        type: 'Connections.SendRequest',
-        name: 'Setup',
-        payload: {
-          '@type': 'SetupAmazonPayRequest',
+    const setupDirective = {
+      type: 'Connections.SendRequest',
+      name: 'Setup',
+      payload: {
+        '@type': 'SetupAmazonPayRequest',
+        '@version': '2',
+        sellerId: 'ADD YOUR SELLER/MERCHANT ID HERE', // TODO
+        countryOfEstablishment: 'DE', // TODO
+        ledgerCurrency: 'EUR', // TODO
+        checkoutLanguage: 'en_US',
+        billingAgreementAttributes: {
+          '@type': 'BillingAgreementAttributes',
           '@version': '2',
-          sellerId: 'ADD YOUR SELLER/MERCHANT ID HERE', // TODO
-          countryOfEstablishment: 'DE', // TODO
-          ledgerCurrency: 'EUR', // TODO
-          checkoutLanguage: 'en_US',
-          billingAgreementAttributes: {
-            '@type': 'BillingAgreementAttributes',
+          billingAgreementType: 'CustomerInitiatedTransaction', // TODO EU merchants only
+          sellerNote: 'Billing Agreement Seller Note',
+          sellerBillingAgreementAttributes: {
+            '@type': 'SellerBillingAgreementAttributes',
             '@version': '2',
-            billingAgreementType: 'CustomerInitiatedTransaction', // TODO EU merchants only
-            sellerNote: 'Billing Agreement Seller Note',
-            sellerBillingAgreementAttributes: {
-              '@type': 'SellerBillingAgreementAttributes',
-              '@version': '2',
-              storeName: 'Test store name',
-              customInformation: 'Test custom information',
-            }
-          },
-          needAmazonShippingAddress: true,
-          sandboxMode: true,
-          sandboxCustomerEmailId: 'ADD YOUR TEST ACCOUNT\'s EMAIL HERE' // TODO
+            storeName: 'Test store name',
+            customInformation: 'Test custom information',
+          }
         },
-        token: 'token'
-      };
+        needAmazonShippingAddress: true,
+        sandboxMode: true,
+        sandboxCustomerEmailId: 'ADD YOUR TEST ACCOUNT\'s EMAIL HERE' // TODO
+      },
+      token: 'token'
+    };
 
-      return this.$alexaSkill.addDirective(setupDirective);
-    }
+    return this.$alexaSkill.addDirective(setupDirective);
   },
 
   /**
