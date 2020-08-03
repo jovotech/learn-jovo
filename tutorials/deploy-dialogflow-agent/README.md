@@ -5,11 +5,10 @@ Still updating your Dialogflow agent manually? In this post you're going to lear
 ### Contents
 
 * [Introduction](#introduction)
-* [Step 1: Updating to the Dialogflow V2 API](#step-1:-updating-to-the-dialogflow-v2-api)
-* [Step 2: Setting up Authentication](#step-2:-setting-up-authentication)
-  * [Step 2.1: Creating a new Service Account](#step-21:-creating-a-new-service-account)
-  * [Step 2.2: Activating the Account with the Cloud SDK](#step-22:-activating-the-account-with-the-cloud-sdk)
-* [Step 3: Deploying your Agent with the Jovo CLI](#step-3:-deploying-your-agent-with-the-jovo-cli)
+* [Step 1: Setting up Authentication](#step-1:-setting-up-authentication)
+  * [Step 1.1: Creating a new Service Account](#step-11:-creating-a-new-service-account)
+  * [Step 1.2: Activating the Account with the Cloud SDK](#step-2:-activating-the-account-with-the-cloud-sdk)
+* [Step 2: Deploying your Agent with the Jovo CLI](#step-2:-deploying-your-agent-with-the-jovo-cli)
 
 ## Introduction
 
@@ -27,25 +26,13 @@ Can become quite annoying, right?
 
 Finally, you can use the command line to update your Dialogflow agent! Since Jovo v1.0, we support the Dialogflow v2 API which allows you to set up an authentication for programmatic deployments. There are a few manual steps we need to do first, so let's get started.
 
-## Step 1: Updating to the Dialogflow V2 API
+## Step 1: Setting up Authentication
 
-First of all, go to the [Dialogflow console](https://console.dialogflow.com/api-client/) and click on the gear icon right next to your agent's name to get to the settings tab:
-
-![](./img/dialogflow_agent_settings.png)
-
-On the bottom of the page you can find the toggle for the V2 API. The system will ask you, if you're sure, that you want to change the API version, since the request and response format will change, but no worries, the Jovo framework can handle both the V1 and V2 API.
-
-![](./img/dialogflow_agent_changeAPI.png)
-
-That's it! Now we need to set up the authentication to be able to access the Dialogflow agent programmatically.
-
-## Step 2: Setting up Authentication
-
-After saving the changes (Dialogflow v2 API), you will find a service account right beneath the project ID: 
+First of all, go to the [Dialogflow console](https://console.dialogflow.com/api-client/) and click on the gear icon right next to your agent's name to get to the settings tab. You will find a service account right beneath the project ID: 
 
 ![Dialogflow Service Account](./img/dialogflow_agent_service_account.png)
 
-### Step 2.1: Creating a new Service Account
+### Step 1.1: Creating a new Service Account
 
 It will lead us to the Google Cloud Platform, where we will create a new service account using the button at the top of the page:
 
@@ -63,7 +50,7 @@ After that we create a new `JSON` key:
 
 Last but not least move the key file to our project's root folder.
 
-### Step 2.2: Activating the Account with the Cloud SDK
+### Step 1.2: Activating the Account with the Cloud SDK
 
 ![](./img/google-cloud-sdk.jpg)
 
@@ -71,7 +58,7 @@ The Jovo CLI uses the Google Cloud SDK to access Dialogflow through projects on 
 
 Install the SDK and initialize it using the [quickstart guide](https://cloud.google.com/sdk/docs/quickstarts) from Google.
 
-## Step 3: Deploying your Agent with the Jovo CLI
+## Step 2: Deploying your Agent with the Jovo CLI
 
 
 After that add both the `projectId` of your Dialogflow agent and the path to the `keyFile` to your project's `project.js` file:
