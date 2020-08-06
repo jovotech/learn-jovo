@@ -1,6 +1,8 @@
-# WhatsApp Getting Started
+# Build your first WhatsApp Bot with Jovo and Twilio Autopilot
 
-In this tutorial we will build a small restaurant chatbot that can be accessed using WhatApp with the help of Twilio Autopilot.
+![Tutorial: Build your first WhatsApp Bot with Jovo and Twilio Autopilot](./img/whatsapp-bots-jovo-twilio.jpg "WhatsApp Hello World Tutorial by Kaan Kilic")
+
+In this tutorial, we will build a small restaurant chatbot that can be accessed using WhatApp with the help of Twilio Autopilot.
 
 * [Introduction](#introduction)
 * [Create your Jovo Project](#create-your-jovo-project)
@@ -10,17 +12,21 @@ In this tutorial we will build a small restaurant chatbot that can be accessed u
 
 ## Introduction
 
-WhatsApp is the biggest messaging platform out there. With the launch of WhatsApp Business back in 2018 businesses are now able to connect with customers as well. Most of the customers requests tend to be questions about the business and its products. A job that fits a chatbot perfectly. In this short tutorial, we will build a chatbot for a fictional kebab restaurant that can handle simple questions like, opening hours or the address of the shop.
+WhatsApp is the biggest messaging platform out there. With the launch of WhatsApp Business back in 2018, businesses are now able to connect with customers as well. Most of the customers' requests tend to be questions about the business and its products. A job that fits a chatbot perfectly. In this short tutorial, we will build a chatbot for a fictional kebab restaurant that can handle simple questions like, opening hours or the address of the shop.
 
-But, the focus of the tutorial is not the bot itself, but rather the deployment to WhatsApp. Sadly the WhatsApp Business API is restricted. You can only access it using one of Facebook's many partners. In this case we will use Twilio and its Autopilot platform.
+But, the focus of the tutorial is not the bot itself, but rather the deployment to WhatsApp. Currently, the WhatsApp Business API is only accessible through one of Facebook's API partners. In this case we will use Twilio and its [Autopilot platform](https://www.jovo.tech/marketplace/jovo-platform-twilioautopilot).
 
-> Note: We will use Twilio's WhatsApp Sandbox to build our bot. To deploy to production we would need a WhatsApp Business Profile as well as [request access to the WhatsApp Business API for our Twilio number](https://www.twilio.com/whatsapp/request-access). Since that process is well documented by Twilio and not really part of the deployment with Jovo, we will skip it in this tutorial. The switch from Sandbox to production is seamless so we're not loosing out on much anyways.
+> Note: We will use Twilio's WhatsApp Sandbox to build our bot. To learn more about deploying to production, take a look at the [official Twilio Docs](https://www.twilio.com/whatsapp/request-access).
 
 ## Create your Jovo Project 
 
 Let's get started by creating a new Jovo project. We will use the `autopilot` template which has the platform package already installed and initialized:
 
 ```sh
+# Install Jovo CLI
+$ npm install -g jovo-cli
+
+# Create new Jovo project into a folder called "my-whatsapp-bot"
 $ jovo new my-whatsapp-bot --template autopilot
 ```
 
@@ -28,12 +34,15 @@ After that, we move to the project's directory and start the Jovo Webhook:
 
 ```sh
 $ cd my-whatsapp-bot
+
 $ jovo run
 ```
 
 The console should print out the Webhook's URL. Copy that. We will need it in a minute.
 
 ## Create your Twilio Autopilot Bot
+
+> Related tutorial: [Build your first Twilio Autopilot IVR with Jovo](https://www.jovo.tech/tutorials/twilio-autopilot-hello-world).
 
 Now, we open up [Twilio](https://www.twilio.com/console). On there, we select the Autopilot from the list of products:
 
@@ -54,9 +63,9 @@ Can I come by now
 Are you closed right now
 When do you close
 Are you open on the weekends
-Are you guys open right now
+Are you open right now
 opening hours
-When do you guys open
+When do you open
 What are your opening hours
 ```
 
@@ -67,7 +76,7 @@ Second, an `AddressIntent` which gets triggered when people ask for the shop's a
 ```
 location
 address
-where are you guys located at
+where are you located at
 whats the address of your shop
 where is your shop at
 what's the address
@@ -163,4 +172,4 @@ Besides that, you could look into other response formats, for example [images](h
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
-<!--[metadata]: { "description": "Learn how to get a bot running on WhatsApp using Twilio Autopilot and Jovo", "author": "kaan-kilic", "tags": "Twilio Autopilot, Getting Started, WhatsApp", "og-image": "" }-->
+<!--[metadata]: { "description": "Learn how to get a bot running on WhatsApp using Twilio Autopilot and Jovo", "author": "kaan-kilic", "tags": "Twilio Autopilot, Getting Started, WhatsApp", "og-image": "https://www.jovo.tech/img/tutorials/whatsapp-getting-started/whatsapp-bots-jovo-twilio.jpg"  }-->
