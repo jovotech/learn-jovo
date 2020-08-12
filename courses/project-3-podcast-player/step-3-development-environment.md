@@ -87,7 +87,7 @@ We will use the Dialogflow `zip` import feature to get started quickly. To creat
 $ jovo build
 
 # Create deployment package
-$ jovo deploy -p googleaction
+$ jovo deploy -p googleAction
 ```
 
 This will create a `dialogflow_agent.zip` file in the `platforms/googleAction` folder. To use it, create a new Dialogflow agent using their [console](https://console.dialogflow.com).
