@@ -17,24 +17,26 @@ Still updating your Dialogflow agent manually? In this post you're going to lear
 Making changes to Dialogflow (the natural language understanding platform that is used for Google Assistant projects in Jovo) can be tedious if you want to keep it up to date with the [Jovo Language Model](https://www.jovo.tech/framework/docs/model). Usually, you have to do one of the following in the [Dialogflow Console](https://console.dialogflow.com/):
 
 * Update the language model manually
-* Use the _dialogflow_agent.zip_ file created with [jovo deploy](https://www.jovo.tech/framework/docs/cli#jovo-deploy) to RESTORE your existing Dialogflow agent in the preferences:
-
+* Create the _dialogflow_agent.zip_ file with [jovo deploy jovo deploy --platform googleAction](https://www.jovo.tech/framework/docs/cli#jovo-deploy)
+* Restore the _dialogflow_agent.zip_ to your existing Dialogflow agent in the preferences:
 
 ![](./img/dialogflow-restore-1024x343.jpg)
 
+* Check the 'Validation' tab of the agent for any problems
+
 Can become quite annoying, right?
 
-Finally, you can use the command line to update your Dialogflow agent! Since Jovo v1.0, we support the Dialogflow v2 API which allows you to set up an authentication for programmatic deployments. There are a few manual steps we need to do first, so let's get started.
+Finally, you can use the command line to update your Dialogflow agent automatically! Since Jovo v1.0, we support the Dialogflow v2 API which allows you to set up an authentication for programmatic deployments. There are a few manual steps we need to do first, so let's get started.
 
 ## Step 1: Setting up Authentication
 
-First of all, go to the [Dialogflow console](https://console.dialogflow.com/api-client/) and click on the gear icon right next to your agent's name to get to the settings tab. You will find a service account right beneath the project ID: 
+First of all, go to the [Dialogflow console](https://console.dialogflow.com/api-client/) and click on the gear icon right next to your agent's name to get to the General tab. You will find a service account right beneath the project ID: 
 
 ![Dialogflow Service Account](./img/dialogflow_agent_service_account.png)
 
 ### Step 1.1: Creating a new Service Account
 
-It will lead us to the Google Cloud Platform, where we will create a new service account using the button at the top of the page:
+Click the service account link, it will lead us to the Google Cloud Platform, where we will create a new service account using the button at the top of the page:
 
 ![Google Cloud IAM](./img/google_cloud_platform_IAM_landing.png)
 
@@ -44,11 +46,11 @@ We select `Dialogflow API Admin` as the role:
 
 ![Google Cloud IAM Role](img/google_cloud_platform_IAM_role.png)
 
-After that we create a new `JSON` key:
+After creating the service account, we create a new `JSON` key:
 
 ![Google Cloud IAM Key](img/google_cloud_platform_IAM_key.png)
 
-Last but not least move the key file to our project's root folder.
+Last but not least move the saved key file to our project's root folder.
 
 ### Step 1.2: Activating the Account with the Cloud SDK
 
@@ -87,6 +89,8 @@ jovo build -p googleAction --deploy
 The result should look like this:
 
 ```text
+...
+√ Deploying project...
    √ Deploying Google Action
      √ Creating file /googleAction/dialogflow_agent.zip
        Language model: en-US
@@ -94,8 +98,11 @@ The result should look like this:
      √ Uploading and restoring agent for project test-73d3a
      √ Training started
 
-  Deployment complete
+  Build completed
 ```
+
+To be sure you may want to check the 'Validation' tab in Dialogflow.
+
 
 **Any questions? You can reach us on [Twitter](https://twitter.com/jovotech) or [Slack](https://www.jovo.tech/slack).**
 
