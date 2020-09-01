@@ -134,7 +134,7 @@ this.tell('Enjoy');
 
 As you can see there’s a slight difference between the Alexa function and the Google one. We don’t have to specify the `offset` or a `token`, but a `title`. I will explain the reason for that later on.
 
-But, there's still a small issue. We don't want to use both interfaces with every request, because that would cause an error, so we have to first check from which platform the request is being sent. For this. we can use the `isAlexaSkill` or `isGoogleAction` helpfer methods:
+But, there's still a small issue. We don't want to use both interfaces with every request, because that would cause an error, so we have to first check from which platform the request is being sent. For this. we can use the `isAlexaSkill` or `isGoogleAction` helper methods:
 
 ```javascript
 // src/app.js
