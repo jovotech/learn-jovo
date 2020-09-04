@@ -26,7 +26,7 @@ There are two alternatives to add the intent:
 
 ### Add it manually in Dialogflow
 
-You can add it by going to the [Dialogflow Console](https://console.dialogflow.com) and creating a new intent. Select "Events" and type in `actions_intent_CANCEL`. No need to add any training phrases.
+You can add it by going to the [Dialogflow Console](https://dialogflow.cloud.google.com/) and creating a new intent. Select "Events" and type in `actions_intent_CANCEL`. No need to add any training phrases.
 
 ![Add actions_intent_CANCEL to Dialogflow](./img/dialogflow-actions-intent-cancel.png "Add actions_intent_CANCEL to Dialogflow")
 

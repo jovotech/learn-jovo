@@ -122,7 +122,7 @@ Choose the provider you want to enable and the data you want to access. There is
 
 ### 2. Google Action Setup
 
-On the Google Assistant you have two options to enable Account Linking. Either you prompt the user to link their account the moment they reach a specific intent, which is done in the [Dialogflow](https://dialogflow.com/) developer console, or you decide when to ask your user to login in your own code.
+On the Google Assistant you have two options to enable Account Linking. Either you prompt the user to link their account the moment they reach a specific intent, which is done in the [Dialogflow ES](https://dialogflow.cloud.google.com/) developer console, or you decide when to ask your user to login in your own code.
 
 #### Dialogflow
 

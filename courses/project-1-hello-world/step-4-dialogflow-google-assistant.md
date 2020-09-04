@@ -9,11 +9,11 @@ In this lecture, you will learn how to create an agent on Dialogflow for the lan
 
 ## Create an Dialogflow Agent
 
-A [Dialogflow agent](https://dialogflow.com/docs/agents) offers a set of modules and integrations to add natural language understanding (NLU) to your product. Although it's owned by Google, it is platform agnostic and works for other channels like Facebook Messenger, as well.
+A [Dialogflow agent](https://cloud.google.com/dialogflow/es/docs/agents-overview) offers a set of modules and integrations to add natural language understanding (NLU) to your product. Although it's owned by Google, it is platform agnostic and works for other channels like Facebook Messenger, as well.
 
 We're going to add our own agent now. Let's get started:
 
-Go to [dialogflow.com](https://dialogflow.com/) and click "Go to console" on the upper right:
+Go to [Dialogflow ES](https://dialogflow.cloud.google.com/) and click "Go to console" on the upper right:
 
 ![](./img/dialogflow_landing_page.png)
 

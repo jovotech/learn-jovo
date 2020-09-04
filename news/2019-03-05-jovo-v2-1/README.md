@@ -64,7 +64,7 @@ New experimental feature: By using [Dialogflow Integrations](https://www.jovo.te
 
 Right now, this is an alpha release, so you will only be able to create text responses. Please note that, although they are similar, text based conversational experiences can differ from voice applications. Currently, there is no real difference between `tell` and `ask`, for example. We will work towards a clearer designed abstraction in upcoming releases.
 
-However, you can already add [custom payloads](https://dialogflow.com/docs/intents/rich-messages#custom_payload) to the Dialogflow response with `this.$dialogflowAgent.setCustomPayload`, which can be used for platform specific output.
+However, you can already add [custom payloads](https://cloud.google.com/dialogflow/es/docs/intents-rich-messages#custom) to the Dialogflow response with `this.$dialogflowAgent.setCustomPayload`, which can be used for platform specific output.
 
 For example, you can add [Facebook Messenger Quick Replies](https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies) like this:
 

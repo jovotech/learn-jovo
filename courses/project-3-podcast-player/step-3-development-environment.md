@@ -90,7 +90,7 @@ $ jovo build
 $ jovo deploy -p googleAction
 ```
 
-This will create a `dialogflow_agent.zip` file in the `platforms/googleAction` folder. To use it, create a new Dialogflow agent using their [console](https://console.dialogflow.com).
+This will create a `dialogflow_agent.zip` file in the `platforms/googleAction` folder. To use it, create a new Dialogflow agent using their [console](https://dialogflow.cloud.google.com/).
 
 There, go to **Settings**, open the **Export and Import**, and click ***Restore from ZIP***:
 

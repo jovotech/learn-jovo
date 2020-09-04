@@ -207,7 +207,7 @@ If you want to test the interaction with Google Assistant, you need to do the fo
 
 We've done these steps in more detail in [Project 1 Step 6: Hello World! > Testing Your Voice App > Google Assistant](https://www.jovo.tech/courses/project-1-hello-world/step-6-hello-world#google-assistant).
 
-Open your agent in the [Dialogflow Console](https://console.dialogflow.com), go to the **Fulfillment** section and paste the webhook you created above into the URL field:
+Open your agent in the [Dialogflow Console](https://dialogflow.cloud.google.com/), go to the **Fulfillment** section and paste the webhook you created above into the URL field:
 
 ![](./img/dialogflow_fulfillment-2.png)
 

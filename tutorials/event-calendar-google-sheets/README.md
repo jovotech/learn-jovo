@@ -54,7 +54,7 @@ For the interaction with the event calendar voice app, we need three intents for
 * `EventInfoIntent`: Allow users to ask for the next event
 * `YesIntent` and `NoIntent`: As response to the question they want to hear another event
 
-We could either create the language model on each of the platforms ([Alexa Developer Console](https://developer.amazon.com/) for the Alexa Skill, [Dialogflow](https://dialogflow.com/) for the Google Action). A faster way is to use the [Jovo Language Model](https://www.jovo.tech/docs/model), which can be translated into an Alexa Interaction Model and a Dialogflow Agent.
+We could either create the language model on each of the platforms ([Alexa Developer Console](https://developer.amazon.com/) for the Alexa Skill, [Dialogflow ES](https://dialogflow.cloud.google.com/) for the Google Action). A faster way is to use the [Jovo Model](https://www.jovo.tech/marketplace/jovo-model), which can be translated into an Alexa Interaction Model and a Dialogflow Agent.
 
 Inside our `models` folder, we can for example add an `en-US.json` file with our language model, that would look like this:
 

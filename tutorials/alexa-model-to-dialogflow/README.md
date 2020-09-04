@@ -27,7 +27,7 @@ Watch the video:
 
 > [Learn more about the Jovo Language Model here](https://www.jovo.tech/docs/model).
 
-Creating and maintaining language models for both Alexa Skills and Google Actions can be a timeconsuming task. Fortunately, Jovo offers an abstraction for language model definitions with the [Jovo Language Model](https://www.jovo.tech/docs/model). The Jovo Language Model allows you to specify language model documents that can be translated into both an Alexa Interaction Model and a [Dialogflow](https://dialogflow.com/) Agent.
+Creating and maintaining language models for both Alexa Skills and Google Actions can be a timeconsuming task. Fortunately, Jovo offers an abstraction for language model definitions with the [Jovo Language Model](https://www.jovo.tech/docs/model). The Jovo Language Model allows you to specify language model documents that can be translated into both an Alexa Interaction Model and a [Dialogflow](https://dialogflow.cloud.google.com/) Agent.
 
 Starting with the Jovo Language Model right away sounds like a great idea, however, many people usually get started with one platform, and then find themselves having difficulties converting from one to the other platform. For example, if you get started with an Alexa Skill, it can be tedious to create a Dialogflow Agent with essentially the same information, by hand.
 
@@ -259,7 +259,7 @@ If we take a look at the `StateName` input in the `AnswerIntent`, we can see tha
 
 This means: The slot `StateName` uses the built-in slot type `AMAZON.US_STATE` from Amazon. Although these built-in slots are helpful, they can't be used across platforms.
 
-Dialogflow offers a similar concept: System Entities. [You can find a full list of all available system entities here](https://dialogflow.com/docs/reference/system-entities).
+Dialogflow offers a similar concept: System Entities. [You can find a full list of all available system entities here](https://cloud.google.com/dialogflow/es/docs/entities-system).
 
 For this input, the entity `@sys.geo-state` seems appropriate. You can add it by adding a `dialogflow` element to the input:
 

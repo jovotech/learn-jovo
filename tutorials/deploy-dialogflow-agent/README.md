@@ -14,7 +14,7 @@ Still updating your Dialogflow agent manually? In this post you're going to lear
 
 ![](./img/dialogflow-window2-1.png)
  
-Making changes to Dialogflow (the natural language understanding platform that is used for Google Assistant projects in Jovo) can be tedious if you want to keep it up to date with the [Jovo Language Model](https://www.jovo.tech/framework/docs/model). Usually, you have to do one of the following in the [Dialogflow Console](https://console.dialogflow.com/):
+Making changes to Dialogflow (the natural language understanding platform that is used for Google Assistant projects in Jovo) can be tedious if you want to keep it up to date with the [Jovo Model](https://www.jovo.tech/marketplace/jovo-model). Usually, you have to do one of the following in the [Dialogflow Console](https://dialogflow.cloud.google.com/):
 
 * Update the language model manually
 * Create the _dialogflow_agent.zip_ file with [jovo deploy jovo deploy --platform googleAction](https://www.jovo.tech/framework/docs/cli#jovo-deploy)
@@ -30,7 +30,7 @@ Finally, you can use the command line to update your Dialogflow agent automatica
 
 ## Step 1: Setting up Authentication
 
-First of all, go to the [Dialogflow console](https://console.dialogflow.com/api-client/) and click on the gear icon right next to your agent's name to get to the General tab. You will find a service account right beneath the project ID: 
+First of all, go to the [Dialogflow console](https://dialogflow.cloud.google.com/) and click on the gear icon right next to your agent's name to get to the General tab. You will find a service account right beneath the project ID: 
 
 ![Dialogflow Service Account](./img/dialogflow_agent_service_account.png)
 

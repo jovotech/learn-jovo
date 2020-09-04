@@ -110,7 +110,7 @@ You can now either go to the [next step](#next-steps) or take a look how a langu
 
 Creating a language model for Google Assistant is a little different compared to Alexa, where it's done all on one platform, the Amazon Developer Portal. As we learned in [Project 1 Step 4: Create a Project on Dialogflow and Google Assistant](https://www.jovo.tech/courses/project-1-hello-world/step-4-dialogflow-google-assistant), it is common to use Dialogflow to do the natural language understanding for Google Assistant, and use the built-in integration to connect both.
 
-Let's go to the [Dialogflow Console](https://console.dialogflow.com) and create a new agent called AdventureGame. This is what the screen of the agent including default intents looks like:
+Let's go to the [Dialogflow Console](https://dialogflow.cloud.google.com/) and create a new agent called AdventureGame. This is what the screen of the agent including default intents looks like:
 
 ![](./img/dialogflow_agent_created.png)
 

@@ -196,7 +196,7 @@ That's it. You can now deploy your Alexa Skill to the developer portal:
 $ jovo deploy
 ```
 
-Deploying to Dialogflow takes a little bit more work, since you have to go through a bigger [authentication process](https://dialogflow.com/docs/reference/v2-auth-setup). But the Jovo CLI offers you a workaround, by letting you export your Dialogflow agent as a zip file, which you can then import at the Dialogflow website. After running `$ jovo deploy`, you should be able to find the zip file under `/platforms/googleAction/` folder.
+Deploying to Dialogflow takes a little bit more work, since you have to go through a bigger [authentication process](https://cloud.google.com/dialogflow/es/docs/quick/setup#auth). But the Jovo CLI offers you a workaround, by letting you export your Dialogflow agent as a zip file, which you can then import at the Dialogflow website. After running `jovo deploy`, you should be able to find the zip file under `/platforms/googleAction/` folder.
 
 To import the zip you have to go an existing agents (create a new one real quick) settings page and select the **Export and Import** tab: 
 

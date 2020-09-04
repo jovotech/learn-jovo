@@ -30,7 +30,7 @@ In this section, you will learn more about the architecture of Google Assistant 
 
 While it's the hardware device that most users see, **Google Home** is not the name of the assistant you can develop actions for (wich sometimes causes confusion when people talk about "_building an Action for Google Home_"). The artificial intelligence you can hear speaking from inside the smart speaker is called **Google Assistant** (which is now also available on Android and iOS smartphones). **Actions on Google** are the applications that can be built on top of the Google Assistant platform.
 
-The main difference between the architecture of building Google Actions and [Alexa Skills](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/) is that for Google you need an additional layer to handle the natural language. Most Action developers use [Dialogflow](https://dialogflow.com/) to configure their application's language model:
+The main difference between the architecture of building Google Actions and [Alexa Skills](https://www.jovo.tech/marketplace/jovo-platform-alexa/) is that for Google you need an additional layer to handle the natural language. Most Action developers use [Dialogflow ES](https://dialogflow.cloud.google.com/) to configure their application's language model:
 
 ![](./img/google-assistant-api-ai.png)
 
@@ -65,7 +65,7 @@ In order to make the Action work, we need to configure it on both **Dialogflow**
 
 ## Create an Agent on Dialogflow
 
-An [Dialogflow agent](https://dialogflow.com/docs/agents) offers a set of modules and integrations to add natural language understanding (NLU) to your product. Although it's owned by Google, it's platform agnostic and works for other channels like Facebook Messenger, as well.
+An [Dialogflow agent](https://cloud.google.com/dialogflow/es/docs/agents-overview) offers a set of modules and integrations to add natural language understanding (NLU) to your product. Although it's owned by Google, it's platform agnostic and works for other channels like Facebook Messenger, as well.
 
 We're going to add our own agent now. Let's get started:
 
@@ -74,7 +74,7 @@ We're going to add our own agent now. Let's get started:
 
 ### Log in with your Google Account
 
-Go to [dialogflow.com](https://dialogflow.com/) and click "Go to console" on the upper right:
+Go to [Dialogflow ES](https://dialogflow.cloud.google.com/) and click "Go to console" on the upper right:
 
 ![](./img/dialogflow_landing_page.png)
 
