@@ -57,7 +57,7 @@ This year, the need to provide automated customer support on the phone has been 
 
 There are lots improvements that we've added in the last few months. Some of them include:
 
-* Various CLI improvements, [find the changelog here](https://www.jovo.tech/marketplace/jovo-cli)
+* Various CLI improvements, [find the changelog here](hhttps://github.com/jovotech/jovo-cli/blob/master/CHANGELOG.md)
 * [Improvements to the logging JSON output](https://github.com/jovotech/jovo-framework/pull/827)
 * [Google Analytics improvements](https://github.com/jovotech/jovo-framework/pull/804) by community member [André Heraucourt](https://github.com/freiSMS)
 * [SSML support for Bixby](https://github.com/jovotech/jovo-framework/pull/799)
