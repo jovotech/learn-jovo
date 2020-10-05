@@ -75,7 +75,7 @@ We also specify the locale as `en` because the Google Action Builder doesn't use
 
 ```sh
 # Create new Jovo project
-$ jovo new my-google-action --template google-conversational-actions-helloworld —-locale en
+$ jovo new my-google-action --template google-conversational-actions-helloworld --locale en
 
 # Go into newly created directory
 $ cd my-google-action
