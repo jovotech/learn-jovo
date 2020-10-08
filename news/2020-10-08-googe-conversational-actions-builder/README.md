@@ -35,6 +35,6 @@ There are several ways how you can build your first Google Conversational Action
 * Download the template: [Google Conversational Actions Jovo Template](https://github.com/jovotech/jovo-templates/tree/master/google/conversational-actions-hello-world)
 * Take a look at example code: [Google Conversational Action examples](https://github.com/jovotech/jovo-framework/tree/master/examples/javascript/02_googleassistantconv)
 
-
+Thanks a lot for the hard work [Alex](https://twitter.com/alexswetlow) and [Ruben](https://twitter.com/ruben_aeg)!
 
 <!--[metadata]: { "description": "Learn more about the Google Conversational Action and Actions Builder integration for the Jovo Framework.", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2020-10-08-google-conversational-actions-builder/google-actions-builder-jovo.jpg" }-->
