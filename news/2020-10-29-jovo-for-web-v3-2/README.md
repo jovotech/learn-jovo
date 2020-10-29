@@ -3,7 +3,7 @@
 ![Jovo for Web Open Source Voice and Chat](./img/jovo-for-web.jpg "Introducing Jovo for Web: Customizable Voice and Chat for the Browser")
 
 > [**Find us on Product Hunt!**](https://www.producthunt.com/posts/jovo-for-web)
-> 
+
 With the release `v3.2` of the [Jovo Framework](https://github.com/jovotech/jovo-framework), we're excited to present a completely revamped web integration.
 
 *Jovo for Web* allows you to build fully customizable voice and chat apps that work in the browser. And it even comes with 4 open source templates (gifs below!) that help you get started.
@@ -161,4 +161,4 @@ Community and core contributors:
 And to everyone else who helped with ideas and feature requests in the [Jovo Slack](https://www.jovo.tech/slack) and [Jovo Community Forum](https://community.jovo.tech/)!
 
 
-<!--[metadata]: { "description": "Jovo for Web allows you to build fully customizable voice and chat apps that work in the browser using the Jovo Framework and Vue.js", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2020-19-29-jovo-vor-web-v3-2/jovo-for-web.jpg" }-->
+<!--[metadata]: { "description": "Jovo for Web allows you to build fully customizable voice and chat apps that work in the browser using the Jovo Framework and Vue.js", "author": "jan-koenig", "tags": "Releases", "og-image": "https://www.jovo.tech/img/news/2020-10-29-jovo-for-web-v3-2/jovo-for-web.jpg" }-->
