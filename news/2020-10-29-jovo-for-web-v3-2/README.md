@@ -2,8 +2,6 @@
 
 ![Jovo for Web Open Source Voice and Chat](./img/jovo-for-web.jpg "Introducing Jovo for Web: Customizable Voice and Chat for the Browser")
 
-> [**Find us on Product Hunt!**](https://www.producthunt.com/posts/jovo-for-web)
-
 With the release `v3.2` of the [Jovo Framework](https://github.com/jovotech/jovo-framework), we're excited to present a completely revamped web integration.
 
 *Jovo for Web* allows you to build fully customizable voice and chat apps that work in the browser. And it even comes with 4 open source templates (gifs below!) that help you get started.
@@ -141,7 +139,7 @@ $ jovo update
 
 ### Breaking Changes
 
-The "Jovo Web Clent" and "Jovo Web Platform" were completely refactored for this release.
+The "Jovo Web Client" and "Jovo Web Platform" were completely refactored for this release.
 
 
 ## A Big Thank You
