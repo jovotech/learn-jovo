@@ -11,6 +11,9 @@ Learn how to use the new Google Conversational Actions Builder and Jovo to build
   - [Deploy Model to Actions Builder](#deploy-model-to-actions-builder)
   - [Run and Test Code](#run-and-test-code)
 
+> New to Jovo? [Take a look at our GitHub repository](https://github.com/jovotech/jovo-framework) (and leave a star if you like what we're doing)
+
+
 ## Introduction
 
 ![Difference between Google Actions with Dialogflow and Action Builder](./img/google-actions-dialogflow.jpg "Previous Google Actions used Dialogflow as a mddle layer between Google Assistant and Jovo")
