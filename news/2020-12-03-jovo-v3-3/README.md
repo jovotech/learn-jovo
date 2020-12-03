@@ -5,6 +5,7 @@
 We just released `v3.3`! This update comes with many bugfixes and improvements, as well as a new integration for PostgreSQL and an abstraction for quick replies.
 
 > By the way, this is a smaller release while we're heavily working on Jovo `v4`. [Join the discussion](https://community.jovo.tech/t/jovo-v4-feature-request-thread/1389/9).
+
 - [New Features and Integrations](#new-features-and-integrations)
   - [PostgreSQL Integration](#postgresql-integration)
   - [Abstracted Quick Replies](#abstracted-quick-replies)
