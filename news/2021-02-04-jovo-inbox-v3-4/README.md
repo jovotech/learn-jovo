@@ -69,7 +69,7 @@ APL document taken from [apl.ninja](https://apl.ninja/DanielMittendorf/EMjmC6bU)
 
 For a better overview during QA, you can even upload profile images and edit the name of a user to easily see who on the team has been testing the app.
 
-![Jovo Inbox Change Avatar](./img/jovo-inbox-change-avatar.jpg "A screenshot showing how an avatar can be changed in the Jovo Inbox")
+![Jovo Inbox Change Avatar](./img/jovo-inbox-avatar.jpg "A screenshot showing how an avatar can be changed in the Jovo Inbox")
 
 This makes it a little easier to coordinate (and friendly):
 
