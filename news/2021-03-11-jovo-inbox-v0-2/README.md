@@ -1,4 +1,4 @@
-# Jovo Inbox v0.2
+# Jovo Inbox v0.2: More Platforms, Filters, and more
 
 ![Jovo Inbox v0.2](./img/jovo-inbox-v0-2.jpg "New features include: more platforms, new filters, APL-A support, sessions overview")
 
