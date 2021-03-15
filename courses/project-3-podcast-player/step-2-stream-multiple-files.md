@@ -95,7 +95,7 @@ Since our goal in this step is to play another file after the first one finished
 // src/app.js
 
 'AlexaSkill.PlaybackNearlyFinished'() {
-    const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55';
+    const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55.mp3';
 
     this.$alexaSkill.$audioPlayer
         .setExpectedPreviousToken('token')
@@ -130,7 +130,7 @@ app.setHandler({
         },
 
         'AlexaSkill.PlaybackNearlyFinished'() {
-            const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55';
+            const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55.mp3';
 
             this.$alexaSkill.$audioPlayer
                 .setExpectedPreviousToken('token')
@@ -188,7 +188,7 @@ AUDIOPLAYER: {
     // Other Alexa intents
 
     'GoogleAction.Finished': function() {
-        const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55';
+        const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55.mp3';
 
         this.$googleAction.$mediaResponse.play(secondEpisode, 'Episode 55');
         this.tell('Enjoy');
@@ -234,7 +234,7 @@ AUDIOPLAYER: {
     // Other Alexa intents
 
     'GoogleAction.Finished'() {
-        const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55';
+        const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55.mp3';
 
         this.$googleAction.$mediaResponse.play(secondEpisode, 'Episode 55');
         this.$googleAction.showSuggestionChips(['pause', 'start over']);
@@ -272,7 +272,7 @@ app.setHandler({
         },
 
         'AlexaSkill.PlaybackNearlyFinished'() {
-            const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55';
+            const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55.mp3';
 
             this.$alexaSkill.$audioPlayer
                 .setExpectedPreviousToken('token')
@@ -292,7 +292,7 @@ app.setHandler({
         },
 
         'GoogleAction.Finished'() {
-            const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55';
+            const secondEpisode = 'https://traffic.libsyn.com/voicebot/John_Kelvie_CEO_of_Bespoken_Talks_Voice_App_Testing_-_Voicebot_Podcast_Ep_55.mp3';
 
             this.$googleAction.$mediaResponse.play(secondEpisode, 'Episode 55');
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
