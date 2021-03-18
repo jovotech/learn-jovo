@@ -150,6 +150,13 @@ app.setHandler({
         }
     },
 });
+
+// If you're running this experiment by altering the checked-in copy of
+// app.js, you should also remove or comment out the lines which set
+// separate classes to function as the callback event handlers:
+// app.setAlexaHandler(AlexaHandler);
+// app.setGoogleAssistantHandler(GoogleHandler);
+
 ```
 
 Save the file and run the Jovo Webhook. It's time to test. Open up the Jovo Debugger and press the **LAUNCH** button, but don't forget to change your device back to an Alexa Echo.
