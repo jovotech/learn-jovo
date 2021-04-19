@@ -6,14 +6,14 @@ Jovo is now part of a community of institutions and groups that support $BOT Coi
 
 In addition to the [Jovo Open Collective](https://opencollective.com/jovo-framework), you can now support Jovo using $BOT. Learn more about how this benefits the community below.
 
-- [About $BOT](#about-bot)
-- [Jovo and $BOT](#jovo-and-bot)
-- [Voicebot.ai Sponsors Jovo with $BOT](#voicebotai-sponsors-jovo-with-bot)
-- [New Benefit for Sponsors: Access to Jovo Inbox](#new-benefit-for-sponsors-access-to-jovo-inbox)
+- [About BOT Coin](#about-bot-coin)
+- [Jovo and BOT Coin](#jovo-and-bot-coin)
+- [Voicebot Sponsors Jovo with BOT Coin](#voicebot-sponsors-jovo-with-bot-coin)
+- [New Benefit for Sponsors - Access to Jovo Inbox](#new-benefit-for-sponsors---access-to-jovo-inbox)
 
 
 
-## About $BOT
+## About BOT Coin
 
 ![](https://miro.medium.com/max/1202/1*SNuIOR4x0zKiC3l5G_XDSA.png)
 
@@ -25,7 +25,7 @@ You can learn more about $BOT here:
 * [$BOT on the Rally website](https://rally.io/creator/BOT/)
 
 
-## Jovo and $BOT
+## Jovo and BOT Coin
 
 For the Jovo open source community, we are always looking for ways to support contributors, and for community members to support each other.
 
@@ -45,7 +45,7 @@ To send $BOT to Jovo, you can use our Rally username `jovotech`.
 
 
 
-## Voicebot.ai Sponsors Jovo with $BOT
+## Voicebot Sponsors Jovo with BOT Coin
 
 We're excited to welcome [Voicebot.ai](https://voicebot.ai/) as new Jovo bronze sponsors. Voicebot is the first entity to sponsor Jovo using $BOT.
 
@@ -55,7 +55,7 @@ _"Jovo has been a great contributor to the growth and quality of the voice app e
 
 Thanks a lot for the support and trust!
 
-## New Benefit for Sponsors: Access to Jovo Inbox
+## New Benefit for Sponsors - Access to Jovo Inbox
 
 ![Jovo Inbox](https://www.jovo.tech/img/news/2021-03-11-jovo-inbox-v0-2/jovo-inbox-screenshot.jpg)
 
