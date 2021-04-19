@@ -51,7 +51,7 @@ We're excited to welcome [Voicebot.ai](https://voicebot.ai/) as new Jovo bronze 
 
 [Bret Kinsella](https://twitter.com/bretkinsella) of Voicebot:
 
-_Jovo has been a great contributor to the growth and quality of the voice app ecosystem. I know countless developers that use Jovo and appreciate what Jan, Alex, and the contributors have done to make their lives easier and voice experiences better. As an open source project, Jovo has built a strong community. The leadership team immediately recognized the value of $BOT Coin as another community project that could help all developers by providing a new tool for user recognition and loyalty rewards, voice app mechanics, and monetization. The Voicebot team thought it was only fitting to recognize Jovo's industry contribution with a donation in the form of $BOT Coin._
+_"Jovo has been a great contributor to the growth and quality of the voice app ecosystem. I know countless developers that use Jovo and appreciate what Jan, Alex, and the contributors have done to make their lives easier and voice experiences better. As an open source project, Jovo has built a strong community. The leadership team immediately recognized the value of $BOT Coin as another community project that could help all developers by providing a new tool for user recognition and loyalty rewards, voice app mechanics, and monetization. The Voicebot team thought it was only fitting to recognize Jovo's industry contribution with a donation in the form of $BOT Coin."_
 
 Thanks a lot for the support and trust!
 
