@@ -109,7 +109,7 @@ In time, the suffering of your people will persuade you to see our point of view
 
 As you can see, the voice app sends out an empty response without waiting for the API call to be finished. This is because the handler promise gets resolved (all handlers have been executed from start to finish) without waiting for the asynchronous API call.
 
-With async/await, you can make the handler `await` asynchronous calls. You also have to add `asnyc` to all functions that use `await`:
+With async/await, you can make the handler `await` asynchronous calls. You also have to add `async` to all functions that use `await`:
 
 ```javascript
 // app.js
