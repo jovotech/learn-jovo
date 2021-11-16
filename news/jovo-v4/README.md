@@ -1,3 +1,9 @@
+---
+title: 'Introducing Jovo v4: The React for Voice and Chat'
+excerpt: 'Jovo v4 improves every step of the workflow, including a new browser-based Debugger, a new CLI, an output template engine, a component-based system, and much more. Learn more below.'
+date: '2021-11-18'
+---
+
 # Introducing Jovo v4: The React for Voice and Chat
 
 ![Jovo v4](./img/jovo-v4.png 'Jovo launches version 4')
