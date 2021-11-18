@@ -30,6 +30,10 @@ All of this was designed and developed in dozens of sessions with the Jovo commu
 
 > Jovo v4 is a modern component based conversational UI framework with outstanding flexibility and state of the art tooling. We were able to deliver a deeply integrated custom conversation platform and tailored conversation applications for our clients. Thanks to open source, the incredible dedicated team of Jovo and its amazing community - Jovo v4 is a top solution for professional development of all kind of conversational applications.
 
+I'm especially proud of what we accomplished given that we're only a team of 4 people. Huge thanks go out to [Ruben](https://github.com/rubenaeg), [Max](https://github.com/m-ripper), and [Alex](https://github.com/aswetlow) for this! It was a pleasure. And to our community members who helped us with feedback, feature requests, and pull requests. It's great to be part of such a great community!
+
+_Can't wait to see and hear what everyone is going to build with Jovo ´v4`!_
+
 ## Jovo v4 Features
 
 Learn more in our [getting started guide](https://www.jovo.tech/docs/getting-started) or in this video:
@@ -44,8 +48,6 @@ https://www.youtube.com/watch?v=YwsLarNuMW0
 
 ### New Debugger
 
-> [Learn more about the Jovo Debugger here](https://www.jovo.tech/docs/debugger).
-
 ![A screenshot of the new Jovo Debugger](img/jovo-debugger-features.png)
 
 The new Jovo Debugger comes with lots of improvements:
@@ -54,17 +56,17 @@ The new Jovo Debugger comes with lots of improvements:
 - See the whole data flow in the _Lifecycle_ view
 - Customize the Debugger with a [`jovo.debugger.js` file](https://www.jovo.tech/docs/debugger-config)
 
-### Components
+[Learn more about the Jovo Debugger here](https://www.jovo.tech/docs/debugger).
 
-> [Learn more about components here](https://www.jovo.tech/docs/components).
+### Components
 
 ![A Jovo Framework component that asks the user if they like pizza](img/jovo-framework-features.png)
 
 Jovo `v4` has a component-based system at its core, similar to popular web frameworks like React and Vue. This makes it possible for our users to build reusable elements that can be used across projects.
 
-### Output
+[Learn more about components here](https://www.jovo.tech/docs/components).
 
-> [Learn more about output here](https://www.jovo.tech/docs/output).
+### Output
 
 Jovo `v4` comes with a first of its kind multimodal template engine that turns [structured output](https://www.jovo.tech/docs/output-templates) into native platform responses.
 
@@ -84,9 +86,9 @@ It comes with the following features:
 - Works across platforms, even on Alexa APL
 - Supports validation and automatically trims content based on platform requirements
 
-### CLI
+[Learn more about output here](https://www.jovo.tech/docs/output).
 
-> [Learn more about the Jovo CLI here](https://www.jovo.tech/docs/cli).
+### CLI
 
 ![A screenshot of the new Jovo CLI](img/jovo-cli-features.png)
 
@@ -95,6 +97,8 @@ The CLI was completely rebuilt from the ground up:
 - A new, more modular architecture
 - An improved build and deployment process
 - Build your own [CLI plugins](https://www.jovo.tech/docs/cli-plugins) and custom commands
+
+[Learn more about the Jovo CLI here](https://www.jovo.tech/docs/cli).
 
 ### More
 
