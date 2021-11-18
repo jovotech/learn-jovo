@@ -26,7 +26,7 @@ And here it is! Jovo `v4` is a complete rewrite that brings us closer to our vis
 
 Or, if you want to put it like this: If Jovo `v3` was the jQuery, Jovo `v4` can be seen as the React for voice and chat apps, bringing the development of conversational apps with Jovo to a next level.
 
-All of this was designed and developed in dozens of sessions with the Jovo community. Norbert Gocht from [Die Lautmaler](https://www.die-lautmaler.de/) shares some insights:
+All of this was designed and developed in dozens of sessions with the Jovo community. Norbert Gocht from [Die Lautmaler](https://www.linkedin.com/company/die-lautmaler/) shares some insights:
 
 > Jovo v4 is a modern component based conversational UI framework with outstanding flexibility and state of the art tooling. We were able to deliver a deeply integrated custom conversation platform and tailored conversation applications for our clients. Thanks to open source, the incredible dedicated team of Jovo and its amazing community - Jovo v4 is a top solution for professional development of all kind of conversational applications.
 
