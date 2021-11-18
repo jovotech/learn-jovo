@@ -30,7 +30,7 @@ All of this was designed and developed in dozens of sessions with the Jovo commu
 
 > Jovo v4 is a modern component based conversational UI framework with outstanding flexibility and state of the art tooling. We were able to deliver a deeply integrated custom conversation platform and tailored conversation applications for our clients. Thanks to open source, the incredible dedicated team of Jovo and its amazing community - Jovo v4 is a top solution for professional development of all kind of conversational applications.
 
-I'm especially proud of what we accomplished given that we're only a team of 4 people. Huge thanks go out to [Ruben](https://github.com/rubenaeg), [Max](https://github.com/m-ripper), and [Alex](https://github.com/aswetlow) for this! It was a pleasure. And to our community members who helped us with feedback, feature requests, and pull requests. It's great to be part of such a great community!
+I'm especially proud of what we accomplished given that we're only a team of 4 people. Huge thanks go out to [Ruben](https://github.com/rubenaeg), [Max](https://github.com/m-ripper), and [Alex](https://github.com/aswetlow) for this! And for [Kaan](https://github.com/KaanKC) who has been a lot of help earlier to year. It was a pleasure. And to our community members who helped us with feedback, feature requests, and pull requests. It's great to be part of such a great community!
 
 _Can't wait to see and hear what everyone is going to build with Jovo ´v4`!_
 
