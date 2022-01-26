@@ -1,12 +1,12 @@
 ---
 title: 'Introducing Jovo v4.1: Alexa Conversations, ISP, Slack Plugin, and AWS Lex'
-excerpt: 'Jovo v4 improves every step of the workflow, including a new browser-based Debugger, a new CLI, an output template engine, a component-based system, and much more. Learn more below.'
-date: '2021-11-18'
+excerpt: 'Learn more about the Jovo update that was released in December 2021.'
+date: '2021-12-17'
 ---
 
 # Jovo v4.1: Alexa Conversations, ISP, Slack Plugin, and AWS Lex
 
-![Jovo v4](./img/jovo-v4-1.png 'Jovo launches version 4')
+![Jovo v4](./img/jovo-v4-1.png 'Jovo launches version 4.1')
 
 In November, we [launched Jovo `v4`](https://www.jovo.tech/news/jovo-v4), which was our most exciting update so far. The Jovo `v4.1` now builds on top of that and comes with many improvements and new integrations. Learn more below.
 
