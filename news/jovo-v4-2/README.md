@@ -6,7 +6,7 @@ date: '2022-02-02'
 
 # Jovo v4.2: React Web Widgets, Alexa AudioPlayer, Snips NLU Server, CLI
 
-![Jovo v4.2](./img/jovo-v4-2.png 'Jovo launches version 4.2')
+![Jovo v4.2](https://www.jovo.tech/img/jovo-v4.png 'Jovo launches version 4.2')
 
 In November 2021, we [launched Jovo `v4`](https://www.jovo.tech/news/jovo-v4), which was our most exciting update so far. Jovo `v4.2` now builds on top of that and comes with many improvements and new integrations. Learn more below.
 
