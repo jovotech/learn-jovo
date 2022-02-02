@@ -1,7 +1,7 @@
 ---
 title: 'Introducing Jovo v4.2: React Web Widgets, Alexa AudioPlayer, Snips NLU Server, CLI'
-excerpt: 'Learn more about the Jovo update that was released in January 2022.'
-date: '2022-01-26'
+excerpt: 'Learn more about the Jovo update that was released in February 2022.'
+date: '2022-02-02'
 ---
 
 # Jovo v4.2: React Web Widgets, Alexa AudioPlayer, Snips NLU Server, CLI
