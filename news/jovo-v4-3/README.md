@@ -82,7 +82,7 @@ This release does not come with any breaking changes. Happy upgrading!
 There are several ways how you can get started with Jovo:
 
 - Follow our [getting started guide](https://www.jovo.tech/docs/getting-started) to install the Jovo CLI and create a new project
-- Take a look at out [examples](https://www.jovo.tech/examples)
+- Take a look at our [examples](https://www.jovo.tech/examples)
 - Join our [community](https://www.jovo.tech/community)
 
 Thanks a lot for being part of Jovo!
