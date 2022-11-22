@@ -1,10 +1,10 @@
 ---
-title: 'Introducing Jovo v4.3: Polly TTS, MongoDB, NLU Performance'
-excerpt: 'Learn more about the Jovo update that was released in September 2022.'
-date: '2022-09-07'
+title: 'Introducing Jovo v4.5: Dependency Injection and Intent Scoping'
+excerpt: 'Learn more about the Jovo update that was released in November 2022.'
+date: '2022-11-22'
 ---
 
-# Jovo v4.5: Dependency Injection, Intent Scoping
+# Jovo v4.5: Dependency Injection and Intent Scoping
 
 ![Jovo v4.5](https://www.jovo.tech/img/jovo-v4.png 'Jovo launches version 4.5')
 
