@@ -22,7 +22,6 @@ Jovo `v4.5` includes the following larger updates:
   - [Component Inheritance](#component-inheritance)
 - [New Examples](#new-examples)
 
-
 `v4.5` also comes with many other improvements and bugfixes. You can find all releases [on GitHub](https://github.com/jovotech/jovo-framework/releases) and the [Jovo News page](https://www.jovo.tech/news).
 
 A huge thank you for everyone who keeps helping to improve Jovo: [Mark](https://github.com/rmtuckerphx), [Palle](https://github.com/palle-k), [Nico](https://github.com/NLueg), [Florian](https://github.com/VialFlorian), [David](https://github.com/DavidKrell), [Pete](https://github.com/Programproductions), [Gianluca](https://github.com/acerbisgianluca), and many more who are part of the Jovo [community](https://www.jovo.tech/community)!
@@ -36,6 +35,13 @@ The `v4.5` release comes with many improvements and 4 larger additions:
 - [Intent Scoping](#intent-scoping)
 - [Native NLU Data](#native-nlu-data)
 - [Component Inheritance](#component-inheritance)
+
+Here are some more pull requests that are part of latest releases:
+
+- [Add billingMode option on DynamoDbConfig to allow on-demand mode](https://github.com/jovotech/jovo-framework/pull/1437) by [Florian](https://github.com/VialFlorian)
+- [Allow history items as class instances](https://github.com/jovotech/jovo-framework/pull/1435) by [Alex](https://github.com/aswetlow)
+- [Add app data + allow app and request data in unit tests](https://github.com/jovotech/jovo-framework/pull/1421) by [Jan](https://github.com/jankoenig)
+- [Add Alexa Lists feature](https://github.com/jovotech/jovo-framework/pull/1418) by [Nico](https://github.com/NLueg)
 
 
 ### Dependency Injection
@@ -79,7 +85,11 @@ And then accessed in any component our output class using the `constructor()`:
 
 @Component()
 class OrderPizzaComponent extends BaseComponent {
-  constructor(jovo: Jovo, options: UnknownObject, private readonly orderService: OrderService) {
+  constructor(
+    jovo: Jovo,
+    options: UnknownObject | undefined,
+    private readonly orderService: OrderService
+  ) {
     super(jovo, options);
   }
 
