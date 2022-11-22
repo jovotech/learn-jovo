@@ -6,7 +6,7 @@ date: '2022-09-07'
 
 # Jovo v4.5: Dependency Injection, Intent Scoping
 
-![Jovo v4.5](./img/jovo-v4-5.jpg 'Jovo launches version 4.5')
+![Jovo v4.5](https://www.jovo.tech/img/jovo-v4.png 'Jovo launches version 4.5')
 
 Jovo `v4.5` builds on top of our [major `v4` release last year](https://www.jovo.tech/news/jovo-v4). Learn more below.
 
