@@ -205,7 +205,11 @@ In your `constructor()`, make sure to add `undefined` as a potential value for `
 ```typescript
 @Component()
 class OrderPizzaComponent extends BaseComponent {
-  constructor(jovo: Jovo, options: ComponentOptions<UnknownObject> | undefined, private readonly orderService: OrderService) {
+  constructor(
+    jovo: Jovo,
+    options: ComponentOptions<UnknownObject> | undefined,
+    private readonly orderService: OrderService
+  ) {
     super(jovo, options);
   }
 
