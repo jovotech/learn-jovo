@@ -1,7 +1,7 @@
 ---
-title: 'Introducing Jovo v4.3: Polly TTS, MongoDB, NLU Performance'
-excerpt: 'Learn more about the Jovo update that was released in September 2022.'
-date: '2022-09-07'
+Title: 'Introducing Jovo v4.3: Polly TTS, MongoDB, NLU Performance'
+Excerpt: 'Learn more about the Jovo update that was released in September 2022.'
+Date: '2022-09-07'
 ---
 
 # Jovo v4.3: Polly TTS, MongoDB, NLU Performance
